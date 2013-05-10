@@ -1,0 +1,1 @@
+A javascript project containing the standalone javascript widgets used by the RichFaces project.

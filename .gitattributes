@@ -1,0 +1,9 @@
+*.css text eol=lf
+*.less text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+*.txt text eol=lf
+*.xhtml text eol=lf
+*.xsd text eol=lf
