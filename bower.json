@@ -1,0 +1,10 @@
+{
+  "name": "richfaces-widgets",
+  "version": "0.0.1-SNAPSHOT",
+  "dependencies": {
+    "jquery": "~1.9.0",
+    "font-awesome": "~3.1.0",
+    "modernizr": "~2.6.2",
+    "lodash": "~1.2.0"
+  }
+}
