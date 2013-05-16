@@ -1,2 +1,10 @@
 components
 node_modules
+test-results.xml
+coverage
+
+src/scripts/bootstrap/bootstrap.js
+src/scripts/jquery
+src/scripts/lodash
+
+src/styles/fontawesome
