@@ -1,15 +1,13 @@
 # RichFaces Widgets #
 
-> A javascript project containing the standalone javascript widgets used by the RichFaces project.
+> A JavaScript project containing the standalone javascript widgets used by the RichFaces project.
 
 ## Users ##
 
-Depending on your needs, you can grad the compiled files inside the <code>dist</code> directory and drop them on your
-project or directly use the LESS and raw JavaScript files from the <code>src</code> directory.
+Depending on your needs, you can grad the compiled files inside the <code>[dist](https://github.com/richfaces/richfaces-widgets/tree/master/dist)</code> directory and drop them on your
+project or directly use the LESS and raw JavaScript files from the <code>[src](https://github.com/richfaces/richfaces-widgets/tree/master/src)</code> directory.
 
-## Developers & Contributors ##
-
-### Build from sources ###
+## Build from sources ##
 
 After forking and/or cloning the project, you will need to install the following tools:
 
@@ -27,18 +25,10 @@ This should drop quite some logs in your shell and use a bit of bandwith. Once i
 RichFaces Widgets demo running on [localhost:9000](http://localhost:9000/) (hopefully, you didn't already had a process
 running on that port).
 
-### Create a new widget ###
+## Contributors ##
 
-TODO
+Learn more by reading the [CONTRIBUTING.md](https://github.com/richfaces/richfaces-widgets/blob/master/CONTRIBUTING.md) file.
 
-### Test ###
+## License ##
 
-TODO
-
-### Add a new dependency ###
-
-TODO
-
-## Licence ##
-
-TODO
+GNU Lesser General Public License, version 2.1. [Read more on lgpl.txt](https://github.com/richfaces/richfaces-widgets/blob/master/lgpl.txt) file.
