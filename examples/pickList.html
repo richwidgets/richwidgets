@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="fragment" content="!" />
+
+  <title>RichFaces Widgets</title>
+
+  <link rel="stylesheet" media="screen" href="styles/richfaces.css">
+  <link rel="stylesheet" media="screen" href="styles/examples.css">
+  <link rel="shortcut icon" type="image/png" href="">
+  <script src="modernizr/modernizr.js"></script>
+
+    <script type="text/javascript" src="jquery/jquery.js"></script>
+
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.position.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.mouse.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.button.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.selectable.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.sortable.js"></script>
+
+</head>
+
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="container">
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="navbar-brand" href="/">RichFaces Widgets</a>
+
+      <div class="nav-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="/">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+<h2>Example pickList</h2>
+
+<p>Using the pickList plugin, we built a simple pickList widget:</p>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col col-lg-6 ">
+            <div id="pickListDemo">
+                <ol class="source">
+                    <li data-key="1" class="num">Item 1</li>
+                    <li data-key="2" class="num">Item 2</li>
+                    <li data-key="3" class="num">Item 3</li>
+                    <li data-key="4" class="num">Item 4</li>
+                    <li data-key="5" class="num">Item 5</li>
+                    <li data-key="6" class="num">Item 6</li>
+                    <li data-key="7" class="num">Item 7</li>
+                    <li data-key="8" class="num">Item 8</li>
+                </ol>
+                <ol class="target">
+                    <li data-key="9" class="num">Item 9</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+  </div>
+
+  <script src="scripts/richfaces.js"></script>
+
+<script>
+    var pluginOptions1 = {
+        header: "List layout",
+        orderable: "true"
+    };
+
+    $("#pickListDemo").pickList(pluginOptions1);
+</script>
+
+</body>
+</html>

@@ -86,7 +86,7 @@
                     self._trigger("change", event, ui);
                     }
                 };  
-            if (this.options.contained != "false") {
+            if (this.options.contained !== false) {
                 this.sortableOptions.containment = this.element;
                 this.sortableOptions.axis = "y";
             }            
@@ -205,6 +205,11 @@
         },
 
         /** Public API methods **/
+
+        connectWith: function (target) {
+            var orderingList = target.data("rfOrderingList");
+            this.$pluginRoot.sortable("option", "connectWith", orderingList.$pluginRoot);
+        },
 
         isSelected: function (item) {
             return $(item).hasClass('ui-selected');
