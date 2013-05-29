@@ -4,7 +4,7 @@
 
 ## Users ##
 
-Depending on your needs, you can grad the compiled files inside the <code>[dist](https://github.com/richfaces/richfaces-widgets/tree/master/dist)</code> directory and drop them on your
+Depending on your needs, you can grab the compiled files inside the <code>[dist](https://github.com/richfaces/richfaces-widgets/tree/master/dist)</code> directory and drop them on your
 project or directly use the LESS and raw JavaScript files from the <code>[src](https://github.com/richfaces/richfaces-widgets/tree/master/src)</code> directory.
 
 ## Build from sources ##
