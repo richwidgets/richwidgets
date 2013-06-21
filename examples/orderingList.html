@@ -29,6 +29,7 @@
     <script type="text/javascript" src="jquery-ui/ui/jquery.ui.button.js"></script>
     <script type="text/javascript" src="jquery-ui/ui/jquery.ui.selectable.js"></script>
     <script type="text/javascript" src="jquery-ui/ui/jquery.ui.sortable.js"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
 
 </head>
 
@@ -64,8 +65,8 @@
 <div class="container-fluid ">
     <div class="row-fluid ">
         <div class="span6 ">
-            <button onclick="toggleDisabled(event, 'orderingListDemo')">Disable Plugin</button>
-            <button onclick="toggleActive(event, 'orderingListDemo', pluginOptions1)">Destroy Plugin</button>
+            <button onclick="toggleDisabled(event, 'orderingListDemo')" class="btn btn-default">Disable Plugin</button>
+            <button onclick="toggleActive(event, 'orderingListDemo', pluginOptions1)" class="btn btn-default">Destroy Plugin</button>
             <ol id="orderingListDemo">
                 <li data-key="1">Item 1</li>
                 <li data-key="2">Item 2</li>
@@ -81,8 +82,8 @@
     <hr />
     <div class="row-fluid ">
         <div class="span6">
-            <button onclick="toggleDisabled(event, 'orderingListDemo2')">Disable Plugin</button>
-            <button onclick="toggleActive(event, 'orderingListDemo2', pluginOptions2)">Destroy Plugin</button>
+            <button onclick="toggleDisabled(event, 'orderingListDemo2')" class="btn btn-default">Disable Plugin</button>
+            <button onclick="toggleActive(event, 'orderingListDemo2', pluginOptions2)" class="btn btn-default">Destroy Plugin</button>
             <table id="orderingListDemo2">
                 <thead>
                     <tr>

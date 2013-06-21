@@ -18,8 +18,8 @@ After forking and/or cloning the project, you will need to install the following
 Once you got them, got to the root of the project and run the following commands:
 
 - <code>npm install</code>
-- <code>bower install</code>
-- <code>grunt server</code>
+- <code>grunt bower</code>
+- <code>grunt</code>
 
 This should drop quite some logs in your shell and use a bit of bandwith. Once it's completed, you should have the
 RichFaces Widgets demo running on [localhost:9000](http://localhost:9000/) (hopefully, you didn't already had a process
