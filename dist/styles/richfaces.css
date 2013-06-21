@@ -6951,6 +6951,10 @@ ul.icons-ul > li .icon-li {
   z-index: 2;
 }
 
+.list {
+  margin: 0;
+}
+
 .list .content {
   display: table;
   width: 100%;
@@ -6984,7 +6988,6 @@ ul.icons-ul > li .icon-li {
   display: table-cell;
   width: 24px;
   padding-left: 2px;
-  line-height: 100px;
   vertical-align: middle;
 }
 
@@ -7080,7 +7083,7 @@ ul.icons-ul > li .icon-li {
 }
 
 .list .btn-group-vertical button {
-  padding: 6px;
+  padding: 4px;
 }
 
 .list .btn-group-vertical .first {
@@ -7135,6 +7138,7 @@ ul.icons-ul > li .icon-li {
 
 .orderingList {
   display: block;
+  margin: 0;
   margin-bottom: 1.428;
 }
 
@@ -7171,7 +7175,6 @@ ul.icons-ul > li .icon-li {
   display: table-cell;
   width: 24px;
   padding-left: 2px;
-  line-height: 100px;
   vertical-align: middle;
 }
 
@@ -7267,7 +7270,7 @@ ul.icons-ul > li .icon-li {
 }
 
 .orderingList .btn-group-vertical button {
-  padding: 6px;
+  padding: 4px;
 }
 
 .orderingList .btn-group-vertical .first {
@@ -7341,21 +7344,26 @@ ul.icons-ul > li .icon-li {
   margin-bottom: 1.428;
 }
 
+.pickList .left {
+  padding: 0;
+}
+
+.pickList .right {
+  padding: 0;
+}
+
 .pickList .buttonColumnPickList {
-  position: relative;
-  height: 131px;
+  height: 122px;
+  padding: 0;
+  line-height: 122px;
   text-align: center;
 }
 
 .pickList .buttonColumnPickList .btn-group-vertical {
-  position: absolute;
-  top: 50%;
   display: inline-block;
-  width: 24px;
-  margin: auto;
-  margin-top: -65px;
+  vertical-align: middle;
 }
 
 .pickList .buttonColumnPickList .btn-group-vertical button {
-  padding: 6px;
+  padding: 4px;
 }

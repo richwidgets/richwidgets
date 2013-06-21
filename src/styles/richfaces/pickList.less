@@ -7,27 +7,25 @@
     display: block;
 }
 
-//.source {
-//    .list();
-//}
-//
-//.target {
-//    .list();
-//}
-
 .pickList {
-    .buttonColumnPickList {
-        text-align: center;
-        position: relative;
-        height: 131px;
-        .btn-group-vertical {
-            margin: auto;
-            width: 24px;
-            position:absolute; top:50%; margin-top: -65px;
-            display: inline-block;
+    .left {
+        padding: 0;
+    }
 
+    .right {
+        padding: 0;
+    }
+
+    .buttonColumnPickList {
+        padding: 0;
+        text-align: center;
+        height: @list-min-height;
+        line-height: @list-min-height;
+        .btn-group-vertical {
+            display: inline-block;
+            vertical-align: middle;
             button {
-                padding: 6px;
+                padding: @list-button-padding;
             }
 
         }

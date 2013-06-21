@@ -1,4 +1,10 @@
+@list-min-height: 122px;
+@list-button-padding: 4px;
+
 .list {
+
+    margin: 0;
+
     .outer {
     }
 
@@ -24,7 +30,7 @@
     ol.list {
         margin-left: 0;
         list-style: none;
-        min-height: 122px;
+        min-height: @list-min-height;
     }
 
     .list ol.helper {
@@ -33,7 +39,6 @@
     }
 
     .buttonColumn {
-        line-height: 100px;
         vertical-align: middle;
         display: table-cell;
         width: 24px;
@@ -123,7 +128,7 @@
     }
 
     .btn-group-vertical button {
-        padding: 6px;
+        padding: @list-button-padding;
     }
 
     .btn-group-vertical .first {
