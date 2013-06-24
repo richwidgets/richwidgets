@@ -2,6 +2,10 @@
 
 var path = require("path");
 
+var mountFolder = function (connect, dir) {
+  return connect.static(path.resolve(dir));
+};
+
 var renamedTasks = {
 
 };
