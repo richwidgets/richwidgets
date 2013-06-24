@@ -1,33 +1,71 @@
-// OrderingList
-// ---------
-
 // Parent container
 .pickList {
-    margin-bottom: @line-height-base;
-    display: block;
-}
+  margin-bottom: @line-height-base;
+  display: block;
 
-.pickList {
-    .left {
-        padding: 0;
-    }
+  .left {
+      padding: 0;
+  }
 
-    .right {
-        padding: 0;
-    }
+  .right {
+      padding: 0;
+  }
 
-    .buttonColumnPickList {
-        padding: 0;
-        text-align: center;
-        height: @list-min-height;
-        line-height: @list-min-height;
-        .btn-group-vertical {
-            display: inline-block;
-            vertical-align: middle;
-            button {
-                padding: @list-button-padding;
-            }
+  .buttonColumn {
+    text-align: center;
 
+    .btn-group-picklist  {
+      display: block;
+      padding: 1px;
+
+      .btn-left-all {
+        i.icon-arrow-up {
+          border-top: @gray-dark solid 2px;
         }
+        i.icon-arrow-left {
+          border-left: @gray-dark solid 2px;
+        }
+      }
+      .btn-right-all {
+        i.icon-arrow-down {
+          border-bottom: @gray-dark solid 2px;
+        }
+        i.icon-arrow-right {
+          border-right: @gray-dark solid 2px;
+        }
+      }
+      > .btn {
+        .border-radius(0);
+        text-align: center;
+        height: 3em;
+      }
+
+      @media (min-width: 992px) {
+        > .btn {
+          float: none;
+          margin: 0;
+          padding: 0;
+          max-width: 3em;
+        }
+
+        > .btn:first-child {
+          .border-top-radius(@border-radius-base);
+        }
+
+        > .btn:last-child {
+          .border-bottom-radius(@border-radius-base);
+        }
+      }
+
+      @media (max-width: 992px) {
+        > .btn:first-child {
+          .border-left-radius(@border-radius-base);
+        }
+
+        > .btn:last-child {
+          .border-right-radius(@border-radius-base);
+        }
+      }
     }
+  }
 }

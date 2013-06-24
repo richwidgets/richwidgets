@@ -59,41 +59,42 @@
 
         _addDomElements: function() {
             this._addParents();
-            this._addButtons();
+            var buttonColumn = $('<div />').addClass('middle buttonColumn col col-lg-1');
+            buttonColumn.append(this._buttonStack());
+            this.sourceList.parent().after(buttonColumn);
         },
 
-        _addButtons: function() {
-            var button = $('<button type="button" class="btn" />');
+        _buttonStack: function() {
+            var button = $('<button type="button" class="btn"/>');
             var buttonStack = $("<div/>")
-                .addClass("btn-group-vertical");
+                .addClass("btn-group-picklist row");
             buttonStack
                 .append(
                 button.clone()
-                    .addClass('leftAll')
-                    .html("<i class='icon-fast-backward'></i>")
+                    .addClass('btn-left-all col col-3 col-lg-12 col-sm-3')
+                    .html('<span class="hidden-lg"><i class="icon-arrow-up"></i></span><span class="visible-lg"><i class="icon-arrow-left"></i></span>')
                     .bind('click.orderingList', $.proxy(this._leftAllHandler, this))
             )
                 .append(
                 button.clone()
-                    .addClass('left')
-                    .html("<i class='icon-step-backward'></i>")
+                    .addClass('btn-left col col-3 col-lg-12 col-sm-3')
+                    .html('<span class="hidden-lg"><i class="icon-arrow-up"></i></span><span class="visible-lg"><i class="icon-arrow-left"></i></span>')
                     .bind('click.orderingList', $.proxy(this._leftHandler, this))
             )
                 .append(
                 button.clone()
-                    .addClass('right')
-                    .html("<i class='icon-step-forward'></i>")
+                    .addClass('btn-right col col-3 col-lg-12 col-sm-3')
+                    .html('<span class="hidden-lg"><i class="icon-arrow-down"></i></span><span class="visible-lg"><i class="icon-arrow-right"></i></span>')
                     .bind('click.orderingList', $.proxy(this._rightHandler, this))
             )
                 .append(
                 button
                     .clone()
-                    .addClass('rightAll')
-                    .html("<i class='icon-fast-forward'></i>")
+                    .addClass('btn-right-all col col-3 col-lg-12 col-sm-3')
+                    .html('<span class="hidden-lg"><i class="icon-arrow-down"></i></span><span class="visible-lg"><i class="icon-arrow-right"></i></span>')
                     .bind('click.orderingList', $.proxy(this._rightAllHandler, this))
             );
-            this.sourceList.parent().after(
-                $('<div />').addClass('middle buttonColumnPickList col col-lg-1').append(buttonStack));
+            return buttonStack;
         },
 
         _addParents: function() {

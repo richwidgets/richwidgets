@@ -7285,73 +7285,6 @@ a .icon-flip-vertical:before {
   content: "\f18b";
 }
 
-.btn-group-vertical {
-  display: block;
-}
-
-.btn-group-vertical + .btn-group-vertical {
-  margin-top: 5px;
-}
-
-.btn-group-vertical .btn {
-  display: block;
-  width: 100%;
-  padding-top: 5px;
-  margin-top: -1px;
-  -webkit-border-radius: 0;
-     -moz-border-radius: 0;
-          border-radius: 0;
-}
-
-.btn-group-vertical .btn.btn-large {
-  padding-top: 10px;
-}
-
-.btn-group-vertical .btn:first-child {
-  margin-top: 0;
-  -webkit-border-top-right-radius: 4px;
-          border-top-right-radius: 4px;
-  -webkit-border-top-left-radius: 4px;
-          border-top-left-radius: 4px;
-  -moz-border-radius-topright: 4px;
-  -moz-border-radius-topleft: 4px;
-}
-
-.btn-group-vertical .btn:last-child {
-  -webkit-border-bottom-right-radius: 4px;
-          border-bottom-right-radius: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-          border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -moz-border-radius-bottomleft: 4px;
-}
-
-.btn-group-vertical .btn.large:first-child {
-  margin-top: 0;
-  -webkit-border-top-right-radius: 6px;
-          border-top-right-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
-          border-top-left-radius: 6px;
-  -moz-border-radius-topright: 6px;
-  -moz-border-radius-topleft: 6px;
-}
-
-.btn-group-vertical .btn.large:last-child {
-  -webkit-border-bottom-right-radius: 6px;
-          border-bottom-right-radius: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-          border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
-  -moz-border-radius-bottomleft: 6px;
-}
-
-.btn-group-vertical .btn:hover,
-.btn-group-vertical .btn:focus,
-.btn-group-vertical .btn:active,
-.btn-group-vertical .btn.active {
-  z-index: 2;
-}
-
 .list {
   margin: 0;
 }
@@ -7376,7 +7309,7 @@ a .icon-flip-vertical:before {
 
 .list ol.list,
 .list ol.helper {
-  min-height: 122px;
+  min-height: 165px;
   padding-left: 0;
   margin-left: 0;
   list-style: none;
@@ -7486,7 +7419,8 @@ a .icon-flip-vertical:before {
 }
 
 .list .btn-group-vertical button {
-  padding: 4px;
+  width: 3em;
+  height: 3em;
 }
 
 .list .btn-group-vertical .first {
@@ -7565,7 +7499,7 @@ a .icon-flip-vertical:before {
 
 .orderingList ol.list,
 .orderingList ol.helper {
-  min-height: 122px;
+  min-height: 165px;
   padding-left: 0;
   margin-left: 0;
   list-style: none;
@@ -7675,7 +7609,8 @@ a .icon-flip-vertical:before {
 }
 
 .orderingList .btn-group-vertical button {
-  padding: 4px;
+  width: 3em;
+  height: 3em;
 }
 
 .orderingList .btn-group-vertical .first {
@@ -7757,18 +7692,63 @@ a .icon-flip-vertical:before {
   padding: 0;
 }
 
-.pickList .buttonColumnPickList {
-  height: 122px;
-  padding: 0;
-  line-height: 122px;
+.pickList .buttonColumn {
   text-align: center;
 }
 
-.pickList .buttonColumnPickList .btn-group-vertical {
-  display: inline-block;
-  vertical-align: middle;
+.pickList .buttonColumn .btn-group-picklist {
+  display: block;
+  padding: 1px;
 }
 
-.pickList .buttonColumnPickList .btn-group-vertical button {
-  padding: 4px;
+.pickList .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-up {
+  border-top: #333333 solid 2px;
+}
+
+.pickList .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-left {
+  border-left: #333333 solid 2px;
+}
+
+.pickList .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-down {
+  border-bottom: #333333 solid 2px;
+}
+
+.pickList .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-right {
+  border-right: #333333 solid 2px;
+}
+
+.pickList .buttonColumn .btn-group-picklist > .btn {
+  height: 3em;
+  text-align: center;
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+}
+
+@media (min-width: 992px) {
+  .pickList .buttonColumn .btn-group-picklist > .btn {
+    float: none;
+    max-width: 3em;
+    padding: 0;
+    margin: 0;
+  }
+  .pickList .buttonColumn .btn-group-picklist > .btn:first-child {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+  .pickList .buttonColumn .btn-group-picklist > .btn:last-child {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+}
+
+@media (max-width: 992px) {
+  .pickList .buttonColumn .btn-group-picklist > .btn:first-child {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+  .pickList .buttonColumn .btn-group-picklist > .btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
 }
