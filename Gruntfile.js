@@ -222,6 +222,7 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
+              mountFolder(connect, 'src'),
               mountFolder(connect, 'dist'),
               mountFolder(connect, 'examples'),
               mountFolder(connect, 'components')
