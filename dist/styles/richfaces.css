@@ -7374,8 +7374,10 @@ a .icon-flip-vertical:before {
   vertical-align: middle;
 }
 
-.list ol.list {
+.list ol.list,
+.list ol.helper {
   min-height: 122px;
+  padding-left: 0;
   margin-left: 0;
   list-style: none;
 }
@@ -7561,8 +7563,10 @@ a .icon-flip-vertical:before {
   vertical-align: middle;
 }
 
-.orderingList ol.list {
+.orderingList ol.list,
+.orderingList ol.helper {
   min-height: 122px;
+  padding-left: 0;
   margin-left: 0;
   list-style: none;
 }
