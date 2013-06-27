@@ -312,7 +312,7 @@
         _addButtons: function() {
             var button = $("<button/>")
                 .attr('type', 'button')
-                .addClass("btn")
+                .addClass("btn btn-default")
             var buttonStack = $("<div/>")
                 .addClass("btn-group-vertical").addClass(this.options.buttonsStyleClass);
             buttonStack

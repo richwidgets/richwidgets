@@ -65,33 +65,33 @@
         },
 
         _buttonStack: function() {
-            var button = $('<button type="button" class="btn"/>');
+            var button = $('<button type="button" class="btn btn-default"/>');
             var buttonStack = $("<div/>")
                 .addClass("btn-group-picklist row");
             buttonStack
                 .append(
                 button.clone()
                     .addClass('btn-left-all col col-3 col-sm-12')
-                    .html('<span class="hidden-md"><i class="icon-arrow-up"></i></span><span class="visible-md"><i class="icon-arrow-left"></i></span>')
+                    .html('<span class="visible-sm"><i class="icon-arrow-up"></i></span><span class="hidden-sm"><i class="icon-arrow-left"></i></span>')
                     .bind('click.orderingList', $.proxy(this._leftAllHandler, this))
             )
                 .append(
                 button.clone()
                     .addClass('btn-left col col-3 col-sm-12')
-                    .html('<span class="hidden-md"><i class="icon-arrow-up"></i></span><span class="visible-md"><i class="icon-arrow-left"></i></span>')
+                    .html('<span class="visible-sm"><i class="icon-arrow-up"></i></span><span class="hidden-sm"><i class="icon-arrow-left"></i></span>')
                     .bind('click.orderingList', $.proxy(this._leftHandler, this))
             )
                 .append(
                 button.clone()
                     .addClass('btn-right col col-3 col-sm-12')
-                    .html('<span class="hidden-md"><i class="icon-arrow-down"></i></span><span class="visible-md"><i class="icon-arrow-right"></i></span>')
+                    .html('<span class="visible-sm"><i class="icon-arrow-down"></i></span><span class="hidden-sm"><i class="icon-arrow-right"></i></span>')
                     .bind('click.orderingList', $.proxy(this._rightHandler, this))
             )
                 .append(
                 button
                     .clone()
                     .addClass('btn-right-all col col-3 col-sm-12')
-                    .html('<span class="hidden-md"><i class="icon-arrow-down"></i></span><span class="visible-md"><i class="icon-arrow-right"></i></span>')
+                    .html('<span class="visible-sm"><i class="icon-arrow-down"></i></span><span class="hidden-sm"><i class="icon-arrow-right"></i></span>')
                     .bind('click.orderingList', $.proxy(this._rightAllHandler, this))
             );
             return buttonStack;

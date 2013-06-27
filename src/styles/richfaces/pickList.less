@@ -20,24 +20,28 @@
 
       .btn-left-all {
         i.icon-arrow-up {
-          border-top: @gray-dark solid 2px;
+          border-top: @btn-default-color solid 2px;
         }
         i.icon-arrow-left {
-          border-left: @gray-dark solid 2px;
+          border-left: @btn-default-color solid 2px;
         }
       }
       .btn-right-all {
         i.icon-arrow-down {
-          border-bottom: @gray-dark solid 2px;
+          border-bottom: @btn-default-color solid 2px;
         }
         i.icon-arrow-right {
-          border-right: @gray-dark solid 2px;
+          border-right: @btn-default-color solid 2px;
         }
       }
       > .btn {
         .border-radius(0);
         text-align: center;
-        height: @list-button-size;
+        height: @size-touchable;
+        @media (min-width: @screen-tablet) {
+          height: @size-clickable;
+        }
+
         padding: 0;
         margin: 0;
       }
@@ -45,7 +49,10 @@
       @media (min-width: @screen-tablet) {
         > .btn {
           float: none;
-          max-width: @list-button-size;
+          max-width: @size-touchable;
+          @media (min-width: @screen-tablet) {
+              max-width: @size-clickable;
+          }
         }
 
         > .btn:first-child {

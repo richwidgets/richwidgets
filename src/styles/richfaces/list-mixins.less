@@ -1,5 +1,4 @@
 @import "bootstrap/less/mixins";
-@import "bootstrap/less/variables";
 @import "font-awesome/less/mixins";
 @import "richfaces/variables";
 
@@ -57,7 +56,11 @@
 
     li,  td {
         cursor: pointer;
-        line-height: 24px; // keeps the overall height an even number
+        color: @list-item-color;
+        line-height: @size-touchable;
+        @media (min-width: @screen-tablet) {
+            line-height: @size-clickable;
+        }
     }
 
     .with-handle li {
@@ -92,10 +95,6 @@
         background: @gray-lighter;
     }
 
-    .ui-selected .handle:hover {
-        background: @link-hover-color;
-    }
-
     .disabled .handle:hover,
     .disabled .ui-selectee:hover {
         background: none;
@@ -103,12 +102,13 @@
 
     .ui-selectee:hover {
         text-decoration: none;
-        background-color: @gray-lighter;
+        background-color: @list-item-bg;
+        color: @list-item-hover-color;
     }
 
     .ui-selected,  tr.helper-item {
-        background-color: @link-color;
-        color: white;
+        background-color: @list-item-selected-bg;
+        color: @list-item-selected-color;
     }
 
     tr.helper-item {
@@ -119,8 +119,9 @@
         background: @link-color;
     }
 
-    .ui-selected:hover,  .helper-item {
-        background-color: @link-hover-color;
+    .ui-selected:hover, .ui-selected .handle:hover, .helper-item {
+      background: @list-item-selected-hover-bg;
+      color: @list-item-selected-hover-color;
     }
 
     .disabled .ui-selectee,
@@ -131,18 +132,22 @@
     }
 
     .btn-group-vertical .btn {
-        width: @list-button-size;
-        height: @list-button-size;
         padding: 0;
         text-align: center;
+        width: @size-touchable;
+        height: @size-touchable;
+        @media (min-width: @screen-tablet) {
+            width: @size-clickable;
+            height: @size-clickable;
+        }
     }
 
     .btn-group-vertical .first i {
-        border-top: @gray-dark solid 2px;
+        border-top: @btn-default-color solid 2px;
     }
 
     .btn-group-vertical .last i {
-        border-bottom: @gray-dark solid 2px;
+        border-bottom: @btn-default-color solid 2px;
     }
 
     table {

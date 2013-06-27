@@ -22,7 +22,7 @@
   padding-left: 0;
   margin-left: 0;
   list-style: none;
-  min-height: 165px;
+  min-height: 2.5em;
 }
 .list .list ol.helper {
   min-height: 0px;
@@ -45,7 +45,14 @@
 .list li,
 .list td {
   cursor: pointer;
-  line-height: 24px;
+  color: #333333;
+  line-height: 3em;
+}
+@media (min-width: 768px) {
+  .list li,
+  .list td {
+    line-height: 2.5em;
+  }
 }
 .list .with-handle li {
   position: relative;
@@ -75,9 +82,6 @@
 .list .handle:hover {
   background: #eeeeee;
 }
-.list .ui-selected .handle:hover {
-  background: #2a6496;
-}
 .list .disabled .handle:hover,
 .list .disabled .ui-selectee:hover {
   background: none;
@@ -85,11 +89,12 @@
 .list .ui-selectee:hover {
   text-decoration: none;
   background-color: #eeeeee;
+  color: #333333;
 }
 .list .ui-selected,
 .list tr.helper-item {
   background-color: #428bca;
-  color: white;
+  color: #ffffff;
 }
 .list tr.helper-item {
   -webkit-border-radius: 5px;
@@ -100,8 +105,10 @@
   background: #428bca;
 }
 .list .ui-selected:hover,
+.list .ui-selected .handle:hover,
 .list .helper-item {
-  background-color: #2a6496;
+  background: #2a6496;
+  color: #ffffff;
 }
 .list .disabled .ui-selectee,
 .list .disabled .handle,
@@ -110,16 +117,22 @@
   cursor: default;
 }
 .list .btn-group-vertical .btn {
-  width: 2.5em;
-  height: 2.5em;
   padding: 0;
   text-align: center;
+  width: 3em;
+  height: 3em;
+}
+@media (min-width: 768px) {
+  .list .btn-group-vertical .btn {
+    width: 2.5em;
+    height: 2.5em;
+  }
 }
 .list .btn-group-vertical .first i {
-  border-top: #333333 solid 2px;
+  border-top: #ffffff solid 2px;
 }
 .list .btn-group-vertical .last i {
-  border-bottom: #333333 solid 2px;
+  border-bottom: #ffffff solid 2px;
 }
 .list table {
   width: 100%;
