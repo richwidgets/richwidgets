@@ -37,15 +37,15 @@
       > .btn {
         .border-radius(0);
         text-align: center;
-        height: 3em;
+        height: @list-button-size;
+        padding: 0;
+        margin: 0;
       }
 
       @media (min-width: 992px) {
         > .btn {
           float: none;
-          margin: 0;
-          padding: 0;
-          max-width: 3em;
+          max-width: @list-button-size;
         }
 
         > .btn:first-child {
@@ -65,6 +65,16 @@
         > .btn:last-child {
           .border-right-radius(@border-radius-base);
         }
+      }
+    }
+
+    @media (min-width: 992px) {
+      height: @list-min-height;
+      line-height: @list-min-height;
+      .btn-group-picklist  {
+        vertical-align: middle;
+        line-height: @line-height-base;
+        display: inline-block;
       }
     }
   }

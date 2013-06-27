@@ -1,5 +1,6 @@
 @list-min-height: 165px;
 @list-button-padding: 4px;
+@list-button-size: 2.5em;
 
 .list {
 
@@ -128,21 +129,15 @@
         cursor: default;
     }
 
-    .btn-group-vertical button {
-        width: 3em;
-        height: 3em;
-    }
-
-    .btn-group-vertical .first {
-        padding-top: 5px;
+    .btn-group-vertical .btn {
+        width: @list-button-size;
+        height: @list-button-size;
+        padding: 0;
+        text-align: center;
     }
 
     .btn-group-vertical .first i {
         border-top: @gray-dark solid 2px;
-    }
-
-    .btn-group-vertical .last {
-        padding-bottom: 5px;
     }
 
     .btn-group-vertical .last i {
