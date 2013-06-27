@@ -71,6 +71,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask("dist", [
+    "clean",
     "build",
     "less:dist",
     "uglify:dist",
@@ -84,9 +85,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     config: configuration,
 
-    clean: {
-      dist: {}
-    },
+    clean: [ 'dist' ],
 
     less: {
       options: {
