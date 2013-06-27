@@ -38,21 +38,17 @@
         .border-radius(0);
         text-align: center;
         height: @size-touchable;
-        @media (min-width: @screen-tablet) {
-          height: @size-clickable;
-        }
-
         padding: 0;
         margin: 0;
       }
 
       @media (min-width: @screen-tablet) {
+        max-width: @size-clickable;
+
         > .btn {
           float: none;
-          max-width: @size-touchable;
-          @media (min-width: @screen-tablet) {
-              max-width: @size-clickable;
-          }
+          height: @size-clickable;
+          max-width: @size-clickable;
         }
 
         > .btn:first-child {

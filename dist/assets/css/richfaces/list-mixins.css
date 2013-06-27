@@ -12,7 +12,6 @@
   width: 100%;
 }
 .list .listBox {
-  vertical-align: middle;
   display: table-cell;
   overflow: auto;
   overflow-x: hidden;
@@ -22,7 +21,7 @@
   padding-left: 0;
   margin-left: 0;
   list-style: none;
-  min-height: 2.5em;
+  min-height: 10em;
 }
 .list .list ol.helper {
   min-height: 0px;
@@ -51,7 +50,7 @@
 @media (min-width: 768px) {
   .list li,
   .list td {
-    line-height: 2.5em;
+    line-height: 2em;
   }
 }
 .list .with-handle li {
@@ -124,8 +123,8 @@
 }
 @media (min-width: 768px) {
   .list .btn-group-vertical .btn {
-    width: 2.5em;
-    height: 2.5em;
+    width: 2em;
+    height: 2em;
   }
 }
 .list .btn-group-vertical .first i {
