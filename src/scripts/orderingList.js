@@ -378,7 +378,7 @@
 
         _addParents: function() {
             this.element.addClass('list').wrap(
-                $("<div />").addClass('orderingList outer').append(
+                $("<div />").addClass('ordering-list select-list outer').append(
                     $('<div />').addClass('content').append(
                         $('<div />').addClass('listBox')
                     )

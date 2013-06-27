@@ -1,7 +1,7 @@
-.selectList {
+.select-list {
   margin: 0;
 }
-.selectList .content {
+.select-list .content {
   display: table;
   border: 1px solid #e5e5e5;
   -webkit-border-radius: 4px;
@@ -11,30 +11,30 @@
   padding-right: 2px;
   width: 100%;
 }
-.selectList .listBox {
+.select-list .listBox {
   display: table-cell;
   overflow: auto;
   overflow-x: hidden;
 }
-.selectList ol.source,
-.selectList ol.target,
-.selectList ol.helper {
+.select-list ol.source,
+.select-list ol.target,
+.select-list ol.helper {
   padding-left: 0;
   margin-left: 0;
   list-style: none;
   min-height: 11.2em;
 }
-.selectList .list ol.helper {
+.select-list .list ol.helper {
   min-height: 0px;
   margin: 0;
 }
-.selectList .buttonColumn {
+.select-list .buttonColumn {
   vertical-align: middle;
   display: table-cell;
   width: 24px;
   padding-left: 2px;
 }
-.selectList li {
+.select-list li {
   display: block;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -42,29 +42,29 @@
   margin: 2px 0;
   padding-left: 7px;
 }
-.selectList li,
-.selectList td {
+.select-list li,
+.select-list td {
   cursor: pointer;
   color: #333333;
   line-height: 3em;
 }
 @media (min-width: 768px) {
-  .selectList li,
-  .selectList td {
+  .select-list li,
+  .select-list td {
     line-height: 2.3em;
   }
 }
-.selectList .with-handle li {
+.select-list .with-handle li {
   position: relative;
   padding-left: 28px;
 }
-.selectList li .handle {
+.select-list li .handle {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
 }
-.selectList .handle {
+.select-list .handle {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -73,90 +73,90 @@
   cursor: move;
   text-align: center;
 }
-.selectList .handle i {
+.select-list .handle i {
   vertical-align: baseline;
 }
-.selectList .disabled .handle i {
+.select-list .disabled .handle i {
   color: #999999;
 }
-.selectList .handle:hover {
+.select-list .handle:hover {
   background: #eeeeee;
 }
-.selectList .disabled .handle:hover,
-.selectList .disabled .ui-selectee:hover {
+.select-list .disabled .handle:hover,
+.select-list .disabled .ui-selectee:hover {
   background: none;
 }
-.selectList .ui-selectee:hover {
+.select-list .ui-selectee:hover {
   text-decoration: none;
   background-color: #eeeeee;
   color: #333333;
 }
-.selectList .ui-selected,
-.selectList tr.helper-item {
+.select-list .ui-selected,
+.select-list tr.helper-item {
   background-color: #428bca;
   color: #ffffff;
 }
-.selectList tr.helper-item {
+.select-list tr.helper-item {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.selectList .ui-selecting {
+.select-list .ui-selecting {
   background: #428bca;
 }
-.selectList .ui-selected:hover,
-.selectList .ui-selected .handle:hover,
-.selectList .helper-item {
+.select-list .ui-selected:hover,
+.select-list .ui-selected .handle:hover,
+.select-list .helper-item {
   background: #2a6496;
   color: #ffffff;
 }
-.selectList .disabled .ui-selectee,
-.selectList .disabled .handle,
-.selectList .disabled li,
-.selectList .disabled td {
+.select-list .disabled .ui-selectee,
+.select-list .disabled .handle,
+.select-list .disabled li,
+.select-list .disabled td {
   cursor: default;
 }
-.selectList .btn-group-vertical .btn {
+.select-list .btn-group-vertical .btn {
   padding: 0;
   text-align: center;
   width: 3em;
   height: 3em;
 }
 @media (min-width: 768px) {
-  .selectList .btn-group-vertical .btn {
+  .select-list .btn-group-vertical .btn {
     width: 2.3em;
     height: 2.3em;
   }
 }
-.selectList .btn-group-vertical .first i {
+.select-list .btn-group-vertical .first i {
   border-top: #ffffff solid 2px;
 }
-.selectList .btn-group-vertical .last i {
+.select-list .btn-group-vertical .last i {
   border-bottom: #ffffff solid 2px;
 }
-.selectList table {
+.select-list table {
   width: 100%;
 }
-.selectList table thead {
+.select-list table thead {
   text-align: left;
 }
-.selectList table tr {
+.select-list table tr {
   border-bottom: #ffffff solid 2px;
 }
-.selectList .placeholder {
+.select-list .placeholder {
   height: 28px;
 }
-.selectList th.handleCell {
+.select-list th.handleCell {
   width: 24px;
 }
-.selectList th.emptyCell {
+.select-list th.emptyCell {
   width: 5px;
 }
-.selectList .first {
+.select-list .first {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.selectList td.last {
+.select-list td.last {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }

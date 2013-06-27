@@ -1,0 +1,16 @@
+.ordering-list {
+  margin-bottom: 1.428571429;
+  display: block;
+}
+.ordering-list .helper li:first-child {
+  margin-top: 0px;
+}
+.ordering-list .helper li:last-child {
+  margin-bottom: 0px;
+}
+.ordering-list table.list tr * {
+  height: inherit;
+}
+.ordering-list table.list {
+  table-layout: fixed;
+}

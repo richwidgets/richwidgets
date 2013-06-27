@@ -1,32 +1,32 @@
-.pickList {
+.pick-list {
   margin-bottom: 1.428571429;
   display: block;
 }
-.pickList .left {
+.pick-list .left {
   padding: 0;
 }
-.pickList .right {
+.pick-list .right {
   padding: 0;
 }
-.pickList .buttonColumn {
+.pick-list .buttonColumn {
   text-align: center;
 }
-.pickList .buttonColumn .btn-group-picklist {
+.pick-list .buttonColumn .btn-group-picklist {
   display: block;
 }
-.pickList .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-up {
+.pick-list .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-up {
   border-top: #ffffff solid 2px;
 }
-.pickList .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-left {
+.pick-list .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-left {
   border-left: #ffffff solid 2px;
 }
-.pickList .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-down {
+.pick-list .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-down {
   border-bottom: #ffffff solid 2px;
 }
-.pickList .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-right {
+.pick-list .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-right {
   border-right: #ffffff solid 2px;
 }
-.pickList .buttonColumn .btn-group-picklist > .btn {
+.pick-list .buttonColumn .btn-group-picklist > .btn {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -36,39 +36,39 @@
   margin: 0;
 }
 @media (min-width: 768px) {
-  .pickList .buttonColumn .btn-group-picklist {
+  .pick-list .buttonColumn .btn-group-picklist {
     max-width: 2.3em;
   }
-  .pickList .buttonColumn .btn-group-picklist > .btn {
+  .pick-list .buttonColumn .btn-group-picklist > .btn {
     float: none;
     height: 2.3em;
     max-width: 2.3em;
   }
-  .pickList .buttonColumn .btn-group-picklist > .btn:first-child {
+  .pick-list .buttonColumn .btn-group-picklist > .btn:first-child {
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
   }
-  .pickList .buttonColumn .btn-group-picklist > .btn:last-child {
+  .pick-list .buttonColumn .btn-group-picklist > .btn:last-child {
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
   }
 }
 @media (max-width: 768px) {
-  .pickList .buttonColumn .btn-group-picklist > .btn:first-child {
+  .pick-list .buttonColumn .btn-group-picklist > .btn:first-child {
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
   }
-  .pickList .buttonColumn .btn-group-picklist > .btn:last-child {
+  .pick-list .buttonColumn .btn-group-picklist > .btn:last-child {
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
   }
 }
 @media (min-width: 768px) {
-  .pickList .buttonColumn {
+  .pick-list .buttonColumn {
     height: 11.2em;
     line-height: 11.2em;
   }
-  .pickList .buttonColumn .btn-group-picklist {
+  .pick-list .buttonColumn .btn-group-picklist {
     vertical-align: middle;
     line-height: 1.428571429;
     display: inline-block;
