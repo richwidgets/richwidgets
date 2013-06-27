@@ -201,7 +201,7 @@ module.exports = function (grunt) {
           livereload: true
         },
         files: [
-          "<%= config.dir.dist.scripts %>/*.js",
+          "<%= config.dir.src.scripts %>/*.js",
           "<%= config.dir.dist.styles %>/*.css",
           "<%= config.dir.dist.assets %>/css/richfaces/*.css",
           "<%= config.dir.examples.root %>/**.html",

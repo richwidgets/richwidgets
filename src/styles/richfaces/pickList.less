@@ -42,7 +42,7 @@
         margin: 0;
       }
 
-      @media (min-width: 992px) {
+      @media (min-width: @screen-tablet) {
         > .btn {
           float: none;
           max-width: @list-button-size;
@@ -57,7 +57,7 @@
         }
       }
 
-      @media (max-width: 992px) {
+      @media (max-width: @screen-tablet) {
         > .btn:first-child {
           .border-left-radius(@border-radius-base);
         }
@@ -68,7 +68,7 @@
       }
     }
 
-    @media (min-width: 992px) {
+    @media (min-width: @screen-tablet) {
       height: @list-min-height;
       line-height: @list-min-height;
       .btn-group-picklist  {
