@@ -1,0 +1,221 @@
+.list {
+  margin: 0;
+}
+.list .content {
+  display: table;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 100%;
+}
+.list .listBox {
+  vertical-align: middle;
+  display: table-cell;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.list ol.list,
+.list ol.helper {
+  padding-left: 0;
+  margin-left: 0;
+  list-style: none;
+  min-height: 165px;
+}
+.list .list ol.helper {
+  min-height: 0px;
+  margin: 0;
+}
+.list .buttonColumn {
+  vertical-align: middle;
+  display: table-cell;
+  width: 24px;
+  padding-left: 2px;
+}
+.list li {
+  display: block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 2px 0;
+  padding-left: 7px;
+}
+.list li,
+.list td {
+  cursor: pointer;
+  line-height: 24px;
+}
+.list .with-handle li {
+  position: relative;
+  padding-left: 28px;
+}
+.list li .handle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.list .handle {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  line-height: 24px;
+  width: 24px;
+  cursor: move;
+  text-align: center;
+}
+.list .handle i {
+  vertical-align: baseline;
+}
+.list .disabled .handle i {
+  color: #999999;
+}
+.list .handle:hover {
+  background: #eeeeee;
+}
+.list .ui-selected .handle:hover {
+  background: #2a6496;
+}
+.list .disabled .handle:hover,
+.list .disabled .ui-selectee:hover {
+  background: none;
+}
+.list .ui-selectee:hover {
+  text-decoration: none;
+  background-color: #eeeeee;
+}
+.list .ui-selected,
+.list tr.helper-item {
+  background-color: #428bca;
+  color: white;
+}
+.list tr.helper-item {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.list .ui-selecting {
+  background: #428bca;
+}
+.list .ui-selected:hover,
+.list .helper-item {
+  background-color: #2a6496;
+}
+.list .disabled .ui-selectee,
+.list .disabled .handle,
+.list .disabled li,
+.list .disabled td {
+  cursor: default;
+}
+.list .btn-group-vertical .btn {
+  width: 2.5em;
+  height: 2.5em;
+  padding: 0;
+  text-align: center;
+}
+.list .btn-group-vertical .first i {
+  border-top: #333333 solid 2px;
+}
+.list .btn-group-vertical .last i {
+  border-bottom: #333333 solid 2px;
+}
+.list table {
+  width: 100%;
+}
+.list table thead {
+  text-align: left;
+}
+.list table tr {
+  border-bottom: #ffffff solid 2px;
+}
+.list .placeholder {
+  height: 28px;
+}
+.list th.handleCell {
+  width: 24px;
+}
+.list th.emptyCell {
+  width: 5px;
+}
+.list .first {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.list td.last {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.pickList {
+  margin-bottom: 1.428571429;
+  display: block;
+}
+.pickList .left {
+  padding: 0;
+}
+.pickList .right {
+  padding: 0;
+}
+.pickList .buttonColumn {
+  text-align: center;
+}
+.pickList .buttonColumn .btn-group-picklist {
+  display: block;
+}
+.pickList .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-up {
+  border-top: #333333 solid 2px;
+}
+.pickList .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-left {
+  border-left: #333333 solid 2px;
+}
+.pickList .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-down {
+  border-bottom: #333333 solid 2px;
+}
+.pickList .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-right {
+  border-right: #333333 solid 2px;
+}
+.pickList .buttonColumn .btn-group-picklist > .btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  text-align: center;
+  height: 2.5em;
+  padding: 0;
+  margin: 0;
+}
+@media (min-width: 992px) {
+  .pickList .buttonColumn .btn-group-picklist > .btn {
+    float: none;
+    max-width: 2.5em;
+  }
+  .pickList .buttonColumn .btn-group-picklist > .btn:first-child {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+  .pickList .buttonColumn .btn-group-picklist > .btn:last-child {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+}
+@media (max-width: 992px) {
+  .pickList .buttonColumn .btn-group-picklist > .btn:first-child {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+  .pickList .buttonColumn .btn-group-picklist > .btn:last-child {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+}
+@media (min-width: 992px) {
+  .pickList .buttonColumn {
+    height: 165px;
+    line-height: 165px;
+  }
+  .pickList .buttonColumn .btn-group-picklist {
+    vertical-align: middle;
+    line-height: 1.428571429;
+    display: inline-block;
+  }
+}

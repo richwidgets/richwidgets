@@ -1,0 +1,26 @@
+@import "richfaces/list-mixins";
+
+.orderingList {
+  margin-bottom: @line-height-base;
+  display: block;
+  .list();
+
+  .helper {
+
+    li:first-child {
+      margin-top: 0px;
+    }
+
+    li:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  table.list tr * {
+    height: inherit;
+  }
+
+  table.list {
+    table-layout: fixed;
+  }
+}

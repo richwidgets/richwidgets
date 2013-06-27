@@ -15,6 +15,7 @@ module.exports = function (grunt) {
 
   require("matchdep").filterDev("grunt-*").forEach(function (plugin) {
     grunt.loadNpmTasks(plugin);
+    grunt.loadNpmTasks('assemble-less');
     if (renamedTasks[plugin]) {
       grunt.renameTask(renamedTasks[plugin].original, renamedTasks[plugin].renamed);
     }
@@ -31,9 +32,10 @@ module.exports = function (grunt) {
       },
       dist: {
         root: "dist",
+        assets: "<%= config.dir.dist.root %>/assets",
         styles: "<%= config.dir.dist.root %>/styles",
         scripts: "<%= config.dir.dist.root %>/scripts",
-        fonts: "<%= config.dir.dist.styles %>/fonts"
+        fonts: "<%= config.dir.dist.assets %>/font"
       },
       test: {
         root: "test"
@@ -43,7 +45,9 @@ module.exports = function (grunt) {
         styles: "<%= config.dir.examples.root %>/styles"
       },
       components: {
-        root: "components"
+        root: "components",
+        bootstrap: "<%= config.dir.components.root %>/bootstrap",
+        fontawesome: "<%= config.dir.components.root %>/font-awesome"
       }
     }
   };
@@ -53,23 +57,23 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask("build", [
-    "recess:src",
-    "uglify:src"
+    "copy:dist",
+    "less:bootstrap",
+    "less:fontawesome",
+    "less:widgets"
   ]);
 
   grunt.registerTask("default", [
     "build",
-    "recess:examples",
+    "less:examples",
     "connect:examples",
     "watch"
   ]);
 
   grunt.registerTask("dist", [
     "build",
-    "copy:dist",
-    "recess:dist",
+    "less:dist",
     "uglify:dist",
-    "copy:dist"
   ]);
 
   grunt.registerTask("test", [
@@ -84,31 +88,46 @@ module.exports = function (grunt) {
       dist: {}
     },
 
-    recess: {
-      src: {
-        options: {
-          compile: true
-        },
+    less: {
+      options: {
+        paths: ["<%= config.dir.src.styles %>", "<%= config.dir.components.root %>"]
+      },
+      bootstrap: {
+          options: {
+              paths: ["<%= config.dir.components.bootstrap %>/less"]
+          },
+        src: "<%= config.dir.components.bootstrap %>/less/bootstrap.less",
+        dest: "<%= config.dir.dist.assets %>/css/bootstrap.css"
+      },
+      fontawesome: {
+          options: {
+              paths: ["<%= config.dir.components.fontawesome %>/less"]
+          },
+        src: "<%= config.dir.components.fontawesome %>/less/font-awesome.less",
+        dest: "<%= config.dir.dist.assets %>/css/font-awesome.css"
+      },
+      widgets: {
         files: [{
-          "<%= config.dir.dist.styles %>/richfaces.css": ["<%= config.dir.src.styles %>/main.less"]
+          expand: true,
+          cwd: "<%= config.dir.src.styles %>/richfaces",
+          src: "*.less",
+          dest: "<%= config.dir.dist.assets %>/css/richfaces",
+          ext: ".css"
         }]
       },
       dist: {
-        options: {
-          compile: true,
-          compress: true
-        },
-        files: [{
-          "<%= config.dir.dist.styles %>/richfaces.min.css": ["<%= config.dir.src.styles %>/main.less"]
-        }]
+          options: {
+              yuicompress: true
+          },
+          src: "<%= config.dir.src.styles %>/main.less",
+          dest: "<%= config.dir.dist.assets %>/richfaces.min.css"
       },
       examples: {
-        options: {
-          compile: true
-        },
-        files: [{
-          "<%= config.dir.examples.styles %>/examples.css": ["<%= config.dir.examples.styles %>/examples.less"]
-        }]
+          options: {
+              yuicompress: true
+          },
+          src: "<%= config.dir.examples.styles %>/examples.less",
+          dest: "<%= config.dir.dist.styles %>/examples.css"
       }
     },
 
@@ -116,17 +135,12 @@ module.exports = function (grunt) {
       options: {
         banner: "// JBoss RedHat (c)\n"
       },
-      src: {
-        files: [{
-          "<%= config.dir.dist.scripts %>/richfaces.js": ["<%= config.dir.src.scripts %>/**/*.js"]
-        }]
-      },
       dist: {
         options: {
           compress: true
         },
         files: [{
-          "<%= config.dir.dist.scripts %>/richfaces.min.js": ["<%= config.dir.src.scripts %>/**/*.js"]
+          "<%= config.dir.dist.assets %>/richfaces.min.js": ["<%= config.dir.src.scripts %>/**/*.js"]
         }]
       }
     },
@@ -135,7 +149,7 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: "<%= config.dir.src.fonts %>",
+          cwd: "<%= config.dir.components.fontawesome %>/font",
           src: ["**"],
           dest: "<%= config.dir.dist.fonts %>"
         }]
@@ -177,15 +191,11 @@ module.exports = function (grunt) {
       },
       less: {
         files: ["<%= config.dir.src.styles %>/**/*.less"],
-        tasks: ["recess:src"]
+        tasks: ["less:widgets"]
       },
       examples: {
         files: ["<%= config.dir.examples.styles %>/*.less"],
-        tasks: ["recess:examples"]
-      },
-      javascript: {
-        files: ["<%= config.dir.src.scripts %>/**/*.js"],
-        tasks: ["uglify:src"]
+        tasks: ["less:examples"]
       },
       dist: {
         options: {
@@ -194,6 +204,7 @@ module.exports = function (grunt) {
         files: [
           "<%= config.dir.dist.scripts %>/*.js",
           "<%= config.dir.dist.styles %>/*.css",
+          "<%= config.dir.dist.assets %>/css/richfaces/*.css",
           "<%= config.dir.examples.root %>/**.html",
           "<%= config.dir.examples.styles %>/*.css"
         ],
