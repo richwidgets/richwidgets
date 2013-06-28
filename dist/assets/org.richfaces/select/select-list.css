@@ -16,8 +16,7 @@
   overflow: auto;
   overflow-x: hidden;
 }
-.select-list ol.source,
-.select-list ol.target,
+.select-list ol.list,
 .select-list ol.helper {
   padding-left: 0;
   margin-left: 0;
