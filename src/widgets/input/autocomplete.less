@@ -1,0 +1,37 @@
+@import "mixins";
+@import "variables";
+
+@import "bootstrap/less/dropdowns";
+
+.ui-autocomplete { .dropdown-menu }
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-focus {
+  color: @dropdown-link-hover-color;
+  background-color: @dropdown-link-hover-bg;
+  text-decoration: none;
+}
+
+ul.ui-autocomplete-layout-table {
+    display: table;
+
+    > li.ui-menu-item {
+        display: table-row-group;
+
+        > a {
+            display: table-row;
+
+            > span {
+                display: table-cell;
+                padding: 3px 0.5em;
+
+                &:first-child { padding-left: 15px }
+                &:last-child { padding-right: 15px }
+            }
+        }
+    }
+}
