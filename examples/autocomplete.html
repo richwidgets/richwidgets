@@ -57,18 +57,49 @@
   </div>
 
   <div class="container">
-<h2>Example autocomplete</h2>
+  <h2>Example autocomplete</h2>
 
-<p>Using the typeahead.js plugin, we built a simple autocomplete widget:</p>
+  <p>Using the typeahead.js plugin, we built a simple autocomplete widget:</p>
 
-<div id="autocomplete" class="input-group">
-  <input type="text"></input>
-  <span class="input-group-addon"><i class="icon-chevron-down"></i></span>
-</div>
+  <input id="autocomplete" type="text"></input>
 
-<script>
-  $("#autocomplete").autocompleteBridge({ suggestions: ['Java', 'Haskell'] });
-</script>
+  <script>
+    $("#autocomplete").autocompleteBridge({ suggestions: ['Java', 'Haskell'] });
+  </script>
+
+  <p>Autocomplete support rendering of a list from a ordered/unordered list:</p>
+
+  <input id="autocomplete-with-list" type="text"></input>
+  <ul id="suggestion-list" style="display: none">
+    <li><i class="icon-heart"></i> Java</i></li>
+    <li><i class="icon-flag"></i> Haskell</li>
+  </ul>
+
+  <script>
+    $("#autocomplete-with-list").autocompleteBridge({ token: ',', choices: document.getElementById('suggestion-list') });
+  </script>
+
+  <p>Autocomplete support rendering of a suggestion list from a table:</p>
+
+  <input id="autocomplete-with-table" type="text"></input>
+  <table id="suggestion-table">
+    <tbody>
+      <tr data-label="Java">
+        <td><i class="icon-heart"></i></td>
+        <td>Java</td>
+        <td><i>my favorite language</i></td>
+      </tr>
+      <tr data-label="Haskell">
+        <td><i class="icon-flag"></i></td>
+        <td>Haskell</td>
+        <td>functional language</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    $("#autocomplete-with-table").autocompleteBridge({ token: ',', choices: document.getElementById('suggestion-table') });
+  </script>
 
 </body>
 </html>

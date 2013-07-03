@@ -3,14 +3,37 @@
     $.widget('rf.autocompleteBridge', {
         
         options: {
-            token: ""
+            token: "",
+            showButton: true
         },
         
         _create: function() {
-            this.input = this.element.is('input') ? this.element : this.element.find('> input[type=text]:visible');
+          this.input = this.element;
+          this.disabled = this.input.disabled;
+          this.root = this._initializeDom();
 
-            this._enhanceAutocomplete();
-            this._registerListeners();
+          if (!this.options.layout) {
+            this._setOption('layout', 'list');
+          }
+
+          this._enhanceAutocomplete();
+          this._registerListeners();
+        },
+
+        _initializeDom: function() {
+          var root = $($('<div class="rf-au"></div>').insertBefore(this.input)[0]);
+          root.append(this.input.detach());
+
+          if (this.options.showButton) {
+            root.addClass("input-group");
+            this.button = $('<span class="input-group-addon"><i class="icon-chevron-down"></i></span>').appendTo(root);
+          }
+
+          if (this.options.choices) {
+            this._setOption('choices', $(this.options.choices).detach());
+          }
+
+          return root;
         },
         
         _enhanceAutocomplete: function() {
@@ -81,6 +104,68 @@
             this.input.bind("autocompleteselect", this.options.onselect);
             this.input.bind("autocompleteclose", this.options.onclose);
             this.input.bind("autocompletechange", this.options.onchange);
+        },
+
+        _setLayout: function(layout) {
+          var that = this;
+          var data = this.input.autocomplete().data('ui-autocomplete');
+          switch(layout) {
+            case 'list' :
+              data._renderMenu = $.ui.autocomplete.prototype._renderMenu;
+              data._renderItem = function( ul, item ) {
+                var content = item.html ? $("<a>").html(item.html) : $("<a>").text(item.label);
+                return $("<li>").append(content).appendTo( ul );
+              };
+              break;
+            case 'table' :
+              this._setOption("appendTo", $("<div class='ui-autocomplete-layout-table-wrapper'>").appendTo($("body")));
+              data._renderMenu = function( ul, items ) {
+                ul.addClass('ui-autocomplete-layout-table');
+                return $.ui.autocomplete.prototype._renderMenu.call(this, ul, items);
+              };
+              data._renderItem = function (ul, item) {
+                var link = $("<a>");
+                item.html.find("> td").each(function() {
+                  $('<span>').html($(this).html()).appendTo(link)
+                })
+                return $("<li></li>")
+                  .data("item.autocomplete", item)
+                  .append(link)
+                  .appendTo(ul);
+              };
+              break;
+          }
+        },
+
+        _setChoices: function(value) {
+          var suggestions = [];
+          var value = $(value);
+          var layout = 'list';
+
+          if (value.is('table')) {
+            layout = 'table';
+            value =  value.children('tbody');
+          }
+          $(value).children('tr, li').each(function() {
+            suggestions.push({
+              value: $(this).data("label") || $(this).text(),
+              html: $(this)
+            })
+          });
+
+          this._setOption('suggestions', suggestions);
+          this._setOption('layout', layout);
+        },
+
+        _setOption: function(key, value) {
+            if (key === 'choices') {
+              this._setChoices(value);
+              return;
+            }
+            if (key === 'layout') {
+              this._setLayout(value);
+            }
+            this._super( key, value );
         }
     });
     
