@@ -123,7 +123,7 @@ module.exports = function (grunt) {
               yuicompress: true
           },
           src: "<%= config.dir.src.root %>/main.less",
-          dest: "<%= config.dir.dist.richfaces %>/richfaces.min.css"
+          dest: "<%= config.dir.dist.assets %>/richfaces.min.css"
       },
       examples: {
           options: {
@@ -143,7 +143,7 @@ module.exports = function (grunt) {
           compress: true
         },
         files: [{
-          "<%= config.dir.dist.richfaces %>/richfaces.min.js": ["<%= config.dir.src.widgets %>/**/*.js"]
+          "<%= config.dir.dist.assets %>/richfaces.min.js": ["<%= config.dir.src.widgets %>/**/*.js"]
         }]
       }
     },
