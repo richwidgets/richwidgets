@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         root: "dist",
         assets: "<%= config.dir.dist.root %>/assets",
         font: "<%= config.dir.dist.assets %>/font-awesome/font",
-        richfaces: "<%= config.dir.dist.assets %>/org.richfaces",
+        richfaces: "<%= config.dir.dist.assets %>/richfaces",
         examples: {
             root: "<%= config.dir.dist.root %>/examples",
             styles: "<%= config.dir.dist.examples.root %>/styles"
@@ -110,7 +110,7 @@ module.exports = function (grunt) {
         options: {
           paths: ["<%= config.dir.src.root %>", "<%= config.dir.components.root %>"]
         },
-        files: grunt.file.expandMapping("**/*.less", "<%= config.dir.dist.assets %>/org.richfaces/", {
+        files: grunt.file.expandMapping("**/*.less", "<%= config.dir.dist.richfaces %>", {
             cwd: "src/widgets",
             rename: function(destBase, destPath) {
                 return destBase + destPath.replace(/\.less$/, '.css');
@@ -166,7 +166,7 @@ module.exports = function (grunt) {
         }]
       },
       js: {
-          files: grunt.file.expandMapping("**/*.js", "<%= config.dir.dist.assets %>/org.richfaces/", {
+          files: grunt.file.expandMapping("**/*.js", "<%= config.dir.dist.richfaces %>", {
               cwd: "src/widgets",
               rename: function(destBase, destPath) {
                   return destBase + destPath;
