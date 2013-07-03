@@ -48,7 +48,8 @@ module.exports = function (grunt) {
       components: {
         root: "components",
         bootstrap: "<%= config.dir.components.root %>/bootstrap",
-        fontawesome: "<%= config.dir.components.root %>/font-awesome"
+        fontawesome: "<%= config.dir.components.root %>/font-awesome",
+        jqueryui: "<%= config.dir.components.root %>/jquery-ui"
       }
     }
   };
@@ -59,6 +60,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask("build", [
     "copy:font",
+    "copy:jqueryui",
     "less:bootstrap",
     "less:fontawesome",
     "less:widgets"
@@ -155,6 +157,14 @@ module.exports = function (grunt) {
           dest: "<%= config.dir.dist.font %>"
         }]
       },
+      jqueryui: {
+        files: [{
+          expand: true,
+          cwd: "<%= config.dir.components.jqueryui %>/ui",
+          src: ["**"],
+          dest: "<%= config.dir.dist.assets %>/jquery-ui"
+        }]
+      },
       js: {
           files: grunt.file.expandMapping("**/*.js", "<%= config.dir.dist.assets %>/org.richfaces/", {
               cwd: "src/widgets",
@@ -211,13 +221,11 @@ module.exports = function (grunt) {
           livereload: true
         },
         files: [
-          "<%= config.dir.src.widgets %>/*.js",
-          "<%= config.dir.dist.styles %>/*.css",
-          "<%= config.dir.dist.assets %>/css/richfaces/*.css",
+          "<%= config.dir.src.widgets %>/**/*.js",
           "<%= config.dir.examples.root %>/**.html",
           "<%= config.dir.examples.styles %>/*.css"
         ],
-        tasks: []
+        tasks: [ "copy:js" ]
       }
     },
 
@@ -253,8 +261,5 @@ module.exports = function (grunt) {
       }
     }
   });
-
-    console.log("Something");
-    console.log(grunt.config('config.dir.src.widgets'));
 
 };
