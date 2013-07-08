@@ -425,7 +425,6 @@
         /** Cleanup methods **/
 
         _removeDomElements: function() {
-            // TODO: impl
             var list = this.element.detach();
             this.outer.replaceWith(list);
         },

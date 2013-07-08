@@ -170,7 +170,7 @@
     var toggleActive = function (event, id, options) {
         var $list = $('#' + id);
         var $button = $(event.target);
-        var active = $list.parents('.orderingList').length > 0;
+        var active = $list.parents('.ordering-list').length > 0;
         if (active) {
             $list.orderingList('destroy');
             $button.text('Activate Plugin');
