@@ -1,16 +1,16 @@
 (function ($) {
-    
+
     $.widget('rf.autocompleteBridge', {
-        
+
         options: {
             token: "",
-            showButton: true
+            showButton: false
         },
-        
+
         _create: function() {
           this.input = this.element;
           this.disabled = this.input.disabled;
-          this.root = this._initializeDom();
+          this.root = this._initDom();
 
           if (!this.options.layout) {
             this._setOption('layout', 'list');
@@ -20,33 +20,67 @@
           this._registerListeners();
         },
 
-        _initializeDom: function() {
-          var root = $($('<div class="rf-au"></div>').insertBefore(this.input)[0]);
-          root.append(this.input.detach());
+        _destroy: function() {
+          this.input.autocomplete('destroy');
+          this._destroyDom();
+        },
+
+        _enable: function() {
+          this.input.autocomplete('enable');
+        },
+
+        _disable: function() {
+          this.input.autocomplete('disable');
+        },
+
+        _initDom: function() {
+          this.root = $($('<div class="r-autocomplete"></div>').insertBefore(this.input)[0]);
+          this.root.append(this.input.detach());
 
           if (this.options.showButton) {
-            root.addClass("input-group");
-            this.button = $('<span class="input-group-addon"><i class="icon-chevron-down"></i></span>').appendTo(root);
+            var that = this;
+
+            this.root.addClass("input-group");
+            this.button = $('<span class="input-group-addon"><i class="icon-chevron-down"></i></span>').appendTo(this.root);
+
+            this.button.click(function() {
+              $(that.element).autocomplete("search");
+              setTimeout(function() {
+
+
+                $("body").one("click", function() {
+                  setTimeout(function() {
+                    $(that.element).autocomplete("close");
+                  }, 0);
+                });
+              }, 0);
+            });
           }
 
           if (this.options.choices) {
-            this._setOption('choices', $(this.options.choices).detach());
+            var choices = $(this.options.choices);
+            this._setOption('choices', choices);
           }
 
-          return root;
+          return this.root;
         },
-        
+
+        _destroyDom: function() {
+          this.input.detach().insertAfter(this.root);
+          this.root.remove();
+        },
+
         _enhanceAutocomplete: function() {
             var options = this._getBasicAutocompleteOptions();
-            
+
             if (this.options.token) {
                 options = $.extend(options, this._getTokenizingAutocompleteOptions());
                 this._preventTabbing();
             }
-            
+
             this.input.autocomplete(options);
         },
-        
+
         _getBasicAutocompleteOptions: function() {
             return {
                 delay: 0,
@@ -54,19 +88,19 @@
                 source: this.options.suggestions || []
             };
         },
-        
+
         _getTokenizingAutocompleteOptions: function() {
             var bridge = this;
-            
-            var split = function split( val ) {
-                var regexp = new RegExp("\\s*" + bridge.options.token + "\\s*"); 
+
+            var split = function( val ) {
+                var regexp = new RegExp("\\s*" + bridge.options.token + "\\s*");
                 return val.split( regexp );
             };
-            
-            var extractLast = function extractLast( term ) {
+
+            var extractLast = function( term ) {
                 return split( term ).pop();
             };
-            
+
             return {
                 source: function( request, response ) {
                     // delegate back to autocomplete, but extract the last term
@@ -87,7 +121,7 @@
                 }
             }
         },
-        
+
         _preventTabbing: function() {
             this.element.bind( "keydown", function( event ) {
                 if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -96,7 +130,7 @@
                 }
             });
         },
-        
+
         _registerListeners: function() {
             this.input.bind("autocompletesearch", this.options.onsearch);
             this.input.bind("autocompleteopen", this.options.onopen);
@@ -107,7 +141,6 @@
         },
 
         _setLayout: function(layout) {
-          var that = this;
           var data = this.input.autocomplete().data('ui-autocomplete');
           switch(layout) {
             case 'list' :
@@ -139,17 +172,17 @@
 
         _setChoices: function(value) {
           var suggestions = [];
-          var value = $(value);
+          var choices = this.choices = $(value);
           var layout = 'list';
 
-          if (value.is('table')) {
+          if (choices.is('table')) {
             layout = 'table';
-            value =  value.children('tbody');
+            choices =  choices.children('tbody');
           }
-          $(value).children('tr, li').each(function() {
+          $(choices).children('tr, li').each(function() {
             suggestions.push({
               value: $(this).data("label") || $(this).text(),
-              html: $(this)
+              html: $(this).clone()
             })
           });
 
@@ -165,8 +198,15 @@
             if (key === 'layout') {
               this._setLayout(value);
             }
+            if (key === 'disabled') {
+              if (value) {
+                this._disable();
+              } else {
+                this._enable();
+              }
+            }
             this._super( key, value );
         }
     });
-    
+
 }(jQuery));
