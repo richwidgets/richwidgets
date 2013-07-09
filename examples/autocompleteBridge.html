@@ -35,6 +35,7 @@
   <script type="text/javascript" src="../components/jquery-ui/ui/jquery.ui.menu.js"></script>
   <script type="text/javascript" src="../components/jquery-ui/ui/jquery.ui.autocomplete.js"></script>
   <script type="text/javascript" src="../src/widgets/input/autocomplete.js"></script>
+  <script type="text/javascript" src="../src/widgets/input/autocompleteBridge.js"></script>
 
 </head>
 
@@ -60,106 +61,61 @@
 </div>
 
 <div class="container">
-  <h2>Example autocomplete</h2>
+  <h2>Example autocompleteBridge</h2>
 
-  <p>Using the typeahead.js plugin, we built a simple autocomplete widget:</p>
+  <p>Autocomplete support rendering of a list from a ordered/unordered list:</p>
 
+  <input id="autocomplete-with-list" type="text"></input>
+  <ul id="suggestion-list" style="display: none">
+    <li><i class="icon-heart"></i> Java</i></li>
+    <li><i class="icon-flag"></i> Haskell</li>
+  </ul>
+  <script>
+    $("#autocomplete-with-list").richAutocompleteBridge({ choices: document.getElementById('suggestion-list') });
+  </script>
 
-  <p>
-    <input id="autocomplete" type="text"></input>
-    <script>
-      $("#autocomplete").richAutocomplete({ source: ['Java', 'Haskell'] });
-    </script>
-  </p>
+  <p>Autocomplete support rendering of a suggestion list from a table:</p>
 
-  <p>Using autocomplete with function as a source:</p>
+  <input id="autocomplete-with-table" type="text"></input>
+  <table id="suggestion-table" style="display: none">
+    <tbody>
+    <tr data-label="Java">
+      <td><i class="icon-heart"></i></td>
+      <td>Java</td>
 
-  <p>
-    <input id="autocomplete-function" type="text"></input>
-    <script>
-      $("#autocomplete-function").richAutocomplete({ source:
-        function (request, response) {
-          response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
-        }
-      });
-    </script>
-  </p>
-
-
-  <p>Simulating request delay:</p>
-
-  <p>
-    <input id="autocomplete-delay" type="text"></input>
-    <script>
-      $("#autocomplete-delay").richAutocomplete({ source:
-          function (request, response) {
-            setTimeout(function() {
-              response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
-            }, 500);
-          }
-      });
-    </script>
-  </p>
-
-  <p>Simulating request delay with cached ajax mode:</p>
-
-  <p>
-    <input id="autocomplete-cache-delay" type="text" />
-    <script>
-      $("#autocomplete-cache-delay").richAutocomplete({
-        cached: true,
-        source:
-          function (request, response) {
-            setTimeout(function() {
-              response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
-            }, 500);
-          }
-      });
-    </script>
-  </p>
-
-  <p>Support for tokenizing:</p>
-  <p>
-    <input id="autocomplete-tokenizing" type="text"></input>
-    <script>
-      $("#autocomplete-tokenizing").richAutocomplete({ source: ['Java', 'Haskell'], token: "," });
-    </script>
-  </p>
-
-
-
-  <p>Autocomplete can have a button:</p>
-
-  <p>
-    <input id="autocomplete-with-button" type="text" />
-    <script>
-      $("#autocomplete-with-button").richAutocomplete({
-        source: ['Java', 'Haskell'],
-        showButton: true
-      });
-    </script>
-  </p>
+      <td><i>my favorite language</i></td>
+    </tr>
+    <tr data-label="Haskell">
+      <td><i class="icon-flag"></i></td>
+      <td>Haskell</td>
+      <td>functional language</td>
+    </tr>
+    </tbody>
+  </table>
+  <script>
+    $("#autocomplete-with-table").richAutocompleteBridge({ choices: document.getElementById('suggestion-table') });
+  </script>
 
   <p>Autocomplete's creation, destruction, enabling and disabling:</p>
 
   <p>
-    <input id="autocomplete-lifecycle" type="text" />
+    <input id="autocomplete-lifecycle" type="text"></input>
     <ul id="suggestions" style="display: none">
       <li>Java</li>
       <li>Haskell</li>
     </ul>
     <script>
-      var options = { source: ['Java', 'Haskell'], showButton: true };
+      var options = { choices: document.getElementById('suggestions'), showButton: true };
 
       var toggleDisabled = function (event, id) {
         var $list = $('#' + id);
         var $button = $(event.target);
-        var disabled = $list.richAutocomplete('option', 'disabled');
+        var disabled = $list.richAutocompleteBridge('option', 'disabled');
         if (disabled) {
-          $list.richAutocomplete('enable');
+          $list.richAutocompleteBridge('enable');
           $button.text('Disable Plugin');
         } else {
-          $list.richAutocomplete('disable');
+          $list.richAutocompleteBridge('disable');
           $button.text('Enable Plugin');
         }
       }
@@ -169,15 +125,15 @@
         var $button = $(event.target);
         var active = $list.parents('.r-autocomplete').length > 0;
         if (active) {
-          $list.richAutocomplete('destroy');
+          $list.richAutocompleteBridge('destroy');
           $button.text('Activate Plugin');
         } else {
-          $list.richAutocomplete(options);
+          $list.richAutocompleteBridge(options);
           $button.text('Destroy Plugin');
         }
       }
 
-      $("#autocomplete-lifecycle").richAutocomplete(options);
+      $("#autocomplete-lifecycle").richAutocompleteBridge(options);
     </script>
   </p>
 
