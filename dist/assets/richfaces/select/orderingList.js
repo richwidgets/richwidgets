@@ -5,6 +5,7 @@
     options: {
       disabled: false,
       header: '',
+      columnClasses: '',
       showButtons: true,
       mouseOrderable: true,
       widgetEventPrefix: 'orderingList_',
@@ -306,10 +307,26 @@
         this._addButtons();
       }
       if (this.strategy === 'table') { /* round the table row corners */
+        var that = this;
         $(this.element)
           .find("tr").each(function () {
-            $(this).children().last().addClass('last');
-            $(this).children().first().addClass('first');
+            var $tr = $(this);
+            var children = $tr.children();
+            children.last().addClass('last');
+            children.first().addClass('first');
+            if (that.options.columnClasses) {
+              var columnClasses = that.options.columnClasses.split(" ");
+              children.each(function(count) {
+                if (count == 0) {
+                  return true;
+                }
+                if (count <= columnClasses.length) {
+                  $(this).addClass(columnClasses[count -1]);
+                  return true;
+                }
+                return false;
+              });
+            }
           })
       }
     },

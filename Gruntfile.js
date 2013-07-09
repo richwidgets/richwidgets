@@ -218,6 +218,10 @@ module.exports = function (grunt) {
         files: ["<%= config.dir.src.widgets %>/**/*.less"],
         tasks: ["less:widgets"]
       },
+      js: {
+        files: ["<%= config.dir.src.widgets %>/**/*.js"],
+        tasks: ["copy:js"]
+      },
       examples: {
         files: ["<%= config.dir.examples.styles %>/*.less"],
         tasks: ["less:examples"]
@@ -227,11 +231,12 @@ module.exports = function (grunt) {
           livereload: true
         },
         files: [
-          "<%= config.dir.src.widgets %>/**/*.js",
-          "<%= config.dir.examples.root %>/**.html",
-          "<%= config.dir.examples.styles %>/*.css"
+          "<%= config.dir.dist.assets %>/**/*.js",
+          "<%= config.dir.dist.assets %>/**/*.css",
+          "<%= config.dir.examples.root %>/**/*.html",
+          "<%= config.dir.dist.examples.styles %>/**.css"
         ],
-        tasks: [ "copy:js" ]
+        tasks: []
       }
     },
 

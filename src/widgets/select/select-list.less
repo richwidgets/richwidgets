@@ -98,13 +98,15 @@
     background: none;
   }
 
-  .ui-selectee:hover {
+  .ui-selectee:hover,
+  .ui-selectee:hover td {
     text-decoration: none;
     background-color: @list-item-bg;
     color: @list-item-hover-color;
   }
 
-  .ui-selected, tr.helper-item {
+  .ui-selected, tr.helper-item,
+  .ui-selected td, tr.helper-item td {
     background-color: @list-item-selected-bg;
     color: @list-item-selected-color;
   }
@@ -117,7 +119,8 @@
     background: @link-color;
   }
 
-  .ui-selected:hover, .ui-selected .handle:hover, .helper-item {
+  .ui-selected:hover, .ui-selected .handle:hover, .helper-item,
+  .ui-selected:hover td, .ui-selected .handle:hover td, .helper-item td {
     background: @list-item-selected-hover-bg;
     color: @list-item-selected-hover-color;
   }

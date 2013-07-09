@@ -85,13 +85,16 @@
 .select-list .disabled .ui-selectee:hover {
   background: none;
 }
-.select-list .ui-selectee:hover {
+.select-list .ui-selectee:hover,
+.select-list .ui-selectee:hover td {
   text-decoration: none;
   background-color: #eeeeee;
   color: #333333;
 }
 .select-list .ui-selected,
-.select-list tr.helper-item {
+.select-list tr.helper-item,
+.select-list .ui-selected td,
+.select-list tr.helper-item td {
   background-color: #428bca;
   color: #ffffff;
 }
@@ -105,7 +108,10 @@
 }
 .select-list .ui-selected:hover,
 .select-list .ui-selected .handle:hover,
-.select-list .helper-item {
+.select-list .helper-item,
+.select-list .ui-selected:hover td,
+.select-list .ui-selected .handle:hover td,
+.select-list .helper-item td {
   background: #2a6496;
   color: #ffffff;
 }

@@ -40,6 +40,17 @@
 
   <script src="http://localhost:35729/livereload.js"></script>
 
+  <style type="text/css">
+    .red {
+      background: lightpink;
+    }
+
+    .blue {
+      background: lightblue;
+      z-index: -50;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -156,10 +167,12 @@
 
 <script>
   var pluginOptions1 = {
-    header: "List layout"
+    header: "List layout" //caption
   };
   var pluginOptions2 = {
-    header: "Table layout"
+    header: "Table layout",
+    columnClasses: "red blue",
+    showHandle: true
   };
   var toggleDisabled = function (event, id) {
     var $list = $('#' + id);
