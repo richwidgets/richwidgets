@@ -53,6 +53,10 @@
     line-height: 2.3em;
   }
 }
+.select-list th,
+.select-list td {
+  padding-left: 0.5em;
+}
 .select-list .with-handle li {
   position: relative;
   padding-left: 28px;
@@ -154,14 +158,12 @@
 .select-list th.handleCell {
   width: 24px;
 }
-.select-list th.emptyCell {
-  width: 5px;
-}
 .select-list .first {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-.select-list td.last {
+.select-list td.last,
+.select-list th.last {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }

@@ -317,14 +317,11 @@
             if (that.options.columnClasses) {
               var columnClasses = that.options.columnClasses.split(" ");
               children.each(function(count) {
-                if (count == 0) {
-                  return true;
+                if (count < columnClasses.length) {
+                  $(this).addClass(columnClasses[count]);
+                } else {
+                  return false;
                 }
-                if (count <= columnClasses.length) {
-                  $(this).addClass(columnClasses[count -1]);
-                  return true;
-                }
-                return false;
               });
             }
           })
@@ -384,16 +381,6 @@
           $(this.element)
             .find("li")
             .prepend("<div class='handle'><i class='icon-move'></i></div>");
-        }
-      } else {
-        if (this.strategy === 'table') {
-          /* This empty cell is required to get the helper positioned correctly */
-          $(this.element)
-            .find("tbody > tr")
-            .prepend("<th class='emptyCell'></th>");
-          $(this.element)
-            .find("thead > tr")
-            .prepend("<th class='emptyCell'></th>");
         }
       }
     },
