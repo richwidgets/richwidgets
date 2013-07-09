@@ -3,182 +3,182 @@
 
 .select-list {
 
+  margin: 0;
+
+  .outer {
+  }
+
+  .header {
+  }
+
+  .content {
+    display: table;
+    border: 1px solid #e5e5e5;
+    .border-radius(4px);
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 100%;
+  }
+
+  .listBox {
+    display: table-cell;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+  ol.list, ol.helper {
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none;
+    min-height: @list-min-height;
+  }
+
+  .list ol.helper {
+    min-height: 0px;
     margin: 0;
+  }
 
-    .outer {
-    }
+  .buttonColumn {
+    vertical-align: middle;
+    display: table-cell;
+    width: 24px;
+    padding-left: 2px;
+  }
 
-    .header {
-    }
+  li {
+    display: block;
+    .border-radius(5px);
+    margin: 2px 0;
+    padding-left: 7px;
+  }
 
-    .content {
-        display: table;
-        border: 1px solid #e5e5e5;
-        .border-radius(4px);
-        padding-left: 2px;
-        padding-right: 2px;
-        width:100%;
+  li, td {
+    cursor: pointer;
+    color: @list-item-color;
+    line-height: @size-touchable;
+    @media (min-width: @screen-tablet) {
+      line-height: @size-clickable;
     }
+  }
 
-    .listBox {
-        display: table-cell;
-        overflow: auto;
-        overflow-x: hidden;
-    }
+  .with-handle li {
+    position: relative;
+    padding-left: 28px;
+  }
 
-    ol.list, ol.helper {
-        padding-left: 0;
-        margin-left: 0;
-        list-style: none;
-        min-height: @list-min-height;
-    }
+  li .handle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+  }
 
-    .list ol.helper {
-        min-height: 0px;
-        margin: 0;
-    }
+  .handle {
+    .border-radius(5px);
+    line-height: 24px;
+    width: 24px;
+    cursor: move;
+    text-align: center;
+  }
 
-    .buttonColumn {
-        vertical-align: middle;
-        display: table-cell;
-        width: 24px;
-        padding-left: 2px;
-    }
+  .handle i {
+    vertical-align: baseline;
+  }
 
-    li {
-        display: block;
-        .border-radius(5px);
-        margin: 2px 0;
-        padding-left: 7px;
-    }
+  .disabled .handle i {
+    color: @gray-light;
+  }
 
-    li,  td {
-        cursor: pointer;
-        color: @list-item-color;
-        line-height: @size-touchable;
-        @media (min-width: @screen-tablet) {
-            line-height: @size-clickable;
-        }
-    }
+  .handle:hover {
+    background: @gray-lighter;
+  }
 
-    .with-handle li {
-        position:relative;
-        padding-left: 28px;
-    }
+  .disabled .handle:hover,
+  .disabled .ui-selectee:hover {
+    background: none;
+  }
 
-    li .handle {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-    }
+  .ui-selectee:hover {
+    text-decoration: none;
+    background-color: @list-item-bg;
+    color: @list-item-hover-color;
+  }
 
-    .handle {
-        .border-radius(5px);
-        line-height: 24px;
-        width: 24px;
-        cursor: move;
-        text-align: center;
-    }
+  .ui-selected, tr.helper-item {
+    background-color: @list-item-selected-bg;
+    color: @list-item-selected-color;
+  }
 
-    .handle i {
-        vertical-align: baseline;
-    }
+  tr.helper-item {
+    .border-radius(5px);
+  }
 
-    .disabled .handle i {
-        color: @gray-light;
-    }
+  .ui-selecting {
+    background: @link-color;
+  }
 
-    .handle:hover {
-        background: @gray-lighter;
-    }
+  .ui-selected:hover, .ui-selected .handle:hover, .helper-item {
+    background: @list-item-selected-hover-bg;
+    color: @list-item-selected-hover-color;
+  }
 
-    .disabled .handle:hover,
-    .disabled .ui-selectee:hover {
-        background: none;
-    }
+  .disabled .ui-selectee,
+  .disabled .handle,
+  .disabled li,
+  .disabled td {
+    cursor: default;
+  }
 
-    .ui-selectee:hover {
-        text-decoration: none;
-        background-color: @list-item-bg;
-        color: @list-item-hover-color;
+  .btn-group-vertical .btn {
+    padding: 0;
+    text-align: center;
+    width: @size-touchable;
+    height: @size-touchable;
+    @media (min-width: @screen-tablet) {
+      width: @size-clickable;
+      height: @size-clickable;
     }
+  }
 
-    .ui-selected,  tr.helper-item {
-        background-color: @list-item-selected-bg;
-        color: @list-item-selected-color;
-    }
+  .btn-group-vertical .first i {
+    border-top: @btn-default-color solid 2px;
+  }
 
-    tr.helper-item {
-        .border-radius(5px);
-    }
+  .btn-group-vertical .last i {
+    border-bottom: @btn-default-color solid 2px;
+  }
 
-    .ui-selecting {
-        background: @link-color;
-    }
+  table {
+    width: 100%;
+  }
 
-    .ui-selected:hover, .ui-selected .handle:hover, .helper-item {
-      background: @list-item-selected-hover-bg;
-      color: @list-item-selected-hover-color;
-    }
+  table thead {
+    text-align: left;
+  }
 
-    .disabled .ui-selectee,
-    .disabled .handle,
-    .disabled li,
-    .disabled td {
-        cursor: default;
-    }
+  table tr {
+    border-bottom: #ffffff solid 2px;
+  }
 
-    .btn-group-vertical .btn {
-        padding: 0;
-        text-align: center;
-        width: @size-touchable;
-        height: @size-touchable;
-        @media (min-width: @screen-tablet) {
-            width: @size-clickable;
-            height: @size-clickable;
-        }
-    }
+  .placeholder {
+    height: 28px;
+  }
 
-    .btn-group-vertical .first i {
-        border-top: @btn-default-color solid 2px;
-    }
+  th.handleCell {
+    width: 24px;
+  }
 
-    .btn-group-vertical .last i {
-        border-bottom: @btn-default-color solid 2px;
-    }
+  th.emptyCell {
+    width: 5px;
+  }
 
-    table {
-        width: 100%;
-    }
+  .first {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
 
-    table thead {
-        text-align: left;
-    }
-
-    table tr {
-        border-bottom: #ffffff solid 2px;
-    }
-
-    .placeholder {
-        height: 28px;
-    }
-
-    th.handleCell {
-        width: 24px;
-    }
-
-    th.emptyCell {
-        width: 5px;
-    }
-
-    .first {
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-    }
-
-    td.last {
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
+  td.last {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
 }

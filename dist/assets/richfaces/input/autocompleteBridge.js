@@ -2,10 +2,10 @@
 
   $.widget('rf.richAutocompleteBridge', $.rf.richAutocomplete, {
 
-    _create: function() {
+    _create: function () {
       this._super();
 
-      this._setOption('source', $.proxy(function(request, response) {
+      this._setOption('source', $.proxy(function (request, response) {
         var done = $.proxy(function () {
           this._updateSuggestions();
           response(this.options.suggestions);
@@ -29,16 +29,16 @@
       }
     },
 
-    _updateSuggestions: function() {
+    _updateSuggestions: function () {
       var suggestions = [];
       var choices = this.choices = $(this.options.choices);
       var layout = this.LAYOUT.list;
 
       if (choices.is('table')) {
         layout = this.LAYOUT.table;
-        choices =  choices.children('tbody');
+        choices = choices.children('tbody');
       }
-      $(choices).children('tr, li').each(function() {
+      $(choices).children('tr, li').each(function () {
         suggestions.push({
           value: $(this).data("label") || $(this).text(),
           html: $(this).clone()
@@ -51,8 +51,8 @@
       this._setOption('suggestions', suggestions);
     },
 
-    _setOption: function(key, value) {
-      this._super( key, value );
+    _setOption: function (key, value) {
+      this._super(key, value);
       if (key === 'choices') {
         this._updateSuggestions();
       }

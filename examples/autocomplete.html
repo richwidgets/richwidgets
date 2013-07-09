@@ -77,10 +77,9 @@
   <p>
     <input id="autocomplete-function" type="text"></input>
     <script>
-      $("#autocomplete-function").richAutocomplete({ source:
-        function (request, response) {
-          response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
-        }
+      $("#autocomplete-function").richAutocomplete({ source: function (request, response) {
+        response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+      }
       });
     </script>
   </p>
@@ -91,12 +90,11 @@
   <p>
     <input id="autocomplete-delay" type="text"></input>
     <script>
-      $("#autocomplete-delay").richAutocomplete({ source:
-          function (request, response) {
-            setTimeout(function() {
-              response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
-            }, 500);
-          }
+      $("#autocomplete-delay").richAutocomplete({ source: function (request, response) {
+        setTimeout(function () {
+          response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+        }, 500);
+      }
       });
     </script>
   </p>
@@ -104,21 +102,21 @@
   <p>Simulating request delay with cached ajax mode:</p>
 
   <p>
-    <input id="autocomplete-cache-delay" type="text" />
+    <input id="autocomplete-cache-delay" type="text"/>
     <script>
       $("#autocomplete-cache-delay").richAutocomplete({
         cached: true,
-        source:
-          function (request, response) {
-            setTimeout(function() {
-              response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
-            }, 500);
-          }
+        source: function (request, response) {
+          setTimeout(function () {
+            response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+          }, 500);
+        }
       });
     </script>
   </p>
 
   <p>Support for tokenizing:</p>
+
   <p>
     <input id="autocomplete-tokenizing" type="text"></input>
     <script>
@@ -127,11 +125,10 @@
   </p>
 
 
-
   <p>Autocomplete can have a button:</p>
 
   <p>
-    <input id="autocomplete-with-button" type="text" />
+    <input id="autocomplete-with-button" type="text"/>
     <script>
       $("#autocomplete-with-button").richAutocomplete({
         source: ['Java', 'Haskell'],
@@ -143,49 +140,50 @@
   <p>Autocomplete's creation, destruction, enabling and disabling:</p>
 
   <p>
-    <input id="autocomplete-lifecycle" type="text" />
-    <ul id="suggestions" style="display: none">
-      <li>Java</li>
-      <li>Haskell</li>
-    </ul>
-    <script>
-      var options = { source: ['Java', 'Haskell'], showButton: true };
+    <input id="autocomplete-lifecycle" type="text"/>
+  <ul id="suggestions" style="display: none">
+    <li>Java</li>
+    <li>Haskell</li>
+  </ul>
+  <script>
+    var options = { source: ['Java', 'Haskell'], showButton: true };
 
-      var toggleDisabled = function (event, id) {
-        var $list = $('#' + id);
-        var $button = $(event.target);
-        var disabled = $list.richAutocomplete('option', 'disabled');
-        if (disabled) {
-          $list.richAutocomplete('enable');
-          $button.text('Disable Plugin');
-        } else {
-          $list.richAutocomplete('disable');
-          $button.text('Enable Plugin');
-        }
+    var toggleDisabled = function (event, id) {
+      var $list = $('#' + id);
+      var $button = $(event.target);
+      var disabled = $list.richAutocomplete('option', 'disabled');
+      if (disabled) {
+        $list.richAutocomplete('enable');
+        $button.text('Disable Plugin');
+      } else {
+        $list.richAutocomplete('disable');
+        $button.text('Enable Plugin');
       }
+    }
 
-      var toggleActive = function (event, id, options) {
-        var $list = $('#' + id);
-        var $button = $(event.target);
-        var active = $list.parents('.r-autocomplete').length > 0;
-        if (active) {
-          $list.richAutocomplete('destroy');
-          $button.text('Activate Plugin');
-        } else {
-          $list.richAutocomplete(options);
-          $button.text('Destroy Plugin');
-        }
+    var toggleActive = function (event, id, options) {
+      var $list = $('#' + id);
+      var $button = $(event.target);
+      var active = $list.parents('.r-autocomplete').length > 0;
+      if (active) {
+        $list.richAutocomplete('destroy');
+        $button.text('Activate Plugin');
+      } else {
+        $list.richAutocomplete(options);
+        $button.text('Destroy Plugin');
       }
+    }
 
-      $("#autocomplete-lifecycle").richAutocomplete(options);
-    </script>
+    $("#autocomplete-lifecycle").richAutocomplete(options);
+  </script>
   </p>
 
   <p>
-    <button onclick="toggleDisabled(event, 'autocomplete-lifecycle', options)" class="btn btn-default">Disable Plugin</button>
-    <button onclick="toggleActive(event, 'autocomplete-lifecycle', options)" class="btn btn-default">Destroy Plugin</button>
+    <button onclick="toggleDisabled(event, 'autocomplete-lifecycle', options)" class="btn btn-default">Disable Plugin
+    </button>
+    <button onclick="toggleActive(event, 'autocomplete-lifecycle', options)" class="btn btn-default">Destroy Plugin
+    </button>
   </p>
-
 
 
 </body>

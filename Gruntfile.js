@@ -22,7 +22,7 @@ module.exports = function (grunt) {
   });
 
   var configuration = {
-    pkg : grunt.file.readJSON("package.json"),
+    pkg: grunt.file.readJSON("package.json"),
     dir: {
       src: {
         root: "src",
@@ -34,8 +34,8 @@ module.exports = function (grunt) {
         font: "<%= config.dir.dist.assets %>/font-awesome/font",
         richfaces: "<%= config.dir.dist.assets %>/richfaces",
         examples: {
-            root: "<%= config.dir.dist.root %>/examples",
-            styles: "<%= config.dir.dist.examples.root %>/styles"
+          root: "<%= config.dir.dist.root %>/examples",
+          styles: "<%= config.dir.dist.examples.root %>/styles"
         }
       },
       test: {
@@ -100,9 +100,9 @@ module.exports = function (grunt) {
         dest: "<%= config.dir.dist.assets %>/bootstrap/bootstrap.css"
       },
       fontawesome: {
-          options: {
-              paths: ["<%= config.dir.components.fontawesome %>/less"]
-          },
+        options: {
+          paths: ["<%= config.dir.components.fontawesome %>/less"]
+        },
         src: "<%= config.dir.src.root %>/font-awesome.less",
         dest: "<%= config.dir.dist.assets %>/font-awesome/font-awesome.css"
       },
@@ -111,26 +111,26 @@ module.exports = function (grunt) {
           paths: ["<%= config.dir.src.root %>", "<%= config.dir.components.root %>"]
         },
         files: grunt.file.expandMapping("**/*.less", "<%= config.dir.dist.richfaces %>/", {
-            cwd: "src/widgets",
-            rename: function(destBase, destPath) {
-                return destBase + destPath.replace(/\.less$/, '.css');
-            }
+          cwd: "src/widgets",
+          rename: function (destBase, destPath) {
+            return destBase + destPath.replace(/\.less$/, '.css');
+          }
         })
       },
       dist: {
-          options: {
-              paths: ["<%= config.dir.components.root %>"],
-              yuicompress: true
-          },
-          src: "<%= config.dir.src.root %>/main.less",
-          dest: "<%= config.dir.dist.assets %>/richfaces.min.css"
+        options: {
+          paths: ["<%= config.dir.components.root %>"],
+          yuicompress: true
+        },
+        src: "<%= config.dir.src.root %>/main.less",
+        dest: "<%= config.dir.dist.assets %>/richfaces.min.css"
       },
       examples: {
-          options: {
-              yuicompress: true
-          },
-          src: "<%= config.dir.examples.styles %>/examples.less",
-          dest: "<%= config.dir.dist.examples.styles %>/examples.css"
+        options: {
+          yuicompress: true
+        },
+        src: "<%= config.dir.examples.styles %>/examples.less",
+        dest: "<%= config.dir.dist.examples.styles %>/examples.css"
       }
     },
 
@@ -142,36 +142,42 @@ module.exports = function (grunt) {
         options: {
           compress: true
         },
-        files: [{
-          "<%= config.dir.dist.assets %>/richfaces.min.js": ["<%= config.dir.src.widgets %>/**/*.js"]
-        }]
+        files: [
+          {
+            "<%= config.dir.dist.assets %>/richfaces.min.js": ["<%= config.dir.src.widgets %>/**/*.js"]
+          }
+        ]
       }
     },
 
     copy: {
       font: {
-        files: [{
-          expand: true,
-          cwd: "<%= config.dir.components.fontawesome %>/font",
-          src: ["**"],
-          dest: "<%= config.dir.dist.font %>"
-        }]
+        files: [
+          {
+            expand: true,
+            cwd: "<%= config.dir.components.fontawesome %>/font",
+            src: ["**"],
+            dest: "<%= config.dir.dist.font %>"
+          }
+        ]
       },
       jqueryui: {
-        files: [{
-          expand: true,
-          cwd: "<%= config.dir.components.jqueryui %>/ui",
-          src: ["**"],
-          dest: "<%= config.dir.dist.assets %>/jquery-ui"
-        }]
+        files: [
+          {
+            expand: true,
+            cwd: "<%= config.dir.components.jqueryui %>/ui",
+            src: ["**"],
+            dest: "<%= config.dir.dist.assets %>/jquery-ui"
+          }
+        ]
       },
       js: {
-          files: grunt.file.expandMapping("**/*.js", "<%= config.dir.dist.richfaces %>/", {
-              cwd: "src/widgets",
-              rename: function(destBase, destPath) {
-                  return destBase + destPath;
-              }
-          })
+        files: grunt.file.expandMapping("**/*.js", "<%= config.dir.dist.richfaces %>/", {
+          cwd: "src/widgets",
+          rename: function (destBase, destPath) {
+            return destBase + destPath;
+          }
+        })
       }
     },
 
@@ -234,7 +240,7 @@ module.exports = function (grunt) {
         port: 9000,
         // change this to '0.0.0.0' to access the server from outside
         //hostname: 'localhost'
-          hostname: '0.0.0.0'
+        hostname: '0.0.0.0'
       },
       test: {
         options: {
