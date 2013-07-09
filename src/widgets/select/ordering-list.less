@@ -5,6 +5,15 @@
   margin-bottom: @line-height-base;
   display: block;
 
+  .header {
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    line-height: @headings-line-height;
+    font-size: ceil(@font-size-base * 1.70);
+    margin-top: @line-height-computed;
+    margin-bottom: (@line-height-computed / 2);
+  }
+
   .helper {
 
     li:first-child {

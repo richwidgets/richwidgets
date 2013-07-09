@@ -387,7 +387,7 @@
             this.outer = this.element.parents(".outer").first();
             var header = $("<div />").addClass('header');
             if (this.options.header) {
-                header.append($("<h3/>").html(this.options.header)).addClass(this.options.headerClass);
+                header.append($("<div>").html(this.options.header)).addClass("header").addClass(this.options.headerClass);
             }
             this.outer.prepend(header);
             this.content = this.outer.find(".content");

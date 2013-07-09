@@ -2,6 +2,14 @@
   margin-bottom: 1.428571429;
   display: block;
 }
+.ordering-list .header {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 .ordering-list .helper li:first-child {
   margin-top: 0px;
 }
