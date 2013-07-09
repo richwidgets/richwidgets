@@ -65,36 +65,40 @@
 
   <p>Autocomplete support rendering of a list from a ordered/unordered list:</p>
 
-  <input id="autocomplete-with-list" type="text"></input>
-  <ul id="suggestion-list" style="display: none">
-    <li><i class="icon-heart"></i> Java</i></li>
-    <li><i class="icon-flag"></i> Haskell</li>
-  </ul>
-  <script>
-    $("#autocomplete-with-list").richAutocompleteBridge({ choices: document.getElementById('suggestion-list') });
-  </script>
+  <p>
+    <input id="autocomplete-with-list" type="text"></input>
+    <ul id="suggestion-list" style="display: none">
+      <li><i class="icon-heart"></i> Java</i></li>
+      <li><i class="icon-flag"></i> Haskell</li>
+    </ul>
+    <script>
+      $("#autocomplete-with-list").richAutocompleteBridge({ choices: document.getElementById('suggestion-list') });
+    </script>
+  </p>
 
   <p>Autocomplete support rendering of a suggestion list from a table:</p>
 
-  <input id="autocomplete-with-table" type="text"></input>
-  <table id="suggestion-table" style="display: none">
-    <tbody>
-    <tr data-label="Java">
-      <td><i class="icon-heart"></i></td>
-      <td>Java</td>
+  <p>
+    <input id="autocomplete-with-table" type="text"></input>
+    <table id="suggestion-table" style="display: none">
+      <tbody>
+      <tr data-label="Java">
+        <td><i class="icon-heart"></i></td>
+        <td>Java</td>
 
-      <td><i>my favorite language</i></td>
-    </tr>
-    <tr data-label="Haskell">
-      <td><i class="icon-flag"></i></td>
-      <td>Haskell</td>
-      <td>functional language</td>
-    </tr>
-    </tbody>
-  </table>
-  <script>
-    $("#autocomplete-with-table").richAutocompleteBridge({ choices: document.getElementById('suggestion-table') });
-  </script>
+        <td><i>my favorite language</i></td>
+      </tr>
+      <tr data-label="Haskell">
+        <td><i class="icon-flag"></i></td>
+        <td>Haskell</td>
+        <td>functional language</td>
+      </tr>
+      </tbody>
+    </table>
+    <script>
+      $("#autocomplete-with-table").richAutocompleteBridge({ choices: document.getElementById('suggestion-table') });
+    </script>
+  </p>
 
   <p>Autocomplete's creation, destruction, enabling and disabling:</p>
 
@@ -140,6 +144,28 @@
   <p>
     <button onclick="toggleDisabled(event, 'autocomplete-lifecycle', options)" class="btn btn-default">Disable Plugin</button>
     <button onclick="toggleActive(event, 'autocomplete-lifecycle', options)" class="btn btn-default">Destroy Plugin</button>
+  </p>
+
+  <p>Updating of list-based suggestions</p>
+
+  <p>
+    <input id="autocomplete-updatable" type="text" />
+    <ul id="suggestions-updatable" style="display: none">
+      <li>Java</li>
+      <li>Haskell</li>
+    </ul>
+    <script>
+      var counter = 1;
+      $("#autocomplete-updatable").richAutocompleteBridge({
+        choices: document.getElementById('suggestions-updatable'),
+        update: function(request, done) {
+          setTimeout(function() {
+            $('#suggestions-updatable').append($('<li>Test' + counter++ + '</li>'));
+            done();
+          }, 1000);
+        }
+      });
+    </script>
   </p>
 
 

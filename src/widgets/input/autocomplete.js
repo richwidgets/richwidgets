@@ -88,11 +88,6 @@
         });
       }
 
-      if (this.options.choices) {
-        var choices = $(this.options.choices);
-        this._setOption('choices', choices);
-      }
-
       return this.root;
     },
 
