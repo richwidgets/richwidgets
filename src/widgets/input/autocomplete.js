@@ -71,55 +71,64 @@
         },
 
         _enhanceAutocomplete: function() {
-            var options = this._getBasicAutocompleteOptions();
-
-            if (this.options.token) {
-                options = $.extend(options, this._getTokenizingAutocompleteOptions());
-                this._preventTabbing();
-            }
+            var options = this._getAutocompleteOptions();
 
             this.input.autocomplete(options);
         },
 
-        _getBasicAutocompleteOptions: function() {
+        _getAutocompleteOptions: function() {
+            var bridge = this;
+
             return {
                 delay: 0,
                 minLength: 0,
-                source: this.options.suggestions || []
-            };
-        },
-
-        _getTokenizingAutocompleteOptions: function() {
-            var bridge = this;
-
-            var split = function( val ) {
-                var regexp = new RegExp("\\s*" + bridge.options.token + "\\s*");
-                return val.split( regexp );
-            };
-
-            var extractLast = function( term ) {
-                return split( term ).pop();
-            };
-
-            return {
                 source: function( request, response ) {
-                    // delegate back to autocomplete, but extract the last term
-                    response( $.ui.autocomplete.filter(
-                        bridge.options.suggestions, extractLast( request.term ) ) );
+                  response( bridge._resolveSuggestions(request) );
                 },
                 focus: function() { return false; },
                 select: function( event, ui ) {
-                    var terms = split( this.value );
-                    // remove the current input
-                    terms.pop();
-                    // add the selected item
-                    terms.push( ui.item.value );
-                    // add placeholder to get the comma-and-space at the end
-                    terms.push( "" );
-                    this.value = terms.join( bridge.options.token + " " );
-                    return false;
+                  this.value = bridge._selectValue(event, ui, this.value);
+                  return false;
                 }
+            };
+        },
+
+        _splitTokens: function( val ) {
+          var regexp = new RegExp("\\s*" + this.options.token + "\\s*");
+          return val.split( regexp );
+        },
+
+
+        _extractLastToken: function( term ) {
+          return this._splitTokens( term ).pop();
+        },
+
+        _extractSearchTerm: function(request) {
+            if (this.options.token) {
+                return this._extractLastToken(request.term);
+            } else {
+                return request.term;
             }
+        },
+
+        _selectValue: function(event, ui, value) {
+            if (this.options.token) {
+              var terms = this._splitTokens( value );
+              // remove the current input
+              terms.pop();
+              // add the selected item
+              terms.push( ui.item.value );
+              // add placeholder to get the comma-and-space at the end
+              terms.push( "" );
+              return terms.join( this.options.token + " " );
+            } else {
+              return ui.item.value;
+            }
+        },
+
+        _resolveSuggestions: function(request) {
+          return $.ui.autocomplete.filter(
+            this.options.suggestions, this._extractSearchTerm(request) )
         },
 
         _preventTabbing: function() {
