@@ -85,10 +85,6 @@
 .select-list .handle:hover {
   background: #eeeeee;
 }
-.select-list .disabled .handle:hover,
-.select-list .disabled .ui-selectee:hover {
-  background: none;
-}
 .select-list .ui-selectee:hover,
 .select-list .ui-selectee:hover td {
   text-decoration: none;

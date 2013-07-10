@@ -410,6 +410,7 @@
       this.element
         .addClass("disabled  " + this.options.disabledClass)
         .find(".ui-selected").removeClass('ui-selected');
+      this.element.find(".ui-selectee").removeClass("ui-selectee").addClass("ui-disabled");
       $('.buttonColumn', this.content).find("button").attr("disabled", true);
     },
 
@@ -421,6 +422,7 @@
       if (this.options.disabledClass) {
         this.element.removeClass(this.options.disabledClass);
       }
+      this.element.find(".ui-disabled").removeClass("ui-disabled").addClass("ui-selectee");
       $('.buttonColumn', this.content).find("button").attr("disabled", false);
     },
 
