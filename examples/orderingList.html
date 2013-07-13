@@ -85,11 +85,11 @@
   <div class="container-fluid ">
     <div class="row-fluid ">
       <div class="span6 ">
-        <button onclick="toggleDisabled(event, 'orderingListDemo')" class="btn btn-default">Disable Plugin</button>
-        <button onclick="toggleActive(event, 'orderingListDemo', pluginOptions1)" class="btn btn-default">Destroy
+        <button onclick="toggleDisabled(event, 'list')" class="btn btn-default">Disable Plugin</button>
+        <button onclick="toggleActive(event, 'list', list_options)" class="btn btn-default">Destroy
           Plugin
         </button>
-        <ol id="orderingListDemo">
+        <ol id="list">
           <li data-key="1">Item 1</li>
           <li data-key="2">Item 2</li>
           <li data-key="3">Item 3</li>
@@ -101,14 +101,99 @@
         </ol>
       </div>
     </div>
+
     <hr/>
+
     <div class="row-fluid ">
-      <div class="span6">
-        <button onclick="toggleDisabled(event, 'orderingListDemo2')" class="btn btn-default">Disable Plugin</button>
-        <button onclick="toggleActive(event, 'orderingListDemo2', pluginOptions2)" class="btn btn-default">Destroy
+      <div class="span6 ">
+        <button onclick="toggleDisabled(event, 'list_dragselect')" class="btn btn-default">Disable Plugin</button>
+        <button onclick="toggleActive(event, 'list_dragselect', list_dragselect_options)" class="btn btn-default">Destroy
           Plugin
         </button>
-        <table id="orderingListDemo2">
+        <ol id="list_dragselect">
+          <li data-key="1">Item 1</li>
+          <li data-key="2">Item 2</li>
+          <li data-key="3">Item 3</li>
+          <li data-key="4">Item 4</li>
+          <li data-key="5">Item 5</li>
+          <li data-key="6">Item 6</li>
+          <li data-key="7">Item 7</li>
+          <li data-key="8">Item 8</li>
+        </ol>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="row-fluid ">
+      <div class="span6">
+        <button onclick="toggleDisabled(event, 'table')" class="btn btn-default">Disable Plugin</button>
+        <button onclick="toggleActive(event, 'table', table_options)" class="btn btn-default">Destroy
+          Plugin
+        </button>
+        <table id="table">
+          <thead>
+          <tr>
+            <th>Icon</th>
+            <th>Label</th>
+            <th>#</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-key="1">
+            <td><i class="icon-beaker"></i></td>
+            <td>Item 1</td>
+            <td>1</td>
+          </tr>
+          <tr data-key="2">
+            <td><i class="icon-bell"></i></td>
+            <td>Item 2</td>
+            <td>2</td>
+          </tr>
+          <tr data-key="3">
+            <td><i class="icon-bolt"></i></td>
+            <td>Item 3</td>
+            <td>3</td>
+          </tr>
+          <tr data-key="4">
+            <td><i class="icon-plane"></i></td>
+            <td>Item 4</td>
+            <td>4</td>
+          </tr>
+          <tr data-key="5">
+            <td><i class="icon-pencil"></i></td>
+            <td>Item 5</td>
+            <td>5</td>
+          </tr>
+          <tr data-key="6">
+            <td><i class="icon-star"></i></td>
+            <td>Item 6</td>
+            <td>6</td>
+          </tr>
+          <tr data-key="7">
+            <td><i class="icon-trophy"></i></td>
+            <td>Item 7</td>
+            <td>7</td>
+          </tr>
+          <tr data-key="8">
+            <td><i class="icon-legal"></i></td>
+            <td>Item 8</td>
+            <td>8</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="row-fluid ">
+      <div class="span6">
+        <button onclick="toggleDisabled(event, 'table_dragselect')" class="btn btn-default">Disable Plugin</button>
+        <button onclick="toggleActive(event, 'table_dragselect', table_dragselect_options)" class="btn btn-default">Destroy
+          Plugin
+        </button>
+        <table id="table_dragselect">
           <thead>
           <tr>
             <th>Icon</th>
@@ -166,13 +251,23 @@
 </div>
 
 <script>
-  var pluginOptions1 = {
-    header: "List layout" //caption
+  var list_options = {
+    header: "List layout", //caption
   };
-  var pluginOptions2 = {
+  var list_dragselect_options = {
+    header: "List layout w/ drag-select", //caption
+    dragSelect: true
+  }
+  var table_options = {
     header: "Table layout",
     columnClasses: "red blue red",
     showHandle: true
+  };
+  var table_dragselect_options = {
+    header: "Table layout w/ drag-select",
+    columnClasses: "blue red blue red",
+    showHandle: true,
+    dragSelect: true
   };
   var toggleDisabled = function (event, id) {
     var $list = $('#' + id);
@@ -200,8 +295,10 @@
     }
   }
 
-  $("#orderingListDemo").orderingList(pluginOptions1);
-  $("#orderingListDemo2").orderingList(pluginOptions2);
+  $("#list").orderingList(list_options);
+  $("#list_dragselect").orderingList(list_dragselect_options);
+  $("#table").orderingList(table_options);
+  $("#table_dragselect").orderingList(table_dragselect_options);
 
 </script>
 

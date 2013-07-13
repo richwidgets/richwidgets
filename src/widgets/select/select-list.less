@@ -33,9 +33,10 @@
     min-height: @list-min-height;
   }
 
-  .list ol.helper {
+  .list .helper {
     min-height: 0px;
     margin: 0;
+    padding: 0;
   }
 
   .buttonColumn {
@@ -67,26 +68,33 @@
 
   .with-handle li {
     position: relative;
-    padding-left: 28px;
+    padding-left: @size-touchable;
+    @media (min-width: @screen-tablet) {
+      padding-left: @size-clickable;
+    }
   }
 
   li .handle {
     position: absolute;
     left: 0;
-    top: 0;
-    bottom: 0;
   }
 
   .handle {
-    .border-radius(5px);
-    line-height: 24px;
-    width: 24px;
+    padding: 0;
+    text-align: center;
+    .border-left-radius(5px);
+    line-height: @size-touchable;
+    width: @size-touchable;
+    @media (min-width: @screen-tablet) {
+      line-height: @size-clickable;
+      width: @size-clickable;
+    }
+
     cursor: move;
     text-align: center;
-  }
-
-  .handle i {
-    vertical-align: baseline;
+    i {
+      vertical-align: baseline;
+    }
   }
 
   .disabled .handle i {
@@ -98,30 +106,37 @@
   }
 
   .ui-selectee:hover,
+  .ui-selectee:hover .handle,
   .ui-selectee:hover td {
     text-decoration: none;
     background-color: @list-item-bg;
     color: @list-item-hover-color;
   }
 
-  .ui-selected, tr.helper-item,
-  .ui-selected td, tr.helper-item td {
+  .ui-selected,
+  .ui-selected .handle,
+  .ui-selected td {
     background-color: @list-item-selected-bg;
     color: @list-item-selected-color;
+  }
+
+  .ui-selected:hover,
+  .ui-selected:hover .handle,
+  .ui-selected:hover td,
+  .helper-item,
+  .helper-item .handle,
+  tr.helper-item td,
+  tr.helper-item .handle {
+    background: @list-item-selected-hover-bg;
+    color: @list-item-selected-hover-color;
   }
 
   tr.helper-item {
     .border-radius(5px);
   }
 
-  .ui-selecting {
+  .ui-selecting, .ui-selecting td, .ui-selecting .handle {
     background: @link-color;
-  }
-
-  .ui-selected:hover, .ui-selected .handle:hover, .helper-item,
-  .ui-selected:hover td, .ui-selected .handle:hover td, .helper-item td {
-    background: @list-item-selected-hover-bg;
-    color: @list-item-selected-hover-color;
   }
 
   .disabled .ui-selectee,
@@ -164,10 +179,6 @@
 
   .placeholder {
     height: 28px;
-  }
-
-  th.handleCell {
-    width: 24px;
   }
 
   .first {

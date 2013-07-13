@@ -45,15 +45,15 @@
         },
         sort: function (event, ui) {
           var that = $(this);
-          var helper_top = ui.helper.position().top,
-            helper_bottom = helper_top + ui.helper.outerHeight();
+          var helperTop = ui.helper.position().top,
+            helperBottom = helperTop + ui.helper.outerHeight();
           that.children('.ui-selectee').not('.placeholder').not('.helper-item').not('.ui-selected').each(function () {
             var item = $(this);
-            var item_top = item.position().top;
-            var item_middle = item.position().top + item.outerHeight() / 2;
+            var itemTop = item.position().top;
+            var itemMiddle = item.position().top + item.outerHeight() / 2;
             /* if the helper overlaps half of an item, move the placeholder */
-            if (helper_top < item_middle && item_middle < helper_bottom) {
-              if (item_top > helper_top) {
+            if (helperTop < itemMiddle && itemMiddle < helperBottom) {
+              if (itemTop > helperTop) {
                 $('.placeholder', that).insertAfter(item);
               } else {
                 $('.placeholder', that).insertBefore(item);
@@ -67,9 +67,9 @@
         },
         receive: function (event, ui) {
           ui.item.after(ui.sender.find(".ui-selected"));
-          var new_ui = self._dumpState();
-          new_ui.originalEvent = event;
-          self._trigger("receive", event, new_ui);
+          var newUi = self._dumpState();
+          newUi.originalEvent = event;
+          self._trigger("receive", event, newUi);
         },
         beforeStop: function (event, ui) {
         },
@@ -87,10 +87,6 @@
           self._trigger("change", event, ui);
         }
       };
-      if (this.options.contained !== false) {
-        this.sortableOptions.containment = this.element;
-        this.sortableOptions.axis = "y";
-      }
       if (this.element.is("table")) {
         this.strategy = "table";
         this.$pluginRoot = $(this.element).find("tbody");
@@ -102,7 +98,10 @@
         this.selectableOptions.filter = "li";
         this.sortableOptions.helper = $.proxy(this._listHelper, this);
       }
-
+      if (this.options.contained !== false) {
+        this.sortableOptions.containment = this.$pluginRoot;
+        this.sortableOptions.axis = "y";
+      }
       if (this.options.mouseOrderable !== true) {
         this.options.showButtons = true;
       }
@@ -154,8 +153,8 @@
           if (!item.hasClass('ui-selected')) {
             var list = item.parents('.list').first();
             var selectable = list.data('rfOrderingList').$pluginRoot.data('uiSelectable');
-            list.data('uiSelectable')._mouseStart(event);
-            list.data('uiSelectable')._mouseStop(event);
+            selectable._mouseStart(event);
+            selectable._mouseStop(event);
           }
         });
       }
@@ -178,15 +177,15 @@
     },
 
     _rowHelper: function (e, item) {
-      var $helper = $("<tbody />").addClass('helper ' + this.options.helperStyleClass).css('height', 'auto');
+      var $helper = $("<div />").addClass('helper ' + this.options.helperStyleClass).css('height', 'auto');
       item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass("helper-item").show().appendTo($helper);
       /* we lose the cell width in the clone, so we re-set it here: */
       var firstRow = $helper.children("tr").first();
       /* we only need to set the column widths on the first row */
       firstRow.children().each(function (colindex) {
-        var original_cell = item.children().get(colindex);
-        var original_width = $(original_cell).css('width');
-        $(this).css('width', original_width);
+        var originalCell = item.children().get(colindex);
+        var originalWidth = $(originalCell).css('width');
+        $(this).css('width', originalWidth);
       });
       return $helper;
     },
@@ -291,8 +290,8 @@
       var keys = new Array();
       this.getOrderedElements().each(function () {
         var $this = $(this);
-        var data_key = $this.data('key');
-        var key = (data_key) ? data_key : $this.text();
+        var dataKey = $this.data('key');
+        var key = (dataKey) ? dataKey : $this.text();
         keys.push(key);
       })
       return keys;
@@ -373,10 +372,10 @@
         if (this.strategy === 'table') {
           $(this.element)
             .find("tbody > tr")
-            .prepend("<th class='handleCell'><div class='handle'><i class='icon-move'></i></div></th>");
+            .prepend("<th class='handle'><i class='icon-move'></i></th>");
           $(this.element)
             .find("thead > tr")
-            .prepend("<th class='handleCell'></th>");
+            .prepend("<th class='handle'></th>");
         } else if (this.strategy === 'list') {
           $(this.element)
             .find("li")
@@ -438,6 +437,10 @@
     _removeDomElements: function () {
       var list = this.element.detach();
       this.outer.replaceWith(list);
+      if (this.options.dragSelect === true) {
+        this.content.removeClass('with-handle');
+        $(this.element).find('.handle').remove();
+      }
     },
 
     /** Event Handlers **/

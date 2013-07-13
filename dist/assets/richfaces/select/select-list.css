@@ -23,9 +23,10 @@
   list-style: none;
   min-height: 11.2em;
 }
-.select-list .list ol.helper {
+.select-list .list .helper {
   min-height: 0px;
   margin: 0;
+  padding: 0;
 }
 .select-list .buttonColumn {
   vertical-align: middle;
@@ -59,22 +60,31 @@
 }
 .select-list .with-handle li {
   position: relative;
-  padding-left: 28px;
+  padding-left: 3em;
+}
+@media (min-width: 768px) {
+  .select-list .with-handle li {
+    padding-left: 2.3em;
+  }
 }
 .select-list li .handle {
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
 }
 .select-list .handle {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  line-height: 24px;
-  width: 24px;
+  padding: 0;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  line-height: 3em;
+  width: 3em;
   cursor: move;
   text-align: center;
+}
+@media (min-width: 768px) {
+  .select-list .handle {
+    line-height: 2.3em;
+    width: 2.3em;
+  }
 }
 .select-list .handle i {
   vertical-align: baseline;
@@ -86,16 +96,26 @@
   background: #eeeeee;
 }
 .select-list .ui-selectee:hover,
+.select-list .ui-selectee:hover .handle,
 .select-list .ui-selectee:hover td {
   text-decoration: none;
   background-color: #eeeeee;
   color: #333333;
 }
 .select-list .ui-selected,
-.select-list tr.helper-item,
-.select-list .ui-selected td,
-.select-list tr.helper-item td {
+.select-list .ui-selected .handle,
+.select-list .ui-selected td {
   background-color: #428bca;
+  color: #ffffff;
+}
+.select-list .ui-selected:hover,
+.select-list .ui-selected:hover .handle,
+.select-list .ui-selected:hover td,
+.select-list .helper-item,
+.select-list .helper-item .handle,
+.select-list tr.helper-item td,
+.select-list tr.helper-item .handle {
+  background: #2a6496;
   color: #ffffff;
 }
 .select-list tr.helper-item {
@@ -103,17 +123,10 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.select-list .ui-selecting {
+.select-list .ui-selecting,
+.select-list .ui-selecting td,
+.select-list .ui-selecting .handle {
   background: #428bca;
-}
-.select-list .ui-selected:hover,
-.select-list .ui-selected .handle:hover,
-.select-list .helper-item,
-.select-list .ui-selected:hover td,
-.select-list .ui-selected .handle:hover td,
-.select-list .helper-item td {
-  background: #2a6496;
-  color: #ffffff;
 }
 .select-list .disabled .ui-selectee,
 .select-list .disabled .handle,
@@ -150,9 +163,6 @@
 }
 .select-list .placeholder {
   height: 28px;
-}
-.select-list th.handleCell {
-  width: 24px;
 }
 .select-list .first {
   border-top-left-radius: 5px;
