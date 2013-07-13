@@ -451,6 +451,26 @@
     /** Cleanup methods **/
 
     _removeDomElements: function () {
+      if (this.strategy === 'table') { /* round the table row corners */
+        var that = this;
+        $(this.element)
+          .find("tr").each(function () {
+            var $tr = $(this);
+            var children = $tr.children();
+            children.last().removeClass('last');
+            children.first().removeClass('first');
+            if (that.options.columnClasses) {
+              var columnClasses = that.options.columnClasses.split(" ");
+              children.each(function(count) {
+                if (count < columnClasses.length) {
+                  $(this).removeClass(columnClasses[count]);
+                } else {
+                  return false;
+                }
+              });
+            }
+          })
+      }
       var list = this.element.detach();
       this.outer.replaceWith(list);
       if (this.options.dragSelect === true) {

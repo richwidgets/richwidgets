@@ -45,12 +45,17 @@
 .select-list li,
 .select-list td {
   cursor: pointer;
+}
+.select-list li,
+.select-list td,
+.select-list th {
   color: #333333;
   line-height: 3em;
 }
 @media (min-width: 768px) {
   .select-list li,
-  .select-list td {
+  .select-list td,
+  .select-list th {
     line-height: 2.3em;
   }
 }
@@ -162,7 +167,12 @@
   border-bottom: #ffffff solid 2px;
 }
 .select-list .placeholder {
-  height: 28px;
+  height: 3em;
+}
+@media (min-width: 768px) {
+  .select-list .placeholder {
+    height: 2.3em;
+  }
 }
 .select-list .first {
   border-top-left-radius: 5px;

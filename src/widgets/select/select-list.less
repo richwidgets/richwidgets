@@ -55,7 +55,10 @@
 
   li, td {
     cursor: pointer;
-    color: @list-item-color;
+  }
+
+  li, td, th {
+      color: @list-item-color;
     line-height: @size-touchable;
     @media (min-width: @screen-tablet) {
       line-height: @size-clickable;
@@ -178,7 +181,10 @@
   }
 
   .placeholder {
-    height: 28px;
+    height: @size-touchable;
+    @media (min-width: @screen-tablet) {
+      height: @size-clickable;
+    }
   }
 
   .first {
