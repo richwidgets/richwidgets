@@ -117,6 +117,19 @@
         self._disable();
       }
       var selector = '.handle';
+      this._addDragListeners();
+    },
+
+    destroy: function () {
+      $.Widget.prototype.destroy.call(this);
+      this._removeDomElements();
+      this.$pluginRoot
+        .sortable("destroy")
+        .selectable("destroy");
+      return this;
+    },
+
+    _addDragListeners: function() {
       if (this.options.dragSelect == false) {
         this.element.on("mousedown", '.ui-selectee', function (event) {
           var item = $(this);
@@ -160,13 +173,14 @@
       }
     },
 
-    destroy: function () {
-      $.Widget.prototype.destroy.call(this);
-      this._removeDomElements();
-      this.$pluginRoot
-        .sortable("destroy")
-        .selectable("destroy");
-      return this;
+    _removeDragListeners: function() {
+      if (this.options.dragSelect == false) {
+        this.element.off("mousedown", '.ui-selectee');
+        this.element.off("mousemove", '.ui-selectee');
+        this.element.off("mouseup", '.ui-selectee');
+      } else {
+        this.element.find('.handle').off("mousedown");
+      }
     },
 
     _listHelper: function (e, item) {
@@ -411,6 +425,7 @@
         .find(".ui-selected").removeClass('ui-selected');
       this.element.find(".ui-selectee").removeClass("ui-selectee").addClass("ui-disabled");
       $('.buttonColumn', this.content).find("button").attr("disabled", true);
+      this._removeDragListeners();
     },
 
     _enable: function () {
@@ -423,6 +438,7 @@
       }
       this.element.find(".ui-disabled").removeClass("ui-disabled").addClass("ui-selectee");
       $('.buttonColumn', this.content).find("button").attr("disabled", false);
+      this._addDragListeners();
     },
 
     _dumpState: function () {
