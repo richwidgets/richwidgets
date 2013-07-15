@@ -2,7 +2,6 @@
 @import "variables";
 
 .select-list {
-
   margin: 0;
 
   .outer {
@@ -26,13 +25,6 @@
     overflow-x: hidden;
   }
 
-  ol.list, ol.helper {
-    padding-left: 0;
-    margin-left: 0;
-    list-style: none;
-    min-height: @list-min-height;
-  }
-
   .list .helper {
     min-height: 0px;
     margin: 0;
@@ -46,41 +38,56 @@
     padding-left: 2px;
   }
 
-  li {
-    display: block;
-    .border-radius(5px);
-    margin: 2px 0;
-    padding-left: 7px;
-  }
-
-  li, td {
+  .ui-selectee {
     cursor: pointer;
-  }
-
-  li, td, th {
-      color: @list-item-color;
+    color: @list-item-color;
     line-height: @size-touchable;
     @media (min-width: @screen-tablet) {
       line-height: @size-clickable;
     }
   }
 
-  th, td {
-    padding-left: 0.5em;
-  }
-
-  .with-handle li {
-    position: relative;
-    padding-left: @size-touchable;
+  .ui-disabled {
+    cursor: default;
+    line-height: @size-touchable;
     @media (min-width: @screen-tablet) {
-      padding-left: @size-clickable;
+      line-height: @size-clickable;
     }
   }
 
-  li .handle {
-    position: absolute;
-    left: 0;
+  .ui-selectee:hover {
+    background-color: @list-item-bg;
+    color: @list-item-hover-color;
   }
+
+  .ui-selecting {
+    background: @list-item-selecting-bg;
+  }
+
+  .ui-selected {
+    background-color: @list-item-selected-bg;
+    color: @list-item-selected-color;
+  }
+
+  .ui-selected:hover,
+  .helper-item {
+    background: @list-item-selected-hover-bg;
+    color: @list-item-selected-hover-color;
+  }
+
+  .placeholder {
+    height: @size-touchable;
+    @media (min-width: @screen-tablet) {
+      height: @size-clickable;
+    }
+  }
+
+  .first {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  /* w/ handle styles */
 
   .handle {
     padding: 0;
@@ -100,7 +107,8 @@
     }
   }
 
-  .disabled .handle i {
+  .disabled .handle {
+    cursor: default;
     color: @gray-light;
   }
 
@@ -108,28 +116,89 @@
     background: @gray-lighter;
   }
 
-  .ui-selectee:hover,
-  .ui-selectee:hover .handle,
-  .ui-selectee:hover td {
-    text-decoration: none;
+  .ui-selectee:hover .handle {
     background-color: @list-item-bg;
     color: @list-item-hover-color;
   }
 
-  .ui-selected,
-  .ui-selected .handle,
+  .ui-selecting .handle {
+    background: @list-item-selecting-bg;
+  }
+
+  .ui-selected .handle {
+    background-color: @list-item-selected-bg;
+    color: @list-item-selected-color;
+  }
+
+  .ui-selected:hover .handle,
+  .helper-item .handle {
+    background: @list-item-selected-hover-bg;
+    color: @list-item-selected-hover-color;
+  }
+
+  .with-handle li {
+    padding-left: 0;
+  }
+
+  li .handle {
+    float: left;
+  }
+
+  /* ol list */
+
+  ol.list, ol.helper {
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none;
+    min-height: @list-min-height;
+  }
+
+  li {
+    display: block;
+    .border-radius(5px);
+    margin: 2px 0;
+    padding-left: 7px;
+  }
+
+  /* table  list */
+
+  table {
+    width: 100%;
+  }
+
+  table thead {
+    text-align: left;
+  }
+
+  table tr {
+    border-bottom: #ffffff solid 2px;
+  }
+
+  td, th {
+    .ui-selectee;
+    padding-left: 0.5em;
+  }
+
+  .ui-selectee:hover td {
+    background-color: @list-item-bg;
+    color: @list-item-hover-color;
+  }
+
+  .ui-selecting td {
+    background: @list-item-selecting-bg;
+  }
+
   .ui-selected td {
     background-color: @list-item-selected-bg;
     color: @list-item-selected-color;
   }
 
-  .ui-selected:hover,
-  .ui-selected:hover .handle,
-  .ui-selected:hover td,
-  .helper-item,
-  .helper-item .handle,
-  tr.helper-item td,
-  tr.helper-item .handle {
+  .ui-selected:hover td {
+    background: @list-item-selected-hover-bg;
+    color: @list-item-selected-hover-color;
+  }
+
+  .helper-item td {
     background: @list-item-selected-hover-bg;
     color: @list-item-selected-hover-color;
   }
@@ -138,17 +207,12 @@
     .border-radius(5px);
   }
 
-  .ui-selecting, .ui-selecting td, .ui-selecting .handle {
-    background: @link-color;
+  td.last, th.last {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 
-  .disabled .ui-selectee,
-  .disabled .handle,
-  .disabled li,
-  .disabled td {
-    cursor: default;
-  }
-
+  /* vertical button group  */
   .btn-group-vertical .btn {
     padding: 0;
     text-align: center;
@@ -168,32 +232,4 @@
     border-bottom: @btn-default-color solid 2px;
   }
 
-  table {
-    width: 100%;
-  }
-
-  table thead {
-    text-align: left;
-  }
-
-  table tr {
-    border-bottom: #ffffff solid 2px;
-  }
-
-  .placeholder {
-    height: @size-touchable;
-    @media (min-width: @screen-tablet) {
-      height: @size-clickable;
-    }
-  }
-
-  .first {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-
-  td.last, th.last {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
 }

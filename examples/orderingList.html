@@ -41,13 +41,12 @@
   <script src="http://localhost:35729/livereload.js"></script>
 
   <style type="text/css">
-    .red {
-      background: lightpink;
+    .column-1 {
+      background: rgba(167, 255, 70, 0.29);
     }
 
-    .blue {
-      background: lightblue;
-      z-index: -50;
+    .column-2 {
+      background: #bacba2;
     }
   </style>
 
@@ -260,12 +259,12 @@
   }
   var table_options = {
     header: "Table layout",
-    columnClasses: "red blue red",
+    columnClasses: "column-1 column-2 column-1",
     showHandle: true
   };
   var table_dragselect_options = {
     header: "Table layout w/ drag-select",
-    columnClasses: "blue red blue red",
+    columnClasses: "column-1 column-2 column-1 column-2",
     showHandle: true,
     dragSelect: true
   };
