@@ -4,15 +4,25 @@
 
     options: {
       disabled: false,
-      header: '',
-      columnClasses: '',
+      header: undefined,
+      styleClass: undefined,
+      columnClasses: undefined,
+      headerClass: undefined,
+      itemClass: undefined,
+      selectedItemClass: undefined,
+      placeholderStyleClass: undefined,
+      helperStyleClass: undefined,
+      dimensions: undefined,
       showButtons: true,
       mouseOrderable: true,
       widgetEventPrefix: 'orderingList_',
       dropOnEmpty: true,
       dragSelect: false,
-      downBottomText: "",
-      downText: ""
+      contained: true,
+      firstText: undefined,
+      upText: undefined,
+      downText: undefined,
+      lastText: undefined
     },
 
     _create: function () {
@@ -20,14 +30,18 @@
       this.selectableOptions = {
         disabled: self.options.disabled,
         create: function (event, ui) {
-          $(event.target).find(".ui-selectee").addClass(self.options.selecteeClass);
+          if (self.options.itemClass) {
+            $(event.target).find(".ui-selectee").addClass(self.options.itemClass);
+          }
         },
         selecting: function (event, ui) {
-          $(ui.selecting).addClass(self.options.selectedClass);
+          if (self.options.selectedItemClass) {
+            $(ui.selecting).addClass(self.options.selectedItemClass);
+          }
         },
         unselecting: function (event, ui) {
-          if (self.options.selectedClass) {
-            $(ui.unselecting).removeClass(self.options.selectedClass);
+          if (self.options.selectedItemClass) {
+            $(ui.unselecting).removeClass(self.options.selectedItemClass);
           }
         }
       };
@@ -103,9 +117,6 @@
       if (this.options.contained !== false) {
         this.sortableOptions.containment = this.$pluginRoot;
         this.sortableOptions.axis = "y";
-      }
-      if (this.options.mouseOrderable !== true) {
-        this.options.showButtons = true;
       }
       // if mouse ordering is disabled buttons have to be shown
       this._addDomElements();
@@ -235,11 +246,11 @@
     },
 
     selectItem: function (item) {
-      $(item).addClass('ui-selected ' + this.options.selectedClass);
+      $(item).addClass('ui-selected ' + this.options.selectedItemClass);
     },
 
     unSelectItem: function (item) {
-      $(item).removeClass('ui-selected ' + this.options.selectedClass);
+      $(item).removeClass('ui-selected ' + this.options.selectedItemClass);
     },
 
     unSelectAll: function () {
@@ -345,7 +356,7 @@
 
     _addButtons: function () {
       var buttonStack = $("<div/>")
-        .addClass("btn-group-vertical").addClass(this.options.buttonsStyleClass);
+        .addClass("btn-group-vertical");
       this._addButton(buttonStack, "first", 'icon-arrow-up', this.options.firstText, $.proxy(this._firstHandler, this));
       this._addButton(buttonStack, "up", 'icon-arrow-up', this.options.upText, $.proxy(this._upHandler, this));
       this._addButton(buttonStack, "down", 'icon-arrow-down', this.options.downText, $.proxy(this._downHandler, this));
@@ -398,8 +409,14 @@
         )
       );
       this.selectList = this.element.parents(".select-list").first();
+      if (this.options.styleClass) {
+        this.selectList.addClass(this.options.styleClass);
+      }
       if (this.options.header) {
         var header = $("<div />").addClass('header');
+        if (this.options.headerClass) {
+          header.addClass(this.options.headerClass);
+        }
         header.append($("<div>").html(this.options.header)).addClass("header").addClass(this.options.headerClass);
         this.selectList.prepend(header);
       }
@@ -412,7 +429,7 @@
         .sortable("option", "disabled", true)
         .selectable("option", "disabled", true);
       this.element
-        .addClass("disabled  " + this.options.disabledClass)
+        .addClass("disabled")
         .find(".ui-selected").removeClass('ui-selected');
       this.element.find(".ui-selectee").removeClass("ui-selectee").addClass("ui-disabled");
       $('.buttonColumn', this.content).find("button").attr("disabled", true);
@@ -424,9 +441,6 @@
         .sortable("option", "disabled", false)
         .selectable("option", "disabled", false);
       this.element.removeClass("disabled");
-      if (this.options.disabledClass) {
-        this.element.removeClass(this.options.disabledClass);
-      }
       this.element.find(".ui-disabled").removeClass("ui-disabled").addClass("ui-selectee");
       $('.buttonColumn', this.content).find("button").attr("disabled", false);
       this._addDragListeners();
