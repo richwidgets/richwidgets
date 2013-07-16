@@ -400,19 +400,19 @@
 
     _addParents: function () {
       this.element.addClass('list').wrap(
-        $("<div />").addClass('ordering-list select-list outer').append(
+        $("<div />").addClass('ordering-list select-list').append(
           $('<div />').addClass('content').append(
             $('<div />').addClass('listBox')
           )
         )
       );
-      this.outer = this.element.parents(".outer").first();
+      this.selectList = this.element.parents(".select-list").first();
       if (this.options.header) {
         var header = $("<div />").addClass('header');
         header.append($("<div>").html(this.options.header)).addClass("header").addClass(this.options.headerClass);
-        this.outer.prepend(header);
+        this.selectList.prepend(header);
       }
-      this.content = this.outer.find(".content");
+      this.content = this.selectList.find(".content");
       if (this.options.dimensions) this.element.css(this.options.dimensions);
     },
 
@@ -472,7 +472,7 @@
           })
       }
       var list = this.element.detach();
-      this.outer.replaceWith(list);
+      this.selectList.replaceWith(list);
       if (this.options.dragSelect === true) {
         this.content.removeClass('with-handle');
         $(this.element).find('.handle').remove();
