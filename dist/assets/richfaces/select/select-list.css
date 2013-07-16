@@ -9,6 +9,9 @@
   /* vertical button group  */
 
 }
+.select-list .outer {
+  min-height: 11em;
+}
 .select-list .content {
   display: table;
   border: 1px solid #e5e5e5;
@@ -134,7 +137,7 @@
   padding-left: 0;
   margin-left: 0;
   list-style: none;
-  min-height: 11.2em;
+  min-height: 10em;
 }
 .select-list li {
   display: block;

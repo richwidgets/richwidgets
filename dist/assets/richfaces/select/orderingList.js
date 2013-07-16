@@ -407,11 +407,11 @@
         )
       );
       this.outer = this.element.parents(".outer").first();
-      var header = $("<div />").addClass('header');
       if (this.options.header) {
+        var header = $("<div />").addClass('header');
         header.append($("<div>").html(this.options.header)).addClass("header").addClass(this.options.headerClass);
+        this.outer.prepend(header);
       }
-      this.outer.prepend(header);
       this.content = this.outer.find(".content");
       if (this.options.dimensions) this.element.css(this.options.dimensions);
     },

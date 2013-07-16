@@ -215,7 +215,7 @@ module.exports = function (grunt) {
         forever: true
       },
       less: {
-        files: ["<%= config.dir.src.widgets %>/**/*.less"],
+        files: ["<%= config.dir.src.root %>/**/*.less"],
         tasks: ["less:widgets"]
       },
       js: {
