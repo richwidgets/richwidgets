@@ -207,14 +207,26 @@
   }
 
   /* vertical button group  */
-  .btn-group-vertical .btn {
-    padding: 0;
-    text-align: center;
-    width: @size-touchable;
-    height: @size-touchable;
-    @media (min-width: @screen-tablet) {
-      width: @size-clickable;
-      height: @size-clickable;
+  .btn-group-vertical {
+    .btn {
+      padding: 0;
+      text-align: center;
+      min-width: @size-touchable;
+      height: @size-touchable;
+      @media (min-width: @screen-tablet) {
+        min-width: @size-clickable;
+        height: @size-clickable;
+      }
+    }
+
+    .labeled {
+      text-align: left;
+      padding-left: 0.5em;
+      span {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+
     }
   }
 

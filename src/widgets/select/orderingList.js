@@ -10,7 +10,9 @@
       mouseOrderable: true,
       widgetEventPrefix: 'orderingList_',
       dropOnEmpty: true,
-      dragSelect: false
+      dragSelect: false,
+      downBottomText: "",
+      downText: ""
     },
 
     _create: function () {
@@ -342,39 +344,28 @@
     },
 
     _addButtons: function () {
+      var buttonStack = $("<div/>")
+        .addClass("btn-group-vertical").addClass(this.options.buttonsStyleClass);
+      this._addButton(buttonStack, "first", 'icon-arrow-up', this.options.firstText, $.proxy(this._firstHandler, this));
+      this._addButton(buttonStack, "up", 'icon-arrow-up', this.options.upText, $.proxy(this._upHandler, this));
+      this._addButton(buttonStack, "down", 'icon-arrow-down', this.options.downText, $.proxy(this._downHandler, this));
+      this._addButton(buttonStack, "last", 'icon-arrow-down', this.options.lastText, $.proxy(this._lastHandler, this));
+      this.content.append(
+        $('<div />').addClass('buttonColumn').append(buttonStack));
+    },
+
+    _addButton: function (buttonStack, buttonClass, icon, buttonText, handler) {
       var button = $("<button/>")
         .attr('type', 'button')
         .addClass("btn btn-default")
-      var buttonStack = $("<div/>")
-        .addClass("btn-group-vertical").addClass(this.options.buttonsStyleClass);
-      buttonStack
-        .append(
-          button.clone()
-            .addClass('first')
-            .html("<i class='icon-arrow-up'></i>")
-            .bind('click.orderingList', $.proxy(this._topHandler, this))
-        )
-        .append(
-          button.clone()
-            .addClass('up')
-            .html("<i class='icon-arrow-up'></i>")
-            .bind('click.orderingList', $.proxy(this._upHandler, this))
-        )
-        .append(
-          button.clone()
-            .addClass('down')
-            .html("<i class='icon-arrow-down'></i>")
-            .bind('click.orderingList', $.proxy(this._downHandler, this))
-        )
-        .append(
-          button
-            .clone()
-            .addClass('last')
-            .html("<i class='icon-arrow-down'></i>")
-            .bind('click.orderingList', $.proxy(this._lastHandler, this))
-        );
-      this.content.append(
-        $('<div />').addClass('buttonColumn').append(buttonStack));
+        .append($("<i />").addClass(icon))
+        .bind('click.orderingList', handler)
+        .addClass(buttonClass);
+      if (buttonText) {
+        button.addClass("labeled")
+          .append($("<span />").text(buttonText));
+      }
+      buttonStack.append(button);
     },
 
     _addMouseHandles: function () {
@@ -481,7 +472,7 @@
 
     /** Event Handlers **/
 
-    _topHandler: function (event) {
+    _firstHandler: function (event) {
       this.moveTop($('.ui-selected', this.element), event);
     },
 

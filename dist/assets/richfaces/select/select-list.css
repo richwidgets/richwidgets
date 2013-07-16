@@ -198,14 +198,22 @@
 .select-list .btn-group-vertical .btn {
   padding: 0;
   text-align: center;
-  width: 3em;
+  min-width: 3em;
   height: 3em;
 }
 @media (min-width: 768px) {
   .select-list .btn-group-vertical .btn {
-    width: 2.3em;
+    min-width: 2.3em;
     height: 2.3em;
   }
+}
+.select-list .btn-group-vertical .labeled {
+  text-align: left;
+  padding-left: 0.5em;
+}
+.select-list .btn-group-vertical .labeled span {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 .select-list .btn-group-vertical .first i {
   border-top: #ffffff solid 2px;
