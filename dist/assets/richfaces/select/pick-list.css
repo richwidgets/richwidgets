@@ -65,8 +65,8 @@
 }
 @media (min-width: 768px) {
   .pick-list .buttonColumn {
-    height: 11em;
-    line-height: 11em;
+    height: 9.6em;
+    line-height: 9.6em;
   }
   .pick-list .buttonColumn .btn-group-picklist {
     vertical-align: middle;

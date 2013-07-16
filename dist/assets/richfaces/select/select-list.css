@@ -9,9 +9,6 @@
   /* vertical button group  */
 
 }
-.select-list .outer {
-  min-height: 11em;
-}
 .select-list .content {
   display: table;
   border: 1px solid #e5e5e5;
@@ -23,9 +20,9 @@
   width: 100%;
 }
 .select-list .listBox {
-  display: table-cell;
   overflow: auto;
   overflow-x: hidden;
+  max-height: 14.7em;
 }
 .select-list .list .helper {
   min-height: 0px;
@@ -135,9 +132,9 @@
 .select-list ol.list,
 .select-list ol.helper {
   padding-left: 0;
-  margin-left: 0;
+  margin: 0;
   list-style: none;
-  min-height: 10em;
+  min-height: 9.6em;
 }
 .select-list li {
   display: block;

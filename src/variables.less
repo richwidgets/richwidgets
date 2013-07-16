@@ -3,7 +3,8 @@
 @size-clickable: 2.3em;
 @size-touchable: 3.0em;
 
-@list-min-height: floor(@size-clickable * 4 + 2%);
+@list-min-height: @size-clickable * 4 + 0.4em; // fit 4 list elements, accounting for padding
+@list-max-height: @size-clickable * 6 + 0.9em; // fit 6 list elements, accounting for padding
 @list-button-padding: 4px;
 @list-item-bg: @gray-lighter;
 @list-item-color: @text-color;

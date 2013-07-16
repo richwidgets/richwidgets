@@ -4,13 +4,6 @@
 .select-list {
   margin: 0;
 
-  .outer {
-    min-height: @list-min-height;
-  }
-
-  .header {
-  }
-
   .content {
     display: table;
     border: 1px solid #e5e5e5;
@@ -21,9 +14,9 @@
   }
 
   .listBox {
-    display: table-cell;
     overflow: auto;
     overflow-x: hidden;
+    max-height: @list-max-height;
   }
 
   .list .helper {
@@ -149,9 +142,9 @@
 
   ol.list, ol.helper {
     padding-left: 0;
-    margin-left: 0;
+    margin: 0;
     list-style: none;
-    min-height:  @list-min-height - 1em;
+    min-height:  @list-min-height;
   }
 
   li {
