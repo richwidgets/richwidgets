@@ -12,6 +12,7 @@
   "devDependencies": {
     "requirejs": "~2.1.8",
     "jasmine-jquery": "~1.5.3",
-    "dom-compare": "lfryc/dom-compare#requirejs"
+    "dom-compare": "lfryc/dom-compare#requirejs",
+    "syn": "~3.2.2"
   }
 }
