@@ -1,4 +1,4 @@
-define(['test/utils/jasmine-toHaveEqualDom'], function () {
+define(['syn', 'test/utils/jasmine-toHaveEqualDom'], function (Syn) {
 
   var fixtures;
   var styleFixtures;
@@ -17,13 +17,7 @@ define(['test/utils/jasmine-toHaveEqualDom'], function () {
   });
 
   return {
-    loadFixture: function(src) {
-      fixtures.load(src);
-    },
-
-    loadStyle: function(src) {
-      styleFixtures.load(src);
-    }
+    Syn: Syn
   };
 
 });

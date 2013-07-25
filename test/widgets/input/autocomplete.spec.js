@@ -1,4 +1,6 @@
-define(['widget-testing-base', 'syn', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function (wt, Syn) {
+define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function (wt) {
+
+  var Syn = wt.Syn;
 
   describe("Widget: Autocomplete", function () {
 
@@ -7,11 +9,13 @@ define(['widget-testing-base', 'syn', 'jquery', 'jquery-ui', 'src/widgets/input/
 
 
     beforeEach(function () {
-      wt.loadFixture('test/widgets/input/autocomplete.spec.html');
+      var f = jasmine.getFixtures();
+      f.load('test/widgets/input/autocomplete.spec.html');
 
-      wt.loadStyle('dist/assets/bootstrap/bootstrap.css');
-      wt.loadStyle('dist/assets/font-awesome/font-awesome.css');
-      wt.loadStyle('dist/assets/richfaces/input/autocomplete.css');
+      var s = jasmine.getStyleFixtures();
+      s.load('dist/assets/bootstrap/bootstrap.css');
+      s.load('dist/assets/font-awesome/font-awesome.css');
+      s.load('dist/assets/richfaces/input/autocomplete.css');
 
       fixture = $("#fixture");
       element = $(".autocomplete", fixture);

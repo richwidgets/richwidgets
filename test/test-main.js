@@ -10,7 +10,7 @@ requirejs.config({
   paths: {
     'jquery': 'components/jquery/jquery',
     'jquery-ui': 'components/jquery-ui/ui/jquery-ui',
-    'widget-testing-base': 'test/utils/widget-test-base',
+    'widget-test-base': 'test/utils/widget-test-base',
     'syn': 'components/syn/dist/syn'
   },
 
