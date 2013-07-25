@@ -4,11 +4,13 @@ var tests = Object.keys(window.__karma__.files).filter(function (file) {
 
 requirejs.config({
   // Karma serves files from '/base'
-  baseUrl: '/base/src',
+  baseUrl: '/base/',
+  appDir: '../',
 
   paths: {
-    'jquery': '../components/jquery/jquery',
-    'jquery-ui': '../components/jquery-ui/ui/jquery-ui'
+    'jquery': 'components/jquery/jquery',
+    'jquery-ui': 'components/jquery-ui/ui/jquery-ui',
+    'widget-testing-base': 'test/utils/widget-test-base'
   },
 
   shim: {
@@ -23,7 +25,7 @@ requirejs.config({
       deps: ['jquery'],
       exports: 'jquery-ui'
     },
-    'widgets/input/autocomplete': {
+    'src/widgets/input/autocomplete': {
       deps: ['jquery', 'jquery-ui']
     }
   },

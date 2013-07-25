@@ -20,6 +20,7 @@ files = [
 
 
   {pattern: 'src/**/*.js', included: false},
+  {pattern: 'test/utils/*.js', included: false},
   {pattern: 'test/**/*.spec.js', included: false},
   {pattern: 'test/**/*.html', included: false},
 
