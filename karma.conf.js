@@ -18,6 +18,7 @@ files = [
   {pattern: 'components/jquery-ui/ui/jquery-ui.js', included: false},
   {pattern: 'components/dom-compare/**/*.js', included: false},
   {pattern: 'components/syn/**/*.js', included: false},
+  {pattern: 'dist/assets/**/*.css', included: false},
 
 
   {pattern: 'src/**/*.js', included: false},

@@ -3,6 +3,7 @@ define(['components/dom-compare/index', 'jquery'], function (domCompare, $) {
   beforeEach(function () {
     this.addMatchers({
       toHaveEqualDom: function(expected) {
+
         var result = expectEqualHtml(this.actual, expected);
 
         this.message = function() {
@@ -11,19 +12,27 @@ define(['components/dom-compare/index', 'jquery'], function (domCompare, $) {
           return expectations + '\n\nReport:\n=======\n' + result.grouped;
         }
 
+        if (!expected || expected.length == 0) {
+          return false;
+        }
+
+        if (!this.actual || this.actual.length == 0) {
+          return false;
+        }
+
         return result.result;
       }
     })
   });
 
   function expectEqualHtml(a, b) {
-    var div = $(document.createElement('div'));
+    var body = $('<body>');
+    body.html(a.html());
+    var aNormalized = body.get(0);
 
-    div.html(a.html());
-    var aNormalized = div.find("> :first-child").get(0);
-
-    div.html(b.html());
-    var bNormalized = div.find("> :first-child").get(0);
+    body = $('<body>');
+    body.html(b.html());
+    var bNormalized = body.get(0);
 
     var result = domCompare.compare(aNormalized, bNormalized);
 

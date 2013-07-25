@@ -4,12 +4,20 @@ define(['widget-testing-base', 'syn', 'jquery', 'jquery-ui', 'src/widgets/input/
 
     var fixture, element;
 
+
+
     beforeEach(function () {
       wt.loadFixture('test/widgets/input/autocomplete.spec.html');
+
+      wt.loadStyle('dist/assets/bootstrap/bootstrap.css');
+      wt.loadStyle('dist/assets/font-awesome/font-awesome.css');
+      wt.loadStyle('dist/assets/richfaces/input/autocomplete.css');
 
       fixture = $("#fixture");
       element = $(".autocomplete", fixture);
     });
+
+
 
     it("initializes DOM correctly", function () {
       // given
@@ -22,15 +30,148 @@ define(['widget-testing-base', 'syn', 'jquery', 'jquery-ui', 'src/widgets/input/
       expect(fixture).toHaveEqualDom(expected);
     });
 
-    it("menu it opened when typing chars in", function() {
+
+
+    it("can be destructed", function () {
+      // given
+      var expected = $("#expected");
+      var initialDom = expected.html();
+
+      // construct element
+      element.richAutocomplete({
+        source: ['Java', 'Haskell']
+      });
+      expect(fixture).toHaveEqualDom(expected);
+
+      // when
+      element.richAutocomplete('option', 'disabled');
+
+      // then
+      expect(fixture).toHaveEqualDom($('<body>').html(initialDom));
+    });
+
+
+
+    it("can have button", function () {
+      // given
+      var expected = $("#expected-with-button");
+
+      // when
+      element.richAutocomplete({
+        source: ['Java', 'Haskell'],
+        showButton: true
+      });
+
+      // then
+      expect(fixture).toHaveEqualDom(expected);
+    });
+
+
+
+    it("interacts with JSON-fed autocomplete", function() {
       // given
       element.richAutocomplete({ source: ['Java', 'Haskell'] });
+
+      // then
+      testInteraction();
+    });
+
+
+
+    it("interacts with autocomplete using function as a source", function() {
+      // given
+      element.richAutocomplete({
+        source: function (request, response) {
+          response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+        }
+      });
+
+      // then
+      testInteraction();
+    });
+
+
+
+    it("handles delayed response", function() {
+      // given
+      element.richAutocomplete({
+        source: function (request, response) {
+          setTimeout(function () {
+            response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+          }, 100);
+        }
+      });
+
+      // then
+      testInteraction();
+    });
+
+
+
+    it("supports tokenizing", function() {
+      // given
+      element.richAutocomplete({
+        source: ['Java', 'Haskell'],
+        token: ','
+      });
+
       var menu = element.autocomplete( "widget" );
 
-      expect(menu).toBeHidden();
-      expect(menu).toBeEmpty();
+      // when
+      runs(function() {
+        Syn.type('j', element);
+      });
+
+      waitsFor(function() {
+        var item = menu.find(".ui-menu-item");
+        return item.length == 1 && item.text() === 'Java';
+      }, "menu should contain one item", 500);
 
       runs(function() {
+        Syn.click(menu.find(".ui-menu-item").get(0));
+      });
+
+      waitsFor(function() {
+        return menu.is(':not(:visible)');
+      }, "menu should not be visible", 1500);
+
+      runs(function() {
+        expect(element).toHaveValue("Java, ");
+
+        Syn.type('h', element);
+      });
+
+      waitsFor(function() {
+        var item = menu.find(".ui-menu-item");
+        return item.length == 1 && item.text() === 'Haskell';
+      }, "menu should contain one item", 500);
+
+      runs(function() {
+        Syn.click(menu.find(".ui-menu-item").get(0));
+      });
+
+      waitsFor(function() {
+        return menu.is(':not(:visible)');
+      }, "menu should not be visible", 1500);
+
+      runs(function() {
+        expect(element).toHaveValue("Java, Haskell, ");
+      });
+    });
+
+
+
+    /**
+     * Tests that we can interact with the input:
+     * types into input and checks expected output
+     */
+    function testInteraction() {
+      var menu = element.autocomplete( "widget" );
+
+      runs(function() {
+        expect(menu).toBeHidden();
+        expect(menu).toBeEmpty();
+
         Syn.type('j', element);
       });
 
@@ -75,7 +216,7 @@ define(['widget-testing-base', 'syn', 'jquery', 'jquery-ui', 'src/widgets/input/
 
         expect(items.get(0)).toHaveText('Haskell');
       });
-    });
+    };
 
   });
 
