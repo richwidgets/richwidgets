@@ -10,11 +10,20 @@ basePath = '';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  'src/scripts/jquery/jquery.js',
-  'src/scripts/lodash/lodash.js',
-  'src/scripts/bootstrap/bootstrap.js',
-  'src/scripts/richfaces/*.js',
-  'test/*.js'
+  REQUIRE,
+  REQUIRE_ADAPTER,
+  'components/jasmine-jquery/lib/jasmine-jquery.js',
+
+  {pattern: 'components/jquery/jquery.js', included: false},
+  {pattern: 'components/jquery-ui/ui/jquery-ui.js', included: false},
+  {pattern: 'components/dom-compare/**/*.js', included: false},
+
+
+  {pattern: 'src/**/*.js', included: false},
+  {pattern: 'test/**/*.spec.js', included: false},
+  {pattern: 'test/**/*.html', included: false},
+
+  'test/test-main.js'
 ];
 
 
