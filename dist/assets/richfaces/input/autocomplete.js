@@ -28,6 +28,10 @@
     options: {
       token: "",
       showButton: false,
+      /**
+       * Source can be either array or function (compatible with jQuery UI Autocomplete),
+       * or it can be DOM element reference or string (CSS Selector).
+       */
       source: [],
       layout: LAYOUT.list,
       cached: false,
@@ -198,7 +202,7 @@
     _retrieveSuggestions: function (request, response) {
       var source = this.options.source;
 
-      if (source instanceof HTMLElement) {
+      if (this._isDomBasedSource(source)) {
         // DOM-based
         this._suggestFromDom(request, response);
       } else if ($.isFunction(source)) {
@@ -317,10 +321,14 @@
       this._super(key, value);
 
       if (key === 'source') {
-        if (value instanceof HTMLElement) {
+        if (this._isDomBasedSource(value)) {
           this._updateDomSuggestions();
         }
       }
+    },
+
+    _isDomBasedSource: function(value) {
+      return value instanceof HTMLElement || $.type(value) == 'string';
     }
   });
 
