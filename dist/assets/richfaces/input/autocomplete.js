@@ -31,12 +31,29 @@
       source: [],
       layout: LAYOUT.list,
       cached: false,
-      cacheImplemenation: $.ui.richAutocomplete.objectCache
+      cacheImplemenation: $.ui.richAutocomplete.objectCache,
+
+      /**
+       * Function called when search triggered but before suggestions are composed.
+       *
+       * It gives chance to update source of suggestions as reflection to current search term.
+       *
+       * function({ term: currentSearchTerm }, doneCallback)
+       *
+       * when doneCallback is specified, autocomplete will wait with update of suggestions before doneCallback
+       * is called. Usually it is called on the end of AJAX data update.
+       */
+      update: null,
+
+      // TODO should not be option, but private member
+      suggestions: []
     },
 
     _create: function () {
       this.input = this.element;
       this.disabled = this.input.disabled;
+
+      // initialize DOM structure
       this.root = this._initDom();
 
       if (this.options.cached) {
@@ -47,8 +64,14 @@
         this._setOption('layout', this.LAYOUT.list);
       }
 
-      this._enhanceAutocomplete();
+      var autocompleteOptions = this._getAutocompleteOptions();
+      this.input.autocomplete(autocompleteOptions);
+
       this._registerListeners();
+
+      if (this.options.source) {
+        this._setOption('source', this.options.source);
+      }
     },
 
     _destroy: function () {
@@ -78,7 +101,6 @@
           $(that.element).autocomplete("search");
           setTimeout(function () {
 
-
             $("body").one("click", function () {
               setTimeout(function () {
                 $(that.element).autocomplete("close");
@@ -96,26 +118,20 @@
       this.root.remove();
     },
 
-    _enhanceAutocomplete: function () {
-      var options = this._getAutocompleteOptions();
-
-      this.input.autocomplete(options);
-    },
-
     _getAutocompleteOptions: function () {
-      var bridge = this;
+      var widget = this;
 
       return {
         delay: 0,
         minLength: 0,
         source: function (request, response) {
-          bridge._getSuggestions(request, response);
+          widget._getSuggestions(request, response);
         },
         focus: function () {
           return false;
         },
         select: function (event, ui) {
-          this.value = bridge._selectValue(event, ui, this.value);
+          this.value = widget._selectValue(event, ui, this.value);
           return false;
         }
       };
@@ -155,7 +171,6 @@
     },
 
     _getSuggestions: function (request, response) {
-      var widget = this;
       var searchTerm = this._extractSearchTerm(request);
 
       var req = $.extend({}, request, {
@@ -181,11 +196,62 @@
     },
 
     _retrieveSuggestions: function (request, response) {
-      if ($.isFunction(this.options.source)) {
-        this.options.source(request, response);
+      var source = this.options.source;
+
+      if (source instanceof HTMLElement) {
+        // DOM-based
+        this._suggestFromDom(request, response);
+      } else if ($.isFunction(source)) {
+        // function-based
+        source(request, response);
       } else {
-        response($.ui.autocomplete.filter(this.options.source, request.term));
+        // array-based
+        response($.ui.autocomplete.filter(source, request.term));
       }
+    },
+
+    _suggestFromDom: function(request, response) {
+      var updateFn = this.options.update;
+
+      var updateSuggestionsAndRespond = $.proxy(function () {
+        this._updateDomSuggestions();
+        response(this.options.suggestions);
+      }, this);
+
+      if ($.isFunction(updateFn)) {
+        // has the function second parameter? (which is 'done' callback)
+        if (updateFn.length >= 2) {
+          updateFn.call(window, request, updateSuggestionsAndRespond);
+        } else {
+          updateFn.call(window, request);
+          updateSuggestionsAndRespond();
+        }
+      } else {
+        response(this.options.suggestions);
+      }
+    },
+
+    _updateDomSuggestions: function () {
+      var suggestions = [];
+      var domSource = $(this.options.source);
+      var layout = LAYOUT.list;
+
+      if (domSource.is('table')) {
+        layout = LAYOUT.table;
+        domSource = domSource.children('tbody');
+      }
+      $(domSource).children('tr, li').each(function () {
+        suggestions.push({
+          value: $(this).data("label") || $(this).text(),
+          html: $(this).clone()
+        })
+      });
+
+      if (this.option('layout') !== layout) {
+        this._setOption('layout', layout);
+      }
+
+      this._setOption('suggestions', suggestions);
     },
 
     _preventTabbing: function () {
@@ -247,7 +313,14 @@
           this._enable();
         }
       }
+
       this._super(key, value);
+
+      if (key === 'source') {
+        if (value instanceof HTMLElement) {
+          this._updateDomSuggestions();
+        }
+      }
     }
   });
 

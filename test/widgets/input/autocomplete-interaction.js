@@ -1,4 +1,4 @@
-define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function (wt) {
+define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function () {
 
   describe("widget(autocomplete): interaction", function () {
 
@@ -81,7 +81,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       }, "menu should contain one item", 500);
 
       runs(function() {
-        Syn.click(menu.find(".ui-menu-item").get(0));
+        menu.find(".ui-menu-item").trigger("click");
       });
 
       waitsFor(function() {

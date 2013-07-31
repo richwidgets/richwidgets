@@ -1,6 +1,4 @@
-define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function (wt) {
-
-  var Syn = wt.Syn;
+define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function () {
 
   describe("widget(autocomplete): dom construction", function () {
 

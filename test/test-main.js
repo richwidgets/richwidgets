@@ -58,10 +58,6 @@
       'src/widgets/input/autocomplete': {
         deps: ['jquery', 'jquery-ui']
       },
-
-      'src/widgets/input/autocompleteBridge': {
-        deps: ['src/widgets/input/autocomplete']
-      },
       'syn': {
         exports: 'syn',
         init: function () {

@@ -1,12 +1,10 @@
-define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocompleteBridge'], function (wt) {
+define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function () {
 
-  var Syn = wt.Syn;
-
-  describe("widget(autocomplete): bridge", function () {
+  describe("widget(autocomplete): DOM source", function () {
 
     beforeEach(function () {
       var f = jasmine.getFixtures();
-      f.load('test/widgets/input/autocomplete-bridge.html');
+      f.load('test/widgets/input/autocomplete-dom-source.html');
 
       var s = jasmine.getStyleFixtures();
       s.load('dist/assets/bootstrap/bootstrap.css');
@@ -23,7 +21,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var expected = $("#expected-autocomplete-with-list");
 
       // when
-      element.richAutocompleteBridge({ choices: $('ul', fixture).get(0) });
+      element.richAutocomplete({ source: $('ul', fixture).get(0) });
 
       // then
       expect(fixture).toHaveEqualDom(expected);
@@ -38,7 +36,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var expected = $("#expected-autocomplete-with-table");
 
       // when
-      element.richAutocompleteBridge({ choices: $('table', fixture).get(0) });
+      element.richAutocomplete({ source: $('table', fixture).get(0) });
 
       // then
       expect(fixture).toHaveEqualDom(expected);
