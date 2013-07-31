@@ -10,7 +10,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     beforeEach(function () {
       var f = jasmine.getFixtures();
-      f.load('test/widgets/input/autocomplete.spec.html');
+      f.load('test/widgets/input/autocomplete-markup.html');
 
       var s = jasmine.getStyleFixtures();
       s.load('dist/assets/bootstrap/bootstrap.css');
