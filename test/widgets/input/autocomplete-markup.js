@@ -37,7 +37,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
     it("can be destructed", function () {
       // given
       var expected = $("#expected");
-      var initialDom = expected.html();
+      var initialDom = fixture.html();
 
       // construct element
       element.richAutocomplete({
@@ -46,7 +46,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       expect(fixture).toHaveEqualDom(expected);
 
       // when
-      element.richAutocomplete('option', 'disabled');
+      element.richAutocomplete('destroy');
 
       // then
       expect(fixture).toHaveEqualDom($('<body>').html(initialDom));
