@@ -28,6 +28,7 @@
     options: {
       token: "",
       showButton: false,
+      autoFocus: false,
       source: [],
       layout: LAYOUT.list,
       minLength: 0,
@@ -144,6 +145,7 @@
       return {
         delay: 0,
         minLength: this.options.minLength,
+        autoFocus: this.options.autoFocus,
         source: function (request, response) {
           widget._getSuggestions(request, response);
         },
