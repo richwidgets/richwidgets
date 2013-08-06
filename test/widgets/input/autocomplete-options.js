@@ -124,7 +124,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    
+
     it("uses 'cache' when two searches are triggered for same prefix", function() {
       var sourceFnInvoked = false;
 

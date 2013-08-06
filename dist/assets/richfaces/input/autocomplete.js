@@ -31,20 +31,27 @@
       source: [],
       layout: LAYOUT.list,
       minLength: 0,
-      cached: false,
-      cacheRequestTerm: function(searchTerm) {
-        if (searchTerm && this.options.minLength > 0 && this.options.minLength < searchTerm.length) {
-          return searchTerm.substring(0, this.options.minLength);
-        } else {
-          return searchTerm;
-        }
-      },
-      cacheImplemenation: $.ui.richAutocomplete.objectCache,
 
       /**
-       * function filter(array, term)
+       * cached turns caching on
+       */
+      cached: false,
+      /**
+       * defines what prefix of searchTerm will be used to query cache
+       */
+      extractCacheSearchPrefix: defaultExtractCacheSearchPrefix,
+      /**
+       * pluggable cache implementation
+       */
+      cacheImplemenation: $.ui.richAutocomplete.objectCache,
+
+
+      /**
+       * Provide function which will be used to filter array of suggestions by given searchTerm
+       * function filter(array, searchTerm)
        */
       filter: $.ui.autocomplete.filter,
+
 
       /**
        * Function called when search triggered but before suggestions are composed.
@@ -192,7 +199,7 @@
       });
 
       if (this.cache) {
-        req.term = this.options.cacheRequestTerm.call(this, searchTerm);
+        req.term = this.options.extractCacheSearchPrefix.call(this, searchTerm);
       }
 
       var resp = $.proxy(function () {
@@ -341,5 +348,16 @@
       }
     }
   });
+
+  /**
+   * Default implementation of extracting searchTerm prefix for checking cache
+   */
+  function defaultExtractCacheSearchPrefix(searchTerm) {
+    if (searchTerm && this.options.minLength > 0 && this.options.minLength < searchTerm.length) {
+      return searchTerm.substring(0, this.options.minLength);
+    } else {
+      return searchTerm;
+    }
+  }
 
 }(jQuery));
