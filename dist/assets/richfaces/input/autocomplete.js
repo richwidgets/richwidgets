@@ -30,8 +30,21 @@
       showButton: false,
       source: [],
       layout: LAYOUT.list,
+      minLength: 0,
       cached: false,
+      cacheRequestTerm: function(searchTerm) {
+        if (searchTerm && this.options.minLength > 0 && this.options.minLength < searchTerm.length) {
+          return searchTerm.substring(0, this.options.minLength);
+        } else {
+          return searchTerm;
+        }
+      },
       cacheImplemenation: $.ui.richAutocomplete.objectCache,
+
+      /**
+       * function filter(array, term)
+       */
+      filter: $.ui.autocomplete.filter,
 
       /**
        * Function called when search triggered but before suggestions are composed.
@@ -123,7 +136,7 @@
 
       return {
         delay: 0,
-        minLength: 0,
+        minLength: this.options.minLength,
         source: function (request, response) {
           widget._getSuggestions(request, response);
         },
@@ -173,9 +186,14 @@
     _getSuggestions: function (request, response) {
       var searchTerm = this._extractSearchTerm(request);
 
+
       var req = $.extend({}, request, {
         term: searchTerm
       });
+
+      if (this.cache) {
+        req.term = this.options.cacheRequestTerm.call(this, searchTerm);
+      }
 
       var resp = $.proxy(function () {
         if (this.cache) {
@@ -206,7 +224,7 @@
         source(request, response);
       } else {
         // array-based
-        response($.ui.autocomplete.filter(source, request.term));
+        response(this.options.filter(source, request.term));
       }
     },
 
@@ -215,7 +233,7 @@
 
       var updateSuggestionsAndRespond = $.proxy(function () {
         this._updateDomSuggestions();
-        response(this.options.suggestions);
+        response(this.options.filter(this.options.suggestions, request.term));
       }, this);
 
       if ($.isFunction(updateFn)) {
@@ -227,7 +245,7 @@
           updateSuggestionsAndRespond();
         }
       } else {
-        response(this.options.suggestions);
+        response(this.options.filter(this.options.suggestions, request.term));
       }
     },
 
