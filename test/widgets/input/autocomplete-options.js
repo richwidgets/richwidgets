@@ -53,6 +53,78 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
     });
 
+
+
+
+    it("supports 'minLength'", function() {
+
+      var sourceFnInvoked = 0;
+      var keydownEventsPropagated = 0;
+
+      element.richAutocomplete({
+        minLength: 3,
+        source: function (request, response) {
+          sourceFnInvoked += 1;
+          response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+        }
+      });
+
+      element.on("keydown", function() {
+        keydownEventsPropagated += 1;
+      });
+
+      var menu = element.autocomplete( "widget" );
+
+      // when
+      runs(function() {
+        element.val('j');
+        element.trigger('keydown');
+      });
+
+      waitsFor(function() {
+        return keydownEventsPropagated == 1;
+      }, "menu to be visible", 1500);
+
+      runs(function() {
+        element.val('ja');
+        element.trigger('keydown');
+      });
+
+      waitsFor(function() {
+        return keydownEventsPropagated == 2;
+      }, "menu to be visible", 1500);
+
+      runs(function() {
+        // first call of search
+        element.val('jav');
+        element.trigger('keydown');
+      });
+
+      waitsFor(function() {
+        return sourceFnInvoked == 1;
+      }, "menu to be visible", 1500);
+
+      runs(function() {
+        expect(menu).toBeVisible();
+        expect(keydownEventsPropagated).toBe(3);
+
+        // second call of search
+        element.val('java');
+        element.trigger('keydown');
+      });
+
+      waitsFor(function() {
+        return sourceFnInvoked == 2;
+      }, "menu to be visible", 1500);
+
+      runs(function() {
+        expect(keydownEventsPropagated).toBe(4);
+      });
+    });
+
+
+
+    
     it("uses 'cache' when two searches are triggered for same prefix", function() {
       var sourceFnInvoked = false;
 
