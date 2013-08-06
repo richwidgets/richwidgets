@@ -5,3 +5,6 @@ coverage
 
 # IDEs
 .idea
+
+# test output
+libpeerconnection.log

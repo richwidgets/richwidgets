@@ -10,6 +10,11 @@
       "name": "Paul Dijou",
       "email": "paul.dijou+dev@gmail.com",
       "url": "http://pauldijou.fr"
+    },
+    {
+      "name": "Lukas Fryc",
+      "email": "",
+      "url": "http://lukas.fryc.eu/"
     }
   ],
   "name": "richfaces-widgets",
@@ -23,8 +28,7 @@
   "engines": {
     "node": ">= 0.8.4"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
@@ -38,6 +42,8 @@
     "grunt-shell": "0.2.2",
     "grunt-recess": "~0.3.3",
     "grunt-karma": "~0.4.4",
+    "karma": "~0.9.6",
+    "karma-spec-reporter": "0.0.3",
     "assemble-less": "~0.4.8",
     "matchdep": "~0.1.1",
     "bower": "~0.9.2",

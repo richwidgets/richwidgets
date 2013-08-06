@@ -8,5 +8,11 @@
     "font-awesome": "~3.2.1",
     "modernizr": "~2.6.2",
     "lodash": "~1.3.1"
+  },
+  "devDependencies": {
+    "requirejs": "~2.1.8",
+    "jasmine-jquery": "~1.5.3",
+    "dom-compare": "lfryc/dom-compare#requirejs",
+    "syn": "~3.2.2"
   }
 }

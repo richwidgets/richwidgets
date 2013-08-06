@@ -1,0 +1,73 @@
+<div id="fixture-autocomplete-with-list">
+  <input type="text"></input>
+  <ul style="display: none">
+    <li><i class="icon-heart"></i> <span>Java</span></li>
+    <li><i class="icon-flag"></i> <span>Haskell</span></li>
+  </ul>
+</div>
+
+<div id="expected-autocomplete-with-list">
+  <div class="r-autocomplete">
+    <input autocomplete="off" class="ui-autocomplete-input" type="text" />
+    <span aria-live="polite" class="ui-helper-hidden-accessible" role="status" />
+  </div>
+  <ul style="display: none">
+    <li>
+      <i class="icon-heart" />
+      <span>Java</span>
+    </li>
+    <li>
+      <i class="icon-flag" />
+      <span>Haskell</span>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+<div id="fixture-autocomplete-with-table">
+  <input type="text"></input>
+  <table style="display: none">
+    <tbody>
+    <tr data-label="Java">
+      <td><i class="icon-heart"></i></td>
+      <td>Java</td>
+      <td><i>my favorite language</i></td>
+    </tr>
+    <tr data-label="Haskell">
+      <td><i class="icon-flag"></i></td>
+      <td>Haskell</td>
+      <td>functional language</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="expected-autocomplete-with-table">
+  <div class="r-autocomplete">
+    <input autocomplete="off" class="ui-autocomplete-input" type="text" />
+    <span aria-live="polite" class="ui-helper-hidden-accessible" role="status" />
+  </div>
+  <table style="display: none">
+    <tbody>
+    <tr data-label="Java">
+      <td>
+        <i class="icon-heart" />
+      </td>
+      <td>Java</td>
+      <td>
+        <i>my favorite language</i>
+      </td>
+    </tr>
+    <tr data-label="Haskell">
+      <td>
+        <i class="icon-flag" />
+      </td>
+      <td>Haskell</td>
+      <td>functional language</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
