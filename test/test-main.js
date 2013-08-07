@@ -39,8 +39,8 @@
     paths: {
       'jquery': 'components/jquery/jquery',
       'jquery-ui': 'components/jquery-ui/ui/jquery-ui',
-      'widget-test-base': 'test/utils/widget-test-base',
-      'syn': 'components/syn/dist/syn'
+      'jquery-simulate': 'components/jquery-simulate/jquery.simulate',
+      'widget-test-base': 'test/utils/widget-test-base'
     },
 
     shim: {
@@ -55,14 +55,11 @@
         deps: ['jquery'],
         exports: 'jquery-ui'
       },
+      'jquery-simulate': {
+        deps: ['jquery']
+      },
       'src/widgets/input/autocomplete': {
         deps: ['jquery', 'jquery-ui']
-      },
-      'syn': {
-        exports: 'syn',
-        init: function () {
-          return this.Syn;
-        }
       }
     },
 

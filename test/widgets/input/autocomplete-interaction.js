@@ -17,6 +17,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       element = $('<input type="text"/>').appendTo(fixture);
     });
 
+    afterEach(function() {
+      element.richAutocomplete('destroy');
+      fixture.remove();
+    });
+
 
 
     it("interacts with JSON-fed autocomplete", function() {
