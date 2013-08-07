@@ -29,6 +29,7 @@
       token: "",
       showButton: false,
       autoFocus: false,
+      autoFill: false,
       source: [],
       layout: LAYOUT.list,
       minLength: 0,
@@ -149,8 +150,34 @@
         source: function (request, response) {
           widget._getSuggestions(request, response);
         },
-        focus: function () {
-          return false;
+        focus: function (event, ui) {
+          if (!widget.options.autoFill) {
+            return false;
+          }
+          var input = widget.input,
+            original = input.val(),
+            label = ui.item.label;
+
+          if (widget.entered) {
+            original = widget.entered;
+            widget.entered = null;
+          } else {
+            original = original.substring(0, input[0].selectionStart);
+          }
+
+          if (original.length > 0 && label.toLowerCase().indexOf(original.toLowerCase()) === 0) {
+            input.val(original + label.substring(original.length));
+
+            input[0].selectionStart = original.length;
+            input[0].selectionEnd = label.length;
+            return false;
+          } else {
+            widget.entered = original;
+            return true;
+          }
+        },
+        close: function () {
+          widget.entered = null;
         },
         select: function (event, ui) {
           this.value = widget._selectValue(event, ui, this.value);
