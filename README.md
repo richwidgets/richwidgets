@@ -31,4 +31,4 @@ Learn more by reading the [CONTRIBUTING.md](https://github.com/richfaces/richfac
 
 ## License ##
 
-GNU Lesser General Public License, version 2.1. [Read more in the LICENSE.txt](https://github.com/richfaces/richfaces-widgets/blob/master/LICENSE.txt) file.
+Apache License Version 2.0. [Read more in the LICENSE.txt](https://github.com/richfaces/richfaces-widgets/blob/master/LICENSE.txt) file.
