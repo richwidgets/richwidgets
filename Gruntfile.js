@@ -16,6 +16,7 @@ module.exports = function (grunt) {
   require("matchdep").filterDev("grunt-*").forEach(function (plugin) {
     grunt.loadNpmTasks(plugin);
     grunt.loadNpmTasks('assemble-less');
+    grunt.loadNpmTasks('grunt-karma');
     if (renamedTasks[plugin]) {
       grunt.renameTask(renamedTasks[plugin].original, renamedTasks[plugin].renamed);
     }
