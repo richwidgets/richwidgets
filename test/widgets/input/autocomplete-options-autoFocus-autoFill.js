@@ -2,7 +2,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
   var key = jQuery.simulate.keyCode;
 
-  describe("widget(autocomplete): options", function () {
+  describe("widget(autocomplete): autoFocus / autoFill options", function () {
 
     var fixture, element;
 

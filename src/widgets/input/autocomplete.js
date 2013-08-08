@@ -74,7 +74,6 @@
     _create: function () {
       var widget = this;
       this.input = this.element;
-      this.disabled = this.input.disabled;
 
       // initialize DOM structure
       this.root = this._initDom();
@@ -99,6 +98,10 @@
       if (this.options.source) {
         this._setOption('source', this.options.source);
       }
+
+      if (this.input.disabled) {
+        this._setOption('disabled', true);
+      }
     },
 
     _destroy: function () {
@@ -108,10 +111,12 @@
 
     _enable: function () {
       this.input.autocomplete('enable');
+      this.button.removeAttr('disabled');
     },
 
     _disable: function () {
       this.input.autocomplete('disable');
+      this.button.attr('disabled', 'disabled');
     },
 
     _initDom: function () {
@@ -119,22 +124,30 @@
       this.root.append(this.input.detach());
 
       if (this.options.showButton) {
-        var that = this;
+        var widget = this;
 
         this.root.addClass("input-group");
-        this.button = $('<span class="input-group-addon"><i class="icon-chevron-down"></i></span>').appendTo(this.root);
+        this.button = $('<span class="input-group-btn"><button class="btn btn-light" type="button"><i class="icon-chevron-down"></button></i></span>').appendTo(this.root).find("button");
 
-        this.button.click(function () {
-          $(that.element).autocomplete("search");
-          setTimeout(function () {
+        this.buttonClickHandler = function () {
+          widget.input.autocomplete("search");
+          widget.input.focus();
 
-            $("body").one("click", function () {
-              setTimeout(function () {
-                $(that.element).autocomplete("close");
-              }, 0);
-            });
-          }, 0);
-        });
+
+
+//          this.forceCloseHandler = function() {
+//            console.log('force-close');
+//            setTimeout(function () {
+//              widget.input.autocomplete("close");
+//            }, 0);
+
+//          setTimeout(function () {
+//            $("body").one("click", this.forceCloseHandler);
+//          }, 0);
+//          }
+        };
+
+        this.button.on('click', this.buttonClickHandler);
       }
 
       return this.root;
@@ -156,19 +169,26 @@
           widget._getSuggestions(request, response);
         },
         search: function () {
+          this.opened = true;
           if (widget.options.autoFill) {
             if (widget.entered === widget.input.val()) {
               return false;
             }
           }
           widget.entered = widget.input.val();
+
+          if (widget.button) {
+            widget.button.off('click', widget.buttonClickHandler);
+            widget.button.find('i').removeClass('icon-chevron-down');
+            widget.button.find('i').addClass('icon-chevron-up');
+          }
         },
         focus: function (event, ui) {
           if (!widget.options.autoFill) {
             return false;
           }
           if (widget.lastKeyupEvent.keyCode == 8) {
-            // refuse to auto-fill on backspace
+            // refuse to auto-fill on on backspace
             return false;
           }
           var input = widget.input,
@@ -187,8 +207,17 @@
             return true;
           }
         },
-        close: function () {
-          widget.entered = null;
+        close: function (event) {
+          if (widget.button) {
+            widget.button.find('i').removeClass('icon-chevron-up');
+            widget.button.find('i').addClass('icon-chevron-down');
+
+            // we must delay attaching of event handler because otherwise the click will happen
+            // and the handler will be triggered right after closing the menu
+            setTimeout(function() {
+              widget.button.on('click', widget.buttonClickHandler);
+            }, 150);
+          }
         },
         select: function (event, ui) {
           this.value = widget._selectValue(event, ui, this.value);
