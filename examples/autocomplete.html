@@ -96,7 +96,7 @@
   <p>
     <input id="autocomplete" type="text"></input>
     <script>
-      $("#autocomplete").richAutocomplete({ source: ['Java', 'Haskell'] });
+      $("#autocomplete").richAutocomplete({ source: source });
     </script>
   </p>
 
@@ -106,7 +106,7 @@
     <input id="autocomplete-function" type="text"></input>
     <script>
       $("#autocomplete-function").richAutocomplete({ source: function (request, response) {
-        response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+        response($.ui.autocomplete.filter(source, request.term));
       }
       });
     </script>
@@ -120,7 +120,7 @@
     <script>
       $("#autocomplete-delay").richAutocomplete({ source: function (request, response) {
         setTimeout(function () {
-          response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+          response($.ui.autocomplete.filter(source, request.term));
         }, 500);
       }
       });
@@ -137,7 +137,7 @@
         minLength: 2,
         source: function (request, response) {
           setTimeout(function () {
-            response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+            response($.ui.autocomplete.filter(source, request.term));
           }, 500);
         }
       });
@@ -149,7 +149,7 @@
   <p>
     <input id="autocomplete-auto-focus" type="text"></input>
     <script>
-      $("#autocomplete-auto-focus").richAutocomplete({ source: ['Java', 'Haskell'], autoFocus: true });
+      $("#autocomplete-auto-focus").richAutocomplete({ source: source, autoFocus: true });
     </script>
   </p>
 
@@ -160,7 +160,7 @@
   <p>
     <input id="autocomplete-auto-fill" type="text"></input>
     <script>
-      $("#autocomplete-auto-fill").richAutocomplete({ source: ['Java', 'Haskell'], autoFill: true });
+      $("#autocomplete-auto-fill").richAutocomplete({ source: source, autoFill: true });
     </script>
   </p>
 
@@ -180,7 +180,7 @@
   <p>
     <input id="autocomplete-tokenizing" type="text"></input>
     <script>
-      $("#autocomplete-tokenizing").richAutocomplete({ source: ['Java', 'Haskell'], token: "," });
+      $("#autocomplete-tokenizing").richAutocomplete({ source: source, token: "," });
     </script>
   </p>
 
@@ -191,7 +191,7 @@
     <input id="autocomplete-with-button" type="text"/>
     <script>
       $("#autocomplete-with-button").richAutocomplete({
-        source: ['Java', 'Haskell'],
+        source: source,
         showButton: true
       });
     </script>
