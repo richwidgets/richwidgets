@@ -77,13 +77,13 @@ module.exports = function (grunt) {
   grunt.registerTask("dist", [
     "clean",
     "build",
+    "test",
     "copy:js",
     "less:dist",
     "uglify:dist",
   ]);
 
   grunt.registerTask("test", [
-    "build",
     "karma:test"
   ]);
 
