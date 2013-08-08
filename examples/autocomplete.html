@@ -60,6 +60,34 @@
 </div>
 
 <div class="container">
+
+  <script>
+    var source = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "Ceylon",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"]
+  </script>
+
   <h2>Example autocomplete</h2>
 
   <p>Using the typeahead.js plugin, we built a simple autocomplete widget:</p>
@@ -143,7 +171,7 @@
   <p>
     <input id="autocomplete-auto-focus-fill" type="text"></input>
     <script>
-      $("#autocomplete-auto-focus-fill").richAutocomplete({ source: ['Java', 'Haskell'], autoFocus: true, autoFill: true });
+      $("#autocomplete-auto-focus-fill").richAutocomplete({ source: source, autoFocus: true, autoFill: true });
     </script>
   </p>
 

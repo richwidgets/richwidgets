@@ -72,6 +72,7 @@
     },
 
     _create: function () {
+      var widget = this;
       this.input = this.element;
       this.disabled = this.input.disabled;
 
@@ -88,6 +89,10 @@
 
       var autocompleteOptions = this._getAutocompleteOptions();
       this.input.autocomplete(autocompleteOptions);
+
+      this.input.keydown(function(event) {
+        widget.lastKeyupEvent = event;
+      });
 
       this._registerListeners();
 
@@ -150,20 +155,27 @@
         source: function (request, response) {
           widget._getSuggestions(request, response);
         },
+        search: function () {
+          if (widget.options.autoFill) {
+            if (widget.entered === widget.input.val()) {
+              return false;
+            }
+          }
+          widget.entered = widget.input.val();
+        },
         focus: function (event, ui) {
           if (!widget.options.autoFill) {
             return false;
           }
+          if (widget.lastKeyupEvent.keyCode == 8) {
+            // refuse to auto-fill on backspace
+            return false;
+          }
           var input = widget.input,
-            original = input.val(),
+            original = widget.entered;
             label = ui.item.label;
 
-          if (widget.entered) {
-            original = widget.entered;
-            widget.entered = null;
-          } else {
-            original = original.substring(0, input[0].selectionStart);
-          }
+          original = original.substring(0, input[0].selectionStart);
 
           if (original.length > 0 && label.toLowerCase().indexOf(original.toLowerCase()) === 0) {
             input.val(original + label.substring(original.length));
@@ -172,7 +184,6 @@
             input[0].selectionEnd = label.length;
             return false;
           } else {
-            widget.entered = original;
             return true;
           }
         },
@@ -387,6 +398,13 @@
     } else {
       return searchTerm;
     }
+  }
+
+  function getOriginalEvent(event) {
+    if ('originalEvent' in event) {
+      return getOriginalEvent(event.originalEvent);
+    }
+    return event;
   }
 
 }(jQuery));
