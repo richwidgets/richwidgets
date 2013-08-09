@@ -292,7 +292,7 @@
     _retrieveSuggestions: function (request, response) {
       var source = this.options.source;
 
-      if (source instanceof HTMLElement) {
+      if (isDomBasedSource(source)) {
         // DOM-based
         this._suggestFromDom(request, response);
       } else if ($.isFunction(source)) {
@@ -411,7 +411,7 @@
       this._super(key, value);
 
       if (key === 'source') {
-        if (value instanceof HTMLElement) {
+        if (isDomBasedSource(value)) {
           this._updateDomSuggestions();
         }
       }
@@ -429,11 +429,8 @@
     }
   }
 
-  function getOriginalEvent(event) {
-    if ('originalEvent' in event) {
-      return getOriginalEvent(event.originalEvent);
-    }
-    return event;
+  function isDomBasedSource(source) {
+    return source instanceof HTMLElement || typeof source == 'string';
   }
 
 }(jQuery));
