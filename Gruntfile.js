@@ -87,6 +87,10 @@ module.exports = function (grunt) {
     "karma:test"
   ]);
 
+  grunt.registerTask("travis", [
+    "dist"
+  ]);
+
   grunt.initConfig({
     config: configuration,
 
