@@ -139,6 +139,17 @@
       this.$pluginRoot
         .sortable("destroy")
         .selectable("destroy");
+
+      // remove empty class attributes
+      if (!this.element.attr('class')) {
+        this.element.removeAttr("class");
+      }
+      this.element.children().each(function(){
+          var $this = $(this);
+          if (!$this.attr('class')) {
+            $this.removeAttr("class");
+          }
+      });
       return this;
     },
 
@@ -482,6 +493,7 @@
         this.content.removeClass('with-handle');
         $(this.element).find('.handle').remove();
       }
+      this.element.removeClass('list');
     },
 
     /** Event Handlers **/
