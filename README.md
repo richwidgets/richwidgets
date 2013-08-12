@@ -1,4 +1,4 @@
-# RichFaces Widgets #
+# RichFaces Widgets [![Build Status](https://travis-ci.org/richwidgets/richwidgets.png?branch=master)](https://travis-ci.org/richwidgets/richwidgets) #
 
 > A JavaScript project containing the standalone javascript widgets used by the RichFaces project.
 
