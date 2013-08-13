@@ -1,6 +1,6 @@
-# RichFaces Widgets [![Build Status](https://travis-ci.org/richwidgets/richwidgets.png?branch=master)](https://travis-ci.org/richwidgets/richwidgets) #
+# RichWidgets [![Build Status](https://travis-ci.org/richwidgets/richwidgets.png?branch=master)](https://travis-ci.org/richwidgets/richwidgets) #
 
-> A JavaScript project containing the standalone javascript widgets used by the RichFaces project.
+> A JavaScript project containing the standalone javascript widgets based on Bootstrap, jQuery UI and other third-party widgets, styled with LESS.
 
 ## Users ##
 
@@ -22,7 +22,7 @@ Once you got them, got to the root of the project and run the following commands
 - <code>grunt</code>
 
 This should drop quite some logs in your shell and use a bit of bandwith. Once it's completed, you should have the
-RichFaces Widgets demo running on [localhost:9000](http://localhost:9000/) (hopefully, you didn't already had a process
+RichWidgets demo running on [localhost:9000](http://localhost:9000/) (hopefully, you didn't already had a process
 running on that port).
 
 ## Contributors ##

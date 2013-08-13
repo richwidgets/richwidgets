@@ -1,5 +1,5 @@
 {
-  "name": "richfaces-widgets",
+  "name": "richwidgets",
   "version": "0.0.1-SNAPSHOT",
   "dependencies": {
     "jquery": "~1.9.0",
