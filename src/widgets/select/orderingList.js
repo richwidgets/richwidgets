@@ -140,17 +140,39 @@
         .sortable("destroy")
         .selectable("destroy");
 
-      // remove empty class attributes
+      // remove empty class attributes                             y
       if (!this.element.attr('class')) {
         this.element.removeAttr("class");
       }
-      this.element.children().each(function(){
-          var $this = $(this);
-          if (!$this.attr('class')) {
-            $this.removeAttr("class");
+      var that = this;
+      if (that.strategy === 'table') {
+        this.element.children().each(function () {
+          var $part = $(this);
+          if (!$part.attr('class')) {
+            $part.removeAttr("class");
           }
-      });
-      return this;
+          $part.children().each(function () {
+            var $row = $(this);
+            if (!$row.attr('class')) {
+              $row.removeAttr("class");
+            }
+            $row.children().each(function () {
+              var $cell = $(this);
+              if (!$cell.attr('class')) {
+                $cell.removeAttr("class");
+              }
+            });
+          });
+        });
+      } else {
+        this.element.children().each(function () {
+          var $selectable = $(this);
+          if (!$selectable.attr('class')) {
+            $selectable.removeAttr("class");
+          }
+        });
+        return this;
+      }
     },
 
     _addDragListeners: function() {

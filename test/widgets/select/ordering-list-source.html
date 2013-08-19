@@ -1,0 +1,167 @@
+<div id="fixture-ordering-list-list">
+  <ol id="list">
+    <li data-key="1">Item 1</li>
+    <li data-key="2">Item 2</li>
+    <li data-key="3">Item 3</li>
+    <li data-key="4">Item 4</li>
+    <li data-key="5">Item 5</li>
+    <li data-key="6">Item 6</li>
+    <li data-key="7">Item 7</li>
+    <li data-key="8">Item 8</li>
+  </ol>
+</div>
+
+<div id="expected-ordering-list-list">
+  <div class="ordering-list select-list">
+    <div class="header">
+      <div>List layout</div>
+    </div>
+    <div class="content">
+      <div class="listBox">
+        <ol id="list" class="list ui-sortable ui-selectable">
+          <li data-key="1" class="ui-selectee">Item 1</li>
+          <li data-key="2" class="ui-selectee">Item 2</li>
+          <li data-key="3" class="ui-selectee">Item 3</li>
+          <li data-key="4" class="ui-selectee">Item 4</li>
+          <li data-key="5" class="ui-selectee">Item 5</li>
+          <li data-key="6" class="ui-selectee">Item 6</li>
+          <li data-key="7" class="ui-selectee">Item 7</li>
+          <li data-key="8" class="ui-selectee">Item 8</li>
+        </ol>
+      </div>
+      <div class="buttonColumn">
+        <div class="btn-group-vertical">
+          <button type="button" class="btn btn-default first"><i class="icon-arrow-up"></i></button>
+          <button type="button" class="btn btn-default up"><i class="icon-arrow-up"></i></button>
+          <button type="button" class="btn btn-default down"><i class="icon-arrow-down"></i></button>
+          <button type="button" class="btn btn-default last"><i class="icon-arrow-down"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="fixture-ordering-list-table">
+  <table id="table">
+    <thead>
+    <tr>
+      <th>Icon</th>
+      <th>Label</th>
+      <th>#</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-key="1">
+      <td><i class="icon-beaker"></i></td>
+      <td>Item 1</td>
+      <td>1</td>
+    </tr>
+    <tr data-key="2">
+      <td><i class="icon-bell"></i></td>
+      <td>Item 2</td>
+      <td>2</td>
+    </tr>
+    <tr data-key="3">
+      <td><i class="icon-bolt"></i></td>
+      <td>Item 3</td>
+      <td>3</td>
+    </tr>
+    <tr data-key="4">
+      <td><i class="icon-plane"></i></td>
+      <td>Item 4</td>
+      <td>4</td>
+    </tr>
+    <tr data-key="5">
+      <td><i class="icon-pencil"></i></td>
+      <td>Item 5</td>
+      <td>5</td>
+    </tr>
+    <tr data-key="6">
+      <td><i class="icon-star"></i></td>
+      <td>Item 6</td>
+      <td>6</td>
+    </tr>
+    <tr data-key="7">
+      <td><i class="icon-trophy"></i></td>
+      <td>Item 7</td>
+      <td>7</td>
+    </tr>
+    <tr data-key="8">
+      <td><i class="icon-legal"></i></td>
+      <td>Item 8</td>
+      <td>8</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="expected-ordering-list-table">
+  <div class="ordering-list select-list">
+    <div class="header">
+      <div>Table layout</div>
+    </div>
+    <div class="content">
+      <div class="listBox">
+        <table id="table" class="list">
+          <thead>
+          <tr>
+            <th class="first">Icon</th>
+            <th>Label</th>
+            <th class="last">#</th>
+          </tr>
+          </thead>
+          <tbody class="ui-sortable ui-selectable">
+          <tr data-key="1" class="ui-selectee">
+            <td class="first"><i class="icon-beaker"></i></td>
+            <td>Item 1</td>
+            <td class="last">1</td>
+          </tr>
+          <tr data-key="2" class="ui-selectee">
+            <td class="first"><i class="icon-bell"></i></td>
+            <td>Item 2</td>
+            <td class="last">2</td>
+          </tr>
+          <tr data-key="3" class="ui-selectee">
+            <td class="first"><i class="icon-bolt"></i></td>
+            <td>Item 3</td>
+            <td class="last">3</td>
+          </tr>
+          <tr data-key="4" class="ui-selectee">
+            <td class="first"><i class="icon-plane"></i></td>
+            <td>Item 4</td>
+            <td class="last">4</td>
+          </tr>
+          <tr data-key="5" class="ui-selectee">
+            <td class="first"><i class="icon-pencil"></i></td>
+            <td>Item 5</td>
+            <td class="last">5</td>
+          </tr>
+          <tr data-key="6" class="ui-selectee">
+            <td class="first"><i class="icon-star"></i></td>
+            <td>Item 6</td>
+            <td class="last">6</td>
+          </tr>
+          <tr data-key="7" class="ui-selectee">
+            <td class="first"><i class="icon-trophy"></i></td>
+            <td>Item 7</td>
+            <td class="last">7</td>
+          </tr>
+          <tr data-key="8" class="ui-selectee">
+            <td class="first"><i class="icon-legal"></i></td>
+            <td>Item 8</td>
+            <td class="last">8</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="buttonColumn">
+        <div class="btn-group-vertical">
+          <button type="button" class="btn btn-default first"><i class="icon-arrow-up"></i></button>
+          <button type="button" class="btn btn-default up"><i class="icon-arrow-up"></i></button>
+          <button type="button" class="btn btn-default down"><i class="icon-arrow-down"></i></button>
+          <button type="button" class="btn btn-default last"><i class="icon-arrow-down"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
