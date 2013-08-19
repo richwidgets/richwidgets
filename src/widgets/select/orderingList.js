@@ -251,20 +251,31 @@
     },
 
     _setOption: function (key, value) {
-      var self = this;
+      var that = this;
       if (this.options.key === value) {
         return;
       }
       switch (key) {
         case "disabled":
           if (value === true) {
-            self._disable();
+            that._disable();
           } else {
-            self._enable();
+            that._enable();
+          }
+          break;
+        case "header":
+          if (!that.header) {
+            that._addHeader();
+          }
+          that.header.text(value);
+          break;
+        case "headerClass":
+          if (that.header) {
+            that.header.removeClass((this.options.headerClass)).addClass(value);
           }
           break;
       }
-      $.Widget.prototype._setOption.apply(self, arguments);
+      $.Widget.prototype._setOption.apply(that, arguments);
     },
 
     /** Public API methods **/
@@ -446,15 +457,20 @@
         this.selectList.addClass(this.options.styleClass);
       }
       if (this.options.header) {
-        var header = $("<div />").addClass('header');
-        if (this.options.headerClass) {
-          header.addClass(this.options.headerClass);
-        }
-        header.append($("<div>").html(this.options.header)).addClass("header").addClass(this.options.headerClass);
-        this.selectList.prepend(header);
+        this._addHeader();
       }
       this.content = this.selectList.find(".content");
       if (this.options.dimensions) this.element.css(this.options.dimensions);
+    },
+
+    _addHeader: function() {
+      var header = $("<div />").addClass('header');
+      if (this.options.headerClass) {
+        header.addClass(this.options.headerClass);
+      }
+      header.html(this.options.header);
+      this.selectList.prepend(header);
+      this.header = header;
     },
 
     _disable: function () {
