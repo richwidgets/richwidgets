@@ -68,13 +68,33 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // then
           expect(fixture.find('.ordering-list > .header').first().text()).toEqual(headerText);
         });
+      });
+
+      describe('class options:', function () {
+        it('sets the style class', function () {
+          // given
+          var styleClass = 'myClass';
+          var options = {
+            styleClass: styleClass
+          };
+          // when
+          element.orderingList(options);
+          // then
+          expect(fixture.find('.ordering-list').first().attr('class')).toEqual('ordering-list select-list ' + styleClass);
+
+          //given
+          styleClass = 'newClass'
+          // when
+          element.orderingList('option', 'styleClass', styleClass);
+          // then
+          expect(fixture.find('.ordering-list').first().attr('class')).toEqual('ordering-list select-list ' + styleClass);
+        });
 
         it('sets the header class', function () {
           // given
-          var headerText = 'Test ordering list header';
           var headerClass = 'myHeader';
           var options = {
-            header: headerText,
+            header: 'Test ordering list header',
             headerClass: headerClass
           };
           // when
@@ -89,7 +109,27 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // then
           expect(fixture.find('.ordering-list > .header').first().attr('class')).toEqual('header ' + headerClass);
         });
+
+        it('sets the item class', function () {
+          // given
+          var itemClass = 'myClass';
+          var options = {
+            itemClass: itemClass
+          };
+          // when
+          element.orderingList(options);
+          // then
+          expect(fixture.find('.ui-selectee').attr('class')).toMatch(itemClass);
+
+          //given
+          itemClass = 'newClass'
+          // when
+          element.orderingList('option', 'itemClass', itemClass);
+          // then
+          expect(fixture.find('.ui-selectee').attr('class')).toMatch(itemClass);
+        });
       });
+
     });
 
     describe('table layout:', function () {

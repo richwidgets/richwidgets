@@ -280,6 +280,18 @@
           }
           that._addColumnClasses(value);
           break;
+        case "styleClass":
+          if (that.options.styleClass) {
+            that.selectList.removeClass(this.options.styleClass);
+          }
+          that.selectList.addClass(value);
+          break;
+        case "itemClass":
+          if (that.options.itemClass) {
+            this.element.find(".ui-selectee").removeClass(this.options.itemClass);
+          }
+          this.element.find(".ui-selectee").addClass(value);
+          break;
       }
       $.Widget.prototype._setOption.apply(that, arguments);
     },
@@ -532,6 +544,9 @@
             var children = $tr.children();
             children.last().removeClass('last');
             children.first().removeClass('first');
+            if (that.options.itemClass) {
+              $tr.removeClass(that.options.itemClass);
+            }
             if (that.options.columnClasses) {
               that._removeColumnClassesFromCells(children, that.options.columnClasses);
             }
@@ -544,6 +559,9 @@
         $(this.element).find('.handle').remove();
       }
       this.element.removeClass('list');
+      if (this.options.itemClass) {
+        $(this.element).children('.' + this.options.itemClass).removeClass(this.options.itemClass);
+      }
     },
 
     _removeColumnClasses: function(columnClasses) {
