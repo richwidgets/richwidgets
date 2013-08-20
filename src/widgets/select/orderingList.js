@@ -472,9 +472,9 @@
       var button = $("<button/>")
         .attr('type', 'button')
         .addClass("btn btn-default")
-        .append($("<i />").addClass(icon))
+        .addClass(buttonClass)
         .bind('click.orderingList', handler)
-        .addClass(buttonClass);
+        .append($("<i />").addClass(icon));
       buttonStack.append(button);
     },
 
@@ -577,10 +577,10 @@
     /** Cleanup methods **/
 
     _removeDomElements: function () {
+      $(this.element).find('.ui-selected').removeClass('ui-selected');
       if (this.strategy === 'table') { /* round the table row corners */
         var that = this;
-        $(this.element)
-          .find("tr").each(function () {
+        $(this.element).find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().removeClass('last');
