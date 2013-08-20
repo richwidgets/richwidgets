@@ -12,7 +12,7 @@
       selectedItemClass: undefined,
       placeholderStyleClass: undefined,
       helperStyleClass: undefined,
-      dimensions: undefined,
+      dimensions: undefined, // {height: ..., width: ..., maxHeight: ..., maxWidth: ...}
       showButtons: true,
       mouseOrderable: true,
       widgetEventPrefix: 'orderingList_',
@@ -292,6 +292,9 @@
           }
           this.element.find(".ui-selectee").addClass(value);
           break;
+        case "dimensions":
+          this._applyDimensions(value);
+          break;
       }
       $.Widget.prototype._setOption.apply(that, arguments);
     },
@@ -491,7 +494,24 @@
         this._addHeader();
       }
       this.content = this.selectList.find(".content");
-      if (this.options.dimensions) this.element.css(this.options.dimensions);
+      if (this.options.dimensions) {
+        this._applyDimensions(this.options.dimensions);
+      }
+    },
+
+    _applyDimensions: function(dimensions) {
+      if (dimensions.height) {
+        this.selectList.css('height', dimensions.height);
+      }
+      if (dimensions.maxHeight) {
+        this.selectList.css('max-height', dimensions.maxHeight);
+      }
+      if (dimensions.width) {
+        this.selectList.css('width', dimensions.width);
+      }
+      if (dimensions.maxWidth) {
+        this.selectList.css('max-width', dimensions.maxWidth);
+      }
     },
 
     _addHeader: function() {
