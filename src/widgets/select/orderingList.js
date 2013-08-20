@@ -19,10 +19,7 @@
       dropOnEmpty: true,
       dragSelect: false,
       contained: true,
-      firstText: undefined,
-      upText: undefined,
-      downText: undefined,
-      lastText: undefined
+      buttonsText: undefined // {first: ..., up: ..., down: ..., last: ...}
     },
 
     _create: function () {
@@ -295,6 +292,9 @@
         case "dimensions":
           this._applyDimensions(value);
           break;
+        case "buttonsText":
+          this._applyButtonsText(this.selectList.find('.btn-group-vertical'), value);
+          break;
       }
       $.Widget.prototype._setOption.apply(that, arguments);
     },
@@ -435,25 +435,46 @@
     _addButtons: function () {
       var buttonStack = $("<div/>")
         .addClass("btn-group-vertical");
-      this._addButton(buttonStack, "first", 'icon-arrow-up', this.options.firstText, $.proxy(this._firstHandler, this));
-      this._addButton(buttonStack, "up", 'icon-arrow-up', this.options.upText, $.proxy(this._upHandler, this));
-      this._addButton(buttonStack, "down", 'icon-arrow-down', this.options.downText, $.proxy(this._downHandler, this));
-      this._addButton(buttonStack, "last", 'icon-arrow-down', this.options.lastText, $.proxy(this._lastHandler, this));
+      this._addButton(buttonStack, "first", 'icon-arrow-up', $.proxy(this._firstHandler, this));
+      this._addButton(buttonStack, "up", 'icon-arrow-up', $.proxy(this._upHandler, this));
+      this._addButton(buttonStack, "down", 'icon-arrow-down', $.proxy(this._downHandler, this));
+      this._addButton(buttonStack, "last", 'icon-arrow-down', $.proxy(this._lastHandler, this));
+      if (this.options.buttonsText) {
+        this._applyButtonsText(buttonStack, this.options.buttonsText);
+      }
       this.content.append(
         $('<div />').addClass('buttonColumn').append(buttonStack));
     },
 
-    _addButton: function (buttonStack, buttonClass, icon, buttonText, handler) {
+    _applyButtonsText: function(buttonStack, buttonsText) {
+      this._applyButtonText(buttonStack.find('.first'), buttonsText.first);
+      this._applyButtonText(buttonStack.find('.up'), buttonsText.up);
+      this._applyButtonText(buttonStack.find('.down'), buttonsText.down);
+      this._applyButtonText(buttonStack.find('.last'), buttonsText.last);
+    },
+
+    _applyButtonText: function(button, text) {
+      if (!text) {
+        if (button.hasClass('labeled')) {
+          button.removeClass('labeled');
+          button.find('span').remove();
+        }
+        return;
+      }
+      if (button.hasClass('labeled')) {
+        button.find('span').text(text);
+      } else {
+        button.addClass("labeled").append($("<span />").text(text));
+      }
+    },
+
+    _addButton: function (buttonStack, buttonClass, icon, handler) {
       var button = $("<button/>")
         .attr('type', 'button')
         .addClass("btn btn-default")
         .append($("<i />").addClass(icon))
         .bind('click.orderingList', handler)
         .addClass(buttonClass);
-      if (buttonText) {
-        button.addClass("labeled")
-          .append($("<span />").text(buttonText));
-      }
       buttonStack.append(button);
     },
 

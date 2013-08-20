@@ -174,6 +174,34 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         });
       });
 
+      describe('button options:', function () {
+
+        it('applies the button text vlaues specified by the buttonText option', function () {
+          // given
+          var buttonsText = {first: "abcd", up: "efgh", down: "ijkl", last: "mnop"}
+          var options = {
+            buttonsText: buttonsText
+          };
+          // when
+          element.orderingList(options);
+          // then
+          expect(fixture.find('.buttonColumn .first span').first().text()).toEqual(buttonsText.first);
+          expect(fixture.find('.buttonColumn .up span').first().text()).toEqual(buttonsText.up);
+          expect(fixture.find('.buttonColumn .down span').first().text()).toEqual(buttonsText.down);
+          expect(fixture.find('.buttonColumn .last span').first().text()).toEqual(buttonsText.last);
+
+          // given
+          buttonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"}
+          // when
+          element.orderingList('option', 'buttonsText', buttonsText);
+          // then
+          expect(fixture.find('.buttonColumn .first span').first().text()).toEqual(buttonsText.first);
+          expect(fixture.find('.buttonColumn .up span').first().text()).toEqual(buttonsText.up);
+          expect(fixture.find('.buttonColumn .down span').first().text()).toEqual(buttonsText.down);
+          expect(fixture.find('.buttonColumn .last span').first().text()).toEqual(buttonsText.last);
+        });
+      });
+
     });
 
     describe('table layout:', function () {
