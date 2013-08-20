@@ -123,18 +123,51 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           var getColumnClass = function (cells, index) {
             return $(cells.get(index)).attr('class');
           };
+          var columnClasses = options.columnClasses.split(" ");
           var header_row_cells = fixture.find('thead th');
-          expect(getColumnClass(header_row_cells, 0)).toMatch(/column-1/);
-          expect(getColumnClass(header_row_cells, 0)).not.toMatch(/column-2/);
-          expect(getColumnClass(header_row_cells, 1)).not.toMatch(/column-1/);
-          expect(getColumnClass(header_row_cells, 1)).toMatch(/column-2/);
-          expect(getColumnClass(header_row_cells, 3)).not.toMatch(/column-1/);
-          expect(getColumnClass(header_row_cells, 3)).not.toMatch(/column-2/);
+          expect(getColumnClass(header_row_cells, 0)).toMatch(columnClasses[0]);
+          expect(getColumnClass(header_row_cells, 0)).not.toMatch(columnClasses[1]);
+          expect(getColumnClass(header_row_cells, 1)).not.toMatch(columnClasses[0]);
+          expect(getColumnClass(header_row_cells, 1)).toMatch(columnClasses[1]);
+          expect(getColumnClass(header_row_cells, 2)).not.toMatch(columnClasses[0]);
+          expect(getColumnClass(header_row_cells, 2)).not.toMatch(columnClasses[1]);
           var row_1_cells = fixture.find('tbody td');
-          expect(getColumnClass(row_1_cells, 0)).toMatch(/column-1/);
-          expect(getColumnClass(row_1_cells, 1)).toMatch(/column-2/);
-          expect(getColumnClass(row_1_cells, 2)).not.toMatch(/column-1/);
-          expect(getColumnClass(row_1_cells, 2)).not.toMatch(/column-2/);
+          expect(getColumnClass(row_1_cells, 0)).toMatch(columnClasses[0]);
+          expect(getColumnClass(row_1_cells, 0)).not.toMatch(columnClasses[1]);
+          expect(getColumnClass(row_1_cells, 1)).not.toMatch(columnClasses[0]);
+          expect(getColumnClass(row_1_cells, 1)).toMatch(columnClasses[1]);
+          expect(getColumnClass(row_1_cells, 2)).not.toMatch(columnClasses[0]);
+          expect(getColumnClass(row_1_cells, 2)).not.toMatch(columnClasses[1]);
+
+          // given
+          var newColumnClassString= 'foo-3 foo-4';
+
+          // when
+          element.orderingList('option', 'columnClasses', newColumnClassString);
+
+          // then
+          var newColumnClasses = newColumnClassString.split(" ");
+          var header_row_cells = fixture.find('thead th');
+          expect(getColumnClass(header_row_cells, 0)).not.toMatch(/column/);
+          expect(getColumnClass(header_row_cells, 0)).toMatch(newColumnClasses[0]);
+          expect(getColumnClass(header_row_cells, 0)).not.toMatch(newColumnClasses[1]);
+          expect(getColumnClass(header_row_cells, 1)).not.toMatch(/column/);
+          expect(getColumnClass(header_row_cells, 1)).not.toMatch(newColumnClasses[0]);
+          expect(getColumnClass(header_row_cells, 1)).toMatch(newColumnClasses[1]);
+          expect(getColumnClass(header_row_cells, 2)).not.toMatch(/column/);
+          expect(getColumnClass(header_row_cells, 2)).not.toMatch(newColumnClasses[0]);
+          expect(getColumnClass(header_row_cells, 2)).not.toMatch(newColumnClasses[1]);
+          var row_1_cells = fixture.find('tbody td');
+          expect(getColumnClass(row_1_cells, 0)).not.toMatch(/column/);
+          expect(getColumnClass(row_1_cells, 0)).toMatch(newColumnClasses[0]);
+          expect(getColumnClass(row_1_cells, 0)).not.toMatch(newColumnClasses[1]);
+          expect(getColumnClass(row_1_cells, 1)).not.toMatch(/column/);
+          expect(getColumnClass(row_1_cells, 1)).not.toMatch(newColumnClasses[0]);
+          expect(getColumnClass(row_1_cells, 1)).toMatch(newColumnClasses[1]);
+          expect(getColumnClass(row_1_cells, 2)).not.toMatch(/column/);
+          expect(getColumnClass(row_1_cells, 2)).not.toMatch(newColumnClasses[0]);
+          expect(getColumnClass(row_1_cells, 2)).not.toMatch(newColumnClasses[1]);
+
         });
       });
     });
