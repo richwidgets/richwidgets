@@ -13,11 +13,19 @@
     <link rel="stylesheet" media="screen" href="examples/styles/examples.css">
 
     <script type="text/javascript" src="jquery/jquery.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.position.js"></script>
+    <script type="text/javascript" src="jquery-ui/ui/jquery.ui.menu.js"></script>
+
     <script type="text/javascript" src="flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="flot/jquery.flot.selection.js"></script>
     <script type="text/javascript" src="flot/jquery.flot.pie.js"></script>
     <script type="text/javascript" src="flot/jquery.flot.categories.js"></script>
     <script type="text/javascript" src="flotTooltip/js/jquery.flot.tooltip.js"></script>
+
     <script type="text/javascript" src="flotOrderBars/js/jquery.flot.orderBars.js"></script><!-- Must be before stack plugin-->
+    <script type="text/javascript" src="widgets/charts/charts.js"></script>
 
 
 
@@ -73,13 +81,17 @@
 
     <div class="container">
         <h2>Example charts!</h2>
-
+        <!--
+        <div style="width:600px;">
+        <script src="http://gist-it.appspot.com/github/lukindo/richfaces-sandbox/blob/master/output/ui/src/main/resources/META-INF/resources/richfaces.output.js"></script>
+                   </div>-->
 
         <div class="container">
             <h2>Basic line chart</h2>
             <div id="placeholder" class="rich-chart">
             </div>
             <span id="clickdata"></span>
+            <span id="hoverdata"></span>
 
             <h2>Bar chart</h2>
             <div id="bar" class="rich-chart">
@@ -115,6 +127,54 @@
         <div id="dateline" class="rich-chart">
         </div>
 
+        <h2>Widget factory</h2>
+        <div id="widgetPokus" class="rich-chart"></div>
+        <script type="text/javascript">
+            $("#widgetPokus").chart({data:[[[1,2],[3,5],[10,4]]],
+                charttype:"line",
+                grid: {
+                hoverable: true,
+                clickable:true
+                },
+                zoom:true,
+
+                tooltip: true,
+                tooltipOpts: {
+                    content: "%s  [%x,%y]",
+                    shifts: {
+                        x: 20,
+                        y: 0
+                    },
+                    defaultTheme: false
+                },
+                xaxis:{
+                    autoscaleMargin: 0.1
+                },
+                legend:{
+                    sorted: false,
+                    position: 'nw'
+                }
+            });
+        </script>
+
+        <h2>PieWidget</h2>
+        <div id="pieWidget" class="rich-chart"></div>
+        <script type="text/javascript">
+            var options = {
+                        data:[[{"data":4,"label":"b"},{"data":5,"label":"c"},{"data":3,"label":"a"}]],
+                        "yaxis":{},
+                        "ytype":"class java.lang.Number",
+                        "xaxis":{},
+                        "legend":{"sorted":"ascending"},
+                        "zoom":false,
+                        "xtype":"class java.lang.String",
+                        "charttype":"pie"};
+
+            $("#pieWidget").chart(options);
+        </script>
+
+
+
     </div>
 
     <script type="text/javascript">
@@ -134,7 +194,7 @@
 
                 tooltip: true,
                 tooltipOpts: {
-                    content: "%s | X: %x | Y: %y",
+                    content: "%s  [%x,%y]",
                     shifts: {
                         x: 20,
                         y: 0
@@ -151,6 +211,8 @@
 
             });
 
+
+
             $("#placeholder").bind("plotclick", function (event, pos, item) {
                 if (item) {
                     $("#clickdata").text("click point " + item.dataIndex + " in" + item.series.label);
@@ -160,10 +222,21 @@
                 }
             });
 
+            $("#placeholder").bind("plothover", function (event, pos, item) {
+                if (item) {
+                    $("#hoverdata").text("hover point " + item.dataIndex + " in" + item.series.label);
+                    console.log(event);
+                    console.log(pos);
+                    console.log(item);
+                }
+            });
+
+            $("#placeholder").bind("mouseout",function(){$("#hoverdata").text("");console.log('mouseout')});
 
 
 
-            $.plot("#bar",[d1],
+
+            var p =$.plot("#bar",[d1],
                     {
                         series:{
                             bars:{show:true}
@@ -174,7 +247,7 @@
                         },
                         tooltip: true,
                         tooltipOpts: {
-                            content: "%s | X: %x | Y: %y",
+                            content: "%s  [%x,%y]",
                             shifts: {
                                 x: 20,
                                 y: 0
@@ -182,6 +255,8 @@
                             defaultTheme: false
                         }
                     });
+
+            p.highlight(0, 0);
 
             $("#bar").bind("plotclick", function (event, pos, item) {
                 if (item) {
@@ -192,8 +267,8 @@
                 }
             });
 
-            var pieData={data:[{label:"Industry",data:10, color:'black'},{label:"Service",data:10},{label:"IT",data:10}]};
-            $.plot("#pie",pieData,
+            var pieData=[{label:"Industry",data:10, color:'black'},{label:"Service",data:10},{label:"IT",data:10}];
+            var pie = $.plot("#pie",pieData,
                     {
                         series:{
                             pie:{show:true}
@@ -205,7 +280,7 @@
                         },
                         tooltip: true,
                         tooltipOpts: {
-                            content: "%p.0%, %s",
+                            content: " %p.0%, %s",
                             shifts: {
                                 x: 20,
                                 y: 0
@@ -213,6 +288,7 @@
                             defaultTheme: false
                         }
                     });
+
 
             $("#pie").bind("plotclick", function (event, pos, item) {
                 if (item) {
@@ -271,11 +347,11 @@
                 var data = [];
 
                 data.push({
-                    data: [[0.5, 1], [1, 4], [2, 2]]
+                    data: [[0.1, 0],[0.2, 1], [1, 4], [2, 2]]
                 });
 
                 data.push({
-                    data: [[0.1, 5], [1, 3], [2, 1]]
+                    data: [[0.1, 5],[0.2, null], [1, 3], [2, 1]]
                 });
 
                 return data;
@@ -324,9 +400,10 @@
 
             var datNum =  {data:[[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],bars:{order:0},label:'a'};
             var datNum2 = {data:[[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],bars:{order:1},label:'b'};
+            var datNum3 = {data:[[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],bars:{order:2},label:'c'};
 
 
-            $.plot($('#mulitplecategorybar'), [datNum,datNum2], {
+            $.plot($('#mulitplecategorybar'), [datNum,datNum2,datNum3], {
                 bars: {
                     show: true,
                     barWidth: 0.2,
