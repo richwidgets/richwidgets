@@ -188,25 +188,25 @@ module.exports = function (grunt) {
                 {
                     expand: true,
                     cwd: "<%= config.dir.components.flot.lib %>",
-                    src: ["**"],
+                    src: ['**.js','!**/examples/**','!jquery.js'],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 },
                 {
                     expand: true,
                     cwd: "<%= config.dir.components.flot.axisLabels %>",
-                    src: ["**"],
+                    src: ["**.js"],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 },
                 {
                     expand: true,
                     cwd: "<%= config.dir.components.flot.orderBars %>/js",
-                    src: ["**"],
+                    src: ["**.js"],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 },
                 {
                     expand: true,
                     cwd: "<%= config.dir.components.flot.tooltip %>/js",
-                    src: ["**"],
+                    src: ["**.js"],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 }
             ]
