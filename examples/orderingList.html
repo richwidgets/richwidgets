@@ -39,21 +39,6 @@
   <script type="text/javascript" src="assets/richfaces/select/orderingList.js"></script>
 
   <script src="http://localhost:35729/livereload.js"></script>
-
-  <style type="text/css">
-    .header-1 {
-      color: red;
-    }
-
-    .column-1 {
-      background: rgba(167, 255, 70, 0.29);
-    }
-
-    .column-2 {
-      background: #bacba2;
-    }
-  </style>
-
 </head>
 
 <body>
@@ -88,10 +73,6 @@
   <div class="container-fluid ">
     <div class="row-fluid ">
       <div class="span6 ">
-        <button onclick="toggleDisabled(event, 'list')" class="btn btn-default">Disable Plugin</button>
-        <button onclick="toggleActive(event, 'list', list_options)" class="btn btn-default">Destroy
-          Plugin
-        </button>
         <ol id="list">
           <li data-key="1">Item 1</li>
           <li data-key="2">Item 2</li>
@@ -109,10 +90,6 @@
 
     <div class="row-fluid ">
       <div class="span6 ">
-        <button onclick="toggleDisabled(event, 'list_dragselect')" class="btn btn-default">Disable Plugin</button>
-        <button onclick="toggleActive(event, 'list_dragselect', list_dragselect_options)" class="btn btn-default">Destroy
-          Plugin
-        </button>
         <ol id="list_dragselect">
           <li data-key="1">Item 1</li>
           <li data-key="2">Item 2</li>
@@ -130,10 +107,6 @@
 
     <div class="row-fluid ">
       <div class="span6">
-        <button onclick="toggleDisabled(event, 'table')" class="btn btn-default">Disable Plugin</button>
-        <button onclick="toggleActive(event, 'table', table_options)" class="btn btn-default">Destroy
-          Plugin
-        </button>
         <table id="table">
           <thead>
           <tr>
@@ -192,10 +165,6 @@
 
     <div class="row-fluid ">
       <div class="span6">
-        <button onclick="toggleDisabled(event, 'table_dragselect')" class="btn btn-default">Disable Plugin</button>
-        <button onclick="toggleActive(event, 'table_dragselect', table_dragselect_options)" class="btn btn-default">Destroy
-          Plugin
-        </button>
         <table id="table_dragselect">
           <thead>
           <tr>
@@ -255,53 +224,19 @@
 
 <script>
   var list_options = {
-    header: "List layout", //caption
+    header: "List layout" //caption
   };
   var list_dragselect_options = {
     header: "List layout w/ drag-select", //caption
-    dragSelect: true,
-    firstText: "Move First",
-    upText: "Move up",
-    downText: "Move Down",
-    lastText: "Move Last",
-    headerClass: "header-1",
-    itemClass: "column-1"
+    dragSelect: true
   }
   var table_options = {
-    header: "Table layout",
-    columnClasses: "column-1 column-2 column-1",
+    header: "Table layout"
   };
   var table_dragselect_options = {
     header: "Table layout w/ drag-select",
-    columnClasses: "column-1 column-2 column-1 column-2",
     dragSelect: true
   };
-  var toggleDisabled = function (event, id) {
-    var $list = $('#' + id);
-    var $button = $(event.target);
-    var disabled = $list.orderingList('option', 'disabled');
-    if (disabled) {
-      $list.orderingList('option', 'disabled', false);
-      $button.text('Disable Plugin');
-    } else {
-      $list.orderingList('option', 'disabled', true);
-      $button.text('Enable Plugin');
-    }
-  }
-
-  var toggleActive = function (event, id, options) {
-    var $list = $('#' + id);
-    var $button = $(event.target);
-    var active = $list.parents('.ordering-list').length > 0;
-    if (active) {
-      $list.orderingList('destroy');
-      $button.text('Activate Plugin');
-    } else {
-      $list.orderingList(options);
-      $button.text('Destroy Plugin');
-    }
-  }
-
   $("#list").orderingList(list_options);
   $("#list_dragselect").orderingList(list_dragselect_options);
   $("#table").orderingList(table_options);
