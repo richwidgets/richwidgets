@@ -7,8 +7,6 @@
       header: undefined,
       styleClass: undefined,
       columnClasses: undefined,
-      itemClass: undefined,
-      selectedItemClass: undefined,
       placeholderStyleClass: undefined,
       helperStyleClass: undefined,
       dimensions: undefined, // {height: ..., width: ..., maxHeight: ..., maxWidth: ...}
@@ -25,21 +23,6 @@
       var self = this;
       this.selectableOptions = {
         disabled: self.options.disabled,
-        create: function (event, ui) {
-          if (self.options.itemClass) {
-            $(event.target).find(".ui-selectee").addClass(self.options.itemClass);
-          }
-        },
-        selecting: function (event, ui) {
-          if (self.options.selectedItemClass) {
-            $(ui.selecting).addClass(self.options.selectedItemClass);
-          }
-        },
-        unselecting: function (event, ui) {
-          if (self.options.selectedItemClass) {
-            $(ui.unselecting).removeClass(self.options.selectedItemClass);
-          }
-        }
       };
       this.sortableOptions = { handle: this.options.dragSelect ? ".handle" : false,
         disabled: this.options.disabled,
@@ -277,12 +260,6 @@
           }
           that.selectList.addClass(value);
           break;
-        case "itemClass":
-          if (that.options.itemClass) {
-            this.element.find(".ui-selectee").removeClass(this.options.itemClass);
-          }
-          this.element.find(".ui-selectee").addClass(value);
-          break;
         case "dimensions":
           this._applyDimensions(value);
           break;
@@ -305,11 +282,11 @@
     },
 
     selectItem: function (item) {
-      $(item).addClass('ui-selected ' + this.options.selectedItemClass);
+      $(item).addClass('ui-selected');
     },
 
     unSelectItem: function (item) {
-      $(item).removeClass('ui-selected ' + this.options.selectedItemClass);
+      $(item).removeClass('ui-selected');
     },
 
     unSelectAll: function () {
@@ -576,9 +553,6 @@
             var children = $tr.children();
             children.last().removeClass('last');
             children.first().removeClass('first');
-            if (that.options.itemClass) {
-              $tr.removeClass(that.options.itemClass);
-            }
             if (that.options.columnClasses) {
               that._removeColumnClassesFromCells(children, that.options.columnClasses);
             }
@@ -591,9 +565,6 @@
         $(this.element).find('.handle').remove();
       }
       this.element.removeClass('list');
-      if (this.options.itemClass) {
-        $(this.element).children('.' + this.options.itemClass).removeClass(this.options.itemClass);
-      }
     },
 
     _removeColumnClasses: function(columnClasses) {

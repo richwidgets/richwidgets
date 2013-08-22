@@ -113,30 +113,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         test(fixture_list, element_list);
         test(fixture_table, element_table);
       });
-
-      it('sets the item class', function () {
-        function test(fixture, element) {
-          // given
-          var itemClass = 'myClass';
-          var options = {
-            itemClass: itemClass
-          };
-          // when
-          element.orderingList(options);
-          // then
-          expect(fixture.find('.ui-selectee').attr('class')).toMatch(itemClass);
-
-          //given
-          itemClass = 'newClass'
-          // when
-          element.orderingList('option', 'itemClass', itemClass);
-          // then
-          expect(fixture.find('.ui-selectee').attr('class')).toMatch(itemClass);
-        }
-
-        test(fixture_list, element_list);
-        test(fixture_table, element_table);
-      });
     });
 
     describe('dimension option:', function () {
