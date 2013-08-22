@@ -114,31 +114,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         test(fixture_table, element_table);
       });
 
-      it('sets the header class', function () {
-        function test(fixture, element) {
-          // given
-          var headerClass = 'myHeader';
-          var options = {
-            header: 'Test ordering list header',
-            headerClass: headerClass
-          };
-          // when
-          element.orderingList(options);
-          // then
-          expect(fixture.find('.ordering-list > .header').first().attr('class')).toEqual('header ' + headerClass);
-
-          //given
-          headerClass = 'newHeader'
-          // when
-          element.orderingList('option', 'headerClass', headerClass);
-          // then
-          expect(fixture.find('.ordering-list > .header').first().attr('class')).toEqual('header ' + headerClass);
-        }
-
-        test(fixture_list, element_list);
-        test(fixture_table, element_table);
-      });
-
       it('sets the item class', function () {
         function test(fixture, element) {
           // given

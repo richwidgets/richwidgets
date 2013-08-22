@@ -7,7 +7,6 @@
       header: undefined,
       styleClass: undefined,
       columnClasses: undefined,
-      headerClass: undefined,
       itemClass: undefined,
       selectedItemClass: undefined,
       placeholderStyleClass: undefined,
@@ -265,11 +264,6 @@
             that._addHeader();
           }
           that.header.text(value);
-          break;
-        case "headerClass":
-          if (that.header) {
-            that.header.removeClass((this.options.headerClass)).addClass(value);
-          }
           break;
         case "columnClasses":
           if (that.options.columnClasses) {
@@ -537,9 +531,6 @@
 
     _addHeader: function() {
       var header = $("<div />").addClass('header');
-      if (this.options.headerClass) {
-        header.addClass(this.options.headerClass);
-      }
       header.html(this.options.header);
       this.selectList.prepend(header);
       this.header = header;
