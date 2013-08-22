@@ -8,12 +8,12 @@
       styleClass: undefined,
       columnClasses: undefined,
       showButtons: true,
-      mouseOrderable: true,
-      widgetEventPrefix: 'orderingList_',
-      dropOnEmpty: true,
-      dragSelect: false,
+      buttonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
       contained: true,
-      buttonsText: undefined // {first: ..., up: ..., down: ..., last: ...}
+      dragSelect: false,
+      dropOnEmpty: true,
+      mouseOrderable: true,
+      widgetEventPrefix: 'orderingList_'
     },
 
     _create: function () {
