@@ -4,6 +4,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
   describe('widget(orderingList): interaction:', function () {
 
+    var fixture_list, element_list, original_list;
+    var fixture_table, element_table, original_table;
+
     beforeEach(function () {
       var f = jasmine.getFixtures();
       f.load('test/widgets/select/ordering-list-source.html');
@@ -13,20 +16,18 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       s.load('dist/assets/font-awesome/font-awesome.css');
       s.load('dist/assets/richfaces/select/select-list.css');
       s.load('dist/assets/richfaces/select/ordering-list.css');
+
+      fixture_list = $('#fixture-ordering-list-list');
+      original_list = fixture_list.clone();
+      element_list = $('#list', fixture_list);
+      fixture_table = $('#fixture-ordering-list-table');
+      original_table = fixture_table.clone();
+      element_table = $('#table', fixture_table);
     });
 
-    describe('list layout:', function () {
-
-      var fixture, element, original;
-
-      beforeEach(function () {
-        fixture = $('#fixture-ordering-list-list');
-        element = $('#list', fixture);
-        original = fixture.clone();
-      });
-
-      describe('buttons: ', function () {
-        it('move first to last:', function () {
+    describe('buttons: ', function () {
+      it('move first to last:', function () {
+        function test(fixture, element) {
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
@@ -41,7 +42,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             firstItem.trigger('mouseup');
           });
 
-          waitsFor(function() {
+          waitsFor(function () {
             return firstItem.hasClass('ui-selected');
           }, "first item should be selected", 500);
 
@@ -49,16 +50,21 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             fixture.find('.buttonColumn .last').first().click();
           });
 
-          waitsFor(function() {
+          waitsFor(function () {
             return fixture.find('.ui-selectee').last().data('key') === firstItem.data('key');
           }, 'item should be moved to end of list', 500);
 
-          runs(function() {
+          runs(function () {
             expect(widget._dumpState().orderedKeys).toEqual([2, 3, 4, 5, 6, 7, 8, 1]);
           });
-        });
+        }
 
-        it('move last to first:', function () {
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('move last to first:', function () {
+        function test(fixture, element) {
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
@@ -73,7 +79,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             lastItem.trigger('mouseup');
           });
 
-          waitsFor(function() {
+          waitsFor(function () {
             return lastItem.hasClass('ui-selected');
           }, "item should be selected", 500);
 
@@ -81,16 +87,21 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             fixture.find('.buttonColumn .first').first().click();
           });
 
-          waitsFor(function() {
+          waitsFor(function () {
             return fixture.find('.ui-selectee').first().data('key') === lastItem.data('key');
           }, 'first item should be moved to top of list', 500);
 
-          runs(function() {
+          runs(function () {
             expect(widget._dumpState().orderedKeys).toEqual([8, 1, 2, 3, 4, 5, 6, 7]);
           });
-        });
+        }
 
-        it('move 2nd down to 3rd:', function () {
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('move 2nd down to 3rd:', function () {
+        function test(fixture, element) {
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
@@ -105,7 +116,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             item.trigger('mouseup');
           });
 
-          waitsFor(function() {
+          waitsFor(function () {
             return item.hasClass('ui-selected');
           }, "item should be selected", 500);
 
@@ -113,16 +124,21 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             fixture.find('.buttonColumn .down').first().click();
           });
 
-          waitsFor(function() {
+          waitsFor(function () {
             return $(fixture.find('.ui-selectee').get(2)).data('key') === item.data('key');
           }, 'first item should be moved down', 500);
 
-          runs(function() {
+          runs(function () {
             expect(widget._dumpState().orderedKeys).toEqual([1, 3, 2, 4, 5, 6, 7, 8]);
           });
-        });
+        }
 
-        it('move 4th down to 3rd:', function () {
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('move 4th down to 3rd:', function () {
+        function test(fixture, element) {
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
@@ -137,7 +153,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             item.trigger('mouseup');
           });
 
-          waitsFor(function() {
+          waitsFor(function () {
             return item.hasClass('ui-selected');
           }, "item should be selected", 500);
 
@@ -145,35 +161,19 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             fixture.find('.buttonColumn .up').first().click();
           });
 
-          waitsFor(function() {
+          waitsFor(function () {
             return $(fixture.find('.ui-selectee').get(2)).data('key') === item.data('key');
           }, 'first item should be moved up', 500);
 
-          runs(function() {
+          runs(function () {
             expect(widget._dumpState().orderedKeys).toEqual([1, 2, 4, 3 , 5, 6, 7, 8]);
           });
-        });
-      });
+        }
 
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
     });
 
-    describe('table layout:', function () {
-
-      var fixture, element, original;
-
-      beforeEach(function () {
-        fixture = $('#fixture-ordering-list-table');
-        original = fixture.clone();
-        element = $('#table', fixture);
-      });
-
-      afterEach(function () {
-        // when
-        element.orderingList('destroy');
-        // then
-        expect(fixture).toHaveEqualDom(original);
-      });
-
-    });
   });
 });
