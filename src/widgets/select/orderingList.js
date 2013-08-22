@@ -7,8 +7,6 @@
       header: undefined,
       styleClass: undefined,
       columnClasses: undefined,
-      placeholderStyleClass: undefined,
-      helperStyleClass: undefined,
       dimensions: undefined, // {height: ..., width: ..., maxHeight: ..., maxWidth: ...}
       showButtons: true,
       mouseOrderable: true,
@@ -28,7 +26,7 @@
         disabled: this.options.disabled,
         dropOnEmpty: this.options.dropOnEmpty,
         scroll: true,
-        placeholder: "placeholder " + (this.options.placeholderStyleClass || ''),
+        placeholder: "placeholder",
         tolerance: "pointer",
         start: function (event, ui) {
           self.currentItems = ui.item.parent().children('.ui-selected').not('.placeholder').not('.helper-item');
@@ -209,14 +207,14 @@
     },
 
     _listHelper: function (e, item) {
-      var $helper = $("<ol />").addClass('helper ' + (this.options.helperStyleClass || ''))
+      var $helper = $("<ol />").addClass('helper')
         .css('height', 'auto').css('width', this.element.css('width'));
       item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass("helper-item").show().appendTo($helper);
       return $helper;
     },
 
     _rowHelper: function (e, item) {
-      var $helper = $("<div />").addClass('helper ' + this.options.helperStyleClass).css('height', 'auto');
+      var $helper = $("<div />").addClass('helper').css('height', 'auto');
       item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass("helper-item").show().appendTo($helper);
       /* we lose the cell width in the clone, so we re-set it here: */
       var firstRow = $helper.children("tr").first();
