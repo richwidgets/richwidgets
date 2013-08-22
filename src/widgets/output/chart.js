@@ -239,6 +239,10 @@
             //redraw chart without axis ranges
             this._draw();
         },
+        
+        getPlotObject: function(){
+	    return this.plot;
+	},
 
         _unbind:function(){
             this.element.unbind("plotclick");
