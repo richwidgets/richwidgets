@@ -1,7 +1,5 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingList'], function () {
 
-  var key = jQuery.simulate.keyCode;
-
   describe('widget(orderingList): interaction:', function () {
 
     var fixture_list, element_list, original_list;
@@ -47,6 +45,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, "first item should be selected", 500);
 
           runs(function () {
+            expect(widget._createKeyArray(widget.getSelected()), [firstItem.data('key')]);
             fixture.find('.buttonColumn .last').first().click();
           });
 
@@ -170,6 +169,35 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           });
         }
 
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('dragSelect:', function () {
+        function test(fixture, element) {
+          // given
+          element.orderingList({dragSelect: true});
+          var widget = element.data('orderingList');
+          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+
+          // when
+          var item = $(fixture.find('.ui-selectee').get(3));
+
+          //then
+          runs(function () {
+            item.trigger('mousedown');
+            item.simulate('drag', {dy: 40});
+            item.trigger('mouseup');
+          });
+
+          waitsFor(function () {
+            return $(fixture.find('.ui-selectee').get(5)).hasClass('ui-selected');
+          }, 'fifth item should be selected', 500);
+
+          runs(function () {
+            expect(widget._createKeyArray(widget.getSelected())).toEqual([4, 5, 6]);
+          });
+        }
         test(fixture_list, element_list);
         test(fixture_table, element_table);
       });

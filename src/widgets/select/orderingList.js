@@ -264,6 +264,17 @@
       $.Widget.prototype._setOption.apply(that, arguments);
     },
 
+    _createKeyArray: function (items) {
+      var keys = new Array();
+      items.each(function () {
+        var $this = $(this);
+        var dataKey = $this.data('key');
+        var key = (dataKey) ? dataKey : $this.text();
+        keys.push(key);
+      })
+      return keys;
+    },
+
     /** Public API methods **/
 
     connectWith: function (target) {
@@ -273,6 +284,10 @@
 
     isSelected: function (item) {
       return $(item).hasClass('ui-selected');
+    },
+
+    getSelected: function() {
+      return this.element.find('.ui-selected');
     },
 
     selectItem: function (item) {
@@ -344,14 +359,7 @@
     },
 
     getOrderedKeys: function () {
-      var keys = new Array();
-      this.getOrderedElements().each(function () {
-        var $this = $(this);
-        var dataKey = $this.data('key');
-        var key = (dataKey) ? dataKey : $this.text();
-        keys.push(key);
-      })
-      return keys;
+      return (this._createKeyArray( this.getOrderedElements()));
     },
 
     /** Initialisation methods **/
