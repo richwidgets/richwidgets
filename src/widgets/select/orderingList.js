@@ -7,7 +7,6 @@
       header: undefined,
       styleClass: undefined,
       columnClasses: undefined,
-      dimensions: undefined, // {height: ..., width: ..., maxHeight: ..., maxWidth: ...}
       showButtons: true,
       mouseOrderable: true,
       widgetEventPrefix: 'orderingList_',
@@ -258,9 +257,6 @@
           }
           that.selectList.addClass(value);
           break;
-        case "dimensions":
-          this._applyDimensions(value);
-          break;
         case "buttonsText":
           this._applyButtonsText(this.selectList.find('.btn-group-vertical'), value);
           break;
@@ -484,24 +480,6 @@
         this._addHeader();
       }
       this.content = this.selectList.find(".content");
-      if (this.options.dimensions) {
-        this._applyDimensions(this.options.dimensions);
-      }
-    },
-
-    _applyDimensions: function(dimensions) {
-      if (dimensions.height) {
-        this.selectList.css('height', dimensions.height);
-      }
-      if (dimensions.maxHeight) {
-        this.selectList.css('max-height', dimensions.maxHeight);
-      }
-      if (dimensions.width) {
-        this.selectList.css('width', dimensions.width);
-      }
-      if (dimensions.maxWidth) {
-        this.selectList.css('max-width', dimensions.maxWidth);
-      }
     },
 
     _addHeader: function() {

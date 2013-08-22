@@ -115,39 +115,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       });
     });
 
-    describe('dimension option:', function () {
-
-      it('applies the width and height properties of the dimensions option', function () {
-        function test(fixture, element) {
-          // given
-          var dimensions = {height: '100px', width: '110px', maxHeight: '120px', maxWidth: '130px'};
-          var options = {
-            dimensions: dimensions
-          };
-          // when
-          element.orderingList(options);
-          // then
-          expect(fixture.find('.ordering-list').first().css('width')).toEqual(dimensions.width);
-          expect(fixture.find('.ordering-list').first().css('max-width')).toEqual(dimensions.maxWidth);
-          expect(fixture.find('.ordering-list').first().css('height')).toEqual(dimensions.height);
-          expect(fixture.find('.ordering-list').first().css('max-height')).toEqual(dimensions.maxHeight);
-
-          // given
-          dimensions = {height: '200px', width: '210px', maxHeight: '220px', maxWidth: '230px'};
-          // when
-          element.orderingList('option', 'dimensions', dimensions);
-          // then
-          expect(fixture.find('.ordering-list').first().css('width')).toEqual(dimensions.width);
-          expect(fixture.find('.ordering-list').first().css('max-width')).toEqual(dimensions.maxWidth);
-          expect(fixture.find('.ordering-list').first().css('height')).toEqual(dimensions.height);
-          expect(fixture.find('.ordering-list').first().css('max-height')).toEqual(dimensions.maxHeight);
-        }
-
-        test(fixture_list, element_list);
-        test(fixture_table, element_table);
-      });
-    });
-
     describe('button options:', function () {
 
       it('applies the button text vlaues specified by the buttonText option', function () {
