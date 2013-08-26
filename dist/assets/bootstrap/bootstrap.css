@@ -1451,10 +1451,8 @@ select.input-small {
 .form-horizontal .form-group:after {
   content: " ";
   /* 1 */
-
   display: table;
   /* 2 */
-
 }
 .form-horizontal .form-group:after {
   clear: both;
@@ -1463,10 +1461,8 @@ select.input-small {
 .form-horizontal .form-group:after {
   content: " ";
   /* 1 */
-
   display: table;
   /* 2 */
-
 }
 .form-horizontal .form-group:after {
   clear: both;
@@ -2197,14 +2193,13 @@ button.close {
   cursor: default;
 }
 .nav-tabs.nav-justified {
-  display: table;
   width: 100%;
   border-bottom: 0;
 }
 .nav-tabs.nav-justified > li {
   float: none;
   display: table-cell;
-  width: auto;
+  width: 1%;
 }
 .nav-tabs.nav-justified > li > a {
   text-align: center;
@@ -2239,13 +2234,12 @@ button.close {
   margin-left: 0;
 }
 .nav-justified {
-  display: table;
   width: 100%;
 }
 .nav-justified > li {
   float: none;
   display: table-cell;
-  width: auto;
+  width: 1%;
 }
 .nav-justified > li > a {
   text-align: center;
@@ -3689,12 +3683,6 @@ a.list-group-item.active > .badge,
   margin-top: -10px;
   margin-left: -10px;
   font-family: serif;
-}
-.carousel-control .icon-prev:before {
-  content: '\2039';
-}
-.carousel-control .icon-next:before {
-  content: '\203a';
 }
 .carousel-control .icon-prev:before {
   content: '\2039';

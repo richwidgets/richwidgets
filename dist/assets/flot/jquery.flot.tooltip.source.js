@@ -150,7 +150,7 @@
             content = content(item.series.label, item.series.data[item.dataIndex][0], item.series.data[item.dataIndex][1]);
         }
 
-        // percent match for pie output
+        // percent match for pie charts
         if( typeof (item.series.percent) !== 'undefined' ) {
             content = this.adjustValPrecision(percentPattern, content, item.series.percent);
         }
