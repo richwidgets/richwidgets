@@ -12,11 +12,5 @@
     "flotAxisLabels":"https://github.com/markrcote/flot-axislabels.git",
     "flotTooltip":"https://github.com/krzysu/flot.tooltip.git",
     "flotOrderBars":"https://github.com/emmerich/flot-orderBars.git"
-  },
-  "devDependencies": {
-    "requirejs": "~2.1.8",
-    "jasmine-jquery": "~1.5.3",
-    "dom-compare": "lfryc/dom-compare#requirejs",
-    "jquery-simulate": "*"
   }
 }
