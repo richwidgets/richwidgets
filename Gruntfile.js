@@ -50,7 +50,13 @@ module.exports = function (grunt) {
         root: "components",
         bootstrap: "<%= config.dir.components.root %>/bootstrap",
         fontawesome: "<%= config.dir.components.root %>/font-awesome",
-        jqueryui: "<%= config.dir.components.root %>/jquery-ui"
+        jqueryui: "<%= config.dir.components.root %>/jquery-ui",
+        flot: {
+              lib: "<%= config.dir.components.root %>/flot",
+              axisLabels: "<%= config.dir.components.root %>/flotAxisLabels",
+              orderBars: "<%= config.dir.components.root %>/flotOrderBars",
+              tooltip :  "<%= config.dir.components.root %>/flotTooltip"
+          }
       }
     }
   };
@@ -62,6 +68,7 @@ module.exports = function (grunt) {
   grunt.registerTask("build", [
     "copy:font",
     "copy:jqueryui",
+    "copy:flot",
     "less:bootstrap",
     "less:fontawesome",
     "less:widgets"
@@ -176,6 +183,34 @@ module.exports = function (grunt) {
           }
         ]
       },
+      flot: {
+            files: [
+                {
+                    expand: true,
+                    cwd: "<%= config.dir.components.flot.lib %>",
+                    src: ['**.js','!**/examples/**','!jquery.js'],
+                    dest: "<%= config.dir.dist.assets %>/flot"
+                },
+                {
+                    expand: true,
+                    cwd: "<%= config.dir.components.flot.axisLabels %>",
+                    src: ["**.js"],
+                    dest: "<%= config.dir.dist.assets %>/flot"
+                },
+                {
+                    expand: true,
+                    cwd: "<%= config.dir.components.flot.orderBars %>/js",
+                    src: ["**.js"],
+                    dest: "<%= config.dir.dist.assets %>/flot"
+                },
+                {
+                    expand: true,
+                    cwd: "<%= config.dir.components.flot.tooltip %>/js",
+                    src: ["**.js"],
+                    dest: "<%= config.dir.dist.assets %>/flot"
+                }
+            ]
+        },
       js: {
         files: grunt.file.expandMapping("**/*.js", "<%= config.dir.dist.richfaces %>/", {
           cwd: "src/widgets",

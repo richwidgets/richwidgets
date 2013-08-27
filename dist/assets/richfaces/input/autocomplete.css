@@ -123,6 +123,9 @@
   bottom: 100%;
   margin-bottom: 1px;
 }
+.r-autocomplete {
+  display: inline;
+}
 .ui-autocomplete {
   position: absolute;
   top: 100%;

@@ -7,49 +7,25 @@
       header: undefined,
       styleClass: undefined,
       columnClasses: undefined,
-      headerClass: undefined,
-      itemClass: undefined,
-      selectedItemClass: undefined,
-      placeholderStyleClass: undefined,
-      helperStyleClass: undefined,
-      dimensions: undefined,
       showButtons: true,
-      mouseOrderable: true,
-      widgetEventPrefix: 'orderingList_',
-      dropOnEmpty: true,
-      dragSelect: false,
+      buttonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
       contained: true,
-      firstText: undefined,
-      upText: undefined,
-      downText: undefined,
-      lastText: undefined
+      dragSelect: false,
+      dropOnEmpty: true,
+      mouseOrderable: true,
+      widgetEventPrefix: 'orderingList_'
     },
 
     _create: function () {
       var self = this;
       this.selectableOptions = {
         disabled: self.options.disabled,
-        create: function (event, ui) {
-          if (self.options.itemClass) {
-            $(event.target).find(".ui-selectee").addClass(self.options.itemClass);
-          }
-        },
-        selecting: function (event, ui) {
-          if (self.options.selectedItemClass) {
-            $(ui.selecting).addClass(self.options.selectedItemClass);
-          }
-        },
-        unselecting: function (event, ui) {
-          if (self.options.selectedItemClass) {
-            $(ui.unselecting).removeClass(self.options.selectedItemClass);
-          }
-        }
       };
       this.sortableOptions = { handle: this.options.dragSelect ? ".handle" : false,
         disabled: this.options.disabled,
         dropOnEmpty: this.options.dropOnEmpty,
         scroll: true,
-        placeholder: "placeholder " + (this.options.placeholderStyleClass || ''),
+        placeholder: "placeholder",
         tolerance: "pointer",
         start: function (event, ui) {
           self.currentItems = ui.item.parent().children('.ui-selected').not('.placeholder').not('.helper-item');
@@ -140,17 +116,39 @@
         .sortable("destroy")
         .selectable("destroy");
 
-      // remove empty class attributes
+      // remove empty class attributes                             y
       if (!this.element.attr('class')) {
         this.element.removeAttr("class");
       }
-      this.element.children().each(function(){
-          var $this = $(this);
-          if (!$this.attr('class')) {
-            $this.removeAttr("class");
+      var that = this;
+      if (that.strategy === 'table') {
+        this.element.children().each(function () {
+          var $part = $(this);
+          if (!$part.attr('class')) {
+            $part.removeAttr("class");
           }
-      });
-      return this;
+          $part.children().each(function () {
+            var $row = $(this);
+            if (!$row.attr('class')) {
+              $row.removeAttr("class");
+            }
+            $row.children().each(function () {
+              var $cell = $(this);
+              if (!$cell.attr('class')) {
+                $cell.removeAttr("class");
+              }
+            });
+          });
+        });
+      } else {
+        this.element.children().each(function () {
+          var $selectable = $(this);
+          if (!$selectable.attr('class')) {
+            $selectable.removeAttr("class");
+          }
+        });
+        return this;
+      }
     },
 
     _addDragListeners: function() {
@@ -208,14 +206,14 @@
     },
 
     _listHelper: function (e, item) {
-      var $helper = $("<ol />").addClass('helper ' + (this.options.helperStyleClass || ''))
+      var $helper = $("<ol />").addClass('helper')
         .css('height', 'auto').css('width', this.element.css('width'));
       item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass("helper-item").show().appendTo($helper);
       return $helper;
     },
 
     _rowHelper: function (e, item) {
-      var $helper = $("<div />").addClass('helper ' + this.options.helperStyleClass).css('height', 'auto');
+      var $helper = $("<div />").addClass('helper').css('height', 'auto');
       item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass("helper-item").show().appendTo($helper);
       /* we lose the cell width in the clone, so we re-set it here: */
       var firstRow = $helper.children("tr").first();
@@ -229,20 +227,52 @@
     },
 
     _setOption: function (key, value) {
-      var self = this;
+      var that = this;
       if (this.options.key === value) {
         return;
       }
       switch (key) {
         case "disabled":
           if (value === true) {
-            self._disable();
+            that._disable();
           } else {
-            self._enable();
+            that._enable();
           }
           break;
+        case "header":
+          if (!that.header) {
+            that._addHeader();
+          }
+          that.header.text(value);
+          break;
+        case "columnClasses":
+          if (that.options.columnClasses) {
+            that._removeColumnClasses(that.options.columnClasses);
+          }
+          that._addColumnClasses(value);
+          break;
+        case "styleClass":
+          if (that.options.styleClass) {
+            that.selectList.removeClass(this.options.styleClass);
+          }
+          that.selectList.addClass(value);
+          break;
+        case "buttonsText":
+          this._applyButtonsText(this.selectList.find('.btn-group-vertical'), value);
+          break;
       }
-      $.Widget.prototype._setOption.apply(self, arguments);
+      $.Widget.prototype._setOption.apply(that, arguments);
+    },
+
+    _createKeyArray: function (items) {
+      var keys = new Array();
+      items.each(function () {
+        var $this = $(this);
+        var dataKey = $this.data('key');
+        var key = (dataKey) ? dataKey : $this.text();
+        keys.push(key);
+      })
+      return keys;
     },
 
     /** Public API methods **/
@@ -256,12 +286,16 @@
       return $(item).hasClass('ui-selected');
     },
 
+    getSelected: function() {
+      return this.element.find('.ui-selected');
+    },
+
     selectItem: function (item) {
-      $(item).addClass('ui-selected ' + this.options.selectedItemClass);
+      $(item).addClass('ui-selected');
     },
 
     unSelectItem: function (item) {
-      $(item).removeClass('ui-selected ' + this.options.selectedItemClass);
+      $(item).removeClass('ui-selected');
     },
 
     unSelectAll: function () {
@@ -325,14 +359,7 @@
     },
 
     getOrderedKeys: function () {
-      var keys = new Array();
-      this.getOrderedElements().each(function () {
-        var $this = $(this);
-        var dataKey = $this.data('key');
-        var key = (dataKey) ? dataKey : $this.text();
-        keys.push(key);
-      })
-      return keys;
+      return (this._createKeyArray( this.getOrderedElements()));
     },
 
     /** Initialisation methods **/
@@ -345,48 +372,82 @@
       }
       if (this.strategy === 'table') { /* round the table row corners */
         var that = this;
-        $(this.element)
-          .find("tr").each(function () {
+        $(this.element).find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().addClass('last');
             children.first().addClass('first');
             if (that.options.columnClasses) {
-              var columnClasses = that.options.columnClasses.split(" ");
-              children.each(function(count) {
-                if (count < columnClasses.length) {
-                  $(this).addClass(columnClasses[count]);
-                } else {
-                  return false;
-                }
-              });
+              that._addColumnClassesToCells(children, that.options.columnClasses);
             }
           })
       }
     },
 
+    _addColumnClasses: function(columnClasses) {
+      if (this.strategy !== 'table') {
+        return;
+      }
+      var that = this;
+      $(this.element).find('tr').each(function () {
+          that._addColumnClassesToCells($(this).children(), columnClasses);
+        });
+    },
+
+    _addColumnClassesToCells: function(cells, columnClasses) {
+      var columnClasses = columnClasses.split(" ");
+      cells.each(function(count) {
+        if (count < columnClasses.length) {
+          $(this).addClass(columnClasses[count]);
+        } else {
+          return false;
+        }
+      });
+    },
+
     _addButtons: function () {
       var buttonStack = $("<div/>")
         .addClass("btn-group-vertical");
-      this._addButton(buttonStack, "first", 'icon-arrow-up', this.options.firstText, $.proxy(this._firstHandler, this));
-      this._addButton(buttonStack, "up", 'icon-arrow-up', this.options.upText, $.proxy(this._upHandler, this));
-      this._addButton(buttonStack, "down", 'icon-arrow-down', this.options.downText, $.proxy(this._downHandler, this));
-      this._addButton(buttonStack, "last", 'icon-arrow-down', this.options.lastText, $.proxy(this._lastHandler, this));
+      this._addButton(buttonStack, "first", 'icon-arrow-up', $.proxy(this._firstHandler, this));
+      this._addButton(buttonStack, "up", 'icon-arrow-up', $.proxy(this._upHandler, this));
+      this._addButton(buttonStack, "down", 'icon-arrow-down', $.proxy(this._downHandler, this));
+      this._addButton(buttonStack, "last", 'icon-arrow-down', $.proxy(this._lastHandler, this));
+      if (this.options.buttonsText) {
+        this._applyButtonsText(buttonStack, this.options.buttonsText);
+      }
       this.content.append(
         $('<div />').addClass('buttonColumn').append(buttonStack));
     },
 
-    _addButton: function (buttonStack, buttonClass, icon, buttonText, handler) {
+    _applyButtonsText: function(buttonStack, buttonsText) {
+      this._applyButtonText(buttonStack.find('.first'), buttonsText.first);
+      this._applyButtonText(buttonStack.find('.up'), buttonsText.up);
+      this._applyButtonText(buttonStack.find('.down'), buttonsText.down);
+      this._applyButtonText(buttonStack.find('.last'), buttonsText.last);
+    },
+
+    _applyButtonText: function(button, text) {
+      if (!text) {
+        if (button.hasClass('labeled')) {
+          button.removeClass('labeled');
+          button.find('span').remove();
+        }
+        return;
+      }
+      if (button.hasClass('labeled')) {
+        button.find('span').text(text);
+      } else {
+        button.addClass("labeled").append($("<span />").text(text));
+      }
+    },
+
+    _addButton: function (buttonStack, buttonClass, icon, handler) {
       var button = $("<button/>")
         .attr('type', 'button')
         .addClass("btn btn-default")
-        .append($("<i />").addClass(icon))
+        .addClass(buttonClass)
         .bind('click.orderingList', handler)
-        .addClass(buttonClass);
-      if (buttonText) {
-        button.addClass("labeled")
-          .append($("<span />").text(buttonText));
-      }
+        .append($("<i />").addClass(icon));
       buttonStack.append(button);
     },
 
@@ -424,15 +485,16 @@
         this.selectList.addClass(this.options.styleClass);
       }
       if (this.options.header) {
-        var header = $("<div />").addClass('header');
-        if (this.options.headerClass) {
-          header.addClass(this.options.headerClass);
-        }
-        header.append($("<div>").html(this.options.header)).addClass("header").addClass(this.options.headerClass);
-        this.selectList.prepend(header);
+        this._addHeader();
       }
       this.content = this.selectList.find(".content");
-      if (this.options.dimensions) this.element.css(this.options.dimensions);
+    },
+
+    _addHeader: function() {
+      var header = $("<div />").addClass('header');
+      header.html(this.options.header);
+      this.selectList.prepend(header);
+      this.header = header;
     },
 
     _disable: function () {
@@ -467,23 +529,16 @@
     /** Cleanup methods **/
 
     _removeDomElements: function () {
+      $(this.element).find('.ui-selected').removeClass('ui-selected');
       if (this.strategy === 'table') { /* round the table row corners */
         var that = this;
-        $(this.element)
-          .find("tr").each(function () {
+        $(this.element).find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().removeClass('last');
             children.first().removeClass('first');
             if (that.options.columnClasses) {
-              var columnClasses = that.options.columnClasses.split(" ");
-              children.each(function(count) {
-                if (count < columnClasses.length) {
-                  $(this).removeClass(columnClasses[count]);
-                } else {
-                  return false;
-                }
-              });
+              that._removeColumnClassesFromCells(children, that.options.columnClasses);
             }
           })
       }
@@ -494,6 +549,27 @@
         $(this.element).find('.handle').remove();
       }
       this.element.removeClass('list');
+    },
+
+    _removeColumnClasses: function(columnClasses) {
+      if (this.strategy !== 'table') {
+        return;
+      }
+      var that = this;
+      $(this.element).find('tr').each(function() {
+        that._removeColumnClassesFromCells($(this).children(), columnClasses);
+      });
+    },
+
+    _removeColumnClassesFromCells: function(cells, columnClasses) {
+      var columnClasses = columnClasses.split(" ");
+      cells.each(function(count) {
+        if (count < columnClasses.length) {
+          $(this).removeClass(columnClasses[count]);
+        } else {
+          return false;
+        }
+      });
     },
 
     /** Event Handlers **/
