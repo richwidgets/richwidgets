@@ -153,7 +153,9 @@
             }
             this.element.bind("plotclick",this._getPlotClickHandler(this.options,this.element));
             this.element.bind("plothover",this._getPlotHoverHandler(this.options,this.element));
-            this.element.bind("mouseover",this.options.handlers.onmouseover);
+            if(this.options.handlers){
+                this.element.bind("mouseover",this.options.handlers.onmouseover);
+            }
 
         },
 
@@ -177,11 +179,11 @@
                         event.data.y);
 
                     //client-side
-                    if(options.handlers['onplotclick']){
+                    if(options.handlers && options.handlers['onplotclick']){
                         options.handlers['onplotclick'].call(element,event);
                     }
                     //client-side particular series handler
-                    if(options.particularSeriesHandlers['onplotclick'][event.data.seriesIndex]){
+                    if(options.particularSeriesHandlers && options.particularSeriesHandlers['onplotclick'][event.data.seriesIndex]){
                         options.particularSeriesHandlers['onplotclick'][event.data.seriesIndex].call(element,event);
                     }
                 }
@@ -200,11 +202,11 @@
                         item:item
                     };
                     //client-side
-                    if(options.handlers['onmouseover']){
+                    if(options.handlers && options.handlers['onmouseover']){
                         options.handlers['onmouseover'].call(element,event);
                     }
                     //client-side particular series handler
-                    if(options.particularSeriesHandlers['onmouseover'][event.data.seriesIndex]){
+                    if(options.particularSeriesHandlers && options.particularSeriesHandlers['onmouseover'][event.data.seriesIndex]){
                         options.particularSeriesHandlers['onmouseover'][event.data.seriesIndex].call(element,event);
                     }
                 }
