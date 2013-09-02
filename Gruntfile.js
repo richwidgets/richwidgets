@@ -206,7 +206,7 @@ module.exports = function (grunt) {
                 {
                     expand: true,
                     cwd: "<%= config.dir.components.flot.tooltip %>/js",
-                    src: ["**.js"],
+                    src: ["**.js","!jquery.flot.js"],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 }
             ]
