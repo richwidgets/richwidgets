@@ -91,16 +91,18 @@
 
                     }
 
-                    this.options.xaxis={
+                    this.options.xaxis= $.extend(this.options.xaxis,{
                         ticks:ticks,
-                        tickLength:0
-                    };
+                        tickLength:0,
+                        //workaround to show display proper x-value on category bars
+                        tickFormatter:function(value,axis){return axis.ticks[value].label}
+                    });
 
-                    this.options.bars={
+                    this.options.bars= $.extend(this.options.bars,{
                         show: true,
                         barWidth: 0.2,
                         align:'center'
-                    };
+                    });
                 }
             }
             else if(this.options.charttype==='line'){

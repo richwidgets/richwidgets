@@ -31,25 +31,12 @@
 
 
     <style type="text/css">
-       .rich-chart{
-           width: 600px;
-           height: 400px;
+        .rich-chart{
+            width: 600px;
+            height: 400px;
 
-       }
-       #flotTip
-       {
-           padding: 3px 5px;
-           background-color: #000;
-           z-index: 100;
-           color: #fff;
-           box-shadow: 0 0 10px #555;
-           opacity: .7;
-           filter: alpha(opacity=70);
-           border: 2px solid #fff;
-           -webkit-border-radius: 4px;
-           -moz-border-radius: 4px;
-           border-radius: 4px;
-       }
+        }
+
 
 
 
@@ -104,67 +91,22 @@
             </div>
             <span id="pieclickdata"></span>
 
-         </div>
-        <hr>
 
-        <h2>Category bar chart</h2>
-        <div id="category" class="rich-chart">
+
+            <h2>Category bar chart</h2>
+            <div id="category" class="rich-chart">
+            </div>
+
+            <h2>Multiple bar chart</h2>
+            <div id="mulitplebar" class="rich-chart">
+            </div>
+
+            <h2>Multiple category bar chart</h2>
+            <div id="mulitplecategorybar" class="rich-chart">
+            </div>
+
         </div>
 
-        <h2>Multiple bar chart</h2>
-        <div id="mulitplebar" class="rich-chart">
-        </div>
-
-        <h2>Multiple category bar chart</h2>
-        <div id="mulitplecategorybar" class="rich-chart">
-        </div>
-
-
-        <h2>Widget factory</h2>
-        <div id="widgetPokus" class="rich-chart"></div>
-        <script type="text/javascript">
-            $("#widgetPokus").chart({data:[[[1,2],[3,5],[10,4]]],
-                charttype:"line",
-                grid: {
-                hoverable: true,
-                clickable:true
-                },
-                zoom:true,
-
-                tooltip: true,
-                tooltipOpts: {
-                    content: "%s  [%x,%y]",
-                    shifts: {
-                        x: 20,
-                        y: 0
-                    },
-                    defaultTheme: false
-                },
-                xaxis:{
-                    autoscaleMargin: 0.1
-                },
-                legend:{
-                    sorted: false,
-                    position: 'nw'
-                }
-            });
-        </script>
-
-        <h2>PieWidget</h2>
-        <div id="pieWidget" class="rich-chart"></div>
-        <script type="text/javascript">
-            var options = {
-                        data:[[{"data":4,"label":"b"},{"data":5,"label":"c"},{"data":3,"label":"a"}]],
-                        "yaxis":{},
-                        "ytype":"class java.lang.Number",
-                        "xaxis":{},
-                        "legend":{"sorted":"ascending"},
-                        "zoom":false,
-                        "xtype":"class java.lang.String",
-                        "charttype":"pie"};
-
-            $("#pieWidget").chart(options);
-        </script>
 
 
 
@@ -179,7 +121,7 @@
             var lineData=[{data:d1,label:"whatever",color:'red'},{data:d2,label:"series 2"}];
 
 
-            var plot=$.plot("#placeholder",lineData,{
+            /*var plot=$.plot("#placeholder",lineData,{
                 grid: {
                     hoverable: true,
                     clickable:true
@@ -203,7 +145,16 @@
                 }
 
             });
-
+            */
+             $(document.getElementById("placeholder")).chart(
+             $.extend({
+             handlers: {"eventFunction":function(event,eventType,seriesIndex,pointIndex,x,y){}} ,
+             particularSeriesHandlers: {"onplotclick":[null,null,null,null],"onmouseover":[null,null,null,null]},
+             data: [{"data":[[1990,19.1],[1991,18.9],[1992,18.6],[1993,19.5],[1994,19.5],[1995,19.3],[1996,19.4],[1997,19.7],[1998,19.5],[1999,19.5],[2000,20]],"label":"USA"},{"data":[[1990,2.2],[1991,2.2],[1992,2.3],[1993,2.4],[1994,2.6],[1995,2.7],[1996,2.8],[1997,2.8],[1998,2.7],[1999,2.6],[2000,2.7]],"label":"China"},{"data":[[1990,9.4],[1991,9.4],[1992,9.5],[1993,9.4],[1994,9.9],[1995,9.9],[1996,10.1],[1997,10.1],[1998,9.7],[1999,9.5],[2000,9.7]],"label":"Japan"},{"data":[[1992,14],[1993,12.8],[1994,10.9],[1995,10.5],[1996,10.4],[1997,10],[1998,9.6],[1999,9.7],[2000,9.8]],"label":"Russia"}],
+             },
+             {"yaxis":{"axisLabel":"metric tons of CO2 per capita"},"ytype":"class java.lang.Number","xaxis":{"axisLabel":"year"},"legend":{},"zoom":false,"xtype":"class java.lang.Number","charttype":"line"}
+             )
+             );
 
 
             $("#placeholder").bind("plotclick", function (event, pos, item) {
@@ -220,11 +171,11 @@
                     $("#hoverdata").text("hover point " + item.dataIndex + " in" + item.series.label);
                     /*console.log(event);
                     console.log(pos);
-                    console.log(item);*/
+                    console.log(item);  */
                 }
             });
 
-            /*$("#placeholder").bind("mouseout",function(){$("#hoverdata").text("");console.log('mouseout')}); */
+            $("#placeholder").bind("mouseout",function(){$("#hoverdata").text("");});
 
 
 
@@ -260,7 +211,17 @@
                 }
             });
 
-            var pieData=[{label:"Industry",data:10, color:'black'},{label:"Service",data:10},{label:"IT",data:10}];
+            $(document.getElementById("category")).chart(
+                    $.extend({
+                                handlers: {"eventFunction":function(event,eventType,seriesIndex,pointIndex,x,y){}} ,
+                                particularSeriesHandlers: {"onplotclick":[null],"onmouseover":[null]},
+                                data: [{"bars":{"show":true},"data":{"United States":797,"San Marino":1263,"Croatia":380,"Denmark":480,"Vietnam":13}}]
+                            },
+                            {"yaxis":{"axisLabel":"Motor vehicles per 1000 people"},"ytype":"class java.lang.Number","xaxis":{},"legend":{},"zoom":false,"xtype":"class java.lang.String","charttype":"bar"}
+                    )
+            );
+
+            /*var pieData=[{label:"Industry",data:10, color:'black'},{label:"Service",data:10},{label:"IT",data:10}];
             var pie = $.plot("#pie",pieData,
                     {
                         series:{
@@ -286,14 +247,24 @@
             $("#pie").bind("plotclick", function (event, pos, item) {
                 if (item) {
                     $("#pieclickdata").text(" - click point " + item.dataIndex + " in" + item.series.label);
-                    /*console.log(event);
+                    console.log(event);
                     console.log(pos);
-                    console.log(item);*/
+                    console.log(item);
                 }
-            });
+            });    */
+
+            $(document.getElementById("pie")).chart(
+                    $.extend({
+                                handlers: {"eventFunction":function(event,eventType,seriesIndex,pointIndex,x,y){}} ,
+                                particularSeriesHandlers: {"onplotclick":[null],"onmouseover":[null]},
+                                data: [[{"data":12500746,"label":"Service sector"},{"data":188217,"label":"Agricultural sector"},{"data":2995787,"label":"Industrial sector"}]],
+                            },
+                            {"yaxis":{},"ytype":"class java.lang.Number","xaxis":{},"legend":{"sorted":"ascending"},"zoom":false,"xtype":"class java.lang.String","charttype":"pie"}
+                    )
+            );
 
             var dataC = [ ["January", 10], ["February", 8], ["March", 4], ["April", 13], ["May", 17], ["June", 9]];
-            $.plot("#category",[dataC],
+           /* $.plot("#category",[dataC],
                     {
                         series: {
                             stack:0,
@@ -326,7 +297,7 @@
                             tickLength: 0
                         }
                     });
-
+                         */
 
 
 
@@ -391,7 +362,7 @@
 
 
 
-            var datNum =  {data:[[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],bars:{order:0},label:'a'};
+            /*var datNum =  {data:[[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],bars:{order:0},label:'a'};
             var datNum2 = {data:[[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],bars:{order:1},label:'b'};
             var datNum3 = {data:[[1, 10], [2, 8], [3, 4], [4, 13], [5, 17], [6, 9]],bars:{order:2},label:'c'};
 
@@ -421,7 +392,17 @@
                     },
                     defaultTheme: false
                 }
-            });
+            });    */
+
+            $(document.getElementById("mulitplecategorybar")).chart(
+                    $.extend({
+                                handlers: {"eventFunction":function(event,eventType,seriesIndex,pointIndex,x,y){}} ,
+                                particularSeriesHandlers: {"onplotclick":[null,null,null,null],"onmouseover":[null,null,null,null]},
+                                data: [{"bars":{"show":true},"data":{"Service":12500746,"Agricultural":188217,"Industrial":2995787},"label":"United States"},{"bars":{"show":true},"data":{"Service":3669259,"Agricultural":830931,"Industrial":3726848},"label":"China"},{"bars":{"show":true},"data":{"Service":4258274,"Agricultural":71568,"Industrial":1640091},"label":"Japan"},{"bars":{"show":true},"data":{"Service":2417812,"Agricultural":27205,"Industrial":955563},"label":"Germany"}],
+                            },
+                            {"yaxis":{},"ytype":"class java.lang.Number","xaxis":{},"legend":{"sorted":"ascending"},"zoom":false,"xtype":"class java.lang.String","charttype":"bar"}
+                    )
+            );
 
         });
     </script>
