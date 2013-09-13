@@ -170,6 +170,10 @@
         if( typeof(item.series.label) !== 'undefined' ) {
             content = content.replace(seriesPattern, item.series.label);
         }
+        else{
+            //remove seriesPattern if label not defined
+            content = content.replace(seriesPattern, "");
+        }
 
         // time mode axes with custom dateFormat
         if(this.isTimeMode('xaxis', item) && this.isXDateFormat(item)) {
@@ -186,6 +190,12 @@
         }
         if( typeof item.series.data[item.dataIndex][1] === 'number' ) {
             content = this.adjustValPrecision(yPattern, content, item.series.data[item.dataIndex][1]);
+        }
+
+        // change x from number to given label, if given
+        if(typeof item.series.xaxis.ticks !== 'undefined') {
+            if(item.series.xaxis.ticks.length != 0 && !this.isTimeMode('xaxis', item))
+                content = content.replace(xPattern, item.series.xaxis.ticks[item.dataIndex].label);
         }
 
         // if no value customization, use tickFormatter by default
