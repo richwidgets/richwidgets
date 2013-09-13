@@ -155,10 +155,9 @@
             }
             this.element.bind("plotclick",this._getPlotClickHandler(this.options,this.element));
             this.element.bind("plothover",this._getPlotHoverHandler(this.options,this.element));
-            if(this.options.handlers){
-                this.element.bind("plothover",this.options.handlers.onplothover);
+            if(this.options.handlers && this.options.handlers.onmouseout){
+                this.element.bind("mouseout",this.options.handlers.onmouseout);
             }
-
         },
 
         _getPlotClickHandler:function(options,element){

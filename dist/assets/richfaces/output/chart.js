@@ -155,10 +155,9 @@
             }
             this.element.bind("plotclick",this._getPlotClickHandler(this.options,this.element));
             this.element.bind("plothover",this._getPlotHoverHandler(this.options,this.element));
-            if(this.options.handlers){
-                this.element.bind("mouseover",this.options.handlers.onmouseover);
+            if(this.options.handlers && this.options.handlers.onmouseout){
+                this.element.bind("mouseout",this.options.handlers.onmouseout);
             }
-
         },
 
         _getPlotClickHandler:function(options,element){
@@ -204,12 +203,12 @@
                         item:item
                     };
                     //client-side
-                    if(options.handlers && options.handlers['onmouseover']){
-                        options.handlers['onmouseover'].call(element,event);
+                    if(options.handlers && options.handlers['onplothover']){
+                        options.handlers['onplothover'].call(element,event);
                     }
                     //client-side particular series handler
-                    if(options.particularSeriesHandlers && options.particularSeriesHandlers['onmouseover'][event.data.seriesIndex]){
-                        options.particularSeriesHandlers['onmouseover'][event.data.seriesIndex].call(element,event);
+                    if(options.particularSeriesHandlers && options.particularSeriesHandlers['onplothover'][event.data.seriesIndex]){
+                        options.particularSeriesHandlers['onplothover'][event.data.seriesIndex].call(element,event);
                     }
                 }
             };
