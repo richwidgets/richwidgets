@@ -115,7 +115,7 @@ module.exports = function (grunt) {
         options: {
           paths: ["<%= config.dir.components.fontawesome %>/less"]
         },
-        src: "<%= config.dir.src.root %>/font-awesome.less",
+        src: "<%= config.dir.src.root %>/font-awesome-richwidgets.less",
         dest: "<%= config.dir.dist.assets %>/font-awesome/font-awesome.css"
       },
       widgets: {
