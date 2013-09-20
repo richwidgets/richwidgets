@@ -76,6 +76,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask("default", [
     "build",
+    "copy:js",
     "less:examples",
     "connect:examples",
     "watch"
