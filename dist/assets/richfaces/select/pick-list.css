@@ -15,16 +15,16 @@
   display: block;
 }
 .pick-list .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-up {
-  border-top: #ffffff solid 2px;
+  border-top: #333333 solid 2px;
 }
 .pick-list .buttonColumn .btn-group-picklist .btn-left-all i.icon-arrow-left {
-  border-left: #ffffff solid 2px;
+  border-left: #333333 solid 2px;
 }
 .pick-list .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-down {
-  border-bottom: #ffffff solid 2px;
+  border-bottom: #333333 solid 2px;
 }
 .pick-list .buttonColumn .btn-group-picklist .btn-right-all i.icon-arrow-right {
-  border-right: #ffffff solid 2px;
+  border-right: #333333 solid 2px;
 }
 .pick-list .buttonColumn .btn-group-picklist > .btn {
   -webkit-border-radius: 0;

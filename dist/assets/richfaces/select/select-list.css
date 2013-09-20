@@ -212,8 +212,8 @@
   padding-right: 0.5em;
 }
 .select-list .btn-group-vertical .first i {
-  border-top: #ffffff solid 2px;
+  border-top: #333333 solid 2px;
 }
 .select-list .btn-group-vertical .last i {
-  border-bottom: #ffffff solid 2px;
+  border-bottom: #333333 solid 2px;
 }
