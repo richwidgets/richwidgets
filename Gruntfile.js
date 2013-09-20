@@ -84,10 +84,10 @@ module.exports = function (grunt) {
   grunt.registerTask("dist", [
     "clean",
     "build",
-    "test",
     "copy:js",
     "less:dist",
     "uglify:dist",
+    "test",
   ]);
 
   grunt.registerTask("test", [

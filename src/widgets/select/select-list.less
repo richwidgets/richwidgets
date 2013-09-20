@@ -230,12 +230,23 @@
     }
   }
 
-  .btn-group-vertical .first i {
-    border-top: @btn-default-color solid 2px;
+  .btn-group-vertical .icon {
+    font-size: 140%;
   }
 
-  .btn-group-vertical .last i {
-    border-bottom: @btn-default-color solid 2px;
+  .btn-group-vertical .icon-first:before {
+    content: @double-angle-up;
   }
 
+  .btn-group-vertical .icon-up:before {
+    content: @angle-up;
+  }
+
+  .btn-group-vertical .icon-down:before {
+    content: @angle-down;
+  }
+
+  .btn-group-vertical .icon-last:before {
+    content: @double-angle-down;
+  }
 }
