@@ -211,9 +211,18 @@
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
-.select-list .btn-group-vertical .first i {
-  border-top: #333333 solid 2px;
+.select-list .btn-group-vertical .icon {
+  font-size: 140%;
 }
-.select-list .btn-group-vertical .last i {
-  border-bottom: #333333 solid 2px;
+.select-list .btn-group-vertical .icon-first:before {
+  content: "\f102";
+}
+.select-list .btn-group-vertical .icon-up:before {
+  content: "\f106";
+}
+.select-list .btn-group-vertical .icon-down:before {
+  content: "\f107";
+}
+.select-list .btn-group-vertical .icon-last:before {
+  content: "\f103";
 }
