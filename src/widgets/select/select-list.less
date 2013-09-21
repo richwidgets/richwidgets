@@ -89,15 +89,14 @@
     .border-left-radius(5px);
     line-height: @size-touchable;
     width: @size-touchable;
-    @media (min-width: @screen-tablet) {
-      line-height: @size-clickable;
-      width: @size-clickable;
-    }
-
     cursor: move;
     text-align: center;
     i {
       vertical-align: baseline;
+    }
+    @media (min-width: @screen-tablet) {
+      line-height: @size-clickable;
+      width: @size-clickable;
     }
   }
 
@@ -169,7 +168,6 @@
   }
 
   td, th {
-    .ui-selectee;
     padding-left: 0.5em;
   }
 
