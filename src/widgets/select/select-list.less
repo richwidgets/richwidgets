@@ -167,6 +167,13 @@
     border-bottom: #ffffff solid 2px;
   }
 
+  th {
+    line-height: @size-touchable;
+    @media (min-width: @screen-tablet) {
+      line-height: @size-clickable;
+    }
+  }
+
   td, th {
     padding-left: 0.5em;
   }
