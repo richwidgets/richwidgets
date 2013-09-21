@@ -16,69 +16,89 @@
   .buttonColumn {
     text-align: center;
 
-    .btn-group-picklist {
-      display: block;
+    @media (min-width: @screen-sm) {
+      height: @list-min-height;
+      line-height: @list-min-height;
+    }
+  }
 
-      .btn-left-all {
-        i.icon-arrow-up {
-          border-top: @btn-default-color solid 2px;
-        }
-        i.icon-arrow-left {
-          border-left: @btn-default-color solid 2px;
-        }
-      }
-      .btn-right-all {
-        i.icon-arrow-down {
-          border-bottom: @btn-default-color solid 2px;
-        }
-        i.icon-arrow-right {
-          border-right: @btn-default-color solid 2px;
-        }
-      }
+  .btn-group-picklist {  // a responsize btn-group
+    .icon {
+      font-size: 140%;
+    }
+
+    > .btn {
+      .border-radius(0);
+      padding: 0;
+      text-align: center;
+    }
+
+    @media (min-width: @screen-sm) {
+      max-width: @size-clickable;
+      display: inline-block;
+      vertical-align: middle;
+
       > .btn {
-        .border-radius(0);
-        text-align: center;
-        height: @size-touchable;
-        padding: 0;
-        margin: 0;
-      }
-
-      @media (min-width: @screen-tablet) {
+        height: @size-clickable;
         max-width: @size-clickable;
-
-        > .btn {
-          float: none;
-          height: @size-clickable;
-          max-width: @size-clickable;
-        }
-
-        > .btn:first-child {
-          .border-top-radius(@border-radius-base);
-        }
-
-        > .btn:last-child {
-          .border-bottom-radius(@border-radius-base);
-        }
       }
 
-      @media (max-width: @screen-tablet) {
-        > .btn:first-child {
-          .border-left-radius(@border-radius-base);
-        }
+      > .btn:first-child {
+        .border-top-radius(@border-radius-base);
+      }
 
-        > .btn:last-child {
-          .border-right-radius(@border-radius-base);
-        }
+      > .btn:last-child {
+        .border-bottom-radius(@border-radius-base);
+      }
+
+      .icon-left-all:before {
+        content: @double-angle-left;
+      }
+
+      .icon-left:before {
+        content: @angle-left;
+      }
+
+      .icon-right:before {
+        content: @angle-right;
+      }
+
+      .icon-right-all:before {
+        content: @double-angle-right;
       }
     }
 
-    @media (min-width: @screen-tablet) {
-      height: @list-min-height;
-      line-height: @list-min-height;
-      .btn-group-picklist {
-        vertical-align: middle;
-        line-height: @line-height-base;
-        display: inline-block;
+    @media (max-width: @screen-xs-max) {
+      max-width: none;
+
+      > .btn {
+        height: @size-touchable;
+        max-width: none;
+
+      }
+
+      > .btn:first-child {
+        .border-left-radius(@border-radius-base);
+      }
+
+      > .btn:last-child {
+        .border-right-radius(@border-radius-base);
+      }
+
+      .icon-left-all:before {
+        content: @double-angle-up;
+      }
+
+      .icon-left:before {
+        content: @angle-up;
+      }
+
+      .icon-right:before {
+        content: @angle-down;
+      }
+
+      .icon-right-all:before {
+        content: @double-angle-down;
       }
     }
   }

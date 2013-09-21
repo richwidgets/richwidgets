@@ -59,7 +59,7 @@
 
     _addDomElements: function () {
       this._addParents();
-      var buttonColumn = $('<div />').addClass('middle buttonColumn col col-12 col-sm-1');
+      var buttonColumn = $('<div />').addClass('middle buttonColumn col-sm-1');
       buttonColumn.append(this._buttonStack());
       this.sourceList.parent().after(buttonColumn);
     },
@@ -71,27 +71,27 @@
       buttonStack
         .append(
           button.clone()
-            .addClass('btn-left-all col col-3 col-sm-12')
-            .html('<span class="visible-sm"><i class="icon-arrow-up"></i></span><span class="hidden-sm"><i class="icon-arrow-left"></i></span>')
+            .addClass('btn-left-all col-sm-12 col-xs-3')
+            .html('<i class="icon icon-left-all" />')
             .bind('click.orderingList', $.proxy(this._leftAllHandler, this))
         )
         .append(
           button.clone()
-            .addClass('btn-left col col-3 col-sm-12')
-            .html('<span class="visible-sm"><i class="icon-arrow-up"></i></span><span class="hidden-sm"><i class="icon-arrow-left"></i></span>')
+            .addClass('btn-left col-sm-12 col-xs-3')
+            .html('<i class="icon icon-left" />')
             .bind('click.orderingList', $.proxy(this._leftHandler, this))
         )
         .append(
           button.clone()
-            .addClass('btn-right col col-3 col-sm-12')
-            .html('<span class="visible-sm"><i class="icon-arrow-down"></i></span><span class="hidden-sm"><i class="icon-arrow-right"></i></span>')
+            .addClass('btn-right col-sm-12 col-xs-3')
+            .html('<i class="icon icon-right" />')
             .bind('click.orderingList', $.proxy(this._rightHandler, this))
         )
         .append(
           button
             .clone()
-            .addClass('btn-right-all col col-3 col-sm-12')
-            .html('<span class="visible-sm"><i class="icon-arrow-down"></i></span><span class="hidden-sm"><i class="icon-arrow-right"></i></span>')
+            .addClass('btn-right-all col-sm-12 col-xs-3')
+            .html('<i class="icon icon-right-all" />')
             .bind('click.orderingList', $.proxy(this._rightAllHandler, this))
         );
       return buttonStack;
@@ -105,17 +105,17 @@
       if (this.options.header) {
         this.outer.prepend(
           $("<div />").addClass("row").append(
-            $("<div />").addClass('col-12 header').append(
+            $("<div />").addClass('col-xs-12 header').append(
               $("<h3/>").html(this.options.header)
             )
           )
         );
       }
       this.sourceList.wrap(
-        $("<div />").addClass('left col col-12 col-sm-5')
+        $("<div />").addClass('left col-sm-5')
       )
       this.targetList.wrap(
-        $("<div />").addClass('right col col-12 col-sm-6')
+        $("<div />").addClass('right col-sm-6')
       )
       this.content = this.element;
 
