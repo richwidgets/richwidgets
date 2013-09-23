@@ -467,7 +467,7 @@
         .attr('type', 'button')
         .addClass("btn btn-default")
         .addClass(buttonClass)
-        .bind('click.orderingList', handler)
+        .on('click.orderingList', handler)
         .append($("<i />").addClass('icon icon-' + buttonClass));
       buttonStack.append(button);
     },

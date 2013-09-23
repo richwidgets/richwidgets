@@ -74,26 +74,26 @@
           button.clone()
             .addClass('btn-left-all col-sm-12 col-xs-3')
             .html('<i class="icon icon-left-all" />')
-            .bind('click.orderingList', $.proxy(this._leftAllHandler, this))
+            .on('click.orderingList', $.proxy(this._leftAllHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-left col-sm-12 col-xs-3')
             .html('<i class="icon icon-left" />')
-            .bind('click.orderingList', $.proxy(this._leftHandler, this))
+            .on('click.orderingList', $.proxy(this._leftHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-right col-sm-12 col-xs-3')
             .html('<i class="icon icon-right" />')
-            .bind('click.orderingList', $.proxy(this._rightHandler, this))
+            .on('click.orderingList', $.proxy(this._rightHandler, this))
         )
         .append(
           button
             .clone()
             .addClass('btn-right-all col-sm-12 col-xs-3')
             .html('<i class="icon icon-right-all" />')
-            .bind('click.orderingList', $.proxy(this._rightAllHandler, this))
+            .on('click.orderingList', $.proxy(this._rightAllHandler, this))
         );
       return buttonStack;
     },
@@ -125,28 +125,24 @@
     _registerListeners: function () {
       var that = this;
       // the widget factory converts all events to lower case
-      this.sourceList.bind('sourcelist_receive', function (event, ui) {
+      this.sourceList.on('sourcelist_receive', function (event, ui) {
         var new_ui = that._dumpState();
         new_ui.change = 'remove';
         new_ui.originalEvent = event;
         that._trigger("change", event, new_ui);
       });
-      this.targetList.bind('targetlist_receive', function (event, ui) {
+      this.targetList.on('targetlist_receive', function (event, ui) {
         var new_ui = that._dumpState();
         new_ui.change = 'add';
         new_ui.originalEvent = event;
         that._trigger("change", event, new_ui);
       });
-      this.targetList.bind('targetlist_change', function (event, ui) {
+      this.targetList.on('targetlist_change', function (event, ui) {
         var new_ui = that._dumpState();
         new_ui.change = 'sort';
         new_ui.originalEvent = event;
         that._trigger("change", event, new_ui);
       });
-      // Bind the client-provided change listeners
-      if (this.options.onchange && typeof this.options.onchange == 'function') {
-        this.component.bind('change.pickList.bootstrap.RICH', this.options.onchange);
-      }
     },
 
     _dumpState: function () {
