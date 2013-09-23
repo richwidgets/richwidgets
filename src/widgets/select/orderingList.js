@@ -57,11 +57,10 @@
         cancel: function (event, ui) {
           self.currentItems.show();
         },
-        receive: function (event, ui) {
-          ui.item.after(ui.sender.find(".ui-selected"));
-          var newUi = self._dumpState();
-          newUi.originalEvent = event;
-          self._trigger("receive", event, newUi);
+        over: function (event, ui) {
+          if (self.fillItem) {
+            self._updateFillRow()
+          }
         },
         beforeStop: function (event, ui) {
         },
@@ -76,13 +75,17 @@
           self.currentItems.not('.placeholder').show();
           var ui = self._dumpState();
           ui.movement = 'drag';
+          if (self.fillItem) {
+            self._updateFillRow()
+          }
           self._trigger("change", event, ui);
         }
       };
       if (this.element.is("table")) {
         this.strategy = "table";
         this.$pluginRoot = $(this.element).find("tbody");
-        this.selectableOptions.filter = "tr";
+        this.sortableOptions.items = "tr:not(.fill-item)";
+        this.selectableOptions.filter = "tr:not(.fill-item)";
         this.sortableOptions.helper = $.proxy(this._rowHelper, this);
       } else {
         this.strategy = "list";
@@ -278,8 +281,11 @@
     /** Public API methods **/
 
     connectWith: function (target) {
-      var orderingList = target.data("rfOrderingList");
-      this.$pluginRoot.sortable("option", "connectWith", orderingList.$pluginRoot);
+      var targetOrderingList = target.data("rfOrderingList");
+      this.$pluginRoot.sortable("option", "connectWith", targetOrderingList.$pluginRoot);
+      this._addFillRow();
+      console.log();
+      target.on("sortover", $.proxy(this._updateFillRow, this));  // own "out" event causes placeholder interference
     },
 
     isSelected: function (item) {
@@ -352,6 +358,22 @@
       var ui = this._dumpState();
       ui.movement = 'moveLast';
       this._trigger("change", event, ui);
+    },
+
+    remove: function (items) {
+      items.detach();
+      var ui = this._dumpState();
+      ui.movement = 'remove';
+      this._trigger("change", event, ui);
+      return items;
+    },
+
+    add: function (items) {
+      this.$pluginRoot.prepend(items);
+      var ui = this._dumpState();
+      ui.movement = 'add';
+      this._trigger("change", event, ui);
+      return items;
     },
 
     getOrderedElements: function () {
@@ -495,6 +517,52 @@
       header.html(this.options.header);
       this.selectList.prepend(header);
       this.header = header;
+    },
+
+    _addFillRow: function() {
+      var connectedList = this.$pluginRoot.sortable( "option", "connectWith" );
+      if (!connectedList || this.strategy != "table") {
+        return;
+      }
+
+      var itemsSelector = this.$pluginRoot.sortable( "option", "items" );
+      var children = this.$pluginRoot.find(itemsSelector);
+
+      if (children.length > 0) {
+        var child = children.first();
+      } else {
+        var connectedChildren = $(connectedList).find("tr");
+        if (connectedChildren.length > 0) {
+          child = connectedChildren.first();
+        }
+      }
+      if (child) {
+        var fillItem = child.clone();
+        fillItem.removeClass().addClass('fill-item');
+        fillItem.find('td').empty();
+        fillItem.removeData();
+        this.$pluginRoot.append(fillItem);
+        this.fillItem = fillItem;
+        $(this.element).on(this.options.widgetEventPrefix + 'change', $.proxy(this._updateFillRow, this));
+      }
+      this._updateFillRow();
+    },
+
+    _updateFillRow: function() {
+      if (this.fillItem) {
+        this.fillItem.css('height', '0');
+        var tbody = this.fillItem.parents('tbody').first();
+        var content = this.fillItem.parents('.content').first();
+        this.fillItem.detach();
+        var height = content.height() - tbody.height();
+        var placeholder = this.element.find('.placeholder');
+        if (placeholder) {
+          height = height - placeholder.height();
+        }
+        this.fillItem.height(height);
+        this.fillItem.toggle((height > 2));
+        tbody.append(this.fillItem);
+      }
     },
 
     _disable: function () {

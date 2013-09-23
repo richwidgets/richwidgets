@@ -15,14 +15,15 @@
       this.sourceList.orderingList({
         showButtons: false,
         contained: false,
-        widgetEventPrefix: 'sourceList_'
+        widgetEventPrefix: 'sourcelist_'
       });
       this.targetList.orderingList({
         contained: false,
-        widgetEventPrefix: 'targetList_'
+        widgetEventPrefix: 'targetlist_'
       });
       this.sourceList.orderingList("connectWith", this.targetList);
       this.targetList.orderingList("connectWith", this.sourceList);
+
       this._registerListeners();
     },
 
@@ -38,8 +39,8 @@
 
     moveLeft: function (items, event) {
       if (this.options.disabled) return;
-      items.detach();
-      this.sourceList.prepend(items);
+      this.targetList.orderingList("remove", items);
+      this.sourceList.orderingList("add", items);
       var ui = this._dumpState();
       ui.change = 'remove';
       this._trigger("change", event, ui);
@@ -47,8 +48,8 @@
 
     moveRight: function (items, event) {
       if (this.options.disabled) return;
-      items.detach();
-      this.targetList.prepend(items);
+      this.sourceList.orderingList("remove", items);
+      this.targetList.orderingList("add", items);
       var ui = this._dumpState();
       ui.change = 'add';
       this._trigger("change", event, ui);
