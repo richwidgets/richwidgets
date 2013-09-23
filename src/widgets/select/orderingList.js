@@ -83,13 +83,13 @@
       };
       if (this.element.is("table")) {
         this.strategy = "table";
-        this.$pluginRoot = $(this.element).find("tbody");
+        this.$pluginRoot = this.element.find("tbody");
         this.sortableOptions.items = "tr:not(.fill-item)";
         this.selectableOptions.filter = "tr:not(.fill-item)";
         this.sortableOptions.helper = $.proxy(this._rowHelper, this);
       } else {
         this.strategy = "list";
-        this.$pluginRoot = $(this.element);
+        this.$pluginRoot = this.element;
         this.selectableOptions.filter = "li";
         this.sortableOptions.helper = $.proxy(this._listHelper, this);
       }
@@ -393,7 +393,7 @@
       }
       if (this.strategy === 'table') { /* round the table row corners */
         var that = this;
-        $(this.element).find("tr").each(function () {
+        this.element.find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().addClass('last');
@@ -410,7 +410,7 @@
         return;
       }
       var that = this;
-      $(this.element).find('tr').each(function () {
+      this.element.find('tr').each(function () {
           that._addColumnClassesToCells($(this).children(), columnClasses);
         });
     },
@@ -479,14 +479,14 @@
       if (this.options.dragSelect === true) {
         this.content.addClass('with-handle');
         if (this.strategy === 'table') {
-          $(this.element)
+          this.element
             .find("tbody > tr")
             .prepend("<th class='handle'><i class='icon-move'></i></th>");
-          $(this.element)
+          this.element
             .find("thead > tr")
             .prepend("<th class='handle'></th>");
         } else if (this.strategy === 'list') {
-          $(this.element)
+          this.element
             .find("li")
             .prepend("<div class='handle'><i class='icon-move'></i></div>");
         }
@@ -542,7 +542,7 @@
         fillItem.removeData();
         this.$pluginRoot.append(fillItem);
         this.fillItem = fillItem;
-        $(this.element).on(this.options.widgetEventPrefix + 'change', $.proxy(this._updateFillRow, this));
+        this.element.on(this.options.widgetEventPrefix + 'change', $.proxy(this._updateFillRow, this));
       }
       this._updateFillRow();
     },
@@ -596,10 +596,10 @@
     /** Cleanup methods **/
 
     _removeDomElements: function () {
-      $(this.element).find('.ui-selected').removeClass('ui-selected');
+      this.element.find('.ui-selected').removeClass('ui-selected');
       if (this.strategy === 'table') { /* round the table row corners */
         var that = this;
-        $(this.element).find("tr").each(function () {
+        this.element.find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().removeClass('last');
@@ -613,7 +613,7 @@
       this.selectList.replaceWith(list);
       if (this.options.dragSelect === true) {
         this.content.removeClass('with-handle');
-        $(this.element).find('.handle').remove();
+        this.element.find('.handle').remove();
       }
       this.element.removeClass('list');
     },
@@ -623,7 +623,7 @@
         return;
       }
       var that = this;
-      $(this.element).find('tr').each(function() {
+      this.element.find('tr').each(function() {
         that._removeColumnClassesFromCells($(this).children(), columnClasses);
       });
     },
