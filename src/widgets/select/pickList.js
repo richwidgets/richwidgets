@@ -123,25 +123,25 @@
     },
 
     _registerListeners: function () {
-      var self = this;
+      var that = this;
       // the widget factory converts all events to lower case
       this.sourceList.bind('sourcelist_receive', function (event, ui) {
-        var new_ui = self._dumpState();
+        var new_ui = that._dumpState();
         new_ui.change = 'remove';
         new_ui.originalEvent = event;
-        self._trigger("change", event, new_ui);
+        that._trigger("change", event, new_ui);
       });
       this.targetList.bind('targetlist_receive', function (event, ui) {
-        var new_ui = self._dumpState();
+        var new_ui = that._dumpState();
         new_ui.change = 'add';
         new_ui.originalEvent = event;
-        self._trigger("change", event, new_ui);
+        that._trigger("change", event, new_ui);
       });
       this.targetList.bind('targetlist_change', function (event, ui) {
-        var new_ui = self._dumpState();
+        var new_ui = that._dumpState();
         new_ui.change = 'sort';
         new_ui.originalEvent = event;
-        self._trigger("change", event, new_ui);
+        that._trigger("change", event, new_ui);
       });
       // Bind the client-provided change listeners
       if (this.options.onchange && typeof this.options.onchange == 'function') {

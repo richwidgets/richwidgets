@@ -17,9 +17,9 @@
     },
 
     _create: function () {
-      var self = this;
+      var that = this;
       this.selectableOptions = {
-        disabled: self.options.disabled,
+        disabled: that.options.disabled,
       };
       this.sortableOptions = { handle: this.options.dragSelect ? ".handle" : false,
         disabled: this.options.disabled,
@@ -28,12 +28,12 @@
         placeholder: "placeholder",
         tolerance: "pointer",
         start: function (event, ui) {
-          self.currentItems = ui.item.parent().children('.ui-selected').not('.placeholder').not('.helper-item');
+          that.currentItems = ui.item.parent().children('.ui-selected').not('.placeholder').not('.helper-item');
           var helper = ui.helper;
-          var placeholder = self.element.find('.placeholder');
+          var placeholder = that.element.find('.placeholder');
           placeholder.css('height', helper.css('height'));
 
-          self.currentItems.not(ui.item).hide();
+          that.currentItems.not(ui.item).hide();
         },
         sort: function (event, ui) {
           var that = $(this);
@@ -55,30 +55,30 @@
           });
         },
         cancel: function (event, ui) {
-          self.currentItems.show();
+          that.currentItems.show();
         },
         over: function (event, ui) {
-          if (self.fillItem) {
-            self._updateFillRow()
+          if (that.fillItem) {
+            that._updateFillRow()
           }
         },
         beforeStop: function (event, ui) {
         },
         stop: function (event, ui) {
-          var first = self.currentItems.first();
+          var first = that.currentItems.first();
           if (first.get(0) !== ui.item.get(0)) {
             ui.item.before(first);
-            first.after(self.currentItems.not(first).detach());
+            first.after(that.currentItems.not(first).detach());
           } else {
-            ui.item.after(self.currentItems.not(ui.item).detach());
+            ui.item.after(that.currentItems.not(ui.item).detach());
           }
-          self.currentItems.not('.placeholder').show();
-          var ui = self._dumpState();
+          that.currentItems.not('.placeholder').show();
+          var ui = that._dumpState();
           ui.movement = 'drag';
-          if (self.fillItem) {
-            self._updateFillRow()
+          if (that.fillItem) {
+            that._updateFillRow()
           }
-          self._trigger("change", event, ui);
+          that._trigger("change", event, ui);
         }
       };
       if (this.element.is("table")) {
@@ -106,7 +106,7 @@
 
       this.$pluginRoot.selectable(this.selectableOptions);
       if (this.options.disabled === true) {
-        self._disable();
+        that._disable();
       }
       var selector = '.handle';
       this._addDragListeners();
@@ -304,10 +304,10 @@
     },
 
     unSelectAll: function () {
-      var self = this;
+      var that = this;
       this._removeDomElements();
       this.element.children().each(function () {
-        self.unSelectItem(this);
+        that.unSelectItem(this);
       });
     },
 
