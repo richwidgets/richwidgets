@@ -284,7 +284,6 @@
       var targetOrderingList = target.data("rfOrderingList");
       this.$pluginRoot.sortable("option", "connectWith", targetOrderingList.$pluginRoot);
       this._addFillRow();
-      console.log();
       target.on("sortover", $.proxy(this._updateFillRow, this));  // own "out" event causes placeholder interference
     },
 
