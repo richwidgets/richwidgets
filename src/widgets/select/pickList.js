@@ -99,7 +99,7 @@
     },
 
     _addParents: function () {
-      this.element.addClass("row").wrap(
+      this.element.addClass("row inner").wrap(
         $("<div />").addClass('pick-list outer')
       );
       this.outer = this.element.parents(".outer").first();

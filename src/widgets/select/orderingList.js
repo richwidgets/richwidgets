@@ -497,7 +497,7 @@
       this.element.addClass('list').wrap(
         $("<div />").addClass('ordering-list select-list').append(
           $('<div />').addClass('content').append(
-            $('<div />').addClass('listBox')
+            $('<div />').addClass('scrollBox')
           )
         )
       );
@@ -550,10 +550,11 @@
     _updateFillRow: function() {
       if (this.fillItem) {
         this.fillItem.css('height', '0');
+        var table = this.fillItem.parents('table').first();
         var tbody = this.fillItem.parents('tbody').first();
-        var content = this.fillItem.parents('.content').first();
+        var scrollBox = this.fillItem.parents('.scrollBox').first();
         this.fillItem.detach();
-        var height = content.height() - tbody.height();
+        var height = scrollBox.height() - table.height();
         var placeholder = this.element.find('.placeholder');
         if (placeholder) {
           height = height - placeholder.height();
