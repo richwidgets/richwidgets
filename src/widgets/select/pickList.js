@@ -113,10 +113,10 @@
         );
       }
       this.sourceList.wrap(
-        $("<div />").addClass('left col-sm-5')
+        $("<div />").addClass('source col-sm-5')
       )
       this.targetList.wrap(
-        $("<div />").addClass('right col-sm-6')
+        $("<div />").addClass('target col-sm-6')
       )
       this.content = this.element;
 
@@ -158,8 +158,8 @@
       var list = this.element.detach();
       this.outer.replaceWith(list);
       this.element.removeClass("row");
-      this.sourceList.parents('.left').first().replaceWith(this.sourceList.detach());
-      this.targetList.parents('.right').first().replaceWith(this.targetList.detach());
+      this.sourceList.parents('.source').first().replaceWith(this.sourceList.detach());
+      this.targetList.parents('.target').first().replaceWith(this.targetList.detach());
     },
 
     /** Event Handlers **/
