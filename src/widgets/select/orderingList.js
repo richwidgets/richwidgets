@@ -537,9 +537,9 @@
       }
       if (child) {
         var fillItem = child.clone();
-        fillItem.removeClass().addClass('fill-item');
+        fillItem.removeClass().addClass('fill-item').removeClass('ui-selectee');
         fillItem.find('td').empty();
-        fillItem.removeData();
+        fillItem.data("key", undefined);
         this.$pluginRoot.append(fillItem);
         this.fillItem = fillItem;
         this.element.on(this.options.widgetEventPrefix + 'change', $.proxy(this._updateFillRow, this));
@@ -608,7 +608,11 @@
             if (that.options.columnClasses) {
               that._removeColumnClassesFromCells(children, that.options.columnClasses);
             }
-          })
+          });
+        if (this.fillItem) {
+          this.element.find('.fill-item').remove();
+        }
+
       }
       var list = this.element.detach();
       this.selectList.replaceWith(list);

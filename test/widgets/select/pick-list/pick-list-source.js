@@ -21,16 +21,17 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       var element = $("#list", fixture);
       var expected = $("#expected-pick-list-list");
       var options = {
-        header: "List layout" //caption
+        header: "List layout",
+        orderable: "true"
       };
       // when
       element.pickList(options);
       // then
-      expect(fixture).toHaveEqualDom(expected);
+      expect(expected).toHaveEqualDom(fixture);
       // when
       element.pickList('destroy');
       // then
-      expect(fixture).toHaveEqualDom(original);
+      expect(original).toHaveEqualDom(fixture);
     });
 
     it("pickList from <table> markup", function () {
@@ -40,16 +41,17 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       var element = $("#table", fixture);
       var expected = $("#expected-pick-list-table");
       var options = {
-        header: "Table layout" //caption
+        header: "Table layout",
+        orderable: "true"
       };
       // when
       element.pickList(options);
       // then
-      expect(fixture).toHaveEqualDom(expected);
+      expect(expected).toHaveEqualDom(fixture);
       // when
       element.pickList('destroy');
       // then
-      expect(fixture).toHaveEqualDom(original);
+      expect(original).toHaveEqualDom(fixture);
     });
 
   });

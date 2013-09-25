@@ -29,9 +29,15 @@
 
     destroy: function () {
       $.Widget.prototype.destroy.call(this);
-      this._removeDomElements();
       this.sourceList.orderingList("destroy");
       this.targetList.orderingList("destroy");
+
+      this._removeDomElements();
+
+      this.element.removeClass('inner').removeClass("row");
+      if (!this.element.attr('class')) {
+        this.element.removeAttr("class");
+      }
       return this;
     },
 
@@ -113,10 +119,10 @@
         );
       }
       this.sourceList.wrap(
-        $("<div />").addClass('source col-sm-5')
+        $("<div />").addClass('source-wrapper col-sm-5')
       )
       this.targetList.wrap(
-        $("<div />").addClass('target col-sm-6')
+        $("<div />").addClass('target-wrapper col-sm-6')
       )
       this.content = this.element;
 
@@ -155,11 +161,11 @@
     /** Cleanup methods **/
 
     _removeDomElements: function () {
+      this.sourceList.parents('.source-wrapper').first().replaceWith(this.sourceList.detach());
+      this.targetList.parents('.target-wrapper').first().replaceWith(this.targetList.detach());
+      this.element.find('.middle').remove();
       var list = this.element.detach();
       this.outer.replaceWith(list);
-      this.element.removeClass("row");
-      this.sourceList.parents('.source').first().replaceWith(this.sourceList.detach());
-      this.targetList.parents('.target').first().replaceWith(this.targetList.detach());
     },
 
     /** Event Handlers **/
