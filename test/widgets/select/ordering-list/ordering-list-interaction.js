@@ -7,7 +7,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
     beforeEach(function () {
       var f = jasmine.getFixtures();
-      f.load('test/widgets/select/ordering-list-source.html');
+      f.load('test/widgets/select/ordering-list/ordering-list-source.html');
 
       var s = jasmine.getStyleFixtures();
       s.load('dist/assets/bootstrap/bootstrap.css');

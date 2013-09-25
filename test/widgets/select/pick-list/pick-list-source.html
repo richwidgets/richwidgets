@@ -1,0 +1,241 @@
+<div id="fixture-pick-list-list">
+  <div id="list">
+    <ol class="source">
+      <li data-key="1" class="num">Item 1</li>
+      <li data-key="2" class="num">Item 2</li>
+      <li data-key="3" class="num">Item 3</li>
+      <li data-key="4" class="num">Item 4</li>
+      <li data-key="5" class="num">Item 5</li>
+      <li data-key="6" class="num">Item 6</li>
+      <li data-key="7" class="num">Item 7</li>
+      <li data-key="8" class="num">Item 8</li>
+    </ol>
+    <ol class="target">
+      <li data-key="9" class="num">Item 9</li>
+    </ol>
+  </div>
+</div>
+
+<div id="expected-pick-list-list">
+  <div class="container pick-list outer">
+    <div class="row">
+      <div class="col-xs-12 header"><h3>List layout</h3></div>
+    </div>
+    <div id="list" class="row inner">
+      <div class="source col-sm-5">
+        <div class="ordering-list select-list">
+          <div class="content">
+            <div class="scroll-box">
+              <ol class="source list ui-sortable ui-selectable">
+                <li data-key="9" class="num ui-selectee">Item 9</li>
+                <li data-key="5" class="num ui-selectee" style="display: block;">Item 5</li>
+
+                <li data-key="2" class="num ui-selectee">Item 2</li>
+                <li data-key="3" class="num ui-selectee">Item 3</li>
+                <li data-key="4" class="num ui-selectee">Item 4</li>
+
+                <li data-key="6" class="num ui-selectee">Item 6</li>
+                <li data-key="7" class="num ui-selectee">Item 7</li>
+                <li data-key="8" class="num ui-selectee">Item 8</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="middle button-column col-sm-1">
+        <div class="btn-group-picklist row">
+          <button type="button" class="btn btn-default btn-left-all col-sm-12 col-xs-3"><i
+              class="icon icon-left-all"></i></button>
+          <button type="button" class="btn btn-default btn-left col-sm-12 col-xs-3"><i class="icon icon-left"></i>
+          </button>
+          <button type="button" class="btn btn-default btn-right col-sm-12 col-xs-3"><i class="icon icon-right"></i>
+          </button>
+          <button type="button" class="btn btn-default btn-right-all col-sm-12 col-xs-3"><i
+              class="icon icon-right-all"></i></button>
+        </div>
+      </div>
+      <div class="target col-sm-6">
+        <div class="ordering-list select-list">
+          <div class="content">
+            <div class="scroll-box">
+              <ol class="target list ui-sortable ui-selectable">
+                <li data-key="1" class="num ui-selectee" style="display: block;">Item 1</li>
+              </ol>
+            </div>
+            <div class="button-column">
+              <div class="btn-group-vertical">
+                <button type="button" class="btn btn-default first"><i class="icon icon-first"></i></button>
+                <button type="button" class="btn btn-default up"><i class="icon icon-up"></i></button>
+                <button type="button" class="btn btn-default down"><i class="icon icon-down"></i></button>
+                <button type="button" class="btn btn-default last"><i class="icon icon-last"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="fixture-pick-list-table">
+  <div id="table">
+    <table class="source">
+      <tr data-key="1">
+        <td><i class="icon-beaker"></i></td>
+        <td>Item 1</td>
+        <td>1</td>
+      </tr>
+      <tr data-key="2">
+        <td><i class="icon-bell"></i></td>
+        <td>Item 2</td>
+        <td>2</td>
+      </tr>
+      <tr data-key="3">
+        <td><i class="icon-bolt"></i></td>
+        <td>Item 3</td>
+        <td>3</td>
+      </tr>
+      <tr data-key="4">
+        <td><i class="icon-plane"></i></td>
+        <td>Item 4</td>
+        <td>4</td>
+      </tr>
+      <tr data-key="5">
+        <td><i class="icon-pencil"></i></td>
+        <td>Item 5</td>
+        <td>5</td>
+      </tr>
+      <tr data-key="6">
+        <td><i class="icon-star"></i></td>
+        <td>Item 6</td>
+        <td>6</td>
+      </tr>
+      <tr data-key="7">
+        <td><i class="icon-trophy"></i></td>
+        <td>Item 7</td>
+        <td>7</td>
+      </tr>
+      <tr data-key="8">
+        <td><i class="icon-legal"></i></td>
+        <td>Item 8</td>
+        <td>8</td>
+      </tr>
+    </table>
+    <table class="target">
+      <tr data-key="9">
+        <td><i class="icon-trash"></i></td>
+        <td>Item 9</td>
+        <td>8</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div id="expected-pick-list-table">
+  <div class="container pick-list outer">
+    <div class="row">
+      <div class="col-xs-12 header"><h3>Table layout</h3></div>
+    </div>
+    <div id="table" class="row inner">
+      <div class="source col-sm-5">
+        <div class="ordering-list select-list">
+          <div class="content">
+            <div class="scroll-box">
+              <table class="source list">
+                <tbody class="ui-sortable ui-selectable">
+                <tr data-key="1" class="ui-selectee">
+                  <td class="first"><i class="icon-beaker"></i></td>
+                  <td>Item 1</td>
+                  <td class="last">1</td>
+                </tr>
+                <tr data-key="2" class="ui-selectee">
+                  <td class="first"><i class="icon-bell"></i></td>
+                  <td>Item 2</td>
+                  <td class="last">2</td>
+                </tr>
+                <tr data-key="3" class="ui-selectee">
+                  <td class="first"><i class="icon-bolt"></i></td>
+                  <td>Item 3</td>
+                  <td class="last">3</td>
+                </tr>
+                <tr data-key="4" class="ui-selectee">
+                  <td class="first"><i class="icon-plane"></i></td>
+                  <td>Item 4</td>
+                  <td class="last">4</td>
+                </tr>
+                <tr data-key="5" class="ui-selectee">
+                  <td class="first"><i class="icon-pencil"></i></td>
+                  <td>Item 5</td>
+                  <td class="last">5</td>
+                </tr>
+                <tr data-key="6" class="ui-selectee">
+                  <td class="first"><i class="icon-star"></i></td>
+                  <td>Item 6</td>
+                  <td class="last">6</td>
+                </tr>
+                <tr data-key="7" class="ui-selectee">
+                  <td class="first"><i class="icon-trophy"></i></td>
+                  <td>Item 7</td>
+                  <td class="last">7</td>
+                </tr>
+                <tr data-key="8" class="ui-selectee">
+                  <td class="first"><i class="icon-legal"></i></td>
+                  <td>Item 8</td>
+                  <td class="last">8</td>
+                </tr>
+                <tr data-key="1" class="fill-item" style="height: 0px; display: none;">
+                  <td class="first"></td>
+                  <td></td>
+                  <td class="last"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="middle button-column col-sm-1">
+        <div class="btn-group-picklist row">
+          <button type="button" class="btn btn-default btn-left-all col-sm-12 col-xs-3"><i
+              class="icon icon-left-all"></i></button>
+          <button type="button" class="btn btn-default btn-left col-sm-12 col-xs-3"><i class="icon icon-left"></i>
+          </button>
+          <button type="button" class="btn btn-default btn-right col-sm-12 col-xs-3"><i class="icon icon-right"></i>
+          </button>
+          <button type="button" class="btn btn-default btn-right-all col-sm-12 col-xs-3"><i
+              class="icon icon-right-all"></i></button>
+        </div>
+      </div>
+      <div class="target col-sm-6">
+        <div class="ordering-list select-list">
+          <div class="content">
+            <div class="scroll-box">
+              <table class="target list">
+                <tbody class="ui-sortable ui-selectable">
+                <tr data-key="9" class="ui-selectee">
+                  <td class="first"><i class="icon-trash"></i></td>
+                  <td>Item 9</td>
+                  <td class="last">8</td>
+                </tr>
+                <tr data-key="9" class="fill-item" style="height: 98px; display: table-row;">
+                  <td class="first"></td>
+                  <td></td>
+                  <td class="last"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="button-column">
+              <div class="btn-group-vertical">
+                <button type="button" class="btn btn-default first"><i class="icon icon-first"></i></button>
+                <button type="button" class="btn btn-default up"><i class="icon icon-up"></i></button>
+                <button type="button" class="btn btn-default down"><i class="icon icon-down"></i></button>
+                <button type="button" class="btn btn-default last"><i class="icon icon-last"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

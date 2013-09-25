@@ -63,6 +63,9 @@
       },
       'src/widgets/select/orderingList': {
         deps: ['jquery', 'jquery-ui']
+      },
+      'src/widgets/select/pickList': {
+        deps: ['jquery', 'jquery-ui', 'src/widgets/select/orderingList']
       }
     },
 
