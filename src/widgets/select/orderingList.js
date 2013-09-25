@@ -114,10 +114,10 @@
 
     destroy: function () {
       $.Widget.prototype.destroy.call(this);
-      this._removeDomElements();
       this.$pluginRoot
         .sortable("destroy")
         .selectable("destroy");
+      this._removeDomElements();
 
       // remove empty class attributes                             y
       if (!this.element.attr('class')) {
