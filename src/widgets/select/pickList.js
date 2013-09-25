@@ -60,7 +60,7 @@
 
     _addDomElements: function () {
       this._addParents();
-      var buttonColumn = $('<div />').addClass('middle buttonColumn col-sm-1');
+      var buttonColumn = $('<div />').addClass('middle button-column col-sm-1');
       buttonColumn.append(this._buttonStack());
       this.sourceList.parent().after(buttonColumn);
     },

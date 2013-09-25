@@ -437,7 +437,7 @@
         this._applyButtonsText(buttonStack, this.options.buttonsText);
       }
       this.content.append(
-        $('<div />').addClass('buttonColumn').append(buttonStack));
+        $('<div />').addClass('button-column').append(buttonStack));
     },
 
     _applyButtonsText: function(buttonStack, buttonsText) {
@@ -497,7 +497,7 @@
       this.element.addClass('list').wrap(
         $("<div />").addClass('ordering-list select-list').append(
           $('<div />').addClass('content').append(
-            $('<div />').addClass('scrollBox')
+            $('<div />').addClass('scroll-box')
           )
         )
       );
@@ -552,7 +552,7 @@
         this.fillItem.css('height', '0');
         var table = this.fillItem.parents('table').first();
         var tbody = this.fillItem.parents('tbody').first();
-        var scrollBox = this.fillItem.parents('.scrollBox').first();
+        var scrollBox = this.fillItem.parents('.scroll-box').first();
         this.fillItem.detach();
         var height = scrollBox.height() - table.height();
         var placeholder = this.element.find('.placeholder');
@@ -573,7 +573,7 @@
         .addClass("disabled")
         .find(".ui-selected").removeClass('ui-selected');
       this.element.find(".ui-selectee").removeClass("ui-selectee").addClass("ui-disabled");
-      $('.buttonColumn', this.content).find("button").attr("disabled", true);
+      $('.button-column', this.content).find("button").attr("disabled", true);
       this._removeDragListeners();
     },
 
@@ -583,7 +583,7 @@
         .selectable("option", "disabled", false);
       this.element.removeClass("disabled");
       this.element.find(".ui-disabled").removeClass("ui-disabled").addClass("ui-selectee");
-      $('.buttonColumn', this.content).find("button").attr("disabled", false);
+      $('.button-column', this.content).find("button").attr("disabled", false);
       this._addDragListeners();
     },
 

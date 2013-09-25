@@ -127,20 +127,20 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // when
           element.orderingList(options);
           // then
-          expect(fixture.find('.buttonColumn .first span').first().text()).toEqual(buttonsText.first);
-          expect(fixture.find('.buttonColumn .up span').first().text()).toEqual(buttonsText.up);
-          expect(fixture.find('.buttonColumn .down span').first().text()).toEqual(buttonsText.down);
-          expect(fixture.find('.buttonColumn .last span').first().text()).toEqual(buttonsText.last);
+          expect(fixture.find('.button-column .first span').first().text()).toEqual(buttonsText.first);
+          expect(fixture.find('.button-column .up span').first().text()).toEqual(buttonsText.up);
+          expect(fixture.find('.button-column .down span').first().text()).toEqual(buttonsText.down);
+          expect(fixture.find('.button-column .last span').first().text()).toEqual(buttonsText.last);
 
           // given
           buttonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"}
           // when
           element.orderingList('option', 'buttonsText', buttonsText);
           // then
-          expect(fixture.find('.buttonColumn .first span').first().text()).toEqual(buttonsText.first);
-          expect(fixture.find('.buttonColumn .up span').first().text()).toEqual(buttonsText.up);
-          expect(fixture.find('.buttonColumn .down span').first().text()).toEqual(buttonsText.down);
-          expect(fixture.find('.buttonColumn .last span').first().text()).toEqual(buttonsText.last);
+          expect(fixture.find('.button-column .first span').first().text()).toEqual(buttonsText.first);
+          expect(fixture.find('.button-column .up span').first().text()).toEqual(buttonsText.up);
+          expect(fixture.find('.button-column .down span').first().text()).toEqual(buttonsText.down);
+          expect(fixture.find('.button-column .last span').first().text()).toEqual(buttonsText.last);
         }
 
         test(fixture_list, element_list);
