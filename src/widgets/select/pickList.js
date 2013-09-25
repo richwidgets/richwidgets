@@ -100,7 +100,7 @@
 
     _addParents: function () {
       this.element.addClass("row inner").wrap(
-        $("<div />").addClass('pick-list outer')
+        $("<div />").addClass('container pick-list outer')
       );
       this.outer = this.element.parents(".outer").first();
       if (this.options.header) {
