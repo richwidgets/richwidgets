@@ -25,11 +25,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       // when
       element.orderingList(options);
       // then
-      expect(fixture).toHaveEqualDom(expected);
+      expect(expected).toHaveEqualDom(fixture);
       // when
       element.orderingList('destroy');
       // then
-      expect(fixture).toHaveEqualDom(original);
+      expect(original).toHaveEqualDom(fixture);
     });
 
     it("orderingList from <table> markup", function () {
@@ -44,11 +44,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       // when
       element.orderingList(options);
       // then
-      expect(fixture).toHaveEqualDom(expected);
+      expect(expected).toHaveEqualDom(fixture);
       // when
       element.orderingList('destroy');
       // then
-      expect(fixture).toHaveEqualDom(original);
+      expect(original).toHaveEqualDom(fixture);
     });
 
   });
