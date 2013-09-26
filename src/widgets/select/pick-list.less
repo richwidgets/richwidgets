@@ -7,6 +7,15 @@
   padding-left : 0;
   padding-right : 0;
 
+  .header {
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    line-height: @headings-line-height;
+    font-size: ceil(@font-size-base * 1.10);
+    margin-top: @line-height-computed;
+    margin-bottom: (@line-height-computed / 2);
+  }
+
   .source, .target {
     padding: 0;
   }

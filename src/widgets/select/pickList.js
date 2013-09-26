@@ -4,7 +4,11 @@
 
     options: {
       disabled: false,
-      header: ''
+      header: undefined,
+      styleClass: undefined,
+      columnClasses: undefined,
+      orderButtonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
+      pickButtonsText: undefined, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
     },
 
     _create: function () {
@@ -15,10 +19,13 @@
       this.sourceList.orderingList({
         showButtons: false,
         contained: false,
+        columnClasses: this.options.columnClasses,
         widgetEventPrefix: 'sourcelist_'
       });
       this.targetList.orderingList({
         contained: false,
+        columnClasses: this.options.columnClasses,
+        buttonsText: this.options.orderButtonsText,
         widgetEventPrefix: 'targetlist_'
       });
       this.sourceList.orderingList("connectWith", this.targetList);
@@ -64,7 +71,44 @@
 
     /** Initialisation methods **/
 
-    _addDomElements: function () {
+    _setOption: function (key, value) {
+      var that = this;
+      if (this.options.key === value) {
+        return;
+      }
+      switch (key) {
+        case "disabled":
+          if (value === true) {
+            that._disable();
+          } else {
+            that._enable();
+          }
+          break;
+        case "header":
+          if (!that.header) {
+            that._addHeader();
+          }
+          that.header.text(value);
+          break;
+        case "styleClass":
+          if (that.options.styleClass) {
+            that.outer.removeClass(that.options.styleClass);
+          }
+          that.outer.addClass(value);
+          break;
+        case "columnClasses":
+          that.sourceList.orderingList('option', 'columnClasses', value);
+          that.targetList.orderingList('option', 'columnClasses', value);
+          break;
+        case "orderButtonsText":
+          that.targetList.orderingList('option', 'buttonsText', value);
+          break;
+      }
+      $.Widget.prototype._setOption.apply(that, arguments);
+    },
+
+
+          _addDomElements: function () {
       this._addParents();
       var buttonColumn = $('<div />').addClass('middle button-column col-sm-1');
       buttonColumn.append(this._buttonStack());
@@ -109,14 +153,11 @@
         $("<div />").addClass('container pick-list outer')
       );
       this.outer = this.element.parents(".outer").first();
+      if (this.options.styleClass) {
+        this.outer.addClass(this.options.styleClass);
+      }
       if (this.options.header) {
-        this.outer.prepend(
-          $("<div />").addClass("row").append(
-            $("<div />").addClass('col-xs-12 header').append(
-              $("<h3/>").html(this.options.header)
-            )
-          )
-        );
+        this._addHeader();
       }
       this.sourceList.wrap(
         $("<div />").addClass('source-wrapper col-sm-5')
@@ -125,7 +166,12 @@
         $("<div />").addClass('target-wrapper col-sm-6')
       )
       this.content = this.element;
+    },
 
+    _addHeader: function () {
+      var header = $("<div />").addClass('col-xs-12 header').html(this.options.header);
+      this.outer.prepend($("<div />").addClass("row").append(header));
+      this.header = header;
     },
 
     _registerListeners: function () {
