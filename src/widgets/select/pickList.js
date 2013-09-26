@@ -103,6 +103,10 @@
         case "orderButtonsText":
           that.targetList.orderingList('option', 'buttonsText', value);
           break;
+        case "buttonsText":
+          this._applyButtonsText(this.outer.find('.middle .btn-group-vertical'), value);
+          break;
+
       }
       $.Widget.prototype._setOption.apply(that, arguments);
     },
@@ -122,30 +126,55 @@
       buttonStack
         .append(
           button.clone()
-            .addClass('btn-left-all col-sm-12 col-xs-3')
+            .addClass('btn-remove-all col-sm-12 col-xs-3')
             .html('<i class="icon icon-left-all" />')
             .on('click.orderingList', $.proxy(this._leftAllHandler, this))
         )
         .append(
           button.clone()
-            .addClass('btn-left col-sm-12 col-xs-3')
+            .addClass('btn-remove col-sm-12 col-xs-3')
             .html('<i class="icon icon-left" />')
             .on('click.orderingList', $.proxy(this._leftHandler, this))
         )
         .append(
           button.clone()
-            .addClass('btn-right col-sm-12 col-xs-3')
+            .addClass('btn-add col-sm-12 col-xs-3')
             .html('<i class="icon icon-right" />')
             .on('click.orderingList', $.proxy(this._rightHandler, this))
         )
         .append(
           button
             .clone()
-            .addClass('btn-right-all col-sm-12 col-xs-3')
+            .addClass('btn-add-all col-sm-12 col-xs-3')
             .html('<i class="icon icon-right-all" />')
             .on('click.orderingList', $.proxy(this._rightAllHandler, this))
         );
+      if (this.options.pickButtonsText) {
+        this._applyButtonsText(buttonStack, this.options.pickButtonsText);
+      }
       return buttonStack;
+    },
+
+    _applyButtonsText: function(buttonStack, buttonsText) {
+      this._applyButtonText(buttonStack.find('.btn-add-all'), buttonsText.addAll);
+      this._applyButtonText(buttonStack.find('.btn-add'), buttonsText.add);
+      this._applyButtonText(buttonStack.find('.btn-remove'), buttonsText.remove);
+      this._applyButtonText(buttonStack.find('.btn-remove-all'), buttonsText.removeAll);
+    },
+
+    _applyButtonText: function(button, text) {
+      if (!text) {
+        if (button.hasClass('labeled')) {
+          button.removeClass('labeled');
+          button.find('span').remove();
+        }
+        return;
+      }
+      if (button.hasClass('labeled')) {
+        button.find('span').text(text);
+      } else {
+        button.addClass("labeled").append($("<span />").text(text));
+      }
     },
 
     _addParents: function () {

@@ -119,27 +119,35 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       it('applies the button text vlaues specified by the buttonText option', function () {
         function test(fixture, element) {
           // given
-          var buttonsText = {first: "abcd", up: "efgh", down: "ijkl", last: "mnop"}
+          var orderButtonsText = {first: "abcd", up: "efgh", down: "ijkl", last: "mnop"}
+          var pickButtonsText = {addAll: "fghj", add: "vbmn", remove: "rtyu", removeAll: "dfgh"}
           var options = {
-            orderButtonsText: buttonsText
+            orderButtonsText: orderButtonsText,
+            pickButtonsText: pickButtonsText
           };
           // when
           element.pickList(options);
           // then
-          expect(fixture.find('.target-wrapper .button-column .first span').first().text()).toEqual(buttonsText.first);
-          expect(fixture.find('.target-wrapper .button-column .up span').first().text()).toEqual(buttonsText.up);
-          expect(fixture.find('.target-wrapper .button-column .down span').first().text()).toEqual(buttonsText.down);
-          expect(fixture.find('.target-wrapper .button-column .last span').first().text()).toEqual(buttonsText.last);
+          expect(fixture.find('.target-wrapper .button-column .btn-first span').first().text()).toEqual(orderButtonsText.first);
+          expect(fixture.find('.target-wrapper .button-column .btn-up span').first().text()).toEqual(orderButtonsText.up);
+          expect(fixture.find('.target-wrapper .button-column .btn-down span').first().text()).toEqual(orderButtonsText.down);
+          expect(fixture.find('.target-wrapper .button-column .btn-last span').first().text()).toEqual(orderButtonsText.last);
+
+          expect(fixture.find('.middle .btn-remove-all span').first().text()).toEqual(pickButtonsText.removeAll);
+          expect(fixture.find('.middle .btn-remove span').first().text()).toEqual(pickButtonsText.remove);
+          expect(fixture.find('.middle .btn-add span').first().text()).toEqual(pickButtonsText.add);
+          expect(fixture.find('.middle .btn-add-all span').first().text()).toEqual(pickButtonsText.addAll);
 
           // given
-          buttonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"}
+          orderButtonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"}
+          pickButtonsText = {first: "qwe", up: "wer", down: "ert", last: "rty"}
           // when
-          element.pickList('option', 'orderButtonsText', buttonsText);
+          element.pickList('option', 'orderButtonsText', orderButtonsText);
           // then
-          expect(fixture.find('.target-wrapper .button-column .first span').first().text()).toEqual(buttonsText.first);
-          expect(fixture.find('.target-wrapper .button-column .up span').first().text()).toEqual(buttonsText.up);
-          expect(fixture.find('.target-wrapper .button-column .down span').first().text()).toEqual(buttonsText.down);
-          expect(fixture.find('.target-wrapper .button-column .last span').first().text()).toEqual(buttonsText.last);
+          expect(fixture.find('.target-wrapper .button-column .btn-first span').first().text()).toEqual(orderButtonsText.first);
+          expect(fixture.find('.target-wrapper .button-column .btn-up span').first().text()).toEqual(orderButtonsText.up);
+          expect(fixture.find('.target-wrapper .button-column .btn-down span').first().text()).toEqual(orderButtonsText.down);
+          expect(fixture.find('.target-wrapper .button-column .btn-last span').first().text()).toEqual(orderButtonsText.last);
         }
 
         test(fixture_list, element_list);

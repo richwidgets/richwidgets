@@ -30,24 +30,28 @@
   }
 
   .btn-group-picklist {  // a responsize btn-group
-    .icon {
-      font-size: 140%;
-    }
-
     > .btn {
       .border-radius(0);
       padding: 0;
       text-align: center;
     }
 
+    .labeled {
+      text-align: left;
+      padding-left: 0.5em;
+      span {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+    }
+
     @media (min-width: @screen-sm) {
-      max-width: @size-clickable;
+      min-width: @size-clickable;
       display: inline-block;
       vertical-align: middle;
 
       > .btn {
         height: @size-clickable;
-        max-width: @size-clickable;
       }
 
       > .btn:first-child {

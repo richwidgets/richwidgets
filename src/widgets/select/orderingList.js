@@ -441,10 +441,10 @@
     },
 
     _applyButtonsText: function(buttonStack, buttonsText) {
-      this._applyButtonText(buttonStack.find('.first'), buttonsText.first);
-      this._applyButtonText(buttonStack.find('.up'), buttonsText.up);
-      this._applyButtonText(buttonStack.find('.down'), buttonsText.down);
-      this._applyButtonText(buttonStack.find('.last'), buttonsText.last);
+      this._applyButtonText(buttonStack.find('.btn-first'), buttonsText.first);
+      this._applyButtonText(buttonStack.find('.btn-up'), buttonsText.up);
+      this._applyButtonText(buttonStack.find('.btn-down'), buttonsText.down);
+      this._applyButtonText(buttonStack.find('.btn-last'), buttonsText.last);
     },
 
     _applyButtonText: function(button, text) {
@@ -466,7 +466,7 @@
       var button = $("<button/>")
         .attr('type', 'button')
         .addClass("btn btn-default")
-        .addClass(buttonClass)
+        .addClass('btn-' + buttonClass)
         .on('click.orderingList', handler)
         .append($("<i />").addClass('icon icon-' + buttonClass));
       buttonStack.append(button);

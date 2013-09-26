@@ -46,7 +46,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
           runs(function () {
             expect(widget._createKeyArray(widget.getSelected()), [firstItem.data('key')]);
-            fixture.find('.button-column .last').first().click();
+            fixture.find('.button-column .btn-last').first().click();
           });
 
           waitsFor(function () {
@@ -83,7 +83,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, "item should be selected", 500);
 
           runs(function () {
-            fixture.find('.button-column .first').first().click();
+            fixture.find('.button-column .btn-first').first().click();
           });
 
           waitsFor(function () {
@@ -120,7 +120,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, "item should be selected", 500);
 
           runs(function () {
-            fixture.find('.button-column .down').first().click();
+            fixture.find('.button-column .btn-down').first().click();
           });
 
           waitsFor(function () {
@@ -157,7 +157,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, "item should be selected", 500);
 
           runs(function () {
-            fixture.find('.button-column .up').first().click();
+            fixture.find('.button-column .btn-up').first().click();
           });
 
           waitsFor(function () {
