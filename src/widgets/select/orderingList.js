@@ -19,7 +19,7 @@
     _create: function () {
       var that = this;
       this.selectableOptions = {
-        disabled: that.options.disabled,
+        disabled: that.options.disabled
       };
       this.sortableOptions = { handle: this.options.dragSelect ? ".handle" : false,
         disabled: this.options.disabled,
@@ -155,9 +155,13 @@
     },
 
     _addDragListeners: function() {
+      var widget = this;
       if (this.options.dragSelect == false) {
         this.element.on("mousedown", '.ui-selectee', function (event) {
           var item = $(this);
+          if (widget.selectList.get(0) !== document.activeElement) {
+            widget.selectList.focus();
+          }
           var list = item.parents('.list').first();
           list.data('rfOrderingList').mouseStarted = true;
         });
@@ -495,7 +499,7 @@
 
     _addParents: function () {
       this.element.addClass('list').wrap(
-        $("<div />").addClass('ordering-list select-list').append(
+        $("<div />").addClass('ordering-list select-list').attr('tabindex', -1).append(
           $('<div />').addClass('content').append(
             $('<div />').addClass('scroll-box')
           )

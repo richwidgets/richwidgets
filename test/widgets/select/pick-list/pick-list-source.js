@@ -21,8 +21,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       var element = $("#list", fixture);
       var expected = $("#expected-pick-list-list");
       var options = {
-        header: "List layout",
-        orderable: "true"
+        header: "List layout"
       };
       // when
       element.pickList(options);
@@ -41,8 +40,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       var element = $("#table", fixture);
       var expected = $("#expected-pick-list-table");
       var options = {
-        header: "Table layout",
-        orderable: "true"
+        header: "Table layout"
       };
       // when
       element.pickList(options);

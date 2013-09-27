@@ -16,6 +16,7 @@
     },
 
     _create: function () {
+      var widget = this;
       this.widgetEventPrefix = "picklist_";
       this.sourceList = this.element.find(".source");
       this.targetList = this.element.find(".target");
@@ -51,6 +52,10 @@
       if (this.options.disabled === true) {
         this._disable();
       }
+
+      this.outer.on('focusin', function (event) {
+        widget._trigger('focus', event, widget._dumpState());
+      });
     },
 
     destroy: function () {
@@ -242,6 +247,7 @@
         $("<div />").addClass('target-wrapper col-sm-6')
       )
       this.content = this.element;
+      this.outer.attr('tabindex', '-1');
     },
 
     _addSubHeader: function (sourceHeader, targetHeader) {
