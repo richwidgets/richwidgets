@@ -86,6 +86,55 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         test(fixture_list, element_list);
         test(fixture_table, element_table);
       });
+
+      it('places the sourceHeader option into the DOM', function () {
+        function test(fixture, element) {
+          // given
+          var headerText = 'Test pick list header';
+          var options = {
+            sourceHeader: headerText
+          };
+          // when
+          element.pickList(options);
+          // then
+          expect(fixture.find('.pick-list .sub-header-row .source').first().text()).toEqual(headerText);
+
+          // given
+          headerText = 'New header text';
+          //when
+          element.pickList('option', 'sourceHeader', headerText);
+          // then
+          expect(fixture.find('.pick-list .sub-header-row .source').first().text()).toEqual(headerText);
+        }
+
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('places the targetHeader option into the DOM', function () {
+        function test(fixture, element) {
+          // given
+          var headerText = 'Test pick list header';
+          var options = {
+            targetHeader: headerText
+          };
+          // when
+          element.pickList(options);
+          // then
+          expect(fixture.find('.pick-list .sub-header-row .target').first().text()).toEqual(headerText);
+
+          // given
+          headerText = 'New header text';
+          //when
+          element.pickList('option', 'targetHeader', headerText);
+          // then
+          expect(fixture.find('.pick-list .sub-header-row .target').first().text()).toEqual(headerText);
+        }
+
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
     });
 
     describe('class options:', function () {

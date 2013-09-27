@@ -250,7 +250,7 @@
         var sourceHeader = $("<div />").addClass('col-sm-5 source header').html(sourceHeader);
         var targetHeader = $("<div />").addClass('col-sm-6 col-sm-offset-1 target header').html(targetHeader);
         subHeaderRow.append(sourceHeader).append(targetHeader);
-        this.outer.append(subHeaderRow);
+        this.outer.prepend(subHeaderRow);
       }
     },
 
