@@ -20,18 +20,24 @@
         showButtons: false,
         contained: false,
         columnClasses: this.options.columnClasses,
+        disabled: this.options.disabled,
         widgetEventPrefix: 'sourcelist_'
       });
       this.targetList.orderingList({
         contained: false,
         columnClasses: this.options.columnClasses,
         buttonsText: this.options.orderButtonsText,
+        disabled: this.options.disabled,
         widgetEventPrefix: 'targetlist_'
       });
       this.sourceList.orderingList("connectWith", this.targetList);
       this.targetList.orderingList("connectWith", this.sourceList);
 
       this._registerListeners();
+
+      if (this.options.disabled === true) {
+        this._disable();
+      }
     },
 
     destroy: function () {
@@ -128,26 +134,26 @@
           button.clone()
             .addClass('btn-remove-all col-sm-12 col-xs-3')
             .html('<i class="icon icon-left-all" />')
-            .on('click.orderingList', $.proxy(this._leftAllHandler, this))
+            .on('click.pickList', $.proxy(this._leftAllHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-remove col-sm-12 col-xs-3')
             .html('<i class="icon icon-left" />')
-            .on('click.orderingList', $.proxy(this._leftHandler, this))
+            .on('click.pickList', $.proxy(this._leftHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-add col-sm-12 col-xs-3')
             .html('<i class="icon icon-right" />')
-            .on('click.orderingList', $.proxy(this._rightHandler, this))
+            .on('click.pickList', $.proxy(this._rightHandler, this))
         )
         .append(
           button
             .clone()
             .addClass('btn-add-all col-sm-12 col-xs-3')
             .html('<i class="icon icon-right-all" />')
-            .on('click.orderingList', $.proxy(this._rightAllHandler, this))
+            .on('click.pickList', $.proxy(this._rightAllHandler, this))
         );
       if (this.options.pickButtonsText) {
         this._applyButtonsText(buttonStack, this.options.pickButtonsText);
@@ -225,6 +231,22 @@
         that._trigger("change", event, new_ui);
       });
     },
+
+    _disable: function () {
+      this.sourceList.orderingList("option", "disabled", true);
+      this.targetList.orderingList("option", "disabled", true);
+      this.element.addClass("disabled")
+      this.outer.find('.button-column button').attr("disabled", true);
+    },
+
+    _enable: function () {
+      this.sourceList.orderingList("option", "disabled", false);
+      this.targetList.orderingList("option", "disabled", false);
+      this.element.removeClass("disabled");
+      this.outer.find('.button-column button').attr("disabled", false);
+      this._registerListeners();
+    },
+
 
     _dumpState: function () {
       var ui = {};
