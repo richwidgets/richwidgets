@@ -173,7 +173,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         test(fixture_table, element_table);
       });
 
-      iit('dragSelect:', function () {
+      it('dragSelect:', function () {
         function test(fixture, element) {
           // given
           element.orderingList({dragSelect: true});

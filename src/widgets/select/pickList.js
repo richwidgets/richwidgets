@@ -256,7 +256,12 @@
         var sourceHeader = $("<div />").addClass('col-sm-5 source header').html(sourceHeader);
         var targetHeader = $("<div />").addClass('col-sm-6 col-sm-offset-1 target header').html(targetHeader);
         subHeaderRow.append(sourceHeader).append(targetHeader);
-        this.outer.prepend(subHeaderRow);
+        var headerRow = this.outer.find('.header-row');
+        if (headerRow.length !== 0) {
+          subHeaderRow.insertAfter(headerRow);
+        } else {
+          this.outer.prepend(subHeaderRow);
+        }
       }
     },
 
@@ -266,7 +271,12 @@
         var headerRow = $("<div />").addClass("row header-row");
         var header = $("<div />").addClass('col-xs-12 header').html(header);
         headerRow.append(header);
-        this.outer.prepend(headerRow);
+        var subHeaderRow = this.outer.find('.sub-header-row');
+        if (subHeaderRow.length !== 0) {
+          headerRow.insertBefore(subHeaderRow);
+        } else {
+          this.outer.prepend(headerRow);
+        }
       }
     },
 
