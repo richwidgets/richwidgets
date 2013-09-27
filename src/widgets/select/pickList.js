@@ -9,6 +9,8 @@
       columnClasses: undefined,
       sourceHeader: undefined,
       targetHeader: undefined,
+      switchByClick: undefined,
+      switchByDblClick: undefined,
       orderButtonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
       pickButtonsText: undefined, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
     },
@@ -38,6 +40,13 @@
       this.targetList.orderingList("connectWith", this.sourceList);
 
       this._registerListeners();
+      if (this.options.switchByClick) {
+        this._addClickListeners();
+      }
+
+      if (this.options.switchByDblClick) {
+        this._addDoubleClickListeners();
+      }
 
       if (this.options.disabled === true) {
         this._disable();
@@ -60,7 +69,7 @@
 
     /** Public API methods **/
 
-    moveLeft: function (items, event) {
+    removeItems: function (items, event) {
       if (this.options.disabled) return;
       this.targetList.orderingList("remove", items);
       this.sourceList.orderingList("add", items);
@@ -69,7 +78,7 @@
       this._trigger("change", event, ui);
     },
 
-    moveRight: function (items, event) {
+    addItems: function (items, event) {
       if (this.options.disabled) return;
       this.sourceList.orderingList("remove", items);
       this.targetList.orderingList("add", items);
@@ -95,10 +104,22 @@
           }
           break;
         case "header":
-          if (!that.header) {
-            that._addHeader();
+          if (!that.options.header) {
+            that._addHeader(value);
           }
-          that.header.text(value);
+          that.outer.find('.header-row .header').text(value);
+          break;
+        case "sourceHeader":
+          if (!that.options.sourceHeader) {
+            that._addSubHeader(value, this.options.targetHeader);
+          }
+          that.outer.find('.sub-header-row .source').text(value);
+          break;
+        case "targetHeader":
+          if (!that.options.targetHeader) {
+            that._addSubHeader(value, this.options.targetHeader);
+          }
+          that.outer.find('.sub-header-row .target').text(value);
           break;
         case "styleClass":
           if (that.options.styleClass) {
@@ -116,13 +137,26 @@
         case "buttonsText":
           this._applyButtonsText(this.outer.find('.middle .btn-group-vertical'), value);
           break;
-
+        case "switchByClick":
+          if (value === true) {
+            that._addClickListeners();
+          } else {
+            that._removeClickListeners();
+          }
+          break;
+        case "switchByDblClick":
+          if (value === true) {
+            that._addDoubleClickListeners();
+          } else {
+            that._removeDoubleClickListeners();
+          }
+          break;
       }
       $.Widget.prototype._setOption.apply(that, arguments);
     },
 
 
-          _addDomElements: function () {
+    _addDomElements: function () {
       this._addParents();
       var buttonColumn = $('<div />').addClass('middle button-column col-sm-1');
       buttonColumn.append(this._buttonStack());
@@ -138,26 +172,26 @@
           button.clone()
             .addClass('btn-remove-all col-sm-12 col-xs-3')
             .html('<i class="icon icon-left-all" />')
-            .on('click.pickList', $.proxy(this._leftAllHandler, this))
+            .on('click.pickList', $.proxy(this._removeAllHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-remove col-sm-12 col-xs-3')
             .html('<i class="icon icon-left" />')
-            .on('click.pickList', $.proxy(this._leftHandler, this))
+            .on('click.pickList', $.proxy(this._removeHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-add col-sm-12 col-xs-3')
             .html('<i class="icon icon-right" />')
-            .on('click.pickList', $.proxy(this._rightHandler, this))
+            .on('click.pickList', $.proxy(this._addHandler, this))
         )
         .append(
           button
             .clone()
             .addClass('btn-add-all col-sm-12 col-xs-3')
             .html('<i class="icon icon-right-all" />')
-            .on('click.pickList', $.proxy(this._rightAllHandler, this))
+            .on('click.pickList', $.proxy(this._addAllHandler, this))
         );
       if (this.options.pickButtonsText) {
         this._applyButtonsText(buttonStack, this.options.pickButtonsText);
@@ -195,8 +229,11 @@
       if (this.options.styleClass) {
         this.outer.addClass(this.options.styleClass);
       }
-      if (this.options.header || this.options.sourceHeader || this.options.targetHeader) {
-        this._addHeader();
+      if (this.options.header) {
+        this._addHeader(this.options.header);
+      }
+      if (this.options.sourceHeader || this.options.targetHeader) {
+        this._addSubHeader(this.options.sourceHeader, this.options.targetHeader);
       }
       this.sourceList.wrap(
         $("<div />").addClass('source-wrapper col-sm-5')
@@ -207,18 +244,21 @@
       this.content = this.element;
     },
 
-    _addHeader: function () {
-      if (this.options.sourceHeader || this.options.targetHeader) {
+    _addSubHeader: function (sourceHeader, targetHeader) {
+      if (sourceHeader || targetHeader) {
         var subHeaderRow = $("<div />").addClass("row sub-header-row");
-        var sourceHeader = $("<div />").addClass('col-sm-5 header').html(this.options.sourceHeader);
-        var targetHeader = $("<div />").addClass('col-sm-6 col-sm-offset-1 header').html(this.options.targetHeader);
+        var sourceHeader = $("<div />").addClass('col-sm-5 source header').html(sourceHeader);
+        var targetHeader = $("<div />").addClass('col-sm-6 col-sm-offset-1 target header').html(targetHeader);
         subHeaderRow.append(sourceHeader).append(targetHeader);
-        this.outer.prepend(subHeaderRow);
+        this.outer.append(subHeaderRow);
       }
+    },
+
+    _addHeader: function (header) {
       this.header = headerRow;
-      if (this.options.header) {
+      if (header) {
         var headerRow = $("<div />").addClass("row header-row");
-        var header = $("<div />").addClass('col-xs-12 header').html(this.options.header);
+        var header = $("<div />").addClass('col-xs-12 header').html(header);
         headerRow.append(header);
         this.outer.prepend(headerRow);
       }
@@ -245,6 +285,36 @@
         new_ui.originalEvent = event;
         that._trigger("change", event, new_ui);
       });
+    },
+
+    _addClickListeners: function () {
+      var widget = this;
+      this.sourceList.on('click.pickList', '.ui-selectee', function(event) {
+        widget.addItems($(this), event);
+      });
+      this.targetList.on('click.pickList', '.ui-selectee', function(event) {
+        widget.removeItems($(this), event);
+      });
+    },
+
+    _removeClickListeners: function () {
+      this.sourceList.off('click.picklist', '.ui-selectee');
+      this.targetList.off('click.picklist', '.ui-selectee');
+    },
+
+    _addDoubleClickListeners: function () {
+      var widget = this;
+      this.sourceList.on('dblclick.pickList', '.ui-selectee', function(event) {
+        widget.addItems($(this), event);
+      });
+      this.targetList.on('dblclick.pickList', '.ui-selectee', function(event) {
+        widget.removeItems($(this), event);
+      });
+    },
+
+    _removeDoubleClickListeners: function () {
+      this.sourceList.off('dblclick.picklist', '.ui-selectee');
+      this.targetList.off('dblclick.picklist', '.ui-selectee');
     },
 
     _disable: function () {
@@ -282,23 +352,23 @@
 
     /** Event Handlers **/
 
-    _leftAllHandler: function (event) {
+    _removeAllHandler: function (event) {
       var items = $('.ui-selectee', this.targetList);
-      this.moveLeft(items, event);
+      this.removeItems(items, event);
       this.sourceList.orderingList('selectItem', items);
     },
 
-    _leftHandler: function (event) {
-      this.moveLeft($('.ui-selected', this.targetList), event);
+    _removeHandler: function (event) {
+      this.removeItems($('.ui-selected', this.targetList), event);
     },
 
-    _rightHandler: function (event) {
-      this.moveRight($('.ui-selected', this.sourceList), event);
+    _addHandler: function (event) {
+      this.addItems($('.ui-selected', this.sourceList), event);
     },
 
-    _rightAllHandler: function (event) {
+    _addAllHandler: function (event) {
       var items = $('.ui-selectee', this.sourceList);
-      this.moveRight(items, event);
+      this.addItems(items, event);
       this.targetList.orderingList('selectItem', items);
     }
 
