@@ -16,6 +16,18 @@
     margin-bottom: (@line-height-computed / 2);
   }
 
+  .ordering-list .header {
+    @media (min-width: @screen-sm) {
+      display: none;
+    }
+  }
+
+  .sub-header-row {
+    @media (max-width: @screen-xs-max) {
+      display: none;
+    }
+  }
+
   .source, .target {
     padding: 0;
   }

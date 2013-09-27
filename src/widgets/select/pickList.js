@@ -7,6 +7,8 @@
       header: undefined,
       styleClass: undefined,
       columnClasses: undefined,
+      sourceHeader: undefined,
+      targetHeader: undefined,
       orderButtonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
       pickButtonsText: undefined, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
     },
@@ -21,6 +23,7 @@
         contained: false,
         columnClasses: this.options.columnClasses,
         disabled: this.options.disabled,
+        header: this.options.sourceHeader,
         widgetEventPrefix: 'sourcelist_'
       });
       this.targetList.orderingList({
@@ -28,6 +31,7 @@
         columnClasses: this.options.columnClasses,
         buttonsText: this.options.orderButtonsText,
         disabled: this.options.disabled,
+        header: this.options.targetHeader,
         widgetEventPrefix: 'targetlist_'
       });
       this.sourceList.orderingList("connectWith", this.targetList);
@@ -128,7 +132,7 @@
     _buttonStack: function () {
       var button = $('<button type="button" class="btn btn-default"/>');
       var buttonStack = $("<div/>")
-        .addClass("btn-group-picklist row");
+        .addClass("btn-group-picklist");
       buttonStack
         .append(
           button.clone()
@@ -191,7 +195,7 @@
       if (this.options.styleClass) {
         this.outer.addClass(this.options.styleClass);
       }
-      if (this.options.header) {
+      if (this.options.header || this.options.sourceHeader || this.options.targetHeader) {
         this._addHeader();
       }
       this.sourceList.wrap(
@@ -204,9 +208,20 @@
     },
 
     _addHeader: function () {
-      var header = $("<div />").addClass('col-xs-12 header').html(this.options.header);
-      this.outer.prepend($("<div />").addClass("row").append(header));
-      this.header = header;
+      if (this.options.sourceHeader || this.options.targetHeader) {
+        var subHeaderRow = $("<div />").addClass("row sub-header-row");
+        var sourceHeader = $("<div />").addClass('col-sm-5 header').html(this.options.sourceHeader);
+        var targetHeader = $("<div />").addClass('col-sm-6 col-sm-offset-1 header').html(this.options.targetHeader);
+        subHeaderRow.append(sourceHeader).append(targetHeader);
+        this.outer.prepend(subHeaderRow);
+      }
+      this.header = headerRow;
+      if (this.options.header) {
+        var headerRow = $("<div />").addClass("row header-row");
+        var header = $("<div />").addClass('col-xs-12 header').html(this.options.header);
+        headerRow.append(header);
+        this.outer.prepend(headerRow);
+      }
     },
 
     _registerListeners: function () {
