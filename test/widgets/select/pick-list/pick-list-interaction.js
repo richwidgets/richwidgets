@@ -28,12 +28,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       it('move source to target:', function () {
         function test(fixture, element) {
           // given
-          var changeCallback = jasmine.createSpy('changeCallback');
-          var focusCallback = jasmine.createSpy('focus');
-          element.pickList({
-            change: changeCallback,
-            focus: focusCallback
-          });
+          element.pickList();
           var widget = element.data('pickList');
           expect(widget._dumpState().pickedKeys).toEqual([9]);
 
@@ -60,8 +55,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
           runs(function () {
             expect(widget._dumpState().pickedKeys).toEqual([1, 9]);
-            expect(changeCallback).toHaveBeenCalled();
-            expect(focusCallback).toHaveBeenCalled();
           });
         }
 

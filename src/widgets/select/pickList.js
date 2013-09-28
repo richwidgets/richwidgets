@@ -56,6 +56,10 @@
       this.outer.on('focusin', function (event) {
         widget._trigger('focus', event, widget._dumpState());
       });
+      this.outer.on('focusout', function (event) {
+        widget._trigger('blur', event, widget._dumpState());
+      });
+      this._trigger('create', undefined, this._dumpState());
     },
 
     destroy: function () {
@@ -69,6 +73,7 @@
       if (!this.element.attr('class')) {
         this.element.removeAttr("class");
       }
+      this._trigger('destroy', undefined, {});
       return this;
     },
 
@@ -166,6 +171,7 @@
       var buttonColumn = $('<div />').addClass('middle button-column col-sm-1');
       buttonColumn.append(this._buttonStack());
       this.sourceList.parent().after(buttonColumn);
+      this._trigger('addDomElements', undefined, {});
     },
 
     _buttonStack: function () {
