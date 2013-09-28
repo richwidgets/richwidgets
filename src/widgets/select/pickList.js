@@ -101,68 +101,68 @@
     /** Initialisation methods **/
 
     _setOption: function (key, value) {
-      var that = this;
+      var widget = this;
       if (this.options.key === value) {
         return;
       }
       switch (key) {
         case "disabled":
           if (value === true) {
-            that._disable();
+            widget._disable();
           } else {
-            that._enable();
+            widget._enable();
           }
           break;
         case "header":
-          if (!that.options.header) {
-            that._addHeader(value);
+          if (!widget.options.header) {
+            widget._addHeader(value);
           }
-          that.outer.find('.header-row .header').text(value);
+          widget.outer.find('.header-row .header').text(value);
           break;
         case "sourceHeader":
-          if (!that.options.sourceHeader) {
-            that._addSubHeader(value, this.options.targetHeader);
+          if (!widget.options.sourceHeader) {
+            widget._addSubHeader(value, this.options.targetHeader);
           }
-          that.outer.find('.sub-header-row .source').text(value);
+          widget.outer.find('.sub-header-row .source').text(value);
           break;
         case "targetHeader":
-          if (!that.options.targetHeader) {
-            that._addSubHeader(value, this.options.targetHeader);
+          if (!widget.options.targetHeader) {
+            widget._addSubHeader(value, this.options.targetHeader);
           }
-          that.outer.find('.sub-header-row .target').text(value);
+          widget.outer.find('.sub-header-row .target').text(value);
           break;
         case "styleClass":
-          if (that.options.styleClass) {
-            that.outer.removeClass(that.options.styleClass);
+          if (widget.options.styleClass) {
+            widget.outer.removeClass(widget.options.styleClass);
           }
-          that.outer.addClass(value);
+          widget.outer.addClass(value);
           break;
         case "columnClasses":
-          that.sourceList.orderingList('option', 'columnClasses', value);
-          that.targetList.orderingList('option', 'columnClasses', value);
+          widget.sourceList.orderingList('option', 'columnClasses', value);
+          widget.targetList.orderingList('option', 'columnClasses', value);
           break;
         case "orderButtonsText":
-          that.targetList.orderingList('option', 'buttonsText', value);
+          widget.targetList.orderingList('option', 'buttonsText', value);
           break;
         case "buttonsText":
           this._applyButtonsText(this.outer.find('.middle .btn-group-vertical'), value);
           break;
         case "switchByClick":
           if (value === true) {
-            that._addClickListeners();
+            widget._addClickListeners();
           } else {
-            that._removeClickListeners();
+            widget._removeClickListeners();
           }
           break;
         case "switchByDblClick":
           if (value === true) {
-            that._addDoubleClickListeners();
+            widget._addDoubleClickListeners();
           } else {
-            that._removeDoubleClickListeners();
+            widget._removeDoubleClickListeners();
           }
           break;
       }
-      $.Widget.prototype._setOption.apply(that, arguments);
+      $.Widget.prototype._setOption.apply(widget, arguments);
     },
 
 
@@ -287,25 +287,25 @@
     },
 
     _registerListeners: function () {
-      var that = this;
+      var widget = this;
       // the widget factory converts all events to lower case
       this.sourceList.on('sourcelist_receive', function (event, ui) {
-        var new_ui = that._dumpState();
+        var new_ui = widget._dumpState();
         new_ui.change = 'remove';
         new_ui.originalEvent = event;
-        that._trigger("change", event, new_ui);
+        widget._trigger("change", event, new_ui);
       });
       this.targetList.on('targetlist_receive', function (event, ui) {
-        var new_ui = that._dumpState();
+        var new_ui = widget._dumpState();
         new_ui.change = 'add';
         new_ui.originalEvent = event;
-        that._trigger("change", event, new_ui);
+        widget._trigger("change", event, new_ui);
       });
       this.targetList.on('targetlist_change', function (event, ui) {
-        var new_ui = that._dumpState();
+        var new_ui = widget._dumpState();
         new_ui.change = 'sort';
         new_ui.originalEvent = event;
-        that._trigger("change", event, new_ui);
+        widget._trigger("change", event, new_ui);
       });
     },
 

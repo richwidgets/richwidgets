@@ -17,9 +17,9 @@
     },
 
     _create: function () {
-      var that = this;
+      var widget = this;
       this.selectableOptions = {
-        disabled: that.options.disabled
+        disabled: widget.options.disabled
       };
       this.sortableOptions = { handle: this.options.dragSelect ? ".handle" : false,
         disabled: this.options.disabled,
@@ -28,57 +28,57 @@
         placeholder: "placeholder",
         tolerance: "pointer",
         start: function (event, ui) {
-          that.currentItems = ui.item.parent().children('.ui-selected').not('.placeholder').not('.helper-item');
+          widget.currentItems = ui.item.parent().children('.ui-selected').not('.placeholder').not('.helper-item');
           var helper = ui.helper;
-          var placeholder = that.element.find('.placeholder');
+          var placeholder = widget.element.find('.placeholder');
           placeholder.css('height', helper.css('height'));
 
-          that.currentItems.not(ui.item).hide();
+          widget.currentItems.not(ui.item).hide();
         },
         sort: function (event, ui) {
-          var that = $(this);
+          var sortable = this;
           var helperTop = ui.helper.position().top,
             helperBottom = helperTop + ui.helper.outerHeight();
-          that.children('.ui-selectee').not('.placeholder').not('.helper-item').not('.ui-selected').each(function () {
+          sortable.children('.ui-selectee').not('.placeholder').not('.helper-item').not('.ui-selected').each(function () {
             var item = $(this);
             var itemTop = item.position().top;
             var itemMiddle = item.position().top + item.outerHeight() / 2;
             /* if the helper overlaps half of an item, move the placeholder */
             if (helperTop < itemMiddle && itemMiddle < helperBottom) {
               if (itemTop > helperTop) {
-                $('.placeholder', that).insertAfter(item);
+                $('.placeholder', sortable).insertAfter(item);
               } else {
-                $('.placeholder', that).insertBefore(item);
+                $('.placeholder', sortable).insertBefore(item);
               }
               return false;
             }
           });
         },
         cancel: function (event, ui) {
-          that.currentItems.show();
+          widget.currentItems.show();
         },
         over: function (event, ui) {
-          if (that.fillItem) {
-            that._updateFillRow()
+          if (widget.fillItem) {
+            widget._updateFillRow()
           }
         },
         beforeStop: function (event, ui) {
         },
         stop: function (event, ui) {
-          var first = that.currentItems.first();
+          var first = widget.currentItems.first();
           if (first.get(0) !== ui.item.get(0)) {
             ui.item.before(first);
-            first.after(that.currentItems.not(first).detach());
+            first.after(widget.currentItems.not(first).detach());
           } else {
-            ui.item.after(that.currentItems.not(ui.item).detach());
+            ui.item.after(widget.currentItems.not(ui.item).detach());
           }
-          that.currentItems.not('.placeholder').show();
-          var ui = that._dumpState();
+          widget.currentItems.not('.placeholder').show();
+          var ui = widget._dumpState();
           ui.movement = 'drag';
-          if (that.fillItem) {
-            that._updateFillRow()
+          if (widget.fillItem) {
+            widget._updateFillRow()
           }
-          that._trigger("change", event, ui);
+          widget._trigger("change", event, ui);
         }
       };
       if (this.element.is("table")) {
@@ -106,15 +106,15 @@
 
       this.$pluginRoot.selectable(this.selectableOptions);
       if (this.options.disabled === true) {
-        that._disable();
+        widget._disable();
       }
       var selector = '.handle';
       this._addDragListeners();
       this.selectList.on('focusin', function (event) {
-        that._trigger('focus', event, that._dumpState());
+        widget._trigger('focus', event, widget._dumpState());
       });
       this.selectList.on('focusout', function (event) {
-        that._trigger('blur', event, that._dumpState());
+        widget._trigger('blur', event, widget._dumpState());
       });
       this._trigger('create', undefined, this._dumpState());
     },
@@ -130,8 +130,7 @@
       if (!this.element.attr('class')) {
         this.element.removeAttr("class");
       }
-      var that = this;
-      if (that.strategy === 'table') {
+      if (this.strategy === 'table') {
         this.element.children().each(function () {
           var $part = $(this);
           if (!$part.attr('class')) {
@@ -241,41 +240,41 @@
     },
 
     _setOption: function (key, value) {
-      var that = this;
+      var widget = this;
       if (this.options.key === value) {
         return;
       }
       switch (key) {
         case "disabled":
           if (value === true) {
-            that._disable();
+            widget._disable();
           } else {
-            that._enable();
+            widget._enable();
           }
           break;
         case "header":
-          if (!that.header) {
-            that._addHeader();
+          if (!widget.header) {
+            widget._addHeader();
           }
-          that.header.text(value);
+          widget.header.text(value);
           break;
         case "columnClasses":
-          if (that.options.columnClasses) {
-            that._removeColumnClasses(that.options.columnClasses);
+          if (widget.options.columnClasses) {
+            widget._removeColumnClasses(widget.options.columnClasses);
           }
-          that._addColumnClasses(value);
+          widget._addColumnClasses(value);
           break;
         case "styleClass":
-          if (that.options.styleClass) {
-            that.selectList.removeClass(this.options.styleClass);
+          if (widget.options.styleClass) {
+            widget.selectList.removeClass(this.options.styleClass);
           }
-          that.selectList.addClass(value);
+          widget.selectList.addClass(value);
           break;
         case "buttonsText":
           this._applyButtonsText(this.selectList.find('.btn-group-vertical'), value);
           break;
       }
-      $.Widget.prototype._setOption.apply(that, arguments);
+      $.Widget.prototype._setOption.apply(widget, arguments);
     },
 
     _createKeyArray: function (items) {
@@ -315,10 +314,10 @@
     },
 
     unSelectAll: function () {
-      var that = this;
+      var widget = this;
       this._removeDomElements();
       this.element.children().each(function () {
-        that.unSelectItem(this);
+        widget.unSelectItem(this);
       });
     },
 
@@ -403,14 +402,14 @@
         this._addButtons();
       }
       if (this.strategy === 'table') { /* round the table row corners */
-        var that = this;
+        var widget = this;
         this.element.find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().addClass('last');
             children.first().addClass('first');
-            if (that.options.columnClasses) {
-              that._addColumnClassesToCells(children, that.options.columnClasses);
+            if (widget.options.columnClasses) {
+              widget._addColumnClassesToCells(children, widget.options.columnClasses);
             }
           })
       }
@@ -421,9 +420,9 @@
       if (this.strategy !== 'table') {
         return;
       }
-      var that = this;
+      var widget = this;
       this.element.find('tr').each(function () {
-          that._addColumnClassesToCells($(this).children(), columnClasses);
+          widget._addColumnClassesToCells($(this).children(), columnClasses);
         });
     },
 
@@ -611,14 +610,14 @@
     _removeDomElements: function () {
       this.element.find('.ui-selected').removeClass('ui-selected');
       if (this.strategy === 'table') { /* round the table row corners */
-        var that = this;
+        var widget = this;
         this.element.find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().removeClass('last');
             children.first().removeClass('first');
-            if (that.options.columnClasses) {
-              that._removeColumnClassesFromCells(children, that.options.columnClasses);
+            if (widget.options.columnClasses) {
+              widget._removeColumnClassesFromCells(children, widget.options.columnClasses);
             }
           });
         if (this.fillItem) {
@@ -639,9 +638,9 @@
       if (this.strategy !== 'table') {
         return;
       }
-      var that = this;
+      var widget = this;
       this.element.find('tr').each(function() {
-        that._removeColumnClassesFromCells($(this).children(), columnClasses);
+        widget._removeColumnClassesFromCells($(this).children(), columnClasses);
       });
     },
 
