@@ -110,6 +110,13 @@
       }
       var selector = '.handle';
       this._addDragListeners();
+      this.selectList.on('focusin', function (event) {
+        that._trigger('focus', event, that._dumpState());
+      });
+      this.selectList.on('focusout', function (event) {
+        that._trigger('blur', event, that._dumpState());
+      });
+      this._trigger('create', undefined, this._dumpState());
     },
 
     destroy: function () {
@@ -150,8 +157,8 @@
             $selectable.removeAttr("class");
           }
         });
-        return this;
       }
+      this._trigger('destroy', undefined, {});
     },
 
     _addDragListeners: function() {
@@ -407,6 +414,7 @@
             }
           })
       }
+      this._trigger('addDomElements', undefined, this._dumpState());
     },
 
     _addColumnClasses: function(columnClasses) {
