@@ -13,7 +13,15 @@
       dragSelect: false,
       dropOnEmpty: true,
       mouseOrderable: true,
-      widgetEventPrefix: 'orderinglist_'
+      widgetEventPrefix: 'orderinglist_',
+
+      // callbacks
+      change: null,
+      addDomElements: null,
+      destroy: null,
+      focus: null,
+      blur: null,
+      change: null
     },
 
     _create: function () {

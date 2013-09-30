@@ -13,6 +13,14 @@
       switchByDblClick: undefined,
       orderButtonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
       pickButtonsText: undefined, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
+
+      // callbacks
+      change: null,
+      addDomElements: null,
+      destroy: null,
+      focus: null,
+      blur: null,
+      change: null
     },
 
     _create: function () {
