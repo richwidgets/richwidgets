@@ -7,10 +7,10 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       f.load('test/widgets/select/ordering-list/ordering-list-source.html');
 
       var s = jasmine.getStyleFixtures();
-      s.load('dist/assets/bootstrap/bootstrap.css');
-      s.load('dist/assets/font-awesome/font-awesome.css');
-      s.load('dist/assets/richfaces/select/select-list.css');
-      s.load('dist/assets/richfaces/select/ordering-list.css');
+      s.appendLoad('dist/assets/bootstrap/bootstrap.css');
+      s.appendLoad('dist/assets/font-awesome/font-awesome.css');
+      s.appendLoad('dist/assets/richfaces/select/select-list.css');
+      s.appendLoad('dist/assets/richfaces/select/ordering-list.css');
     });
 
     it("ordering-list from <ol> markup", function () {

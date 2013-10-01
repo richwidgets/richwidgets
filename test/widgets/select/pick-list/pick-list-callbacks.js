@@ -10,11 +10,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
       f.load('test/widgets/select/pick-list/pick-list-source.html');
 
       var s = jasmine.getStyleFixtures();
-      s.load('dist/assets/bootstrap/bootstrap.css');
-      s.load('dist/assets/font-awesome/font-awesome.css');
-      s.load('dist/assets/richfaces/select/select-list.css');
-      s.load('dist/assets/richfaces/select/ordering-list.css');
-      s.load('dist/assets/richfaces/select/pick-list.css');
+      s.appendLoad('dist/assets/bootstrap/bootstrap.css');
+      s.appendLoad('dist/assets/font-awesome/font-awesome.css');
+      s.appendLoad('dist/assets/richfaces/select/select-list.css');
+      s.appendLoad('dist/assets/richfaces/select/ordering-list.css');
+      s.appendLoad('dist/assets/richfaces/select/pick-list.css');
 
       fixture_list = $('#fixture-pick-list-list');
       original_list = fixture_list.clone();
