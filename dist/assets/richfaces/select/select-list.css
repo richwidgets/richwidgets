@@ -15,17 +15,17 @@
   padding-right: 2px;
   width: 100%;
 }
-.select-list .listBox {
+.select-list .scroll-box {
   overflow: auto;
   overflow-x: hidden;
-  max-height: 14.7em;
+  min-height: 9.6em;
 }
 .select-list .list .helper {
   min-height: 0px;
   margin: 0;
   padding: 0;
 }
-.select-list .buttonColumn {
+.select-list .button-column {
   vertical-align: middle;
   display: table-cell;
   width: 24px;
@@ -87,14 +87,14 @@
   cursor: move;
   text-align: center;
 }
+.select-list .handle i {
+  vertical-align: baseline;
+}
 @media (min-width: 768px) {
   .select-list .handle {
     line-height: 2.3em;
     width: 2.3em;
   }
-}
-.select-list .handle i {
-  vertical-align: baseline;
 }
 .select-list .disabled .handle {
   cursor: default;
@@ -130,7 +130,7 @@
   padding-left: 0;
   margin: 0;
   list-style: none;
-  min-height: 9.6em;
+  min-height: inherit;
 }
 .select-list li {
   display: block;
@@ -149,18 +149,17 @@
 .select-list table tr {
   border-bottom: #ffffff solid 2px;
 }
-.select-list td,
 .select-list th {
-  cursor: pointer;
-  color: #333333;
   line-height: 3em;
-  padding-left: 0.5em;
 }
 @media (min-width: 768px) {
-  .select-list td,
   .select-list th {
     line-height: 2.3em;
   }
+}
+.select-list td,
+.select-list th {
+  padding-left: 0.5em;
 }
 .select-list .ui-selectee:hover td {
   background-color: #eeeeee;
@@ -210,9 +209,6 @@
 .select-list .btn-group-vertical .labeled span {
   padding-left: 0.5em;
   padding-right: 0.5em;
-}
-.select-list .btn-group-vertical .icon {
-  font-size: 140%;
 }
 .select-list .btn-group-vertical .icon-first:before {
   content: "\f102";

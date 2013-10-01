@@ -13,13 +13,21 @@
       dragSelect: false,
       dropOnEmpty: true,
       mouseOrderable: true,
-      widgetEventPrefix: 'orderingList_'
+      widgetEventPrefix: 'orderinglist_',
+
+      // callbacks
+      change: null,
+      addDomElements: null,
+      destroy: null,
+      focus: null,
+      blur: null,
+      change: null
     },
 
     _create: function () {
-      var self = this;
+      var widget = this;
       this.selectableOptions = {
-        disabled: self.options.disabled,
+        disabled: widget.options.disabled
       };
       this.sortableOptions = { handle: this.options.dragSelect ? ".handle" : false,
         disabled: this.options.disabled,
@@ -28,65 +36,68 @@
         placeholder: "placeholder",
         tolerance: "pointer",
         start: function (event, ui) {
-          self.currentItems = ui.item.parent().children('.ui-selected').not('.placeholder').not('.helper-item');
+          widget.currentItems = ui.item.parent().children('.ui-selected').not('.placeholder').not('.helper-item');
           var helper = ui.helper;
-          var placeholder = self.element.find('.placeholder');
+          var placeholder = widget.element.find('.placeholder');
           placeholder.css('height', helper.css('height'));
 
-          self.currentItems.not(ui.item).hide();
+          widget.currentItems.not(ui.item).hide();
         },
         sort: function (event, ui) {
-          var that = $(this);
+          var sortable = this;
           var helperTop = ui.helper.position().top,
             helperBottom = helperTop + ui.helper.outerHeight();
-          that.children('.ui-selectee').not('.placeholder').not('.helper-item').not('.ui-selected').each(function () {
+          sortable.children('.ui-selectee').not('.placeholder').not('.helper-item').not('.ui-selected').each(function () {
             var item = $(this);
             var itemTop = item.position().top;
             var itemMiddle = item.position().top + item.outerHeight() / 2;
             /* if the helper overlaps half of an item, move the placeholder */
             if (helperTop < itemMiddle && itemMiddle < helperBottom) {
               if (itemTop > helperTop) {
-                $('.placeholder', that).insertAfter(item);
+                $('.placeholder', sortable).insertAfter(item);
               } else {
-                $('.placeholder', that).insertBefore(item);
+                $('.placeholder', sortable).insertBefore(item);
               }
               return false;
             }
           });
         },
         cancel: function (event, ui) {
-          self.currentItems.show();
+          widget.currentItems.show();
         },
-        receive: function (event, ui) {
-          ui.item.after(ui.sender.find(".ui-selected"));
-          var newUi = self._dumpState();
-          newUi.originalEvent = event;
-          self._trigger("receive", event, newUi);
+        over: function (event, ui) {
+          if (widget.fillItem) {
+            widget._updateFillRow()
+          }
         },
         beforeStop: function (event, ui) {
         },
         stop: function (event, ui) {
-          var first = self.currentItems.first();
+          var first = widget.currentItems.first();
           if (first.get(0) !== ui.item.get(0)) {
             ui.item.before(first);
-            first.after(self.currentItems.not(first).detach());
+            first.after(widget.currentItems.not(first).detach());
           } else {
-            ui.item.after(self.currentItems.not(ui.item).detach());
+            ui.item.after(widget.currentItems.not(ui.item).detach());
           }
-          self.currentItems.not('.placeholder').show();
-          var ui = self._dumpState();
+          widget.currentItems.not('.placeholder').show();
+          var ui = widget._dumpState();
           ui.movement = 'drag';
-          self._trigger("change", event, ui);
+          if (widget.fillItem) {
+            widget._updateFillRow()
+          }
+          widget._trigger("change", event, ui);
         }
       };
       if (this.element.is("table")) {
         this.strategy = "table";
-        this.$pluginRoot = $(this.element).find("tbody");
-        this.selectableOptions.filter = "tr";
+        this.$pluginRoot = this.element.find("tbody");
+        this.sortableOptions.items = "tr:not(.fill-item)";
+        this.selectableOptions.filter = "tr:not(.fill-item)";
         this.sortableOptions.helper = $.proxy(this._rowHelper, this);
       } else {
         this.strategy = "list";
-        this.$pluginRoot = $(this.element);
+        this.$pluginRoot = this.element;
         this.selectableOptions.filter = "li";
         this.sortableOptions.helper = $.proxy(this._listHelper, this);
       }
@@ -103,25 +114,31 @@
 
       this.$pluginRoot.selectable(this.selectableOptions);
       if (this.options.disabled === true) {
-        self._disable();
+        widget._disable();
       }
       var selector = '.handle';
       this._addDragListeners();
+      this.selectList.on('focusin', function (event) {
+        widget._trigger('focus', event, widget._dumpState());
+      });
+      this.selectList.on('focusout', function (event) {
+        widget._trigger('blur', event, widget._dumpState());
+      });
+      this._trigger('create', undefined, this._dumpState());
     },
 
     destroy: function () {
       $.Widget.prototype.destroy.call(this);
-      this._removeDomElements();
       this.$pluginRoot
         .sortable("destroy")
         .selectable("destroy");
+      this._removeDomElements();
 
       // remove empty class attributes                             y
       if (!this.element.attr('class')) {
         this.element.removeAttr("class");
       }
-      var that = this;
-      if (that.strategy === 'table') {
+      if (this.strategy === 'table') {
         this.element.children().each(function () {
           var $part = $(this);
           if (!$part.attr('class')) {
@@ -147,14 +164,18 @@
             $selectable.removeAttr("class");
           }
         });
-        return this;
       }
+      this._trigger('destroy', undefined, {});
     },
 
     _addDragListeners: function() {
+      var widget = this;
       if (this.options.dragSelect == false) {
         this.element.on("mousedown", '.ui-selectee', function (event) {
           var item = $(this);
+          if (widget.selectList.get(0) !== document.activeElement) {
+            widget.selectList.focus();
+          }
           var list = item.parents('.list').first();
           list.data('rfOrderingList').mouseStarted = true;
         });
@@ -227,41 +248,41 @@
     },
 
     _setOption: function (key, value) {
-      var that = this;
+      var widget = this;
       if (this.options.key === value) {
         return;
       }
       switch (key) {
         case "disabled":
           if (value === true) {
-            that._disable();
+            widget._disable();
           } else {
-            that._enable();
+            widget._enable();
           }
           break;
         case "header":
-          if (!that.header) {
-            that._addHeader();
+          if (!widget.header) {
+            widget._addHeader();
           }
-          that.header.text(value);
+          widget.header.text(value);
           break;
         case "columnClasses":
-          if (that.options.columnClasses) {
-            that._removeColumnClasses(that.options.columnClasses);
+          if (widget.options.columnClasses) {
+            widget._removeColumnClasses(widget.options.columnClasses);
           }
-          that._addColumnClasses(value);
+          widget._addColumnClasses(value);
           break;
         case "styleClass":
-          if (that.options.styleClass) {
-            that.selectList.removeClass(this.options.styleClass);
+          if (widget.options.styleClass) {
+            widget.selectList.removeClass(this.options.styleClass);
           }
-          that.selectList.addClass(value);
+          widget.selectList.addClass(value);
           break;
         case "buttonsText":
           this._applyButtonsText(this.selectList.find('.btn-group-vertical'), value);
           break;
       }
-      $.Widget.prototype._setOption.apply(that, arguments);
+      $.Widget.prototype._setOption.apply(widget, arguments);
     },
 
     _createKeyArray: function (items) {
@@ -278,8 +299,10 @@
     /** Public API methods **/
 
     connectWith: function (target) {
-      var orderingList = target.data("rfOrderingList");
-      this.$pluginRoot.sortable("option", "connectWith", orderingList.$pluginRoot);
+      var targetOrderingList = target.data("rfOrderingList");
+      this.$pluginRoot.sortable("option", "connectWith", targetOrderingList.$pluginRoot);
+      this._addFillRow();
+      target.on("sortover", $.proxy(this._updateFillRow, this));  // own "out" event causes placeholder interference
     },
 
     isSelected: function (item) {
@@ -299,10 +322,10 @@
     },
 
     unSelectAll: function () {
-      var self = this;
+      var widget = this;
       this._removeDomElements();
       this.element.children().each(function () {
-        self.unSelectItem(this);
+        widget.unSelectItem(this);
       });
     },
 
@@ -354,6 +377,22 @@
       this._trigger("change", event, ui);
     },
 
+    remove: function (items) {
+      items.detach();
+      var ui = this._dumpState();
+      ui.movement = 'remove';
+      this._trigger("change", event, ui);
+      return items;
+    },
+
+    add: function (items) {
+      this.$pluginRoot.prepend(items);
+      var ui = this._dumpState();
+      ui.movement = 'add';
+      this._trigger("change", event, ui);
+      return items;
+    },
+
     getOrderedElements: function () {
       return this.element.find('.ui-selectee');
     },
@@ -371,26 +410,27 @@
         this._addButtons();
       }
       if (this.strategy === 'table') { /* round the table row corners */
-        var that = this;
-        $(this.element).find("tr").each(function () {
+        var widget = this;
+        this.element.find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().addClass('last');
             children.first().addClass('first');
-            if (that.options.columnClasses) {
-              that._addColumnClassesToCells(children, that.options.columnClasses);
+            if (widget.options.columnClasses) {
+              widget._addColumnClassesToCells(children, widget.options.columnClasses);
             }
           })
       }
+      this._trigger('addDomElements', undefined, this._dumpState());
     },
 
     _addColumnClasses: function(columnClasses) {
       if (this.strategy !== 'table') {
         return;
       }
-      var that = this;
-      $(this.element).find('tr').each(function () {
-          that._addColumnClassesToCells($(this).children(), columnClasses);
+      var widget = this;
+      this.element.find('tr').each(function () {
+          widget._addColumnClassesToCells($(this).children(), columnClasses);
         });
     },
 
@@ -416,14 +456,14 @@
         this._applyButtonsText(buttonStack, this.options.buttonsText);
       }
       this.content.append(
-        $('<div />').addClass('buttonColumn').append(buttonStack));
+        $('<div />').addClass('button-column').append(buttonStack));
     },
 
     _applyButtonsText: function(buttonStack, buttonsText) {
-      this._applyButtonText(buttonStack.find('.first'), buttonsText.first);
-      this._applyButtonText(buttonStack.find('.up'), buttonsText.up);
-      this._applyButtonText(buttonStack.find('.down'), buttonsText.down);
-      this._applyButtonText(buttonStack.find('.last'), buttonsText.last);
+      this._applyButtonText(buttonStack.find('.btn-first'), buttonsText.first);
+      this._applyButtonText(buttonStack.find('.btn-up'), buttonsText.up);
+      this._applyButtonText(buttonStack.find('.btn-down'), buttonsText.down);
+      this._applyButtonText(buttonStack.find('.btn-last'), buttonsText.last);
     },
 
     _applyButtonText: function(button, text) {
@@ -445,8 +485,8 @@
       var button = $("<button/>")
         .attr('type', 'button')
         .addClass("btn btn-default")
-        .addClass(buttonClass)
-        .bind('click.orderingList', handler)
+        .addClass('btn-' + buttonClass)
+        .on('click.orderingList', handler)
         .append($("<i />").addClass('icon icon-' + buttonClass));
       buttonStack.append(button);
     },
@@ -458,14 +498,14 @@
       if (this.options.dragSelect === true) {
         this.content.addClass('with-handle');
         if (this.strategy === 'table') {
-          $(this.element)
+          this.element
             .find("tbody > tr")
             .prepend("<th class='handle'><i class='icon-move'></i></th>");
-          $(this.element)
+          this.element
             .find("thead > tr")
             .prepend("<th class='handle'></th>");
         } else if (this.strategy === 'list') {
-          $(this.element)
+          this.element
             .find("li")
             .prepend("<div class='handle'><i class='icon-move'></i></div>");
         }
@@ -474,9 +514,9 @@
 
     _addParents: function () {
       this.element.addClass('list').wrap(
-        $("<div />").addClass('ordering-list select-list').append(
+        $("<div />").addClass('ordering-list select-list').attr('tabindex', -1).append(
           $('<div />').addClass('content').append(
-            $('<div />').addClass('listBox')
+            $('<div />').addClass('scroll-box')
           )
         )
       );
@@ -497,6 +537,53 @@
       this.header = header;
     },
 
+    _addFillRow: function() {
+      var connectedList = this.$pluginRoot.sortable( "option", "connectWith" );
+      if (!connectedList || this.strategy != "table") {
+        return;
+      }
+
+      var itemsSelector = this.$pluginRoot.sortable( "option", "items" );
+      var children = this.$pluginRoot.find(itemsSelector);
+
+      if (children.length > 0) {
+        var child = children.first();
+      } else {
+        var connectedChildren = $(connectedList).find("tr");
+        if (connectedChildren.length > 0) {
+          child = connectedChildren.first();
+        }
+      }
+      if (child) {
+        var fillItem = child.clone();
+        fillItem.removeClass().addClass('fill-item').removeClass('ui-selectee');
+        fillItem.find('td').empty();
+        fillItem.data("key", undefined);
+        this.$pluginRoot.append(fillItem);
+        this.fillItem = fillItem;
+        this.element.on(this.options.widgetEventPrefix + 'change', $.proxy(this._updateFillRow, this));
+      }
+      this._updateFillRow();
+    },
+
+    _updateFillRow: function() {
+      if (this.fillItem) {
+        this.fillItem.css('height', '0');
+        var table = this.fillItem.parents('table').first();
+        var tbody = this.fillItem.parents('tbody').first();
+        var scrollBox = this.fillItem.parents('.scroll-box').first();
+        this.fillItem.detach();
+        var height = scrollBox.height() - table.height();
+        var placeholder = this.element.find('.placeholder');
+        if (placeholder) {
+          height = height - placeholder.height();
+        }
+        this.fillItem.height(height);
+        this.fillItem.toggle((height > 2));
+        tbody.append(this.fillItem);
+      }
+    },
+
     _disable: function () {
       this.$pluginRoot
         .sortable("option", "disabled", true)
@@ -505,7 +592,7 @@
         .addClass("disabled")
         .find(".ui-selected").removeClass('ui-selected');
       this.element.find(".ui-selectee").removeClass("ui-selectee").addClass("ui-disabled");
-      $('.buttonColumn', this.content).find("button").attr("disabled", true);
+      $('.button-column', this.content).find("button").attr("disabled", true);
       this._removeDragListeners();
     },
 
@@ -515,7 +602,7 @@
         .selectable("option", "disabled", false);
       this.element.removeClass("disabled");
       this.element.find(".ui-disabled").removeClass("ui-disabled").addClass("ui-selectee");
-      $('.buttonColumn', this.content).find("button").attr("disabled", false);
+      $('.button-column', this.content).find("button").attr("disabled", false);
       this._addDragListeners();
     },
 
@@ -529,24 +616,28 @@
     /** Cleanup methods **/
 
     _removeDomElements: function () {
-      $(this.element).find('.ui-selected').removeClass('ui-selected');
+      this.element.find('.ui-selected').removeClass('ui-selected');
       if (this.strategy === 'table') { /* round the table row corners */
-        var that = this;
-        $(this.element).find("tr").each(function () {
+        var widget = this;
+        this.element.find("tr").each(function () {
             var $tr = $(this);
             var children = $tr.children();
             children.last().removeClass('last');
             children.first().removeClass('first');
-            if (that.options.columnClasses) {
-              that._removeColumnClassesFromCells(children, that.options.columnClasses);
+            if (widget.options.columnClasses) {
+              widget._removeColumnClassesFromCells(children, widget.options.columnClasses);
             }
-          })
+          });
+        if (this.fillItem) {
+          this.element.find('.fill-item').remove();
+        }
+
       }
       var list = this.element.detach();
       this.selectList.replaceWith(list);
       if (this.options.dragSelect === true) {
         this.content.removeClass('with-handle');
-        $(this.element).find('.handle').remove();
+        this.element.find('.handle').remove();
       }
       this.element.removeClass('list');
     },
@@ -555,9 +646,9 @@
       if (this.strategy !== 'table') {
         return;
       }
-      var that = this;
-      $(this.element).find('tr').each(function() {
-        that._removeColumnClassesFromCells($(this).children(), columnClasses);
+      var widget = this;
+      this.element.find('tr').each(function() {
+        widget._removeColumnClassesFromCells($(this).children(), columnClasses);
       });
     },
 

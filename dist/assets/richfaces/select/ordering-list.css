@@ -1,6 +1,7 @@
 .ordering-list {
   margin-bottom: 1.428571429;
   display: block;
+  outline: none;
 }
 .ordering-list .header {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
