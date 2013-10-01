@@ -44,19 +44,19 @@
           widget.currentItems.not(ui.item).hide();
         },
         sort: function (event, ui) {
-          var sortable = this;
+          var $widget = $(this);
           var helperTop = ui.helper.position().top,
             helperBottom = helperTop + ui.helper.outerHeight();
-          sortable.children('.ui-selectee').not('.placeholder').not('.helper-item').not('.ui-selected').each(function () {
+          $widget.children('.ui-selectee').not('.placeholder').not('.helper-item').not('.ui-selected').each(function () {
             var item = $(this);
             var itemTop = item.position().top;
             var itemMiddle = item.position().top + item.outerHeight() / 2;
             /* if the helper overlaps half of an item, move the placeholder */
             if (helperTop < itemMiddle && itemMiddle < helperBottom) {
               if (itemTop > helperTop) {
-                $('.placeholder', sortable).insertAfter(item);
+                $('.placeholder', $widget).insertAfter(item);
               } else {
-                $('.placeholder', sortable).insertBefore(item);
+                $('.placeholder', $widget).insertBefore(item);
               }
               return false;
             }
