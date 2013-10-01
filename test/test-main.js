@@ -40,7 +40,8 @@
       'jquery': 'components/jquery/jquery',
       'jquery-ui': 'components/jquery-ui/ui/jquery-ui',
       'jquery-simulate': 'components/jquery-simulate/jquery.simulate',
-      'widget-test-base': 'test/utils/widget-test-base'
+      'widget-test-base': 'test/utils/widget-test-base',
+      'jquery-jasmine': 'components/jasmine-jquery/lib/jasmine-jquery'
     },
 
     shim: {
@@ -56,6 +57,9 @@
         exports: 'jquery-ui'
       },
       'jquery-simulate': {
+        deps: ['jquery']
+      },
+      'jquery-jasmine': {
         deps: ['jquery']
       },
       'src/widgets/input/autocomplete': {

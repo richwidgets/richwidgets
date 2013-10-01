@@ -1,4 +1,4 @@
-define(['test/utils/jasmine-toHaveEqualDom'], function () {
+define(['jquery', 'jquery-jasmine', 'test/utils/jasmine-toHaveEqualDom'], function () {
 
   var fixtures;
   var styleFixtures;
