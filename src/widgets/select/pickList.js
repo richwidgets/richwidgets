@@ -17,6 +17,7 @@
       orderable: true,
       orderButtonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
       pickButtonsText: undefined, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
+      widgetEventPrefix: 'picklist_',
 
       // callbacks
       change: null,
@@ -29,7 +30,7 @@
 
     _create: function () {
       var widget = this;
-      this.widgetEventPrefix = "picklist_";
+      this.widgetEventPrefix = this.options.widgetEventPrefix;
       this.sourceList = this.element.find(".source");
       this.targetList = this.element.find(".target");
       this._addDomElements();

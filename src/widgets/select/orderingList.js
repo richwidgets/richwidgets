@@ -311,7 +311,7 @@
       items.each(function () {
         var $this = $(this);
         var dataKey = $this.data('key');
-        var key = (dataKey) ? dataKey : $this.text();
+        var key = (typeof dataKey !== 'undefined') ? dataKey : $this.text();
         keys.push(key);
       })
       return keys;
