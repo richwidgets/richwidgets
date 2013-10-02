@@ -131,10 +131,10 @@
         this._setHeight(this.options.height);
       }
       if (typeof this.options.heightMin !== 'undefined') {
-        this._setHeightMin(this.options.height);
+        this._setHeightMin(this.options.heightMin);
       }
       if (typeof this.options.heightMax !== 'undefined') {
-        this._setHeightMax(this.options.height);
+        this._setHeightMax(this.options.heightMax);
       }
       this._trigger('create', undefined, this._dumpState());
     },
