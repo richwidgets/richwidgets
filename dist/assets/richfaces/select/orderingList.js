@@ -320,6 +320,9 @@
     /** Public API methods **/
 
     connectWith: function (target) {
+      if (! this.options.mouseOrderable) {
+        return;
+      }
       var targetOrderingList = target.data("rfOrderingList");
       this.$pluginRoot.sortable("option", "connectWith", targetOrderingList.$pluginRoot);
       this._addFillRow();
