@@ -127,6 +127,15 @@
       this.selectList.on('focusout', function (event) {
         widget._trigger('blur', event, widget._dumpState());
       });
+      if (typeof this.options.height !== 'undefined') {
+        this._setHeight(this.options.height);
+      }
+      if (typeof this.options.heightMin !== 'undefined') {
+        this._setHeightMin(this.options.height);
+      }
+      if (typeof this.options.heightMax !== 'undefined') {
+        this._setHeightMax(this.options.height);
+      }
       this._trigger('create', undefined, this._dumpState());
     },
 
@@ -167,15 +176,6 @@
             $selectable.removeAttr("class");
           }
         });
-      }
-      if (typeof this.options.height !== 'undefined') {
-        this._setHeight(this.options.height);
-      }
-      if (typeof this.options.heightMin !== 'undefined') {
-        this._setHeightMin(this.options.height);
-      }
-      if (typeof this.options.heightMax !== 'undefined') {
-        this._setHeightMax(this.options.height);
       }
       this._trigger('destroy', undefined, {});
     },
