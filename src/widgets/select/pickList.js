@@ -14,6 +14,7 @@
       targetHeader: undefined,
       switchByClick: undefined,
       switchByDblClick: undefined,
+      orderable: true,
       orderButtonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
       pickButtonsText: undefined, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
 
@@ -34,6 +35,7 @@
       this._addDomElements();
       this.sourceList.orderingList({
         showButtons: false,
+        mouseOrderable: this.options.orderable,
         contained: false,
         columnClasses: this.options.columnClasses,
         disabled: this.options.disabled,
@@ -41,6 +43,8 @@
         widgetEventPrefix: 'sourcelist_'
       });
       this.targetList.orderingList({
+        showButtons: this.options.orderable,
+        mouseOrderable: this.options.orderable,
         contained: false,
         columnClasses: this.options.columnClasses,
         buttonsText: this.options.orderButtonsText,
@@ -48,8 +52,10 @@
         header: this.options.targetHeader,
         widgetEventPrefix: 'targetlist_'
       });
-      this.sourceList.orderingList("connectWith", this.targetList);
-      this.targetList.orderingList("connectWith", this.sourceList);
+      if (this.options.orderable) {
+        this.sourceList.orderingList("connectWith", this.targetList);
+        this.targetList.orderingList("connectWith", this.sourceList);
+      }
 
       this._registerListeners();
       if (this.options.switchByClick) {
