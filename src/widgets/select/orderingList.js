@@ -5,6 +5,9 @@
     options: {
       disabled: false,
       header: undefined,
+      height: undefined,
+      heightMin: undefined,
+      heightMax: undefined,
       styleClass: undefined,
       columnClasses: undefined,
       showButtons: true,
@@ -165,6 +168,15 @@
           }
         });
       }
+      if (typeof this.options.height !== 'undefined') {
+        this._setHeight(this.options.height);
+      }
+      if (typeof this.options.heightMin !== 'undefined') {
+        this._setHeightMin(this.options.height);
+      }
+      if (typeof this.options.heightMax !== 'undefined') {
+        this._setHeightMax(this.options.height);
+      }
       this._trigger('destroy', undefined, {});
     },
 
@@ -265,6 +277,15 @@
             widget._addHeader();
           }
           widget.header.text(value);
+          break;
+        case "height":
+          widget._setHeight(value);
+          break;
+        case "heightMin":
+          widget._setHeightMin(value);
+          break;
+        case "heightMax":
+          widget._setHeightMax(value);
           break;
         case "columnClasses":
           if (widget.options.columnClasses) {
@@ -582,6 +603,18 @@
         this.fillItem.toggle((height > 2));
         tbody.append(this.fillItem);
       }
+    },
+
+    _setHeight: function(height) {
+      this.selectList.find('.scroll-box').css('height', height);
+    },
+
+    _setHeightMin: function(height) {
+      this.selectList.find('.scroll-box').css('min-height', height);
+    },
+
+    _setHeightMax: function(height) {
+      this.selectList.find('.scroll-box').css('max-height', height);
     },
 
     _disable: function () {
