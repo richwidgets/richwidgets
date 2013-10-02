@@ -5,6 +5,9 @@
     options: {
       disabled: false,
       header: undefined,
+      height: undefined,
+      heightMin: undefined,
+      heightMax: undefined,
       styleClass: undefined,
       columnClasses: undefined,
       sourceHeader: undefined,
@@ -67,6 +70,15 @@
       this.outer.on('focusout', function (event) {
         widget._trigger('blur', event, widget._dumpState());
       });
+      if (typeof this.options.height !== 'undefined') {
+        this._setHeight(this.options.height);
+      }
+      if (typeof this.options.heightMin !== 'undefined') {
+        this._setHeightMin(this.options.height);
+      }
+      if (typeof this.options.heightMax !== 'undefined') {
+        this._setHeightMax(this.options.height);
+      }
       this._trigger('create', undefined, this._dumpState());
     },
 
@@ -126,6 +138,15 @@
             widget._addHeader(value);
           }
           widget.outer.find('.header-row .header').text(value);
+          break;
+        case "height":
+          widget._setHeight(value);
+          break;
+        case "heightMin":
+          widget._setHeightMin(value);
+          break;
+        case "heightMax":
+          widget._setHeightMax(value);
           break;
         case "sourceHeader":
           if (!widget.options.sourceHeader) {
@@ -292,6 +313,22 @@
           this.outer.prepend(headerRow);
         }
       }
+    },
+
+    _setHeight: function(height) {
+      this.sourceList.orderingList('option', 'height', height);
+      this.targetList.orderingList('option', 'height', height);
+    },
+
+    _setHeightMin: function(height) {
+      this.sourceList.orderingList('option', 'heightMin', height);
+      this.targetList.orderingList('option', 'heightMin', height);
+    },
+
+    _setHeightMax: function(height) {
+      this.sourceList.orderingList('option', 'heightMax', height);
+      this.targetList.orderingList('option', 'heightMax', height);
+
     },
 
     _registerListeners: function () {
