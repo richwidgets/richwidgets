@@ -59,24 +59,11 @@
       }
 
       this._registerListeners();
-      if (this.options.switchByClick) {
-        this._addClickListeners();
-      }
-
-      if (this.options.switchByDblClick) {
-        this._addDoubleClickListeners();
-      }
 
       if (this.options.disabled === true) {
         this._disable();
       }
 
-      this.outer.on('focusin', function (event) {
-        widget._trigger('focus', event, widget._dumpState());
-      });
-      this.outer.on('focusout', function (event) {
-        widget._trigger('blur', event, widget._dumpState());
-      });
       if (typeof this.options.height !== 'undefined') {
         this._setHeight(this.options.height);
       }
@@ -91,6 +78,7 @@
 
     destroy: function () {
       $.Widget.prototype.destroy.call(this);
+      this._unregisterListeners();
       this.sourceList.orderingList("destroy");
       this.targetList.orderingList("destroy");
 
@@ -359,6 +347,23 @@
         new_ui.originalEvent = event;
         widget._trigger("change", event, new_ui);
       });
+      if (this.options.switchByClick) {
+        this._addClickListeners();
+      }
+      if (this.options.switchByDblClick) {
+        this._addDoubleClickListeners();
+      }
+      this.outer.on('focusin.picklist', function (event) {
+        widget._trigger('focus', event, widget._dumpState());
+      });
+      this.outer.on('focusout.picklist', function (event) {
+        widget._trigger('blur', event, widget._dumpState());
+      });
+    },
+
+    _unregisterListeners: function () {
+      this.outer.off('focusin.picklist');
+      this.outer.off('focusout.picklist');
     },
 
     _addClickListeners: function () {

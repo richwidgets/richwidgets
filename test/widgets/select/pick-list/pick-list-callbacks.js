@@ -53,16 +53,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
     });
 
     describe('interaction events: ', function () {
-      it('create:', function () {
+      it('focus/blur:', function () {
         function test(fixture, element) {
           // given
           var focusCallback = jasmine.createSpy('focusCallback');
-          var changeCallback = jasmine.createSpy('changeCallback');
           var blurCallback = jasmine.createSpy('blurCallback');
 
           element.pickList({
             focus: focusCallback,
-            change: changeCallback,
             blur: blurCallback
           });
 
@@ -80,14 +78,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
           }, "first item should be selected", 500);
 
           runs(function () {
-            fixture.find('.button-column .btn-add').first().click();
-          });
-
-          waitsFor(function () {
-            return fixture.find('.target .ui-selectee').first().data('key') === firstItem.data('key');
-          }, 'item should be moved to top of target list', 500);
-
-          runs(function () {
+            expect(focusCallback).toHaveBeenCalled();
             fixture.find('#blur').focus();
           });
 
@@ -96,8 +87,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
           }, 'blur button has focus', 500);
 
           runs(function () {
-            expect(focusCallback).toHaveBeenCalled();
-            expect(changeCallback).toHaveBeenCalled();
             expect(blurCallback).toHaveBeenCalled();
           });
         }
@@ -105,7 +94,105 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
         test(fixture_list, element_list);
         test(fixture_table, element_table);
       });
-    });
 
+      describe('change by button click:', function () {
+        it('btn-add:', function () {
+          testChangeByButtonClick(fixture_list, element_list, 'btn-add');
+          testChangeByButtonClick(fixture_table, element_table, 'btn-add');
+        });
+
+        it('btn-add-all:', function () {
+          testChangeByButtonClick(fixture_list, element_list, 'btn-add-all');
+          testChangeByButtonClick(fixture_table, element_table, 'btn-add-all');
+        });
+
+        it('btn-remove:', function () {
+          testChangeByButtonClick(fixture_list, element_list, 'btn-remove');
+          testChangeByButtonClick(fixture_table, element_table, 'btn-remove');
+        });
+
+        it('btn-remove:', function () {
+          testChangeByButtonClick(fixture_list, element_list, 'btn-remove-all');
+          testChangeByButtonClick(fixture_table, element_table, 'btn-remove-all');
+        });
+
+        function testChangeByButtonClick(fixture, element, buttonClass) {
+          var changeCallback = jasmine.createSpy('changeCallback');
+
+          element.pickList({ change: changeCallback });
+
+          var list1 = buttonClass.indexOf('btn-add') === 0 ? ".source" : ".target";
+          var list2 = buttonClass.indexOf('btn-add') === 0 ? ".target" : ".source";
+
+          //when
+          var firstItem = fixture.find(list1 + ' .ui-selectee').first();
+
+          //then
+          runs(function () {
+            firstItem.trigger('mousedown');
+            firstItem.trigger('mouseup');
+          });
+
+          waitsFor(function () {
+            return firstItem.hasClass('ui-selected');
+          }, "first item should be selected", 500);
+
+          runs(function () {
+            fixture.find('.button-column .' + buttonClass).first().click();
+          });
+
+          waitsFor(function () {
+            return fixture.find(list2 + ' .ui-selectee').first().data('key') === firstItem.data('key');
+          }, 'item should be moved to top of opposing list', 500);
+
+          runs(function () {
+            expect(changeCallback).toHaveBeenCalled();
+          });
+        };
+      });
+
+      describe('change by drag and drop:', function () {
+        function test(fixture, element, dx, dy) {
+          $('#container').width('800'); // set the container width so the mouse drags are repeatable across browsers
+          var changeCallback = jasmine.createSpy('changeCallback');
+
+          element.pickList({ change: changeCallback });
+
+          var list1 = dx > 0 ? ".source" : ".target";
+          var list2 = dx > 0 ? ".target" : ".source";
+
+          //when
+          var firstItem = fixture.find(list1 + ' .ui-selectee').first();
+
+          //then
+          runs(function () {
+            firstItem.trigger('mousedown');
+            firstItem.simulate('drag', {dx: dx, dy: dy});
+            firstItem.trigger('mouseup');
+          });
+
+          waitsFor(function () {
+            return fixture.find(list2 + ' .ui-selectee').first().data('key') === firstItem.data('key');
+          }, 'item should be moved to top of opposing list', 500);
+
+          runs(function () {
+            expect(changeCallback).toHaveBeenCalled();
+          });
+
+        }
+
+        var dx = 400;
+        it('drag to target:', function () {
+          test(fixture_list, element_list, dx, 0);
+          test(fixture_table, element_table, dx, 20);
+        });
+
+        it('drag to source:', function () {
+          test(fixture_list, element_list, -dx, 0);
+          test(fixture_table, element_table, -dx, 20);
+          debugger;
+        });
+      });
+    });
   });
 });

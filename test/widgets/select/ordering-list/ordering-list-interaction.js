@@ -186,7 +186,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           //then
           runs(function () {
             item.trigger('mousedown');
-            debugger;
             item.simulate('drag', {dy: 80});
             item.trigger('mouseup');
           });
