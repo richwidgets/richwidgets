@@ -341,13 +341,13 @@
     _registerListeners: function () {
       var widget = this;
       // the widget factory converts all events to lower case
-      this.sourceList.on('sourcelist_receive', function (event, ui) {
+      this.sourceList.on('sortreceive', function (event, ui) {
         var new_ui = widget._dumpState();
         new_ui.change = 'remove';
         new_ui.originalEvent = event;
         widget._trigger("change", event, new_ui);
       });
-      this.targetList.on('targetlist_receive', function (event, ui) {
+      this.targetList.on('sortreceive', function (event, ui) {
         var new_ui = widget._dumpState();
         new_ui.change = 'add';
         new_ui.originalEvent = event;
