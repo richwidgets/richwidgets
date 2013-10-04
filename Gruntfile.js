@@ -50,6 +50,7 @@ module.exports = function (grunt) {
         root: "components",
         bootstrap: "<%= config.dir.components.root %>/bootstrap",
         fontawesome: "<%= config.dir.components.root %>/font-awesome",
+        jquery: "<%= config.dir.components.root %>/jquery",
         jqueryui: "<%= config.dir.components.root %>/jquery-ui",
         flot: {
               lib: "<%= config.dir.components.root %>/flot",
@@ -67,6 +68,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask("build", [
     "copy:font",
+    "copy:jquery",
     "copy:jqueryui",
     "copy:flot",
     "less:bootstrap",
@@ -171,6 +173,16 @@ module.exports = function (grunt) {
             cwd: "<%= config.dir.components.fontawesome %>/font",
             src: ["**"],
             dest: "<%= config.dir.dist.font %>"
+          }
+        ]
+      },
+      jquery: {
+        files: [
+          {
+            expand: true,
+            cwd: "<%= config.dir.components.jquery %>/ui",
+            src: ["**"],
+            dest: "<%= config.dir.dist.assets %>/jquery"
           }
         ]
       },
