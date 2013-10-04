@@ -4,8 +4,8 @@
 
 ## Users ##
 
-Depending on your needs, you can grab the compiled files inside the <code>[dist](https://github.com/richfaces/richfaces-widgets/tree/master/dist)</code> directory and drop them on your
-project or directly use the LESS and raw JavaScript files from the <code>[src](https://github.com/richfaces/richfaces-widgets/tree/master/src)</code> directory.
+Depending on your needs, you can grab the compiled files inside the <code>[dist](https://github.com/richwidgets/richwidgets/tree/master/dist)</code> directory and drop them on your
+project or directly use the LESS and raw JavaScript files from the <code>[src](https://github.com/richwidgets/richwidgets/tree/master/src)</code> directory.
 
 ## Build from sources ##
 
@@ -27,8 +27,8 @@ running on that port).
 
 ## Contributors ##
 
-Learn more by reading the [CONTRIBUTING.md](https://github.com/richfaces/richfaces-widgets/blob/master/CONTRIBUTING.md) file.
+Learn more by reading the [CONTRIBUTING.md](https://github.com/richwidgets/richwidgets/blob/master/CONTRIBUTING.md) file.
 
 ## License ##
 
-Apache License Version 2.0. [Read more in the LICENSE.txt](https://github.com/richfaces/richfaces-widgets/blob/master/LICENSE.txt) file.
+Apache License Version 2.0. [Read more in the LICENSE.txt](https://github.com/richwidgets/richwidgets/blob/master/LICENSE.txt) file.

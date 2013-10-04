@@ -36,7 +36,7 @@ module.exports = function (grunt) {
         assets: "<%= config.dir.dist.root %>/assets",
         demos: "<%= config.dir.dist.root %>/demos",
         font: "<%= config.dir.dist.assets %>/font-awesome/font",
-        richfaces: "<%= config.dir.dist.assets %>/richfaces"
+        richwidgets: "<%= config.dir.dist.assets %>/richwidgets"
       },
       test: {
         root: "test"
@@ -67,14 +67,16 @@ module.exports = function (grunt) {
     "copy:jqueryui",
     "copy:modernizr",
     "copy:flot",
+    "copy:js",
     "less:bootstrap",
     "less:fontawesome",
-    "less:widgets"
+    "less:widgets",
+    "less:dist",
+    "uglify:dist"
   ]);
 
   grunt.registerTask("default", [
-    "build",
-    "copy:js",
+    "demo",
     "connect:demo",
     "watch"
   ]);
@@ -82,9 +84,7 @@ module.exports = function (grunt) {
   grunt.registerTask("dist", [
     "clean:dist",
     "build",
-    "copy:js",
-    "less:dist",
-    "uglify:dist",
+    "assemble",
     "test",
   ]);
 
@@ -97,11 +97,8 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask("demo", [
-    "clean:dist",
+    "clean:demo",
     "build",
-    "copy:js",
-    "less:dist",
-    "uglify:dist",
     "assemble"
   ]);
 
@@ -133,7 +130,7 @@ module.exports = function (grunt) {
         options: {
           paths: ["<%= config.dir.src.widgets %>", "<%= config.dir.lib.root %>"]
         },
-        files: grunt.file.expandMapping("*/**/*.less", "<%= config.dir.dist.richfaces %>/", { // exclude files in the widgets folder itself
+        files: grunt.file.expandMapping("*/**/*.less", "<%= config.dir.dist.richwidgets %>/", { // */**/*.less: exclude files in the widgets folder itself
           cwd: "src/widgets",
           rename: function (destBase, destPath) {
             return destBase + destPath.replace(/\.less$/, '.css');
@@ -146,7 +143,7 @@ module.exports = function (grunt) {
           yuicompress: true
         },
         src: "<%= config.dir.src.widgets %>/main.less",
-        dest: "<%= config.dir.dist.assets %>/richfaces.min.css"
+        dest: "<%= config.dir.dist.richwidgets %>/richwidgets.min.css"
       }
     },
 
@@ -160,7 +157,7 @@ module.exports = function (grunt) {
         },
         files: [
           {
-            "<%= config.dir.dist.assets %>/richfaces.min.js": ["<%= config.dir.src.widgets %>/**/*.js"]
+            "<%= config.dir.dist.assets %>/richwidgets/richwidgets.min.js": ["<%= config.dir.src.widgets %>/**/*.js"]
           }
         ]
       }
@@ -236,7 +233,7 @@ module.exports = function (grunt) {
             ]
         },
       js: {
-        files: grunt.file.expandMapping("**/*.js", "<%= config.dir.dist.richfaces %>/", {
+        files: grunt.file.expandMapping("**/*.js", "<%= config.dir.dist.richwidgets %>/", {
           cwd: "src/widgets",
           rename: function (destBase, destPath) {
             return destBase + destPath;

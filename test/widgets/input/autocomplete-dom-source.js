@@ -9,7 +9,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var s = jasmine.getStyleFixtures();
       s.appendLoad('dist/assets/bootstrap/bootstrap.css');
       s.appendLoad('dist/assets/font-awesome/font-awesome.css');
-      s.appendLoad('dist/assets/richfaces/input/autocomplete.css');
+      s.appendLoad('dist/assets/richwidgets/input/autocomplete.css');
     });
 
 

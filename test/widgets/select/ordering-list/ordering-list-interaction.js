@@ -12,8 +12,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       var s = jasmine.getStyleFixtures();
       s.appendLoad('dist/assets/bootstrap/bootstrap.css');
       s.appendLoad('dist/assets/font-awesome/font-awesome.css');
-      s.appendLoad('dist/assets/richfaces/select/select-list.css');
-      s.appendLoad('dist/assets/richfaces/select/ordering-list.css');
+      s.appendLoad('dist/assets/richwidgets/select/select-list.css');
+      s.appendLoad('dist/assets/richwidgets/select/ordering-list.css');
 
       fixture_list = $('#fixture-ordering-list-list');
       original_list = fixture_list.clone();
