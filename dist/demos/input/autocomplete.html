@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="fragment" content="!"/>
+
+  <title>Autocomplete</title>
+
+  <link rel="stylesheet" href="../../assets/richwidgets/richwidgets.min.css">
+  <link rel="stylesheet" href="../../assets/font-awesome/font-awesome.css">
+  <script src="../../assets/jquery/jquery.min.js"></script>
+  <script src="../../assets/jquery-ui/minified/jquery-ui.min.js"></script>
+  <script src="../../assets/richwidgets/richwidgets.min.js"></script>
+
+  <script src="../../assets/modernizr/modernizr.js"></script>
+
+  <script src="http://localhost:35729/livereload.js"></script>
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+
+    <a class="navbar-brand" href="/">RichWidgets</a>
+
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="/">Home</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <script>
+    var source = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "Ceylon",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"]
+  </script>
+
+  <h2>Example autocomplete</h2>
+
+  <p>Using the typeahead.js plugin, we built a simple autocomplete widget:</p>
+
+
+  <p>
+    <input id="autocomplete" type="text"></input>
+    <script>
+      $("#autocomplete").richAutocomplete({ source: source });
+    </script>
+  </p>
+
+  <p>Using autocomplete with function as a source:</p>
+
+  <p>
+    <input id="autocomplete-function" type="text"></input>
+    <script>
+      $("#autocomplete-function").richAutocomplete({ source: function (request, response) {
+        response($.ui.autocomplete.filter(source, request.term));
+      }
+      });
+    </script>
+  </p>
+
+
+  <p>Simulating request delay:</p>
+
+  <p>
+    <input id="autocomplete-delay" type="text"></input>
+    <script>
+      $("#autocomplete-delay").richAutocomplete({ source: function (request, response) {
+        setTimeout(function () {
+          response($.ui.autocomplete.filter(source, request.term));
+        }, 500);
+      }
+      });
+    </script>
+  </p>
+
+  <p>Simulating request delay with cached ajax mode:</p>
+
+  <p>
+    <input id="autocomplete-cache-delay" type="text"/>
+    <script>
+      $("#autocomplete-cache-delay").richAutocomplete({
+        cached: true,
+        minLength: 2,
+        source: function (request, response) {
+          setTimeout(function () {
+            response($.ui.autocomplete.filter(source, request.term));
+          }, 500);
+        }
+      });
+    </script>
+  </p>
+
+  <p>Auto-Focus:</p>
+
+  <p>
+    <input id="autocomplete-auto-focus" type="text"></input>
+    <script>
+      $("#autocomplete-auto-focus").richAutocomplete({ source: source, autoFocus: true });
+    </script>
+  </p>
+
+
+
+  <p>Auto-Fill:</p>
+
+  <p>
+    <input id="autocomplete-auto-fill" type="text"></input>
+    <script>
+      $("#autocomplete-auto-fill").richAutocomplete({ source: source, autoFill: true });
+    </script>
+  </p>
+
+
+
+  <p>Auto-Focus Auto-Fill:</p>
+
+  <p>
+    <input id="autocomplete-auto-focus-fill" type="text"></input>
+    <script>
+      $("#autocomplete-auto-focus-fill").richAutocomplete({ source: source, autoFocus: true, autoFill: true });
+    </script>
+  </p>
+
+  <p>Support for tokenizing:</p>
+
+  <p>
+    <input id="autocomplete-tokenizing" type="text"></input>
+    <script>
+      $("#autocomplete-tokenizing").richAutocomplete({ source: source, token: "," });
+    </script>
+  </p>
+
+
+  <p>Autocomplete can have a button:</p>
+
+  <p>
+    <input id="autocomplete-with-button" type="text"/>
+    <script>
+      $("#autocomplete-with-button").richAutocomplete({
+        source: source,
+        showButton: true
+      });
+    </script>
+  </p>
+
+
+  <p>Autocomplete support rendering of a list from a ordered/unordered list:</p>
+
+  <p>
+    <input id="autocomplete-with-list" type="text"></input>
+  <ul id="suggestion-list" style="display: none">
+    <li><i class="icon-heart"></i> Java</i></li>
+    <li><i class="icon-flag"></i> Haskell</li>
+  </ul>
+  <script>
+    $("#autocomplete-with-list").richAutocomplete({ source: document.getElementById('suggestion-list') });
+  </script>
+  </p>
+
+  <p>Autocomplete support rendering of a suggestion list from a table:</p>
+
+  <p>
+    <input id="autocomplete-with-table" type="text"></input>
+  <table id="suggestion-table" style="display: none">
+    <tbody>
+    <tr data-label="Java">
+      <td><i class="icon-heart"></i></td>
+      <td>Java</td>
+
+      <td><i>my favorite language</i></td>
+    </tr>
+    <tr data-label="Haskell">
+      <td><i class="icon-flag"></i></td>
+      <td>Haskell</td>
+      <td>functional language</td>
+    </tr>
+    </tbody>
+  </table>
+  <script>
+    $("#autocomplete-with-table").richAutocomplete({ source: document.getElementById('suggestion-table') });
+  </script>
+  </p>
+
+  <p>Updating of list-based suggestions (delayed simulating AJAX response)</p>
+
+  <p>
+    <input id="autocomplete-updatable" type="text"/>
+  <ul id="suggestions-updatable" style="display: none">
+    <li>Java</li>
+    <li>Haskell</li>
+  </ul>
+  <script>
+    var counter = 1;
+    $("#autocomplete-updatable").richAutocomplete({
+      source: document.getElementById('suggestions-updatable'),
+      update: function (request, done) {
+        setTimeout(function () {
+          $('#suggestions-updatable').append($('<li>Test' + counter++ + '</li>'));
+          done();
+        }, 1000);
+      }
+    });
+  </script>
+  </p>
+
+  <p>Autocomplete's creation, destruction, enabling and disabling:</p>
+
+  <p>
+    <input id="autocomplete-lifecycle" type="text"></input>
+  <ul id="suggestions" style="display: none">
+    <li>Java</li>
+    <li>Haskell</li>
+  </ul>
+  <script>
+    var options = { source: document.getElementById('suggestions'), showButton: true };
+    $("#autocomplete-lifecycle").richAutocomplete(options);
+  </script>
+  </p>
+
+
+</div>
+</body>
+</html>
