@@ -1,67 +1,8 @@
-<!DOCTYPE html>
+---
+title: Autocomplete
+---
 
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
-
-<head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="fragment" content="!"/>
-
-  <title>RichWidgets</title>
-
-  <link rel="stylesheet" media="screen" href="assets/bootstrap/bootstrap.css">
-  <link rel="stylesheet" media="screen" href="assets/font-awesome/font-awesome.css">
-  <link rel="stylesheet" media="screen" href="examples/styles/examples.css">
-  <link rel="stylesheet" media="screen" href="assets/richfaces/input/autocomplete.css">
-
-  <!--<link rel="stylesheet" media="screen" href="typeahead.js-bootstrap.css/typeahead.js-bootstrap.css">-->
-
-  <link rel="shortcut icon" type="image/png" href="">
-  <script src="modernizr/modernizr.js"></script>
-
-  <script type="text/javascript" src="jquery/jquery.js"></script>
-  <script type="text/javascript" src="jquery-ui/ui/jquery.ui.core.js"></script>
-  <script type="text/javascript" src="jquery-ui/ui/jquery.ui.widget.js"></script>
-  <script type="text/javascript" src="jquery-ui/ui/jquery.ui.position.js"></script>
-  <script type="text/javascript" src="jquery-ui/ui/jquery.ui.menu.js"></script>
-  <script type="text/javascript" src="jquery-ui/ui/jquery.ui.autocomplete.js"></script>
-  <script type="text/javascript" src="widgets/input/autocomplete.js"></script>
-
-</head>
-
-<body>
-<div class="navbar navbar-default navbar-static-top">
-  <div class="container">
-    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </a>
-
-    <a class="navbar-brand" href="index.html">RichWidgets</a>
-
-    <div class="nav-collapse collapse navbar-responsive-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="index.html">Home</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-
-  <script>
+<script>
     var source = [
       "ActionScript",
       "AppleScript",
@@ -267,44 +208,7 @@
   </ul>
   <script>
     var options = { source: document.getElementById('suggestions'), showButton: true };
-
-    var toggleDisabled = function (event, id) {
-      var $list = $('#' + id);
-      var $button = $(event.target);
-      var disabled = $list.richAutocomplete('option', 'disabled');
-      if (disabled) {
-        $list.richAutocomplete('enable');
-        $button.text('Disable Plugin');
-      } else {
-        $list.richAutocomplete('disable');
-        $button.text('Enable Plugin');
-      }
-    }
-
-    var toggleActive = function (event, id, options) {
-      var $list = $('#' + id);
-      var $button = $(event.target);
-      var active = $list.parents('.r-autocomplete').length > 0;
-      if (active) {
-        $list.richAutocomplete('destroy');
-        $button.text('Activate Plugin');
-      } else {
-        $list.richAutocomplete(options);
-        $button.text('Destroy Plugin');
-      }
-    }
-
     $("#autocomplete-lifecycle").richAutocomplete(options);
   </script>
   </p>
 
-  <p>
-    <button onclick="toggleDisabled(event, 'autocomplete-lifecycle', options)" class="btn btn-default">Disable Plugin
-    </button>
-    <button onclick="toggleActive(event, 'autocomplete-lifecycle', options)" class="btn btn-default">Destroy Plugin
-    </button>
-  </p>
-
-
-</body>
-</html>

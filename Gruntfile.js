@@ -28,24 +28,18 @@ module.exports = function (grunt) {
     dir: {
       src: {
         root: "src",
+        demos: "<%= config.dir.src.root %>/demos",
         widgets: "<%= config.dir.src.root %>/widgets"
       },
       dist: {
         root: "dist",
         assets: "<%= config.dir.dist.root %>/assets",
+        demos: "<%= config.dir.dist.root %>/demos",
         font: "<%= config.dir.dist.assets %>/font-awesome/font",
-        richfaces: "<%= config.dir.dist.assets %>/richfaces",
-        examples: {
-          root: "<%= config.dir.dist.root %>/examples",
-          styles: "<%= config.dir.dist.examples.root %>/styles"
-        }
+        richfaces: "<%= config.dir.dist.assets %>/richfaces"
       },
       test: {
         root: "test"
-      },
-      examples: {
-        root: "examples",
-        styles: "<%= config.dir.examples.root %>/styles"
       },
       lib: {
         root: "lib",
@@ -71,6 +65,7 @@ module.exports = function (grunt) {
     "copy:font",
     "copy:jquery",
     "copy:jqueryui",
+    "copy:modernizr",
     "copy:flot",
     "less:bootstrap",
     "less:fontawesome",
@@ -80,13 +75,12 @@ module.exports = function (grunt) {
   grunt.registerTask("default", [
     "build",
     "copy:js",
-    "less:examples",
-    "connect:examples",
+    "connect:demo",
     "watch"
   ]);
 
   grunt.registerTask("dist", [
-    "clean",
+    "clean:dist",
     "build",
     "copy:js",
     "less:dist",
@@ -102,16 +96,23 @@ module.exports = function (grunt) {
     "dist"
   ]);
 
-  grunt.registerTask("site", [
-    "site-clean",
+  grunt.registerTask("demo", [
+    "clean:dist",
+    "build",
+    "copy:js",
+    "less:dist",
+    "uglify:dist",
     "assemble"
   ]);
 
   grunt.initConfig({
     config: configuration,
-    site: grunt.file.readYAML('site/src/data/site.yml'),
+    demo: grunt.file.readYAML('src/demos/data/site.yml'),
 
-    clean: [ 'dist' ],
+    clean: {
+      dist: [ 'dist' ],
+      demo: ['<%= demo.destination %>/**/*.{html,md}']
+    },
 
     less: {
       bootstrap: {
@@ -146,13 +147,6 @@ module.exports = function (grunt) {
         },
         src: "<%= config.dir.src.widgets %>/main.less",
         dest: "<%= config.dir.dist.assets %>/richfaces.min.css"
-      },
-      examples: {
-        options: {
-          yuicompress: true
-        },
-        src: "<%= config.dir.examples.styles %>/examples.less",
-        dest: "<%= config.dir.dist.examples.styles %>/examples.css"
       }
     },
 
@@ -183,12 +177,22 @@ module.exports = function (grunt) {
           }
         ]
       },
+      modernizr: {
+        files: [
+          {
+            expand: true,
+            cwd: "<%= config.dir.lib.root %>/modernizr",
+            src: ["modernizr.js"],
+            dest: "<%= config.dir.dist.assets %>/modernizr"
+          }
+        ]
+      },
       jquery: {
         files: [
           {
             expand: true,
-            cwd: "<%= config.dir.lib.jquery %>/ui",
-            src: ["**"],
+            cwd: "<%= config.dir.lib.jquery %>",
+            src: ["*.js", "*.map"],
             dest: "<%= config.dir.dist.assets %>/jquery"
           }
         ]
@@ -282,12 +286,8 @@ module.exports = function (grunt) {
         files: ["<%= config.dir.src.widgets %>/**/*.js"],
         tasks: ["copy:js"]
       },
-      examples: {
-        files: ["<%= config.dir.examples.styles %>/*.less"],
-        tasks: ["less:examples"]
-      },
-      site: {
-        files: "site/**/*.hbs",
+      demo: {
+        files: ["<%= config.dir.src.demos %>/**/*.hbs"],
         tasks: ["assemble"]
       },
       dist: {
@@ -297,8 +297,7 @@ module.exports = function (grunt) {
         files: [
           "<%= config.dir.dist.assets %>/**/*.js",
           "<%= config.dir.dist.assets %>/**/*.css",
-          "<%= config.dir.examples.root %>/**/*.html",
-          "<%= config.dir.dist.examples.styles %>/**.css"
+          "<%= config.dir.dist.demos %>/**/*.html",
         ],
         tasks: []
       }
@@ -311,25 +310,12 @@ module.exports = function (grunt) {
         //hostname: 'localhost'
         hostname: '0.0.0.0'
       },
-      test: {
+      demo: {
         options: {
           middleware: function (connect) {
             return [
-              mountFolder(connect, 'dist'),
-              mountFolder(connect, 'test'),
-              mountFolder(connect, 'lib')
-            ];
-          }
-        }
-      },
-      examples: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, 'src'),
-              mountFolder(connect, 'dist'),
-              mountFolder(connect, 'examples'),
-              mountFolder(connect, 'lib')
+              mountFolder(connect, 'dist/demos'),
+              mountFolder(connect, 'dist')
             ];
           }
         }
@@ -339,23 +325,18 @@ module.exports = function (grunt) {
     assemble: {
       options: {
         prettify: {indent: 2},
-        data: 'site/src/**/*.{json,yml}',
-        assets: 'assets',
-        helpers: 'site/src/helpers/helper-*.js',
-        layoutdir: 'site/src/templates/layouts',
-        partials: ['site/src/templates/includes/**/*.hbs'],
+        data: 'src/demos/**/*.{json,yml}',
+        assets: './dist/assets',
+        layoutdir: 'src/demos/templates/layouts',
+        layout: 'default.hbs',
+        partials: ['src/demos/templates/includes/**/*.hbs']
       },
-      site: {
-        // Target-level options
+      demos: {
         options: {layout: 'default.hbs'},
         files: [
-          { expand: true, cwd: 'site/src/templates/pages', src: ['*.hbs'], dest: '<%= site.destination %>/' }
+          { expand: true, cwd: 'src/demos/pages', src: ['**/*.hbs'], dest: '<%= demo.destination %>/' }
         ]
       }
-    },
-
-    "site-clean": {
-      all: ['<%= site.destination %>/**/*.{html,md}']
     }
 
   });
