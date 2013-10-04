@@ -1,19 +1,32 @@
-<div class="navbar navbar-default navbar-static-top">
+<div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
-    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </a>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">RichWidgets</a>
+    </div>
 
-    <a class="navbar-brand" href="/">RichWidgets</a>
-
-    <div class="nav-collapse collapse navbar-responsive-collapse">
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="/">Home</a>
+
+        <li {{#is basename "index"}} class="active"{{/is}}><a href="/">Home</a></li>
+        <li {{#is basename "about"}} class="active"{{/is}}><a href="/about.html">About</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Widgets <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            {{#each pages}}
+              {{#is data.section "demo"}}
+                <li {{#is ../../basename basename}} class="active"{{/is}}><a href="{{href dest}}">{{data.title}}</a></li>
+              {{/is}}
+            {{/each}}
+          </ul>
         </li>
       </ul>
     </div>
+
   </div>
 </div>

@@ -65,7 +65,7 @@ module.exports = function (grunt) {
     "copy:font",
     "copy:jquery",
     "copy:jqueryui",
-    "copy:modernizr",
+    "copy:lib",
     "copy:flot",
     "copy:js",
     "less:bootstrap",
@@ -174,14 +174,10 @@ module.exports = function (grunt) {
           }
         ]
       },
-      modernizr: {
+      lib: {
         files: [
-          {
-            expand: true,
-            cwd: "<%= config.dir.lib.root %>/modernizr",
-            src: ["modernizr.js"],
-            dest: "<%= config.dir.dist.assets %>/modernizr"
-          }
+          {src: "<%= config.dir.lib.root %>/modernizr/modernizr.js", dest: "<%= config.dir.dist.assets %>/modernizr/modernizr.js"},
+          {src: "<%= config.dir.lib.root %>/bootstrap/js/dropdown.js", dest: "<%= config.dir.dist.assets %>/bootstrap/js/dropdown.js"}
         ]
       },
       jquery: {
@@ -324,6 +320,7 @@ module.exports = function (grunt) {
         prettify: {indent: 2},
         data: 'src/demos/**/*.{json,yml}',
         assets: './dist/assets',
+        helpers: 'src/demos/helpers/helper-*.js',
         layoutdir: 'src/demos/templates/layouts',
         layout: 'default.hbs',
         partials: ['src/demos/templates/includes/**/*.hbs']
