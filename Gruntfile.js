@@ -47,17 +47,17 @@ module.exports = function (grunt) {
         root: "examples",
         styles: "<%= config.dir.examples.root %>/styles"
       },
-      components: {
-        root: "components",
-        bootstrap: "<%= config.dir.components.root %>/bootstrap",
-        fontawesome: "<%= config.dir.components.root %>/font-awesome",
-        jquery: "<%= config.dir.components.root %>/jquery",
-        jqueryui: "<%= config.dir.components.root %>/jquery-ui",
+      lib: {
+        root: "lib",
+        bootstrap: "<%= config.dir.lib.root %>/bootstrap",
+        fontawesome: "<%= config.dir.lib.root %>/font-awesome",
+        jquery: "<%= config.dir.lib.root %>/jquery",
+        jqueryui: "<%= config.dir.lib.root %>/jquery-ui",
         flot: {
-              lib: "<%= config.dir.components.root %>/flot",
-              axisLabels: "<%= config.dir.components.root %>/flotAxisLabels",
-              orderBars: "<%= config.dir.components.root %>/flotOrderBars",
-              tooltip :  "<%= config.dir.components.root %>/flotTooltip"
+              lib: "<%= config.dir.lib.root %>/flot",
+              axisLabels: "<%= config.dir.lib.root %>/flotAxisLabels",
+              orderBars: "<%= config.dir.lib.root %>/flotOrderBars",
+              tooltip :  "<%= config.dir.lib.root %>/flotTooltip"
           }
       }
     }
@@ -116,21 +116,21 @@ module.exports = function (grunt) {
     less: {
       bootstrap: {
         options: {
-          paths: ["<%= config.dir.components.bootstrap %>/less"]
+          paths: ["<%= config.dir.lib.bootstrap %>/less"]
         },
-        src: "<%= config.dir.components.bootstrap %>/less/bootstrap.less",
+        src: "<%= config.dir.lib.bootstrap %>/less/bootstrap.less",
         dest: "<%= config.dir.dist.assets %>/bootstrap/bootstrap.css"
       },
       fontawesome: {
         options: {
-          paths: ["<%= config.dir.components.fontawesome %>/less"]
+          paths: ["<%= config.dir.lib.fontawesome %>/less"]
         },
         src: "<%= config.dir.src.root %>/font-awesome-richwidgets.less",
         dest: "<%= config.dir.dist.assets %>/font-awesome/font-awesome.css"
       },
       widgets: {
         options: {
-          paths: ["<%= config.dir.src.root %>", "<%= config.dir.components.root %>"]
+          paths: ["<%= config.dir.src.root %>", "<%= config.dir.lib.root %>"]
         },
         files: grunt.file.expandMapping("**/*.less", "<%= config.dir.dist.richfaces %>/", {
           cwd: "src/widgets",
@@ -141,7 +141,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          paths: ["<%= config.dir.src.root %>", "<%= config.dir.components.root %>"],
+          paths: ["<%= config.dir.src.root %>", "<%= config.dir.lib.root %>"],
           yuicompress: true
         },
         src: "<%= config.dir.src.root %>/main.less",
@@ -177,7 +177,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: "<%= config.dir.components.fontawesome %>/font",
+            cwd: "<%= config.dir.lib.fontawesome %>/font",
             src: ["**"],
             dest: "<%= config.dir.dist.font %>"
           }
@@ -187,7 +187,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: "<%= config.dir.components.jquery %>/ui",
+            cwd: "<%= config.dir.lib.jquery %>/ui",
             src: ["**"],
             dest: "<%= config.dir.dist.assets %>/jquery"
           }
@@ -197,7 +197,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: "<%= config.dir.components.jqueryui %>/ui",
+            cwd: "<%= config.dir.lib.jqueryui %>/ui",
             src: ["**"],
             dest: "<%= config.dir.dist.assets %>/jquery-ui"
           }
@@ -207,25 +207,25 @@ module.exports = function (grunt) {
             files: [
                 {
                     expand: true,
-                    cwd: "<%= config.dir.components.flot.lib %>",
+                    cwd: "<%= config.dir.lib.flot.lib %>",
                     src: ['**.js','!**/examples/**','!jquery.js'],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 },
                 {
                     expand: true,
-                    cwd: "<%= config.dir.components.flot.axisLabels %>",
+                    cwd: "<%= config.dir.lib.flot.axisLabels %>",
                     src: ["**.js"],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 },
                 {
                     expand: true,
-                    cwd: "<%= config.dir.components.flot.orderBars %>/js",
+                    cwd: "<%= config.dir.lib.flot.orderBars %>/js",
                     src: ["**.js"],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 },
                 {
                     expand: true,
-                    cwd: "<%= config.dir.components.flot.tooltip %>/js",
+                    cwd: "<%= config.dir.lib.flot.tooltip %>/js",
                     src: ["**.js","!jquery.flot.js"],
                     dest: "<%= config.dir.dist.assets %>/flot"
                 }
@@ -317,7 +317,7 @@ module.exports = function (grunt) {
             return [
               mountFolder(connect, 'dist'),
               mountFolder(connect, 'test'),
-              mountFolder(connect, 'components')
+              mountFolder(connect, 'lib')
             ];
           }
         }
@@ -329,7 +329,7 @@ module.exports = function (grunt) {
               mountFolder(connect, 'src'),
               mountFolder(connect, 'dist'),
               mountFolder(connect, 'examples'),
-              mountFolder(connect, 'components')
+              mountFolder(connect, 'lib')
             ];
           }
         }

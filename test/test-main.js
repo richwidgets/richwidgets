@@ -7,7 +7,7 @@
   var exclusions = [
     /test-main.js$/,
     /\/test\/utils\//,
-    /\/components\//
+    /\/lib\//
   ];
 
   var tests = Object.keys(window.__karma__.files).filter(function (file) {
@@ -37,11 +37,11 @@
     appDir: '../',
 
     paths: {
-      'jquery': 'components/jquery/jquery',
-      'jquery-ui': 'components/jquery-ui/ui/jquery-ui',
-      'jquery-simulate': 'components/jquery-simulate/jquery.simulate',
+      'jquery': 'lib/jquery/jquery',
+      'jquery-ui': 'lib/jquery-ui/ui/jquery-ui',
+      'jquery-simulate': 'lib/jquery-simulate/jquery.simulate',
       'widget-test-base': 'test/utils/widget-test-base',
-      'jquery-jasmine': 'components/jasmine-jquery/lib/jasmine-jquery'
+      'jquery-jasmine': 'lib/jasmine-jquery/lib/jasmine-jquery'
     },
 
     shim: {

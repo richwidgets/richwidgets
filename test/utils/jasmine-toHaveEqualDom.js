@@ -1,4 +1,4 @@
-define(['components/dom-compare/index', 'jquery'], function (domCompare, $) {
+define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
 
   beforeEach(function () {
     this.addMatchers({

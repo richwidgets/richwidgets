@@ -11,11 +11,11 @@ module.exports = function(config) {
 
       'test/test-main.js',
 
-      {pattern: 'components/jquery/jquery.js', included: false},
-      {pattern: 'components/jquery-simulate/jquery.simulate.js', included: false},
-      {pattern: 'components/jasmine-jquery/lib/jasmine-jquery.js', included: false},
-      {pattern: 'components/jquery-ui/ui/jquery-ui.js', included: false},
-      {pattern: 'components/dom-compare/**/*.js', included: false},
+      {pattern: 'lib/jquery/jquery.js', included: false},
+      {pattern: 'lib/jquery-simulate/jquery.simulate.js', included: false},
+      {pattern: 'lib/jasmine-jquery/lib/jasmine-jquery.js', included: false},
+      {pattern: 'lib/jquery-ui/ui/jquery-ui.js', included: false},
+      {pattern: 'lib/dom-compare/**/*.js', included: false},
       {pattern: 'dist/assets/**/*.css', included: false},
 
 
