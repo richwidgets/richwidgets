@@ -15,7 +15,8 @@ module.exports = function (grunt) {
 
   require("matchdep").filterDev("grunt-*").forEach(function (plugin) {
     grunt.loadNpmTasks(plugin);
-    grunt.loadNpmTasks('assemble-less');
+    grunt.loadNpmTasks('assemble');
+    grunt.loadNpmTasks('assemble-less');  // not related to assemble
     grunt.loadNpmTasks('grunt-karma');
     if (renamedTasks[plugin]) {
       grunt.renameTask(renamedTasks[plugin].original, renamedTasks[plugin].renamed);
@@ -101,8 +102,14 @@ module.exports = function (grunt) {
     "dist"
   ]);
 
+  grunt.registerTask("site", [
+    "site-clean",
+    "assemble"
+  ]);
+
   grunt.initConfig({
     config: configuration,
+    site: grunt.file.readYAML('site/src/data/site.yml'),
 
     clean: [ 'dist' ],
 
@@ -134,7 +141,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          paths: ["<%= config.dir.components.root %>"],
+          paths: ["<%= config.dir.src.root %>", "<%= config.dir.components.root %>"],
           yuicompress: true
         },
         src: "<%= config.dir.src.root %>/main.less",
@@ -279,6 +286,10 @@ module.exports = function (grunt) {
         files: ["<%= config.dir.examples.styles %>/*.less"],
         tasks: ["less:examples"]
       },
+      site: {
+        files: "site/**/*.hbs",
+        tasks: ["assemble"]
+      },
       dist: {
         options: {
           livereload: true
@@ -323,7 +334,30 @@ module.exports = function (grunt) {
           }
         }
       }
+    },
+
+    assemble: {
+      options: {
+        prettify: {indent: 2},
+        data: 'site/src/**/*.{json,yml}',
+        assets: 'assets',
+        helpers: 'site/src/helpers/helper-*.js',
+        layoutdir: 'site/src/templates/layouts',
+        partials: ['site/src/templates/includes/**/*.hbs'],
+      },
+      site: {
+        // Target-level options
+        options: {layout: 'default.hbs'},
+        files: [
+          { expand: true, cwd: 'site/src/templates/pages', src: ['*.hbs'], dest: '<%= site.destination %>/' }
+        ]
+      }
+    },
+
+    "site-clean": {
+      all: ['<%= site.destination %>/**/*.{html,md}']
     }
+
   });
 
 };
