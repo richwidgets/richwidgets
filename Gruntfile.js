@@ -125,14 +125,14 @@ module.exports = function (grunt) {
         options: {
           paths: ["<%= config.dir.lib.fontawesome %>/less"]
         },
-        src: "<%= config.dir.src.root %>/font-awesome-richwidgets.less",
+        src: "<%= config.dir.src.widgets %>/font-awesome-richwidgets.less",
         dest: "<%= config.dir.dist.assets %>/font-awesome/font-awesome.css"
       },
       widgets: {
         options: {
-          paths: ["<%= config.dir.src.root %>", "<%= config.dir.lib.root %>"]
+          paths: ["<%= config.dir.src.widgets %>", "<%= config.dir.lib.root %>"]
         },
-        files: grunt.file.expandMapping("**/*.less", "<%= config.dir.dist.richfaces %>/", {
+        files: grunt.file.expandMapping("*/**/*.less", "<%= config.dir.dist.richfaces %>/", { // exclude files in the widgets folder itself
           cwd: "src/widgets",
           rename: function (destBase, destPath) {
             return destBase + destPath.replace(/\.less$/, '.css');
@@ -141,10 +141,10 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          paths: ["<%= config.dir.src.root %>", "<%= config.dir.lib.root %>"],
+          paths: ["<%= config.dir.src.widgets %>", "<%= config.dir.lib.root %>"],
           yuicompress: true
         },
-        src: "<%= config.dir.src.root %>/main.less",
+        src: "<%= config.dir.src.widgets %>/main.less",
         dest: "<%= config.dir.dist.assets %>/richfaces.min.css"
       },
       examples: {
@@ -275,7 +275,7 @@ module.exports = function (grunt) {
         forever: true
       },
       less: {
-        files: ["<%= config.dir.src.root %>/**/*.less"],
+        files: ["<%= config.dir.src.widgets %>/**/*.less"],
         tasks: ["less:widgets"]
       },
       js: {
