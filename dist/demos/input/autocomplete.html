@@ -25,28 +25,58 @@
   <script src="../../assets/richwidgets/richwidgets.min.js"></script>
 
   <script src="../../assets/modernizr/modernizr.js"></script>
+  <script src="../../assets/bootstrap/js/dropdown.js"></script>
 
   <script src="http://localhost:35729/livereload.js"></script>
 </head>
 
 <body>
-  <div class="navbar navbar-default navbar-static-top">
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
-    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </a>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">RichWidgets</a>
+    </div>
 
-    <a class="navbar-brand" href="/">RichWidgets</a>
-
-    <div class="nav-collapse collapse navbar-responsive-collapse">
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="/">Home</a>
+
+        <li ><a href="/">Home</a></li>
+        <li ><a href="/about.html">About</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Widgets <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            
+              
+            
+              
+            
+              
+                <li  class="active"><a href="/input/autocomplete.html">Autocomplete</a></li>
+              
+            
+              
+                <li ><a href="/output/charts.html">Charts</a></li>
+              
+            
+              
+                <li ><a href="/select/orderingList.html">OrderingList</a></li>
+              
+            
+              
+                <li ><a href="/select/pickList.html">PickList</a></li>
+              
+            
+          </ul>
         </li>
       </ul>
     </div>
+
   </div>
 </div>
 
