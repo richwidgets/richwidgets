@@ -2,94 +2,53 @@
 title: PickList
 section: demo
 ---
-<h2>Example pickList</h2>
+<h2>PickList Demos</h2>
 
+<h3>PickList in List mode:</h3>
 <p>Using the pickList plugin, we built a simple pickList widget:</p>
 
+{{include "pickList/list.html"}}
+
+<h4>Source:</h4>
 <div class="row">
-  <div class="col col-lg-6">
-    <div id="list">
-      <ol class="source">
-        <li data-key="1" class="num">Item 1</li>
-        <li data-key="2" class="num">Item 2</li>
-        <li data-key="3" class="num">Item 3</li>
-        <li data-key="4" class="num">Item 4</li>
-        <li data-key="5" class="num">Item 5</li>
-        <li data-key="6" class="num">Item 6</li>
-        <li data-key="7" class="num">Item 7</li>
-        <li data-key="8" class="num">Item 8</li>
-      </ol>
-      <ol class="target">
-        <li data-key="9" class="num">Item 9</li>
-      </ol>
-    </div>
+  <div class="col col-md-6">
+{{#markdown}}
+  {{embed "src/demos/pages/select/pickList/list.html" 'html'}}
+{{/markdown}}
+  </div>
+  <div class="col col-md-6">
+{{#markdown}}
+  {{embed "src/demos/pages/select/pickList/list.js" 'js'}}
+{{/markdown}}
   </div>
 </div>
 <div class="row">
   <div class="col col-lg-6 ">
-    <div id="table">
-      <table class="source">
-        <tr data-key="1">
-          <td><i class="icon-beaker"></i></td>
-          <td>Item 1</td>
-          <td>1</td>
-        </tr>
-        <tr data-key="2">
-          <td><i class="icon-bell"></i></td>
-          <td>Item 2</td>
-          <td>2</td>
-        </tr>
-        <tr data-key="3">
-          <td><i class="icon-bolt"></i></td>
-          <td>Item 3</td>
-          <td>3</td>
-        </tr>
-        <tr data-key="4">
-          <td><i class="icon-plane"></i></td>
-          <td>Item 4</td>
-          <td>4</td>
-        </tr>
-        <tr data-key="5">
-          <td><i class="icon-pencil"></i></td>
-          <td>Item 5</td>
-          <td>5</td>
-        </tr>
-        <tr data-key="6">
-          <td><i class="icon-star"></i></td>
-          <td>Item 6</td>
-          <td>6</td>
-        </tr>
-        <tr data-key="7">
-          <td><i class="icon-trophy"></i></td>
-          <td>Item 7</td>
-          <td>7</td>
-        </tr>
-        <tr data-key="8">
-          <td><i class="icon-legal"></i></td>
-          <td>Item 8</td>
-          <td>8</td>
-        </tr>
-      </table>
-      <table class="target">
-        <tr data-key="9">
-          <td><i class="icon-trash"></i></td>
-          <td>Item 9</td>
-          <td>8</td>
-        </tr>
-      </table>
-    </div>
   </div>
 </div>
 
-<script>
-  var list_options = {
-    header: "List layout",
-  };
 
-  var table_options = {
-    header: "Table layout",
-  };
+<h3>PickList in List mode:</h3>
 
-  $("#list").pickList(list_options);
-  $("#table").pickList(table_options);
-</script>
+{{include "pickList/table.html"}}
+
+<h4>Source:</h4>
+<div class="row">
+  <div class="col col-md-6">
+{{#markdown}}
+  {{embed "src/demos/pages/select/pickList/table.html" 'html'}}
+{{/markdown}}
+  </div>
+  <div class="col col-md-6">
+{{#markdown}}
+  {{embed "src/demos/pages/select/pickList/table.js" 'js'}}
+{{/markdown}}
+  </div>
+</div>
+<div class="row">
+  <div class="col col-lg-6 ">
+  </div>
+</div>
+
+<script src="{{assets}}/select/pickList/list.js"></script>
+<script src="{{assets}}/select/pickList/table.js"></script>

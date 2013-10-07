@@ -66,7 +66,6 @@ module.exports = function (grunt) {
     "copy:font",
     "copy:jquery",
     "copy:jqueryui",
-    "copy:lib",
     "copy:flot",
     "copy:js",
     "less:bootstrap",
@@ -86,7 +85,7 @@ module.exports = function (grunt) {
     "clean:dist",
     "build",
     "assemble",
-    "test",
+    "test"
   ]);
 
   grunt.registerTask("test", [
@@ -100,6 +99,7 @@ module.exports = function (grunt) {
   grunt.registerTask("demo", [
     "clean:demo",
     "build",
+    "copy:demoAssets",
     "assemble"
   ]);
 
@@ -108,7 +108,7 @@ module.exports = function (grunt) {
     demo: grunt.file.readYAML('src/demos/data/site.yml'),
 
     clean: {
-      dist: [ 'dist' ],
+      dist: [ '<%= config.dir.dist.root %>' ],
       demo: ['<%= demo.destination %>/**/*.{html,md}']
     },
 
@@ -175,12 +175,6 @@ module.exports = function (grunt) {
           }
         ]
       },
-      lib: {
-        files: [
-          {src: "<%= config.dir.lib.root %>/modernizr/modernizr.js", dest: "<%= config.dir.dist.assets %>/modernizr/modernizr.js"},
-          {src: "<%= config.dir.lib.root %>/bootstrap/js/dropdown.js", dest: "<%= config.dir.dist.assets %>/bootstrap/js/dropdown.js"}
-        ]
-      },
       jquery: {
         files: [
           {
@@ -236,6 +230,39 @@ module.exports = function (grunt) {
             return destBase + destPath;
           }
         })
+      },
+      demoAssets: {
+        files: [
+          {
+            expand: true,
+            cwd: "<%= config.dir.lib.root %>",
+            src: [
+              "modernizr/modernizr.js",
+              "highlightjs/highlight.pack.js",
+              "highlightjs/styles/github.css",
+              "bootstrap/js/dropdown.js",
+              "bootstrap/js/collapse.js",
+              "jquery/jquery.min.{js,map}",
+              "jquery-ui/ui/minified/jquery-ui.min.js"
+            ],
+            dest: "<%= config.dir.dist.demos %>/assets/"
+          },
+          {
+            expand: true,
+            cwd: "<%= config.dir.dist.assets %>",
+            src: [
+              "font-awesome/**/*.*",
+              "richwidgets/richwidgets.min.*"
+            ],
+            dest: "<%= config.dir.dist.demos %>/assets/"
+          },
+          {
+            expand: true,
+            cwd: "<%= config.dir.src.demos %>/pages",
+            src: ["**/*.js"],
+            dest: "<%= config.dir.dist.demos %>/assets/"
+          }
+        ]
       }
     },
 
@@ -291,7 +318,7 @@ module.exports = function (grunt) {
         files: [
           "<%= config.dir.dist.assets %>/**/*.js",
           "<%= config.dir.dist.assets %>/**/*.css",
-          "<%= config.dir.dist.demos %>/**/*.html",
+          "<%= config.dir.dist.demos %>/**/*.html"
         ],
         tasks: []
       }
@@ -309,7 +336,6 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               mountFolder(connect, 'dist/demos'),
-              mountFolder(connect, 'dist')
             ];
           }
         }
@@ -320,7 +346,7 @@ module.exports = function (grunt) {
       options: {
         prettify: {indent: 2},
         data: 'src/demos/**/*.{json,yml}',
-        assets: './dist/assets',
+        assets: './dist/demos/assets',
         helpers: 'src/demos/helpers/helper-*.js',
         layoutdir: 'src/demos/templates/layouts',
         layout: 'default.hbs',
