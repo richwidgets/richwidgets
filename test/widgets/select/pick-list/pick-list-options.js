@@ -29,13 +29,13 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         // when
         element_list.pickList('destroy');
         // then
-        expect(fixture_list).toHaveEqualDom(original_list);
+        expect(fixture_list).toHaveEqualInnerDom(original_list);
       }
       if (element_table.data('pickList') != null) {
         // when
         element_table.pickList('destroy');
         // then
-        expect(fixture_table).toHaveEqualDom(original_table);
+        expect(fixture_table).toHaveEqualInnerDom(original_table);
       }
     });
 

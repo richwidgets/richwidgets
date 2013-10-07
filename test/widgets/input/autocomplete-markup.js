@@ -29,7 +29,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       element.richAutocomplete({ source: ['Java', 'Haskell'] });
 
       // then
-      expect(fixture).toHaveEqualDom(expected);
+      expect(fixture).toHaveEqualInnerDom(expected);
     });
 
 
@@ -43,13 +43,13 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       element.richAutocomplete({
         source: ['Java', 'Haskell']
       });
-      expect(fixture).toHaveEqualDom(expected);
+      expect(fixture).toHaveEqualInnerDom(expected);
 
       // when
       element.richAutocomplete('destroy');
 
       // then
-      expect(fixture).toHaveEqualDom(initialDom);
+      expect(fixture).toHaveEqualInnerDom(initialDom);
     });
 
 
@@ -65,7 +65,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       // then
-      expect(fixture).toHaveEqualDom(expected);
+      expect(fixture).toHaveEqualInnerDom(expected);
     });
 
   });

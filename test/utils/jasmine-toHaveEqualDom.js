@@ -2,10 +2,6 @@ define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
 
   beforeEach(function () {
     this.addMatchers({
-      toHaveEqualDom: function(expected) {
-        return expectToHaveEqualDom.call(this, innerHTML(this.actual), innerHTML(expected));
-      },
-
       /**
        * Verifies that provided DOM nodes are equal including their subtrees
        */
