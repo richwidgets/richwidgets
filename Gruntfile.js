@@ -15,13 +15,14 @@ module.exports = function (grunt) {
 
   require("matchdep").filterDev("grunt-*").forEach(function (plugin) {
     grunt.loadNpmTasks(plugin);
-    grunt.loadNpmTasks('assemble');
-    grunt.loadNpmTasks('assemble-less');  // not related to assemble
-    grunt.loadNpmTasks('grunt-karma');
     if (renamedTasks[plugin]) {
       grunt.renameTask(renamedTasks[plugin].original, renamedTasks[plugin].renamed);
     }
   });
+
+  grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('assemble-less');  // not related to assemble
+  grunt.loadNpmTasks('grunt-karma');
 
   var configuration = {
     pkg: grunt.file.readJSON("package.json"),

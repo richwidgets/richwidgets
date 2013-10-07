@@ -1,9 +1,13 @@
 {
+  "name": "richfaces-widgets",
+  "description": "Standalone javascript widgets",
+  "version": "0.0.1-wip",
+  "homepage": "https://github.com/richfaces/richfaces-widgets",
   "author": "JBoss RedHat",
   "contributors": [
     {
       "name": "Brian Leathem",
-      "email": "",
+      "email": "https://community.jboss.org/people/bleathem",
       "url": "http://blog.bleathem.ca"
     },
     {
@@ -17,13 +21,12 @@
       "url": "http://lukas.fryc.eu/"
     }
   ],
-  "name": "richfaces-widgets",
-  "description": "Standalone RichFaces widgets using pure CSS and JavaScript",
-  "version": "0.0.1-SNAPSHOT",
-  "homepage": "https://github.com/richfaces/richfaces-widgets",
   "repository": {
     "type": "git",
     "url": "https://github.com/richfaces/richfaces-widgets"
+  },
+  "bugs": {
+    "url": "https://github.com/richwidgets/richwidgets-widgets/issues"
   },
   "engines": {
     "node": ">= 0.8.4"
@@ -49,5 +52,16 @@
     "matchdep": "~0.1.1",
     "bower": "~0.9.2",
     "path": "~0.4.9"
-  }
+  },
+  "licenses": [
+    {
+      "type": "ASL v2",
+      "url": "https://github.com/richwidgets/richwidgets-demos/blob/master/LICENSE.txt"
+    }
+  ],
+  "keywords": [
+    "richwidgets",
+    "widgets",
+    "jQuery UI"
+  ]
 }
