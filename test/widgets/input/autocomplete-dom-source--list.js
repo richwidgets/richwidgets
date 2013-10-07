@@ -30,7 +30,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var menu = element.autocomplete( "widget" );
 
       // then
-      expect(fixture.children()).toHaveEqualDom(expected.children());
+      expect(fixture).toHaveEqualDom(expected);
 
       runs(function() {
         expect(menu).toBeHidden();
@@ -47,7 +47,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       runs(function() {
         expect(menu).toBeVisible();
 
-        expect(menu).toHaveEqualDom(expectedMenu.children());
+        expect(menu).toHaveEqualOuterDom(expectedMenu.children());
 
         element.richAutocomplete('destroy');
         fixture.remove();
