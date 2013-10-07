@@ -1,0 +1,40 @@
+<div id="fixture-autocomplete-with-list">
+  <input type="text" class="form-control" style="width: 200px; height: 20px"></input>
+  <ul style="display: none">
+    <li><i class="icon-heart"></i> <span>Java</span></li>
+    <li><i class="icon-flag"></i> <span>Haskell</span></li>
+  </ul>
+</div>
+
+<div id="expected-autocomplete-with-list">
+  <div class="r-autocomplete">
+    <input type="text" class="form-control ui-autocomplete-input" autocomplete="off" style="width: 226px; height: 34px;"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+  </div>
+  <ul style="display: none">
+    <li>
+      <i class="icon-heart" />
+      <span>Java</span>
+    </li>
+    <li>
+      <i class="icon-flag" />
+      <span>Haskell</span>
+    </li>
+  </ul>
+</div>
+
+<div id="expected-autocomplete-with-list--menu">
+  <ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="z-index: 1; display: block; width: 226px; top: 32px; left: 0px;">
+    <li class="ui-menu-item" role="presentation">
+      <a id="ui-id-2" class="ui-corner-all" tabindex="-1">
+        <i class="icon-heart"></i>
+        <span>Java</span>
+      </a>
+    </li>
+    <li class="ui-menu-item" role="presentation">
+      <a id="ui-id-3" class="ui-corner-all" tabindex="-1">
+        <i class="icon-flag"></i>
+        <span>Haskell</span>
+      </a>
+    </li>
+  </ul>
+</div>

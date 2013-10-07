@@ -1,34 +1,6 @@
-<div id="fixture-autocomplete-with-list">
-  <input type="text"></input>
-  <ul style="display: none">
-    <li><i class="icon-heart"></i> <span>Java</span></li>
-    <li><i class="icon-flag"></i> <span>Haskell</span></li>
-  </ul>
-</div>
-
-<div id="expected-autocomplete-with-list">
-  <div class="r-autocomplete">
-    <input autocomplete="off" class="ui-autocomplete-input" type="text" />
-    <span aria-live="polite" class="ui-helper-hidden-accessible" role="status" />
-  </div>
-  <ul style="display: none">
-    <li>
-      <i class="icon-heart" />
-      <span>Java</span>
-    </li>
-    <li>
-      <i class="icon-flag" />
-      <span>Haskell</span>
-    </li>
-  </ul>
-</div>
-
-
-
-
 
 <div id="fixture-autocomplete-with-table">
-  <input type="text"></input>
+  <input type="text" class="form-control"></input>
   <table style="display: none">
     <tbody>
     <tr data-label="Java">
@@ -47,7 +19,7 @@
 
 <div id="expected-autocomplete-with-table">
   <div class="r-autocomplete">
-    <input autocomplete="off" class="ui-autocomplete-input" type="text" />
+    <input autocomplete="off" class="form-control ui-autocomplete-input" style="width: 426px; height: 34px;" type="text" />
     <span aria-live="polite" class="ui-helper-hidden-accessible" role="status" />
   </div>
   <table style="display: none">
@@ -70,4 +42,23 @@
     </tr>
     </tbody>
   </table>
+</div>
+
+<div id="expected-autocomplete-with-table--menu">
+  <ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all ui-autocomplete-layout-table" id="ui-id-1" tabindex="0" style="z-index: 1; width: 426px; top: -2px; left: 0px;">
+    <li class="ui-menu-item" role="presentation">
+      <a id="ui-id-2" class="ui-corner-all" tabindex="-1">
+        <span><i class="icon-heart"></i></span>
+        <span>Java</span>
+        <span><i>my favorite language</i></span>
+      </a>
+    </li>
+    <li class="ui-menu-item" role="presentation">
+      <a id="ui-id-3" class="ui-corner-all" tabindex="-1">
+        <span><i class="icon-flag"></i></span>
+        <span>Haskell</span>
+        <span>functional language</span>
+      </a>
+    </li>
+  </ul>
 </div>
