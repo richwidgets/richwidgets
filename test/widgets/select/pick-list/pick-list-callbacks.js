@@ -190,7 +190,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
         it('drag to source:', function () {
           test(fixture_list, element_list, -dx, 0);
           test(fixture_table, element_table, -dx, 20);
-          debugger;
         });
       });
     });
