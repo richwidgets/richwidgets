@@ -337,7 +337,7 @@
       $(domSource).children('tr, li').each(function () {
         suggestions.push({
           value: $(this).data("label") || $(this).text(),
-          html: $(this).clone()
+          dom: $(this).clone()
         })
       });
 
@@ -372,7 +372,7 @@
         case this.LAYOUT.list :
           data._renderMenu = $.ui.autocomplete.prototype._renderMenu;
           data._renderItem = function (ul, item) {
-            var content = item.html ? $("<a>").html(item.html) : $("<a>").text(item.label);
+            var content = item.dom ? $("<a>").html(item.dom.children()) : $("<a>").text(item.label);
             return $("<li>").append(content).appendTo(ul);
           };
           break;
@@ -384,7 +384,7 @@
           };
           data._renderItem = function (ul, item) {
             var link = $("<a>");
-            item.html.find("> td").each(function () {
+            item.dom.find("td").each(function () {
               $('<span>').html($(this).html()).appendTo(link)
             })
             return $("<li></li>")
