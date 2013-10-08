@@ -34,6 +34,7 @@ module.exports = function (grunt) {
         root: "dist",
         assets: "<%= config.dir.dist.root %>/assets",
         demos: "<%= config.dir.dist.root %>/demos",
+        flot: "<%= config.dir.dist.assets %>/flot",
         font: "<%= config.dir.dist.assets %>/font-awesome/font",
         richwidgets: "<%= config.dir.dist.assets %>/richwidgets"
       },
@@ -70,6 +71,7 @@ module.exports = function (grunt) {
     "less:fontawesome",
     "less:widgets",
     "less:dist",
+    "concat:flot",
     "uglify:dist"
   ]);
 
@@ -153,13 +155,32 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          compress: true
+          compress: false,
+          beautify: true
         },
         files: [
           {
-            "<%= config.dir.dist.assets %>/richwidgets/richwidgets.min.js": ["<%= config.dir.src.widgets %>/**/*.js"]
+            "<%= config.dir.dist.assets %>/richwidgets/richwidgets.min.js": ["<%= config.dir.dist.flot %>/richwidgets.flot.js", "<%= config.dir.src.widgets %>/**/*.js"]
           }
         ]
+      }
+    },
+
+    concat: {
+      flot: {
+        options: {
+          separator: ';',
+          nonull: true
+        },
+        src: [
+            "<%= config.dir.dist.flot %>/jquery.flot.js",
+            "<%= config.dir.dist.flot %>/jquery.flot.selection.js",
+            "<%= config.dir.dist.flot %>/jquery.flot.pie.js",
+            "<%= config.dir.dist.flot %>/jquery.flot.categories.js",
+            "<%= config.dir.dist.flot %>/jquery.flot.symbol.js",
+            "<%= config.dir.dist.flot %>/jquery.flot.tooltip.js",
+            "<%= config.dir.dist.flot %>/jquery.flot.orderBars.js"],
+        dest: "<%= config.dir.dist.flot %>/richwidgets.flot.js"
       }
     },
 

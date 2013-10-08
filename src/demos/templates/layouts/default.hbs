@@ -33,11 +33,16 @@
   {{/each}}
 
   <script src="{{assets}}/jquery/jquery.js"></script>
+  <script src="{{assets}}/jquery-ui/jquery-ui.min.js"></script>
+
   {{#each page.data.js_assets}}<script src="{{../assets}}/{{this}}"></script>
   {{/each}}
 
   <script src="http://localhost:35729/livereload.js"></script>
 {{/if}}
+
+  {{#each page.data.css_includes}}<link rel="stylesheet" href="/assets-demo/{{this}}">
+  {{/each}}
 
   <link rel="stylesheet" href="/assets-demo/highlightjs/styles/github.css">
   <script src="/assets-demo/modernizr/modernizr.js"></script>
