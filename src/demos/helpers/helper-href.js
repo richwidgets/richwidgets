@@ -1,16 +1,11 @@
 (function() {
-
-  var path = require('path');
-
   module.exports.register = function(Handlebars, options) {
+    var path = require('path');
 
-    // Customize this helper
-    Handlebars.registerHelper('href', function(dest) {
-      var pathToStrip = "dist/demos";
-      var href = dest;
-      if (dest.indexOf(pathToStrip) === 0) {
-        href = dest.substr(pathToStrip.length);
-      }
+    Handlebars.registerHelper('href', function(from_dir, dest) {
+      var to_dir = path.dirname(dest);
+      var relativePath = path.relative(from_dir, to_dir);
+      var href = relativePath ? relativePath + "/" + path.basename(dest) : path.basename(dest);
       return new Handlebars.SafeString(href);
     });
 

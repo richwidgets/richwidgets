@@ -20,7 +20,7 @@
           <ul class="dropdown-menu">
             {{#each pages}}
               {{#is data.section "demo"}}
-                <li {{#is ../../basename basename}} class="active"{{/is}}><a href="{{href dest}}">{{data.title}}</a></li>
+                <li {{#is ../../basename basename}} class="active"{{/is}}><a href="{{href ../../dirname dest}}">{{data.title}}</a></li>
               {{/is}}
             {{/each}}
           </ul>

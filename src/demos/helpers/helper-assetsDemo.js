@@ -5,14 +5,11 @@
     var grunt = require('grunt');
     var _     = grunt.util._;
 
-    /*
-     * Usage: {{ include [partial] }}
-     */
-    Handlebars.registerHelper("assets-demo", function() {
-      if (typeof this.page === "undefined") {
-        return "";
+    Handlebars.registerHelper("assets-demo", function(dirname) {
+      if (! dirname.hash) {
+        console.log(dirname);
       }
-      var dir = this.page.dirname;
+      var dir = ! dirname.hash ? dirname : this.page.dirname;
       var assetsDemo = "dist/demos/assets-demo/"
       var relativePath = path.relative(dir, assetsDemo);
       return new Handlebars.SafeString(relativePath);
