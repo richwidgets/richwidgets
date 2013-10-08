@@ -18,16 +18,23 @@
 
   <title>OrderingList</title>
 
-  <link rel="stylesheet" href="../../assets/richwidgets/richwidgets.min.css">
-  <link rel="stylesheet" href="../../assets/font-awesome/font-awesome.css">
-  <script src="../../assets/jquery/jquery.min.js"></script>
-  <script src="../../assets/jquery-ui/minified/jquery-ui.min.js"></script>
-  <script src="../../assets/richwidgets/richwidgets.min.js"></script>
 
-  <script src="../../assets/modernizr/modernizr.js"></script>
-  <script src="../../assets/bootstrap/js/dropdown.js"></script>
 
-  <script src="http://localhost:35729/livereload.js"></script>
+  <link rel="stylesheet" href="../assets/richwidgets/richwidgets.min.css">
+  <link rel="stylesheet" href="../assets/font-awesome/font-awesome.css">
+  <script src="../assets/jquery/jquery.min.js"></script>
+  <script src="../assets/jquery-ui/minified/jquery-ui.min.js"></script>
+  <script src="../assets/richwidgets/richwidgets.min.js"></script>
+
+
+  
+
+  <link rel="stylesheet" href="/assets-demo/highlightjs/styles/github.css">
+  <script src="/assets-demo/modernizr/modernizr.js"></script>
+  <script src="/assets-demo/highlightjs/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="/assets-demo/bootstrap/js/dropdown.js"></script>
+  <script src="/assets-demo/bootstrap/js/collapse.js"></script>
 </head>
 
 <body>
@@ -83,185 +90,329 @@
 
 <div class="container">
   
-<h1>OrderingList demo!</h1>
+<h2>OrderingList Demos</h2>
 
-<h2>Example orderingList</h2>
-
+<h3>OrderingList in List mode:</h3>
 <p>Using the orderingList plugin, we built a simple orderingList widget:</p>
 
-
 <div class="container-fluid ">
-  <div class="row-fluid ">
-    <div class="span6 ">
-      <ol id="list">
-        <li data-key="1">Item 1</li>
-        <li data-key="2">Item 2</li>
-        <li data-key="3">Item 3</li>
-        <li data-key="4">Item 4</li>
-        <li data-key="5">Item 5</li>
-        <li data-key="6">Item 6</li>
-        <li data-key="7">Item 7</li>
-        <li data-key="8">Item 8</li>
-      </ol>
-    </div>
+
+  <div class="row">
+    <div class="col col-lg-6"><ol id="list">
+  <li data-key="1">Item 1</li>
+  <li data-key="2">Item 2</li>
+  <li data-key="3">Item 3</li>
+  <li data-key="4">Item 4</li>
+  <li data-key="5">Item 5</li>
+  <li data-key="6">Item 6</li>
+  <li data-key="7">Item 7</li>
+  <li data-key="8">Item 8</li>
+</ol></div>
   </div>
 
-  <hr/>
+  <h4>Source:</h4>
 
-  <div class="row-fluid ">
-    <div class="span6 ">
-      <ol id="list_dragselect">
-        <li data-key="1">Item 1</li>
-        <li data-key="2">Item 2</li>
-        <li data-key="3">Item 3</li>
-        <li data-key="4">Item 4</li>
-        <li data-key="5">Item 5</li>
-        <li data-key="6">Item 6</li>
-        <li data-key="7">Item 7</li>
-        <li data-key="8">Item 8</li>
-      </ol>
-    </div>
-  </div>
-
-  <hr/>
-
-  <div class="row-fluid ">
-    <div class="span6">
-      <table id="table">
-        <thead>
-        <tr>
-          <th>Icon</th>
-          <th>Label</th>
-          <th>#</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr data-key="1">
-          <td><i class="icon-beaker"></i></td>
-          <td>Item 1</td>
-          <td>1</td>
-        </tr>
-        <tr data-key="2">
-          <td><i class="icon-bell"></i></td>
-          <td>Item 2</td>
-          <td>2</td>
-        </tr>
-        <tr data-key="3">
-          <td><i class="icon-bolt"></i></td>
-          <td>Item 3</td>
-          <td>3</td>
-        </tr>
-        <tr data-key="4">
-          <td><i class="icon-plane"></i></td>
-          <td>Item 4</td>
-          <td>4</td>
-        </tr>
-        <tr data-key="5">
-          <td><i class="icon-pencil"></i></td>
-          <td>Item 5</td>
-          <td>5</td>
-        </tr>
-        <tr data-key="6">
-          <td><i class="icon-star"></i></td>
-          <td>Item 6</td>
-          <td>6</td>
-        </tr>
-        <tr data-key="7">
-          <td><i class="icon-trophy"></i></td>
-          <td>Item 7</td>
-          <td>7</td>
-        </tr>
-        <tr data-key="8">
-          <td><i class="icon-legal"></i></td>
-          <td>Item 8</td>
-          <td>8</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <hr/>
-
-  <div class="row-fluid ">
-    <div class="span6">
-      <table id="table_dragselect">
-        <thead>
-        <tr>
-          <th>Icon</th>
-          <th>Label</th>
-          <th>#</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr data-key="1">
-          <td><i class="icon-beaker"></i></td>
-          <td>Item 1</td>
-          <td>1</td>
-        </tr>
-        <tr data-key="2">
-          <td><i class="icon-bell"></i></td>
-          <td>Item 2</td>
-          <td>2</td>
-        </tr>
-        <tr data-key="3">
-          <td><i class="icon-bolt"></i></td>
-          <td>Item 3</td>
-          <td>3</td>
-        </tr>
-        <tr data-key="4">
-          <td><i class="icon-plane"></i></td>
-          <td>Item 4</td>
-          <td>4</td>
-        </tr>
-        <tr data-key="5">
-          <td><i class="icon-pencil"></i></td>
-          <td>Item 5</td>
-          <td>5</td>
-        </tr>
-        <tr data-key="6">
-          <td><i class="icon-star"></i></td>
-          <td>Item 6</td>
-          <td>6</td>
-        </tr>
-        <tr data-key="7">
-          <td><i class="icon-trophy"></i></td>
-          <td>Item 7</td>
-          <td>7</td>
-        </tr>
-        <tr data-key="8">
-          <td><i class="icon-legal"></i></td>
-          <td>Item 8</td>
-          <td>8</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <div class="row">
+    <div class="col col-md-6"><pre><code class="language-html">&lt;ol id=&quot;list&quot;&gt;
+  &lt;li data-key=&quot;1&quot;&gt;Item 1&lt;/li&gt;
+  &lt;li data-key=&quot;2&quot;&gt;Item 2&lt;/li&gt;
+  &lt;li data-key=&quot;3&quot;&gt;Item 3&lt;/li&gt;
+  &lt;li data-key=&quot;4&quot;&gt;Item 4&lt;/li&gt;
+  &lt;li data-key=&quot;5&quot;&gt;Item 5&lt;/li&gt;
+  &lt;li data-key=&quot;6&quot;&gt;Item 6&lt;/li&gt;
+  &lt;li data-key=&quot;7&quot;&gt;Item 7&lt;/li&gt;
+  &lt;li data-key=&quot;8&quot;&gt;Item 8&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
 </div>
+    <div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> list_options = {
+  header: <span class="string">"List layout"</span> <span class="comment">//caption</span>
+};
+$(<span class="string">"#list"</span>).orderingList(list_options);</code></pre>
+</div>
+  </div>
 
-<script>
-  var list_options = {
-    header: "List layout" //caption
-  };
-  var list_dragselect_options = {
-    header: "List layout w/ drag-select", //caption
-    dragSelect: true
-  }
-  var table_options = {
-    header: "Table layout"
-  };
-  var table_dragselect_options = {
-    header: "Table layout w/ drag-select",
-    dragSelect: true
-  };
-  $("#list").orderingList(list_options);
-  $("#list_dragselect").orderingList(list_dragselect_options);
-  $("#table").orderingList(table_options);
-  $("#table_dragselect").orderingList(table_dragselect_options);
+  <h3>OrderingList in List mode w/ drag select:</h3>
+  <p>Using the orderingList plugin, we built a simple orderingList widget:</p>
 
-</script>
+  <div class="row">
+    <div class="col col-lg-6"><ol id="list_dragselect">
+  <li data-key="1">Item 1</li>
+  <li data-key="2">Item 2</li>
+  <li data-key="3">Item 3</li>
+  <li data-key="4">Item 4</li>
+  <li data-key="5">Item 5</li>
+  <li data-key="6">Item 6</li>
+  <li data-key="7">Item 7</li>
+  <li data-key="8">Item 8</li>
+</ol></div>
+  </div>
 
+  <h4>Source:</h4>
+
+  <div class="row">
+    <div class="col col-md-6"><pre><code class="language-html">&lt;ol id=&quot;list_dragselect&quot;&gt;
+  &lt;li data-key=&quot;1&quot;&gt;Item 1&lt;/li&gt;
+  &lt;li data-key=&quot;2&quot;&gt;Item 2&lt;/li&gt;
+  &lt;li data-key=&quot;3&quot;&gt;Item 3&lt;/li&gt;
+  &lt;li data-key=&quot;4&quot;&gt;Item 4&lt;/li&gt;
+  &lt;li data-key=&quot;5&quot;&gt;Item 5&lt;/li&gt;
+  &lt;li data-key=&quot;6&quot;&gt;Item 6&lt;/li&gt;
+  &lt;li data-key=&quot;7&quot;&gt;Item 7&lt;/li&gt;
+  &lt;li data-key=&quot;8&quot;&gt;Item 8&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+</div>
+    <div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> list_dragselect_options = {
+  header: <span class="string">"List layout w/ drag-select"</span>, <span class="comment">//caption</span>
+  dragSelect: <span class="literal">true</span>
+}
+$(<span class="string">"#list_dragselect"</span>).orderingList(list_dragselect_options);</code></pre>
+</div>
+  </div>
+
+  <h3>OrderingList in Table mode:</h3>
+  <p>Using the orderingList plugin, we built a simple orderingList widget:</p>
+
+  <div class="row">
+    <div class="col col-lg-6"><table id="table">
+  <thead>
+  <tr>
+    <th>Icon</th>
+    <th>Label</th>
+    <th>#</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-key="1">
+    <td><i class="icon-beaker"></i></td>
+    <td>Item 1</td>
+    <td>1</td>
+  </tr>
+  <tr data-key="2">
+    <td><i class="icon-bell"></i></td>
+    <td>Item 2</td>
+    <td>2</td>
+  </tr>
+  <tr data-key="3">
+    <td><i class="icon-bolt"></i></td>
+    <td>Item 3</td>
+    <td>3</td>
+  </tr>
+  <tr data-key="4">
+    <td><i class="icon-plane"></i></td>
+    <td>Item 4</td>
+    <td>4</td>
+  </tr>
+  <tr data-key="5">
+    <td><i class="icon-pencil"></i></td>
+    <td>Item 5</td>
+    <td>5</td>
+  </tr>
+  <tr data-key="6">
+    <td><i class="icon-star"></i></td>
+    <td>Item 6</td>
+    <td>6</td>
+  </tr>
+  <tr data-key="7">
+    <td><i class="icon-trophy"></i></td>
+    <td>Item 7</td>
+    <td>7</td>
+  </tr>
+  <tr data-key="8">
+    <td><i class="icon-legal"></i></td>
+    <td>Item 8</td>
+    <td>8</td>
+  </tr>
+  </tbody>
+</table></div>
+  </div>
+
+  <h4>Source:</h4>
+
+  <div class="row">
+    <div class="col col-md-6"><pre><code class="language-html">&lt;table id=&quot;table&quot;&gt;
+  &lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Icon&lt;/th&gt;
+    &lt;th&gt;Label&lt;/th&gt;
+    &lt;th&gt;#&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+  &lt;tr data-key=&quot;1&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-beaker&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 1&lt;/td&gt;
+    &lt;td&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;2&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-bell&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 2&lt;/td&gt;
+    &lt;td&gt;2&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;3&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-bolt&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 3&lt;/td&gt;
+    &lt;td&gt;3&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;4&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-plane&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 4&lt;/td&gt;
+    &lt;td&gt;4&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;5&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-pencil&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 5&lt;/td&gt;
+    &lt;td&gt;5&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;6&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-star&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 6&lt;/td&gt;
+    &lt;td&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;7&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-trophy&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 7&lt;/td&gt;
+    &lt;td&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;8&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-legal&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 8&lt;/td&gt;
+    &lt;td&gt;8&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</div>
+    <div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> table_options = {
+  header: <span class="string">"Table layout"</span>
+};
+$(<span class="string">"#table"</span>).orderingList(table_options);</code></pre>
+</div>
+  </div>
+
+  <h3>OrderingList in Table mode w/ drag select:</h3>
+  <p>Using the orderingList plugin, we built a simple orderingList widget:</p>
+
+  <div class="row">
+    <div class="col col-lg-6"><table id="table_dragselect">
+  <thead>
+  <tr>
+    <th>Icon</th>
+    <th>Label</th>
+    <th>#</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-key="1">
+    <td><i class="icon-beaker"></i></td>
+    <td>Item 1</td>
+    <td>1</td>
+  </tr>
+  <tr data-key="2">
+    <td><i class="icon-bell"></i></td>
+    <td>Item 2</td>
+    <td>2</td>
+  </tr>
+  <tr data-key="3">
+    <td><i class="icon-bolt"></i></td>
+    <td>Item 3</td>
+    <td>3</td>
+  </tr>
+  <tr data-key="4">
+    <td><i class="icon-plane"></i></td>
+    <td>Item 4</td>
+    <td>4</td>
+  </tr>
+  <tr data-key="5">
+    <td><i class="icon-pencil"></i></td>
+    <td>Item 5</td>
+    <td>5</td>
+  </tr>
+  <tr data-key="6">
+    <td><i class="icon-star"></i></td>
+    <td>Item 6</td>
+    <td>6</td>
+  </tr>
+  <tr data-key="7">
+    <td><i class="icon-trophy"></i></td>
+    <td>Item 7</td>
+    <td>7</td>
+  </tr>
+  <tr data-key="8">
+    <td><i class="icon-legal"></i></td>
+    <td>Item 8</td>
+    <td>8</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+  </div>
+
+  <h4>Source:</h4>
+
+  <div class="row">
+    <div class="col col-md-6"><pre><code class="language-html">&lt;table id=&quot;table_dragselect&quot;&gt;
+  &lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Icon&lt;/th&gt;
+    &lt;th&gt;Label&lt;/th&gt;
+    &lt;th&gt;#&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+  &lt;tr data-key=&quot;1&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-beaker&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 1&lt;/td&gt;
+    &lt;td&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;2&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-bell&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 2&lt;/td&gt;
+    &lt;td&gt;2&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;3&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-bolt&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 3&lt;/td&gt;
+    &lt;td&gt;3&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;4&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-plane&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 4&lt;/td&gt;
+    &lt;td&gt;4&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;5&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-pencil&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 5&lt;/td&gt;
+    &lt;td&gt;5&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;6&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-star&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 6&lt;/td&gt;
+    &lt;td&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;7&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-trophy&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 7&lt;/td&gt;
+    &lt;td&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;8&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;icon-legal&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 8&lt;/td&gt;
+    &lt;td&gt;8&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</div>
+    <div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> table_dragselect_options = {
+  header: <span class="string">"Table layout w/ drag-select"</span>,
+  dragSelect: <span class="literal">true</span>
+};
+$(<span class="string">"#table_dragselect"</span>).orderingList(table_dragselect_options);</code></pre>
+</div>
+  </div>
+
+  <script src="/assets-demo/select/orderingList/list.js"></script>
+  <script src="/assets-demo/select/orderingList/list_drag.js"></script>
+  <script src="/assets-demo/select/orderingList/table.js"></script>
+  <script src="/assets-demo/select/orderingList/table_drag.js"></script>
 </div>
 </body>
 </html>

@@ -18,16 +18,23 @@
 
   <title>PickList</title>
 
-  <link rel="stylesheet" href="../../assets/richwidgets/richwidgets.min.css">
-  <link rel="stylesheet" href="../../assets/font-awesome/font-awesome.css">
-  <script src="../../assets/jquery/jquery.min.js"></script>
-  <script src="../../assets/jquery-ui/minified/jquery-ui.min.js"></script>
-  <script src="../../assets/richwidgets/richwidgets.min.js"></script>
 
-  <script src="../../assets/modernizr/modernizr.js"></script>
-  <script src="../../assets/bootstrap/js/dropdown.js"></script>
 
-  <script src="http://localhost:35729/livereload.js"></script>
+  <link rel="stylesheet" href="../assets/richwidgets/richwidgets.min.css">
+  <link rel="stylesheet" href="../assets/font-awesome/font-awesome.css">
+  <script src="../assets/jquery/jquery.min.js"></script>
+  <script src="../assets/jquery-ui/minified/jquery-ui.min.js"></script>
+  <script src="../assets/richwidgets/richwidgets.min.js"></script>
+
+
+  
+
+  <link rel="stylesheet" href="/assets-demo/highlightjs/styles/github.css">
+  <script src="/assets-demo/modernizr/modernizr.js"></script>
+  <script src="/assets-demo/highlightjs/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="/assets-demo/bootstrap/js/dropdown.js"></script>
+  <script src="/assets-demo/bootstrap/js/collapse.js"></script>
 </head>
 
 <body>
@@ -83,98 +90,170 @@
 
 <div class="container">
   
-<h2>Example pickList</h2>
+<h2>PickList Demos</h2>
 
+<h3>PickList in List mode:</h3>
 <p>Using the pickList plugin, we built a simple pickList widget:</p>
 
-<div class="row">
-  <div class="col col-lg-6">
-    <div id="list">
-      <ol class="source">
-        <li data-key="1" class="num">Item 1</li>
-        <li data-key="2" class="num">Item 2</li>
-        <li data-key="3" class="num">Item 3</li>
-        <li data-key="4" class="num">Item 4</li>
-        <li data-key="5" class="num">Item 5</li>
-        <li data-key="6" class="num">Item 6</li>
-        <li data-key="7" class="num">Item 7</li>
-        <li data-key="8" class="num">Item 8</li>
-      </ol>
-      <ol class="target">
-        <li data-key="9" class="num">Item 9</li>
-      </ol>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col col-lg-6 ">
-    <div id="table">
-      <table class="source">
-        <tr data-key="1">
-          <td><i class="icon-beaker"></i></td>
-          <td>Item 1</td>
-          <td>1</td>
-        </tr>
-        <tr data-key="2">
-          <td><i class="icon-bell"></i></td>
-          <td>Item 2</td>
-          <td>2</td>
-        </tr>
-        <tr data-key="3">
-          <td><i class="icon-bolt"></i></td>
-          <td>Item 3</td>
-          <td>3</td>
-        </tr>
-        <tr data-key="4">
-          <td><i class="icon-plane"></i></td>
-          <td>Item 4</td>
-          <td>4</td>
-        </tr>
-        <tr data-key="5">
-          <td><i class="icon-pencil"></i></td>
-          <td>Item 5</td>
-          <td>5</td>
-        </tr>
-        <tr data-key="6">
-          <td><i class="icon-star"></i></td>
-          <td>Item 6</td>
-          <td>6</td>
-        </tr>
-        <tr data-key="7">
-          <td><i class="icon-trophy"></i></td>
-          <td>Item 7</td>
-          <td>7</td>
-        </tr>
-        <tr data-key="8">
-          <td><i class="icon-legal"></i></td>
-          <td>Item 8</td>
-          <td>8</td>
-        </tr>
-      </table>
-      <table class="target">
-        <tr data-key="9">
-          <td><i class="icon-trash"></i></td>
-          <td>Item 9</td>
-          <td>8</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+<div id="list">
+  <ol class="source">
+    <li data-key="1" class="num">Item 1</li>
+    <li data-key="2" class="num">Item 2</li>
+    <li data-key="3" class="num">Item 3</li>
+    <li data-key="4" class="num">Item 4</li>
+    <li data-key="5" class="num">Item 5</li>
+    <li data-key="6" class="num">Item 6</li>
+    <li data-key="7" class="num">Item 7</li>
+    <li data-key="8" class="num">Item 8</li>
+  </ol>
+  <ol class="target">
+    <li data-key="9" class="num">Item 9</li>
+  </ol>
 </div>
 
-<script>
-  var list_options = {
-    header: "List layout",
-  };
+<h4>Source:</h4>
+<div class="row">
+  <div class="col col-md-6"><pre><code class="language-html">&lt;div id=&quot;list&quot;&gt;
+  &lt;ol class=&quot;source&quot;&gt;
+    &lt;li data-key=&quot;1&quot; class=&quot;num&quot;&gt;Item 1&lt;/li&gt;
+    &lt;li data-key=&quot;2&quot; class=&quot;num&quot;&gt;Item 2&lt;/li&gt;
+    &lt;li data-key=&quot;3&quot; class=&quot;num&quot;&gt;Item 3&lt;/li&gt;
+    &lt;li data-key=&quot;4&quot; class=&quot;num&quot;&gt;Item 4&lt;/li&gt;
+    &lt;li data-key=&quot;5&quot; class=&quot;num&quot;&gt;Item 5&lt;/li&gt;
+    &lt;li data-key=&quot;6&quot; class=&quot;num&quot;&gt;Item 6&lt;/li&gt;
+    &lt;li data-key=&quot;7&quot; class=&quot;num&quot;&gt;Item 7&lt;/li&gt;
+    &lt;li data-key=&quot;8&quot; class=&quot;num&quot;&gt;Item 8&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;ol class=&quot;target&quot;&gt;
+    &lt;li data-key=&quot;9&quot; class=&quot;num&quot;&gt;Item 9&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+</div>
+  <div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> list_options = {
+  header: <span class="string">"List layout"</span>
+};
+$(<span class="string">"#list"</span>).pickList(list_options);</code></pre>
+</div>
+</div>
 
-  var table_options = {
-    header: "Table layout",
-  };
+<h3>PickList in List mode:</h3>
 
-  $("#list").pickList(list_options);
-  $("#table").pickList(table_options);
-</script>
+<div id="table">
+  <table class="source">
+    <tr data-key="1">
+      <td><i class="icon-beaker"></i></td>
+      <td>Item 1</td>
+      <td>1</td>
+    </tr>
+    <tr data-key="2">
+      <td><i class="icon-bell"></i></td>
+      <td>Item 2</td>
+      <td>2</td>
+    </tr>
+    <tr data-key="3">
+      <td><i class="icon-bolt"></i></td>
+      <td>Item 3</td>
+      <td>3</td>
+    </tr>
+    <tr data-key="4">
+      <td><i class="icon-plane"></i></td>
+      <td>Item 4</td>
+      <td>4</td>
+    </tr>
+    <tr data-key="5">
+      <td><i class="icon-pencil"></i></td>
+      <td>Item 5</td>
+      <td>5</td>
+    </tr>
+    <tr data-key="6">
+      <td><i class="icon-star"></i></td>
+      <td>Item 6</td>
+      <td>6</td>
+    </tr>
+    <tr data-key="7">
+      <td><i class="icon-trophy"></i></td>
+      <td>Item 7</td>
+      <td>7</td>
+    </tr>
+    <tr data-key="8">
+      <td><i class="icon-legal"></i></td>
+      <td>Item 8</td>
+      <td>8</td>
+    </tr>
+  </table>
+  <table class="target">
+    <tr data-key="9">
+      <td><i class="icon-trash"></i></td>
+      <td>Item 9</td>
+      <td>8</td>
+    </tr>
+  </table>
+</div>
 
+
+<h4>Source:</h4>
+<div class="row">
+  <div class="col col-md-6"><pre><code class="language-html">&lt;div id=&quot;table&quot;&gt;
+  &lt;table class=&quot;source&quot;&gt;
+    &lt;tr data-key=&quot;1&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-beaker&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-key=&quot;2&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-bell&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 2&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-key=&quot;3&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-bolt&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 3&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-key=&quot;4&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-plane&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 4&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-key=&quot;5&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-pencil&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 5&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-key=&quot;6&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-star&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 6&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-key=&quot;7&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-trophy&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 7&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-key=&quot;8&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-legal&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 8&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;table class=&quot;target&quot;&gt;
+    &lt;tr data-key=&quot;9&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-trash&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Item 9&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+</div>
+  <div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> table_options = {
+  header: <span class="string">"Table layout"</span>
+};
+$(<span class="string">"#table"</span>).pickList(table_options);</code></pre>
+</div>
+</div>
+
+<script src="/assets-demo/select/pickList/list.js"></script>
+<script src="/assets-demo/select/pickList/table.js"></script>
 </div>
 </body>
 </html>

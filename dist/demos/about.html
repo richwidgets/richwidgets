@@ -18,16 +18,23 @@
 
   <title>About</title>
 
-  <link rel="stylesheet" href="../assets/richwidgets/richwidgets.min.css">
-  <link rel="stylesheet" href="../assets/font-awesome/font-awesome.css">
-  <script src="../assets/jquery/jquery.min.js"></script>
-  <script src="../assets/jquery-ui/minified/jquery-ui.min.js"></script>
-  <script src="../assets/richwidgets/richwidgets.min.js"></script>
 
-  <script src="../assets/modernizr/modernizr.js"></script>
-  <script src="../assets/bootstrap/js/dropdown.js"></script>
 
-  <script src="http://localhost:35729/livereload.js"></script>
+  <link rel="stylesheet" href="assets/richwidgets/richwidgets.min.css">
+  <link rel="stylesheet" href="assets/font-awesome/font-awesome.css">
+  <script src="assets/jquery/jquery.min.js"></script>
+  <script src="assets/jquery-ui/minified/jquery-ui.min.js"></script>
+  <script src="assets/richwidgets/richwidgets.min.js"></script>
+
+
+  
+
+  <link rel="stylesheet" href="/assets-demo/highlightjs/styles/github.css">
+  <script src="/assets-demo/modernizr/modernizr.js"></script>
+  <script src="/assets-demo/highlightjs/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="/assets-demo/bootstrap/js/dropdown.js"></script>
+  <script src="/assets-demo/bootstrap/js/collapse.js"></script>
 </head>
 
 <body>
@@ -104,9 +111,14 @@ You can drop them in your project or directly.  Alternatively use the LESS and r
 <li><code>grunt bower</code></li>
 <li><code>grunt</code></li>
 </ul>
-<p>This should drop a bunch of logs in your shell and use up some bandwith. Once it&#39;s completed, you should have the
-RichWidgets demo running on <a href="http://localhost:9000/">localhost:9000</a> (provided you don&#39;t already have a process
-running on that port!)</p>
+<p>This should drop a bunch of logs in your shell and use up some bandwith. Once it&#39;s completed, you will have built the
+richwidgets <code>dist</code> folder which contains both <code>demos</code> of the widgets, as well as all the compiled widgets&#39; <code>assets</code>.</p>
+<h2>Run the demo</h2>
+<p>Now that widgets and demo have been built with the <code>grunt</code> command, you can view the widgets by either:</p>
+<ol>
+<li>Navigating your browser to the <code>dist/demo</code> folder</li>
+<li>Run the command <code>grunt connect:demo:keepalive</code> and navigate your browser to <a href="http://localhost:9000/">http://localhost:9000/</a></li>
+</ol>
 <h2>Contributors</h2>
 <p>Learn more by reading the <a href="https://github.com/richwidgets/richwidgets/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> guide.</p>
 <h2>License</h2>

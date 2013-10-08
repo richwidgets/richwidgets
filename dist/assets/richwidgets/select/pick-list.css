@@ -30,6 +30,7 @@
 }
 .pick-list .button-column {
   text-align: center;
+  z-index: 1;
 }
 @media (min-width: 768px) {
   .pick-list .button-column {
