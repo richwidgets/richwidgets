@@ -349,7 +349,11 @@ module.exports = function (grunt) {
         tasks: ["copy:js"]
       },
       demo: {
-        files: ["<%= config.dir.src.demos %>/**/*.hbs"],
+        files: [
+          "<%= config.dir.src.demos %>/**",
+          "README.md",
+          "CONTRIBUTING.md",
+        ],
         tasks: ["assemble:dev"]
       },
       dist: {

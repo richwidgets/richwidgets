@@ -6,8 +6,15 @@ css_assets: [ richwidgets/select/select-list.css,richwidgets/select/ordering-lis
 ---
 <h2>PickList Demos</h2>
 
+<p>The pickList is similar to an HTML multi-select list, in that it allows the user to select multiple items from a list
+of possible options.  In addition, it supports optionally arranging the order of the selected items.</p>
+
 <h3>PickList in List mode:</h3>
-<p>Using the pickList plugin, we built a simple pickList widget:</p>
+
+<p>A simple orderingList widget with items laid out in list format.  To use the widget, simply invoke the plugin passing
+in a reference to the <code>&lt;ol&gt;</code> element that identifies your list element.  The widget will create any additional
+DOM nodes required to enable user interactions.</p>
+
 
 {{include "pickList/list.html"}}
 
@@ -17,7 +24,9 @@ css_assets: [ richwidgets/select/select-list.css,richwidgets/select/ordering-lis
   <div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/select/pickList/list.js"}}{{/markdown}}</div>
 </div>
 
-<h3>PickList in List mode:</h3>
+<h3>PickList in Table mode:</h3>
+
+<p>Should your use case require the ordered display if item metadata, use the orderingList in a table layout.</p>
 
 {{include "pickList/table.html"}}
 

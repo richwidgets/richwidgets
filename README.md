@@ -2,10 +2,22 @@
 
 > A JavaScript project containing standalone javascript widgets based on Bootstrap, jQuery UI and other third-party widgets, styled with LESS.
 
-## Users ##
+## Why another widget set?
 
-Compiled files are avilable in the <code>[dist](https://github.com/richwidgets/richwidgets/tree/master/dist)</code> directory.
-You can drop them in your project or directly.  Alternatively use the LESS and raw JavaScript files from the
+In the RichWidgets project we are curating a set of OSS responsive javascript widgets.  Existing OSS widgets are leveraged wherever possible,
+either consuming them directly as widgets, or by composing them into new widgets.  These widgets are then made available through this project
+with a consistent API and Look and Feel - making it easier for you to add rich functionality to your web apps (or web frameworks!).
+
+The current RichWidget architecture is centered around the [jQuery UI widget factory](http://api.jqueryui.com/jQuery.widget/)
+with [LESS](http://lesscss.org) & [Bootstrap](http://getbootstrap.com) for styling and theming.  Candidate widgets that
+do not use the widget factory will be wrapped with the widget factory to provide a consistent widget API.
+
+## Using the widgets ##
+
+Preview the widgets and see some sample use cases on our demo site: http://richwidgets.github.io.
+
+Compiled assets are currently available in the project's <code>[dist](https://github.com/richwidgets/richwidgets/tree/master/dist)</code> directory.
+You can drop them in your project or directly.  Alternatively use the raw LESS and JavaScript files from the
 <code>[src](https://github.com/richwidgets/richwidgets/tree/master/src)</code> directory.
 
 ## Build from source ##
@@ -32,9 +44,19 @@ Now that widgets and demo have been built with the `grunt` command, you can view
 1. Navigating your browser to the `dist/demo` folder
 2. Run the command `grunt connect:demo:keepalive` and navigate your browser to http://localhost:9000/
 
+<div class="alert alert-info">
+<strong>Remember!</strong> The demos are also available <span class=".alert-link">[online](http://richwidgets.github.io).</span>
+</div>
+
+## Feedback ##
+
+Have a problem with one of our widgets?  Is there a particular widget you'd like to see incorporated in the project?
+File an issue in our [issue tracker](https://github.com/richwidgets/richwidgets/issues).
+
 ## Contributors ##
 
-Learn more by reading the [CONTRIBUTING.md](https://github.com/richwidgets/richwidgets/blob/master/CONTRIBUTING.md) guide.
+RichWidgets is very much an open source project, your contributions are valued!  Learn how to get involved with the project
+in our [CONTRIBUTING.md](https://github.com/richwidgets/richwidgets/blob/master/CONTRIBUTING.md) guide.
 
 ## License ##
 
