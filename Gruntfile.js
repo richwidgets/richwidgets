@@ -83,6 +83,8 @@ module.exports = function (grunt) {
     "clean:dist",
     "build",
     "copy:demoAssets",
+    "uglify:demo",
+    "cssmin:demo",
     "assemble:production",
     "test"
   ]);
@@ -100,7 +102,7 @@ module.exports = function (grunt) {
     "build",
     "copy:demoAssets",
     "assemble:dev",
-    "connect:demo",
+    "connect:dev",
     "watch"
   ]);
 
@@ -149,18 +151,42 @@ module.exports = function (grunt) {
       }
     },
 
+    cssmin: {
+      demo: {
+        files: {
+          "<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.css": ["<%= config.dir.dist.richwidgets %>/richwidgets.min.css", "<%= config.dir.dist.assets %>/font-awesome/font-awesome.css"]
+        }
+      }
+    },
+
     uglify: {
       options: {
         banner: "// JBoss RedHat (c)\n"
       },
       dist: {
         options: {
-          compress: false,
-          beautify: true
+          compress: true
         },
         files: [
           {
             "<%= config.dir.dist.assets %>/richwidgets/richwidgets.min.js": ["<%= config.dir.dist.flot %>/richwidgets.flot.js", "<%= config.dir.src.widgets %>/**/*.js"]
+          }
+        ]
+      },
+      demo: {
+        options: {
+          compress: true,
+          nonull: true
+        },
+        files: [
+          {
+            "<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.js":
+              [
+                "<%= config.dir.dist.assets %>/jquery/jquery.min.js",
+                "<%= config.dir.dist.assets %>/jquery-ui/minified/jquery-ui.min.js",
+                "<%= config.dir.dist.flot %>/richwidgets.flot.js",
+                "<%= config.dir.dist.richwidgets %>/richwidgets.min.js",
+              ]
           }
         ]
       }
@@ -261,9 +287,15 @@ module.exports = function (grunt) {
               "highlightjs/highlight.pack.js",
               "highlightjs/styles/github.css",
               "bootstrap/js/dropdown.js",
-              "bootstrap/js/collapse.js",
+              "bootstrap/js/collapse.js"
             ],
             dest: "<%= config.dir.dist.demos %>/assets-demo/"
+          },
+          {
+            expand: true,
+            cwd: "<%= config.dir.dist.font %>",
+            src: "*",
+            dest: "<%= config.dir.dist.demos %>/assets-demo/font/"
           },
           {
             expand: true,
@@ -344,8 +376,17 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
+              mountFolder(connect, 'dist/demos')
+            ];
+          }
+        }
+      },
+      dev: {
+        options: {
+          middleware: function (connect) {
+            return [
               mountFolder(connect, 'dist/demos'),
-              mountFolder(connect, 'dist'),
+              mountFolder(connect, 'dist')
             ];
           }
         }
