@@ -10,7 +10,6 @@
      */
     Handlebars.registerHelper("include", function(template, options) {
       var dir = path.dirname(this.page.src);
-      console.log(dir);
       var content = fs.readFileSync(dir + '/' + template, 'utf8');
       if (!content) {
         return new Handlebars.SafeString('File **' + template + '** not found.');
