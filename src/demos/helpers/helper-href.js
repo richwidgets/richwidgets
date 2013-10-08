@@ -5,7 +5,11 @@
     Handlebars.registerHelper('href', function(from_dir, dest) {
       var to_dir = path.dirname(dest);
       var relativePath = path.relative(from_dir, to_dir);
-      var href = relativePath ? relativePath + "/" + path.basename(dest) : path.basename(dest);
+      var basename = path.basename(dest) === "index.html" ? "" : path.basename(dest);
+      var href = relativePath ? relativePath + "/" + basename : basename;
+      if (href === "") {
+        href = ".";
+      }
       return new Handlebars.SafeString(href);
     });
 
