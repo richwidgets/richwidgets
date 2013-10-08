@@ -415,6 +415,13 @@ module.exports = function (grunt) {
           { expand: true, cwd: 'src/demos/pages', src: ['**/*.hbs'], dest: '<%= demo.destination %>/' }
         ]
       }
+    },
+
+    'gh-pages': {
+      options: {
+        base: 'dist/demos'
+      },
+      src: ['**']
     }
   });
 };

@@ -54,7 +54,8 @@
     "assemble-less": "~0.5.3",
     "matchdep": "~0.1.1",
     "bower": "~1.2.7",
-    "path": "~0.4.9"
+    "path": "~0.4.9",
+    "grunt-gh-pages": "~0.8.0"
   },
   "licenses": [
     {
