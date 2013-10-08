@@ -227,6 +227,8 @@
                 }
             }
         },
+
+
         // Use the _setOption method to respond to changes to options
         _setOption: function( key, value ) {
             // In jQuery UI 1.8, you have to manually invoke the _setOption method from the base widget
