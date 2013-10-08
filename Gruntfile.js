@@ -419,7 +419,9 @@ module.exports = function (grunt) {
 
     'gh-pages': {
       options: {
-        base: 'dist/demos'
+        base: 'dist/demos',
+        branch: 'master',
+        repo: 'git@github.com:richwidgets/richwidgets.github.io.git'
       },
       src: ['**']
     }
