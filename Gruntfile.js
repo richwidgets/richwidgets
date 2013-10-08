@@ -6,9 +6,7 @@ var mountFolder = function (connect, dir) {
   return connect.static(path.resolve(dir));
 };
 
-var renamedTasks = {
-
-};
+var renamedTasks = {};
 
 module.exports = function (grunt) {
   var bower = require("bower");
@@ -76,15 +74,14 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask("default", [
-    "demo",
-    "connect:demo",
-    "watch"
+    "dist"
   ]);
 
   grunt.registerTask("dist", [
     "clean:dist",
     "build",
-    "assemble",
+    "copy:demoAssets",
+    "assemble:production",
     "test"
   ]);
 
@@ -96,11 +93,13 @@ module.exports = function (grunt) {
     "dist"
   ]);
 
-  grunt.registerTask("demo", [
+  grunt.registerTask("dev", [
     "clean:demo",
     "build",
     "copy:demoAssets",
-    "assemble"
+    "assemble:dev",
+    "connect:demo",
+    "watch"
   ]);
 
   grunt.initConfig({
@@ -242,25 +241,14 @@ module.exports = function (grunt) {
               "highlightjs/styles/github.css",
               "bootstrap/js/dropdown.js",
               "bootstrap/js/collapse.js",
-              "jquery/jquery.min.{js,map}",
-              "jquery-ui/ui/minified/jquery-ui.min.js"
             ],
-            dest: "<%= config.dir.dist.demos %>/assets/"
-          },
-          {
-            expand: true,
-            cwd: "<%= config.dir.dist.assets %>",
-            src: [
-              "font-awesome/**/*.*",
-              "richwidgets/richwidgets.min.*"
-            ],
-            dest: "<%= config.dir.dist.demos %>/assets/"
+            dest: "<%= config.dir.dist.demos %>/assets-demo/"
           },
           {
             expand: true,
             cwd: "<%= config.dir.src.demos %>/pages",
-            src: ["**/*.js"],
-            dest: "<%= config.dir.dist.demos %>/assets/"
+            src: ["**/*.{css,js}"],
+            dest: "<%= config.dir.dist.demos %>/assets-demo/"
           }
         ]
       }
@@ -309,7 +297,7 @@ module.exports = function (grunt) {
       },
       demo: {
         files: ["<%= config.dir.src.demos %>/**/*.hbs"],
-        tasks: ["assemble"]
+        tasks: ["assemble:dev"]
       },
       dist: {
         options: {
@@ -336,6 +324,7 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               mountFolder(connect, 'dist/demos'),
+              mountFolder(connect, 'dist'),
             ];
           }
         }
@@ -347,19 +336,23 @@ module.exports = function (grunt) {
         prettify: {indent: 2},
         data: 'src/demos/**/*.{json,yml}',
         assets: './dist/demos/assets',
-        helpers: 'src/demos/helpers/helper-*.js',
+        helpers: ['src/demos/helpers/helper-*.js', 'node_modules/yfm/lib/*.js'],
         layoutdir: 'src/demos/templates/layouts',
         layout: 'default.hbs',
         partials: ['src/demos/templates/includes/**/*.hbs']
       },
-      demos: {
-        options: {layout: 'default.hbs'},
+      production: {
+        options: {production: true},
+        files: [
+          { expand: true, cwd: 'src/demos/pages', src: ['**/*.hbs'], dest: '<%= demo.destination %>/' }
+        ]
+      },
+      dev: {
+        options: {production: false},
         files: [
           { expand: true, cwd: 'src/demos/pages', src: ['**/*.hbs'], dest: '<%= demo.destination %>/' }
         ]
       }
     }
-
   });
-
 };

@@ -22,9 +22,15 @@ Once installed, go to the project root and run the following commands:
 - <code>grunt bower</code>
 - <code>grunt</code>
 
-This should drop a bunch of logs in your shell and use up some bandwith. Once it's completed, you should have the
-RichWidgets demo running on [localhost:9000](http://localhost:9000/) (provided you don't already have a process
-running on that port!)
+This should drop a bunch of logs in your shell and use up some bandwith. Once it's completed, you will have built the
+richwidgets `dist` folder which contains both `demos` of the widgets, as well as all the compiled widgets' `assets`.
+
+## Run the demo ##
+
+Now that widgets and demo have been built with the `grunt` command, you can view the widgets by either:
+
+1. Navigating your browser to the `dist/demo` folder
+2. Run the command `grunt connect:demo:keepalive` and navigate your browser to http://localhost:9000/
 
 ## Contributors ##
 
