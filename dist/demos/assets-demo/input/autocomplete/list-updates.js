@@ -1,12 +1,12 @@
 var counter = 1;
 
 function updateDom() {
-  $('#suggestions-updatable')
+  $('#updatable-suggestions')
     .append($('<li>Test' + counter++ + '</li>'));
 };
 
 $("#updatable").richAutocomplete({
-  source: '#suggestions-updatable',
+  source: '#updatable-suggestions',
   update: function (request, done) {
     setTimeout(function () {
       updateDom();
