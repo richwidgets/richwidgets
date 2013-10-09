@@ -1,0 +1,1 @@
+$("#token").richAutocomplete({ source: source, token: ",;" });

@@ -132,19 +132,6 @@
         this.buttonClickHandler = function () {
           widget.input.autocomplete("search");
           widget.input.focus();
-
-
-
-//          this.forceCloseHandler = function() {
-//            console.log('force-close');
-//            setTimeout(function () {
-//              widget.input.autocomplete("close");
-//            }, 0);
-
-//          setTimeout(function () {
-//            $("body").one("click", this.forceCloseHandler);
-//          }, 0);
-//          }
         };
 
         this.button.on('click', this.buttonClickHandler);
@@ -251,8 +238,6 @@
         terms.pop();
         // add the selected item
         terms.push(ui.item.value);
-        // add placeholder to get the comma-and-space at the end
-        terms.push("");
         return terms.join(this.options.token + " ");
       } else {
         return ui.item.value;

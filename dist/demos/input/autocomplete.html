@@ -93,166 +93,190 @@
 <div class="container">
   
 
-<script>
-    var source = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "Ceylon",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"]
-  </script>
+  <h2>Autocomplete demos</h2>
 
-  <h2>Example autocomplete</h2>
-
-  <p>Using the typeahead.js plugin, we built a simple autocomplete widget:</p>
-
-
-  <p>
-    <input id="autocomplete" type="text"></input>
-    <script>
-      $("#autocomplete").richAutocomplete({ source: source });
-    </script>
-  </p>
-
-  <p>Using autocomplete with function as a source:</p>
-
-  <p>
-    <input id="autocomplete-function" type="text"></input>
-    <script>
-      $("#autocomplete-function").richAutocomplete({ source: function (request, response) {
-        response($.ui.autocomplete.filter(source, request.term));
-      }
-      });
-    </script>
-  </p>
-
-
-  <p>Simulating request delay:</p>
-
-  <p>
-    <input id="autocomplete-delay" type="text"></input>
-    <script>
-      $("#autocomplete-delay").richAutocomplete({ source: function (request, response) {
-        setTimeout(function () {
-          response($.ui.autocomplete.filter(source, request.term));
-        }, 500);
-      }
-      });
-    </script>
-  </p>
-
-  <p>Simulating request delay with cached ajax mode:</p>
-
-  <p>
-    <input id="autocomplete-cache-delay" type="text"/>
-    <script>
-      $("#autocomplete-cache-delay").richAutocomplete({
-        cached: true,
-        minLength: 2,
-        source: function (request, response) {
-          setTimeout(function () {
-            response($.ui.autocomplete.filter(source, request.term));
-          }, 500);
-        }
-      });
-    </script>
-  </p>
-
-  <p>Auto-Focus:</p>
-
-  <p>
-    <input id="autocomplete-auto-focus" type="text"></input>
-    <script>
-      $("#autocomplete-auto-focus").richAutocomplete({ source: source, autoFocus: true });
-    </script>
-  </p>
+  
+  <fieldset>
+    <legend>Using JSON as a source of suggestions</legend>
 
 
 
-  <p>Auto-Fill:</p>
+    <div class="row">
+      <div class="col col-md-6">
 
-  <p>
-    <input id="autocomplete-auto-fill" type="text"></input>
-    <script>
-      $("#autocomplete-auto-fill").richAutocomplete({ source: source, autoFill: true });
-    </script>
-  </p>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="json-source" type="text" class="form-control" />
+            <script src="../assets-demo/input/autocomplete/json-source.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>The simplest possible approach to provide autocompletion data is passing an array of suggestions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;json-source&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+
+        <pre><code class="language-js"><span class="keyword">var</span> source = [ <span class="string">"ActionScript"</span>, <span class="string">"AppleScript"</span>, <span class="string">"Asp"</span>, <span class="string">"BASIC"</span>, <span class="string">"C"</span>, <span class="string">"C++"</span>, <span class="string">"Clojure"</span>, <span class="string">"Ceylon"</span>, <span class="string">"COBOL"</span>, <span class="string">"ColdFusion"</span>, <span class="string">"Erlang"</span>, <span class="string">"Fortran"</span>, <span class="string">"Groovy"</span>, <span class="string">"Haskell"</span>, <span class="string">"Java"</span>, <span class="string">"JavaScript"</span>, <span class="string">"Lisp"</span>, <span class="string">"Perl"</span>, <span class="string">"PHP"</span>, <span class="string">"Python"</span>, <span class="string">"Ruby"</span>, <span class="string">"Scala"</span>, <span class="string">"Scheme"</span> ];
+
+$(<span class="string">"#json-source"</span>).richAutocomplete({ source: source });</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;json-source&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> source = [ <span class="string">"ActionScript"</span>, <span class="string">"AppleScript"</span>, <span class="string">"Asp"</span>, <span class="string">"BASIC"</span>, <span class="string">"C"</span>, <span class="string">"C++"</span>, <span class="string">"Clojure"</span>, <span class="string">"Ceylon"</span>, <span class="string">"COBOL"</span>, <span class="string">"ColdFusion"</span>, <span class="string">"Erlang"</span>, <span class="string">"Fortran"</span>, <span class="string">"Groovy"</span>, <span class="string">"Haskell"</span>, <span class="string">"Java"</span>, <span class="string">"JavaScript"</span>, <span class="string">"Lisp"</span>, <span class="string">"Perl"</span>, <span class="string">"PHP"</span>, <span class="string">"Python"</span>, <span class="string">"Ruby"</span>, <span class="string">"Scala"</span>, <span class="string">"Scheme"</span> ];
+
+$(<span class="string">"#json-source"</span>).richAutocomplete({ source: source });</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Using a function as a source of suggestions</legend>
 
 
 
-  <p>Auto-Focus Auto-Fill:</p>
+    <div class="row">
+      <div class="col col-md-6">
 
-  <p>
-    <input id="autocomplete-auto-focus-fill" type="text"></input>
-    <script>
-      $("#autocomplete-auto-focus-fill").richAutocomplete({ source: source, autoFocus: true, autoFill: true });
-    </script>
-  </p>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="function-source" type="text" class="form-control" />
+            <script src="../assets-demo/input/autocomplete/function-source.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>Much more powerful is definition of a suggestions by providing a function.</p>
 
-  <p>Support for tokenizing:</p>
+<p>Function takes two parameters:</p>
 
-  <p>
-    <input id="autocomplete-tokenizing" type="text"></input>
-    <script>
-      $("#autocomplete-tokenizing").richAutocomplete({ source: source, token: "," });
-    </script>
-  </p>
+<ul>
+  <li><tt>request</tt> - the search request in a form <tt>{{ term: 'searchTerm' }}</tt></li>
+  <li><tt>response</tt> - a response function which should be called once suggestions are ready</li>
+</ul>
+
+<p>The <tt>response</tt> function can be called <b>asynchronously</b>. This gives us opportunity to load the data via REST API, AJAX or websocket channel.</p>
+
+<p>Passing a function also allows us to compute suggestions from local data.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;function-source&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+
+        <pre><code class="language-js"><span class="keyword">var</span> asyncSuggest = <span class="function"><span class="keyword">function</span> <span class="params">(request, response)</span> {</span>
+  setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    response($.ui.autocomplete.filter(source, request.term));
+  }, <span class="number">1000</span>);
+};
+
+$(<span class="string">"#function-source"</span>).richAutocomplete({ source: asyncSuggest });</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;function-source&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> asyncSuggest = <span class="function"><span class="keyword">function</span> <span class="params">(request, response)</span> {</span>
+  setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    response($.ui.autocomplete.filter(source, request.term));
+  }, <span class="number">1000</span>);
+};
+
+$(<span class="string">"#function-source"</span>).richAutocomplete({ source: asyncSuggest });</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Using a ordered/unordered list as a source of suggestions</legend>
 
 
-  <p>Autocomplete can have a button:</p>
 
-  <p>
-    <input id="autocomplete-with-button" type="text"/>
-    <script>
-      $("#autocomplete-with-button").richAutocomplete({
-        source: source,
-        showButton: true
-      });
-    </script>
-  </p>
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="list-source" type="text" class="form-control" />
+
+<ul id="list-suggestions" style="display: none">
+  <li><i class="icon-heart"></i> Java</i></li>
+  <li><i class="icon-flag"></i> Haskell</li>
+</ul>
+            <script src="../assets-demo/input/autocomplete/list.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>For some use cases, it might be beneficial to use DOM as a source for suggestions.</p>
+
+<p>The natural way to describe list of available suggestions is unordered or ordered list.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;list-source&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;
+
+&lt;ul id=&quot;list-suggestions&quot; style=&quot;display: none&quot;&gt;
+  &lt;li&gt;&lt;i class=&quot;icon-heart&quot;&gt;&lt;/i&gt; Java&lt;/i&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;i class=&quot;icon-flag&quot;&gt;&lt;/i&gt; Haskell&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+        <pre><code class="language-js">$(<span class="string">"#list-source"</span>).richAutocomplete({ source: <span class="string">'#list-suggestions'</span> });</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;list-source&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;
+
+&lt;ul id=&quot;list-suggestions&quot; style=&quot;display: none&quot;&gt;
+  &lt;li&gt;&lt;i class=&quot;icon-heart&quot;&gt;&lt;/i&gt; Java&lt;/i&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;i class=&quot;icon-flag&quot;&gt;&lt;/i&gt; Haskell&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js">$(<span class="string">"#list-source"</span>).richAutocomplete({ source: <span class="string">'#list-suggestions'</span> });</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Table layout with a table as a source of suggestions</legend>
 
 
-  <p>Autocomplete support rendering of a list from a ordered/unordered list:</p>
 
-  <p>
-    <input id="autocomplete-with-list" type="text"></input>
-  <ul id="suggestion-list" style="display: none">
-    <li><i class="icon-heart"></i> Java</i></li>
-    <li><i class="icon-flag"></i> Haskell</li>
-  </ul>
-  <script>
-    $("#autocomplete-with-list").richAutocomplete({ source: document.getElementById('suggestion-list') });
-  </script>
-  </p>
+    <div class="row">
+      <div class="col col-md-6">
 
-  <p>Autocomplete support rendering of a suggestion list from a table:</p>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="table-source" type="text" class="form-control" />
 
-  <p>
-    <input id="autocomplete-with-table" type="text"></input>
-  <table id="suggestion-table" style="display: none">
-    <tbody>
+<table id="table-suggestions" style="display: none">
+  <tbody>
     <tr data-label="Java">
       <td><i class="icon-heart"></i></td>
       <td>Java</td>
-
       <td><i>my favorite language</i></td>
     </tr>
     <tr data-label="Haskell">
@@ -260,49 +284,427 @@
       <td>Haskell</td>
       <td>functional language</td>
     </tr>
-    </tbody>
-  </table>
-  <script>
-    $("#autocomplete-with-table").richAutocomplete({ source: document.getElementById('suggestion-table') });
-  </script>
-  </p>
+  </tbody>
+</table>
+            <script src="../assets-demo/input/autocomplete/table.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>By using <tt>&lt;table&gt;</tt>, we can simply achieve table-based layout for suggestions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;table-source&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;
 
-  <p>Updating of list-based suggestions (delayed simulating AJAX response)</p>
+&lt;table id=&quot;table-suggestions&quot; style=&quot;display: none&quot;&gt;
+  &lt;tbody&gt;
+    &lt;tr data-label=&quot;Java&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-heart&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Java&lt;/td&gt;
+      &lt;td&gt;&lt;i&gt;my favorite language&lt;/i&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-label=&quot;Haskell&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-flag&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Haskell&lt;/td&gt;
+      &lt;td&gt;functional language&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
 
-  <p>
-    <input id="autocomplete-updatable" type="text"/>
-  <ul id="suggestions-updatable" style="display: none">
-    <li>Java</li>
-    <li>Haskell</li>
-  </ul>
-  <script>
-    var counter = 1;
-    $("#autocomplete-updatable").richAutocomplete({
-      source: document.getElementById('suggestions-updatable'),
-      update: function (request, done) {
-        setTimeout(function () {
-          $('#suggestions-updatable').append($('<li>Test' + counter++ + '</li>'));
-          done();
-        }, 1000);
-      }
-    });
-  </script>
-  </p>
+        <pre><code class="language-js">$(<span class="string">"#table-source"</span>).richAutocomplete({ source: <span class="string">'#table-suggestions'</span> });</code></pre>
 
-  <p>Autocomplete's creation, destruction, enabling and disabling:</p>
+      </div>
 
-  <p>
-    <input id="autocomplete-lifecycle" type="text"></input>
-  <ul id="suggestions" style="display: none">
-    <li>Java</li>
-    <li>Haskell</li>
-  </ul>
-  <script>
-    var options = { source: document.getElementById('suggestions'), showButton: true };
-    $("#autocomplete-lifecycle").richAutocomplete(options);
-  </script>
-  </p>
+    </div>
 
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;table-source&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;
+
+&lt;table id=&quot;table-suggestions&quot; style=&quot;display: none&quot;&gt;
+  &lt;tbody&gt;
+    &lt;tr data-label=&quot;Java&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-heart&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Java&lt;/td&gt;
+      &lt;td&gt;&lt;i&gt;my favorite language&lt;/i&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr data-label=&quot;Haskell&quot;&gt;
+      &lt;td&gt;&lt;i class=&quot;icon-flag&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;Haskell&lt;/td&gt;
+      &lt;td&gt;functional language&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js">$(<span class="string">"#table-source"</span>).richAutocomplete({ source: <span class="string">'#table-suggestions'</span> });</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Simulating request delay with cached ajax mode</legend>
+
+
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="cached" type="text" class="form-control" />
+            <script src="../assets-demo/input/autocomplete/cache.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>No matter what source of suggestion you use, you can always cache responses so that the client won't need to reach the server in case user repeats the search.</p>
+
+<p>In this demo, you will perceive a 1 sec. delay for first request. But if you repeat the same search, you will get immediate answer.</p>
+
+<p>One need to provide <tt>cached</tt> flag and setup <tt>minLength</tt> which declares how long the user input needs to be to reach server.</p>
+
+<p>It is also possible to pass custom caching provider using <tt>cacheImplemenation</tt> option. Default implementation is <tt>$.ui.richAutocomplete.objectCache</tt>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;cached&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+
+        <pre><code class="language-js">$(<span class="string">"#cached"</span>).richAutocomplete({
+  cached: <span class="literal">true</span>,
+  minLength: <span class="number">2</span>,
+  source: <span class="function"><span class="keyword">function</span> <span class="params">(request, response)</span> {</span>
+    setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+      response($.ui.autocomplete.filter(source, request.term));
+    }, <span class="number">1000</span>);
+  }
+});</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;cached&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js">$(<span class="string">"#cached"</span>).richAutocomplete({
+  cached: <span class="literal">true</span>,
+  minLength: <span class="number">2</span>,
+  source: <span class="function"><span class="keyword">function</span> <span class="params">(request, response)</span> {</span>
+    setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+      response($.ui.autocomplete.filter(source, request.term));
+    }, <span class="number">1000</span>);
+  }
+});</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Auto-Focus</legend>
+
+
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="auto-focus" type="text" class="form-control" />
+            <script src="../assets-demo/input/autocomplete/auto-focus.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>When auto-focus option is used, the first available suggestion is pre-selected so that user doesn't need to use an arrow and can confirm a suggestion immediately.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;auto-focus&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+
+        <pre><code class="language-js">$(<span class="string">"#auto-focus"</span>).richAutocomplete({ source: source, autoFocus: <span class="literal">true</span> });</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;auto-focus&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js">$(<span class="string">"#auto-focus"</span>).richAutocomplete({ source: source, autoFocus: <span class="literal">true</span> });</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Auto-Fill</legend>
+
+
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="auto-fill" type="text" class="form-control" />
+            <script src="../assets-demo/input/autocomplete/auto-fill.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>Selected suggestion can be auto-filled into input as a user steps through suggestions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;auto-fill&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+
+        <pre><code class="language-js">$(<span class="string">"#auto-fill"</span>).richAutocomplete({ source: source, autoFill: <span class="literal">true</span> });</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;auto-fill&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js">$(<span class="string">"#auto-fill"</span>).richAutocomplete({ source: source, autoFill: <span class="literal">true</span> });</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Auto-Focus Auto-Fill</legend>
+
+
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="auto-focus-fill" type="text" class="form-control">
+            <script src="../assets-demo/input/autocomplete/auto-focus-fill.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>The combination of both previous options: auto-filling and auto-focus</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;auto-focus-fill&quot; type=&quot;text&quot; class=&quot;form-control&quot;&gt;</code></pre>
+
+        <pre><code class="language-js">$(<span class="string">"#auto-focus-fill"</span>).richAutocomplete({ source: source, autoFocus: <span class="literal">true</span>, autoFill: <span class="literal">true</span> });</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;auto-focus-fill&quot; type=&quot;text&quot; class=&quot;form-control&quot;&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js">$(<span class="string">"#auto-focus-fill"</span>).richAutocomplete({ source: source, autoFocus: <span class="literal">true</span>, autoFill: <span class="literal">true</span> });</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Support for tokenizing</legend>
+
+
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="token" type="text" class="form-control" />
+            <script src="../assets-demo/input/autocomplete/token.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>The basic support for tokenizing allows to auto-complete several values which are separated by one of specified tokens.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;token&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+
+        <pre><code class="language-js">$(<span class="string">"#token"</span>).richAutocomplete({ source: source, token: <span class="string">",;"</span> });</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;token&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js">$(<span class="string">"#token"</span>).richAutocomplete({ source: source, token: <span class="string">",;"</span> });</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Autocomplete can have a button</legend>
+
+
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="button" type="text" class="form-control" />
+            <script src="../assets-demo/input/autocomplete/button.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>Autocomplete has built-in functionality for adding a button to the input so user can open a list of suggestions by mouse.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;button&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+
+        <pre><code class="language-js">$(<span class="string">"#button"</span>).richAutocomplete({
+  source: source,
+  showButton: <span class="literal">true</span>
+});</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;button&quot; type=&quot;text&quot; class=&quot;form-control&quot; /&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js">$(<span class="string">"#button"</span>).richAutocomplete({
+  source: source,
+  showButton: <span class="literal">true</span>
+});</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
+  <fieldset>
+    <legend>Updating of DOM-based suggestions</legend>
+
+
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input id="updatable" type="text" class="form-control"/>
+
+<ul id="updatable-suggestions" style="display: none">
+  <li>Java</li>
+  <li>Haskell</li>
+</ul>
+            <script src="../assets-demo/input/autocomplete/list-updates.js"></script>
+          </div>
+          <div class="panel-footer">
+            <p>DOM based suggestions doesn't have to be static - when user changes input, we can request update of a DOM, but at the end, we need to request update of suggestions.</p>
+
+<p>Autocomplete provides <tt>update</tt> callback, which has two parameters:</p>
+
+<ul>
+  <li><tt>request</tt> - the search request in a form <tt>{{ term: 'searchTerm' }}</tt></li>
+  <li><tt>done</tt> - a function which must be called once DOM is updated, indicating that the suggestions may be reloaded</li>
+</ul>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        
+        
+        <pre><code class="language-html">&lt;input id=&quot;updatable&quot; type=&quot;text&quot; class=&quot;form-control&quot;/&gt;
+
+&lt;ul id=&quot;updatable-suggestions&quot; style=&quot;display: none&quot;&gt;
+  &lt;li&gt;Java&lt;/li&gt;
+  &lt;li&gt;Haskell&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+        <pre><code class="language-js"><span class="keyword">var</span> counter = <span class="number">1</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">updateDom</span><span class="params">()</span> {</span>
+  $(<span class="string">'#suggestions-updatable'</span>)
+    .append($(<span class="string">'&lt;li&gt;Test'</span> + counter++ + <span class="string">'&lt;/li&gt;'</span>));
+};
+
+$(<span class="string">"#updatable"</span>).richAutocomplete({
+  source: <span class="string">'#suggestions-updatable'</span>,
+  update: <span class="function"><span class="keyword">function</span> <span class="params">(request, done)</span> {</span>
+    setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+      updateDom();
+      done();
+    }, <span class="number">1000</span>);
+  }
+});</code></pre>
+
+      </div>
+
+    </div>
+
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!---->
+      <!---->
+      <!--<div class="col col-md-6"><pre><code class="language-html">&lt;input id=&quot;updatable&quot; type=&quot;text&quot; class=&quot;form-control&quot;/&gt;
+
+&lt;ul id=&quot;updatable-suggestions&quot; style=&quot;display: none&quot;&gt;
+  &lt;li&gt;Java&lt;/li&gt;
+  &lt;li&gt;Haskell&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>-->
+      <!--<div class="col col-md-6"><pre><code class="language-js"><span class="keyword">var</span> counter = <span class="number">1</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">updateDom</span><span class="params">()</span> {</span>
+  $(<span class="string">'#suggestions-updatable'</span>)
+    .append($(<span class="string">'&lt;li&gt;Test'</span> + counter++ + <span class="string">'&lt;/li&gt;'</span>));
+};
+
+$(<span class="string">"#updatable"</span>).richAutocomplete({
+  source: <span class="string">'#suggestions-updatable'</span>,
+  update: <span class="function"><span class="keyword">function</span> <span class="params">(request, done)</span> {</span>
+    setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+      updateDom();
+      done();
+    }, <span class="number">1000</span>);
+  }
+});</code></pre>
+</div>-->
+    <!--</div>-->
+  </fieldset>
+  
 
 </div>
 </body>
