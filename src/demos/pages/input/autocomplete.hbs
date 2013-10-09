@@ -3,219 +3,58 @@ title: Autocomplete
 section: demo
 js_assets: [jquery-ui/jquery.ui.position.js,jquery-ui/jquery.ui.core.js,jquery-ui/jquery.ui.widget.js,jquery-ui/jquery.ui.menu.js,jquery-ui/jquery.ui.autocomplete.js,richwidgets/input/autocomplete.js ]
 css_assets: [ richwidgets/input/autocomplete.css ]
+
+demos: [
+  { id: 'json-source', title: 'Using JSON as a source of suggestions' },
+  { id: 'function-source', title: 'Using a function as a source of suggestions'},
+  { id: 'list', title: 'Using a ordered/unordered list as a source of suggestions' },
+  { id: 'table', title: 'Table layout with a table as a source of suggestions' },
+  { id: 'cache', title: 'Simulating request delay with cached ajax mode' },
+  { id: 'auto-focus', title: 'Auto-Focus' },
+  { id: 'auto-fill', title: 'Auto-Fill' },
+  { id: 'auto-focus-fill', title: 'Auto-Focus Auto-Fill' },
+  { id: 'token', title: 'Support for tokenizing' },
+  { id: 'button', title: 'Autocomplete can have a button' },
+  { id: 'list-updates', title: 'Updating of DOM-based suggestions' }
+]
 ---
 
-<div class="col-lg-6">
+  <h2>Autocomplete demos</h2>
 
-  <script>
-    var source = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "Ceylon",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"]
-  </script>
-
-  <h2>Example autocomplete</h2>
-
-  <p>Using the typeahead.js plugin, we built a simple autocomplete widget:</p>
-
-
-  <p>
-    <input id="autocomplete" type="text" class="form-control"></input>
-    <script>
-      $("#autocomplete").richAutocomplete({ source: source });
-    </script>
-  </p>
-
-  <p>Using autocomplete with function as a source:</p>
-
-  <p>
-    <input id="autocomplete-function" type="text" class="form-control"></input>
-    <script>
-      $("#autocomplete-function").richAutocomplete({ source: function (request, response) {
-        response($.ui.autocomplete.filter(source, request.term));
-      }
-      });
-    </script>
-  </p>
-
-
-  <p>Simulating request delay:</p>
-
-  <p>
-    <input id="autocomplete-delay" type="text" class="form-control"></input>
-    <script>
-      $("#autocomplete-delay").richAutocomplete({ source: function (request, response) {
-        setTimeout(function () {
-          response($.ui.autocomplete.filter(source, request.term));
-        }, 500);
-      }
-      });
-    </script>
-  </p>
-
-  <p>Simulating request delay with cached ajax mode:</p>
-
-  <p>
-    <input id="autocomplete-cache-delay" type="text" class="form-control" />
-    <script>
-      $("#autocomplete-cache-delay").richAutocomplete({
-        cached: true,
-        minLength: 2,
-        source: function (request, response) {
-          setTimeout(function () {
-            response($.ui.autocomplete.filter(source, request.term));
-          }, 500);
-        }
-      });
-    </script>
-  </p>
-
-  <p>Auto-Focus:</p>
-
-  <p>
-    <input id="autocomplete-auto-focus" type="text" class="form-control"></input>
-    <script>
-      $("#autocomplete-auto-focus").richAutocomplete({ source: source, autoFocus: true });
-    </script>
-  </p>
+  {{#each demos}}
+  <fieldset>
+    <legend>{{this.title}}</legend>
 
 
 
-  <p>Auto-Fill:</p>
+    <div class="row">
+      <div class="col col-md-6">
 
-  <p>
-    <input id="autocomplete-auto-fill" type="text" class="form-control"></input>
-    <script>
-      $("#autocomplete-auto-fill").richAutocomplete({ source: source, autoFill: true });
-    </script>
-  </p>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            {{include "autocomplete/{{this.id}}.html" ../page}}
+            <script src="{{assets-demo ../page/dirname}}/input/autocomplete/{{this.id}}.js"></script>
+          </div>
+          <div class="panel-footer">
+            {{include "autocomplete/{{this.id}}-description.html" ../page}}
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        {{set 'html_source' "src/demos/pages/input/autocomplete/{{this.id}}.html" }}
+        {{set 'js_source' "src/demos/pages/input/autocomplete/{{this.id}}.js" }}
+        {{#markdown}}{{embed html_source}}{{/markdown}}
+        {{#markdown}}{{embed js_source}}{{/markdown}}
+      </div>
 
+    </div>
 
-
-  <p>Auto-Focus Auto-Fill:</p>
-
-  <p>
-    <input id="autocomplete-auto-focus-fill" type="text" class="form-control"></input>
-    <script>
-      $("#autocomplete-auto-focus-fill").richAutocomplete({ source: source, autoFocus: true, autoFill: true });
-    </script>
-  </p>
-
-  <p>Support for tokenizing:</p>
-
-  <p>
-    <input id="autocomplete-tokenizing" type="text" class="form-control"></input>
-    <script>
-      $("#autocomplete-tokenizing").richAutocomplete({ source: source, token: "," });
-    </script>
-  </p>
-
-
-  <p>Autocomplete can have a button:</p>
-
-  <p>
-    <input id="autocomplete-with-button" type="text" class="form-control" />
-    <script>
-      $("#autocomplete-with-button").richAutocomplete({
-        source: source,
-        showButton: true
-      });
-    </script>
-  </p>
-
-
-  <p>Autocomplete support rendering of a list from a ordered/unordered list:</p>
-
-  <p>
-    <input id="autocomplete-with-list" type="text" class="form-control"></input>
-  <ul id="suggestion-list" style="display: none">
-    <li><i class="icon-heart"></i> Java</i></li>
-    <li><i class="icon-flag"></i> Haskell</li>
-  </ul>
-  <script>
-    $("#autocomplete-with-list").richAutocomplete({ source: document.getElementById('suggestion-list') });
-  </script>
-  </p>
-
-  <p>Autocomplete support rendering of a suggestion list from a table:</p>
-
-  <p>
-    <input id="autocomplete-with-table" type="text" class="form-control"></input>
-  <table id="suggestion-table" style="display: none">
-    <tbody>
-    <tr data-label="Java">
-      <td><i class="icon-heart"></i></td>
-      <td>Java</td>
-
-      <td><i>my favorite language</i></td>
-    </tr>
-    <tr data-label="Haskell">
-      <td><i class="icon-flag"></i></td>
-      <td>Haskell</td>
-      <td>functional language</td>
-    </tr>
-    </tbody>
-  </table>
-  <script>
-    $("#autocomplete-with-table").richAutocomplete({ source: document.getElementById('suggestion-table') });
-  </script>
-  </p>
-
-  <p>Updating of list-based suggestions (delayed simulating AJAX response)</p>
-
-  <p>
-    <input id="autocomplete-updatable" type="text" class="form-control"/>
-  <ul id="suggestions-updatable" style="display: none">
-    <li>Java</li>
-    <li>Haskell</li>
-  </ul>
-  <script>
-    var counter = 1;
-    $("#autocomplete-updatable").richAutocomplete({
-      source: document.getElementById('suggestions-updatable'),
-      update: function (request, done) {
-        setTimeout(function () {
-          $('#suggestions-updatable').append($('<li>Test' + counter++ + '</li>'));
-          done();
-        }, 1000);
-      }
-    });
-  </script>
-  </p>
-
-  <p>Autocomplete's creation, destruction, enabling and disabling:</p>
-
-  <p>
-    <input id="autocomplete-lifecycle" type="text" class="form-control"></input>
-  <ul id="suggestions" style="display: none">
-    <li>Java</li>
-    <li>Haskell</li>
-  </ul>
-  <script>
-    var options = { source: document.getElementById('suggestions'), showButton: true };
-    $("#autocomplete-lifecycle").richAutocomplete(options);
-  </script>
-  </p>
-
-
-</div>
+    <!--<h4>Source:</h4>-->
+    <!--<div class="row">-->
+      <!--{{set 'html_source' "src/demos/pages/input/autocomplete/{{this.id}}.html" }}-->
+      <!--{{set 'js_source' "src/demos/pages/input/autocomplete/{{this.id}}.js" }}-->
+      <!--<div class="col col-md-6">{{#markdown}}{{embed html_source}}{{/markdown}}</div>-->
+      <!--<div class="col col-md-6">{{#markdown}}{{embed js_source}}{{/markdown}}</div>-->
+    <!--</div>-->
+  </fieldset>
+  {{/each}}

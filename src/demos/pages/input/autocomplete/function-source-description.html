@@ -1,0 +1,12 @@
+<p>Much more powerful is definition of a suggestions by providing a function.</p>
+
+<p>Function takes two parameters:</p>
+
+<ul>
+  <li><tt>request</tt> - the search request in a form <tt>{{ term: 'searchTerm' }}</tt></li>
+  <li><tt>response</tt> - a response function which should be called once suggestions are ready</li>
+</ul>
+
+<p>The <tt>response</tt> function can be called <b>asynchronously</b>. This gives us opportunity to load the data via REST API, AJAX or websocket channel.</p>
+
+<p>Passing a function also allows us to compute suggestions from local data.</p>

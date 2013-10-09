@@ -8,8 +8,13 @@
     /*
      * Usage: {{ include [partial] }}
      */
-    Handlebars.registerHelper("include", function(template, options) {
-      var dir = path.dirname(this.page.src);
+    Handlebars.registerHelper("include", function(template, page) {
+      // evaluate the template name for handlebars expressions with current context
+      var template = Handlebars.compile(template)(this);
+
+      var src = (!page.hash) ? page.src : this.page.src;
+
+      var dir = path.dirname(src);
       var content = fs.readFileSync(dir + '/' + template, 'utf8');
       if (!content) {
         return new Handlebars.SafeString('File **' + template + '** not found.');

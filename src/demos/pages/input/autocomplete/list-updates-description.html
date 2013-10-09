@@ -1,0 +1,8 @@
+<p>DOM based suggestions doesn't have to be static - when user changes input, we can request update of a DOM, but at the end, we need to request update of suggestions.</p>
+
+<p>Autocomplete provides <tt>update</tt> callback, which has two parameters:</p>
+
+<ul>
+  <li><tt>request</tt> - the search request in a form <tt>{{ term: 'searchTerm' }}</tt></li>
+  <li><tt>done</tt> - a function which must be called once DOM is updated, indicating that the suggestions may be reloaded</li>
+</ul>

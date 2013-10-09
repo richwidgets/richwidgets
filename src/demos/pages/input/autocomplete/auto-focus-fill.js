@@ -1,0 +1,1 @@
+$("#auto-focus-fill").richAutocomplete({ source: source, autoFocus: true, autoFill: true });
