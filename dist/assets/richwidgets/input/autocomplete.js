@@ -132,19 +132,6 @@
         this.buttonClickHandler = function () {
           widget.input.autocomplete("search");
           widget.input.focus();
-
-
-
-//          this.forceCloseHandler = function() {
-//            console.log('force-close');
-//            setTimeout(function () {
-//              widget.input.autocomplete("close");
-//            }, 0);
-
-//          setTimeout(function () {
-//            $("body").one("click", this.forceCloseHandler);
-//          }, 0);
-//          }
         };
 
         this.button.on('click', this.buttonClickHandler);
@@ -251,8 +238,6 @@
         terms.pop();
         // add the selected item
         terms.push(ui.item.value);
-        // add placeholder to get the comma-and-space at the end
-        terms.push("");
         return terms.join(this.options.token + " ");
       } else {
         return ui.item.value;
@@ -262,6 +247,9 @@
     _getSuggestions: function (request, response) {
       var searchTerm = this._extractSearchTerm(request);
 
+      if ($.type(searchTerm) === 'string' && searchTerm.length < this.options.minLength) {
+        return false;
+      }
 
       var req = $.extend({}, request, {
         term: searchTerm
@@ -336,7 +324,7 @@
       }
       $(domSource).children('tr, li').each(function () {
         suggestions.push({
-          value: $(this).data("label") || $(this).text(),
+          value: $(this).data("label") || $(this).text().trim(),
           dom: $(this).clone()
         })
       });
@@ -372,7 +360,7 @@
         case this.LAYOUT.list :
           data._renderMenu = $.ui.autocomplete.prototype._renderMenu;
           data._renderItem = function (ul, item) {
-            var content = item.dom ? $("<a>").html(item.dom.children()) : $("<a>").text(item.label);
+            var content = item.dom ? $("<a>").html(item.dom.html()) : $("<a>").text(item.label);
             return $("<li>").append(content).appendTo(ul);
           };
           break;

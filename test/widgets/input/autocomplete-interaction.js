@@ -94,9 +94,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       }, "menu should not be visible", 1500);
 
       runs(function() {
-        expect(element).toHaveValue("Java, ");
+        expect(element).toHaveValue("Java");
 
-        element.val(element.val() + 'h');
+        element.val(element.val() + ', h');
         element.trigger('keydown');
       });
 
@@ -114,7 +114,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       }, "menu should not be visible", 1500);
 
       runs(function() {
-        expect(element).toHaveValue("Java, Haskell, ");
+        expect(element).toHaveValue("Java, Haskell");
       });
     });
 

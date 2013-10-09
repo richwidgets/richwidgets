@@ -1,0 +1,1 @@
+$("#list-source").richAutocomplete({ source: '#list-suggestions' });

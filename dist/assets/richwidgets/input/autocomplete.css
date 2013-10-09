@@ -125,9 +125,6 @@
     left: auto;
   }
 }
-.r-autocomplete {
-  display: inline;
-}
 .ui-autocomplete {
   position: absolute;
   top: 100%;

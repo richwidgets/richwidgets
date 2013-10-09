@@ -6,9 +6,6 @@
     var _     = grunt.util._;
 
     Handlebars.registerHelper("assets-demo", function(dirname) {
-      if (! dirname.hash) {
-        console.log(dirname);
-      }
       var dir = ! dirname.hash ? dirname : this.page.dirname;
       var assetsDemo = "dist/demos/assets-demo/"
       var relativePath = path.relative(dir, assetsDemo);

@@ -1,6 +1,6 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function () {
 
-  xdescribe("widget(autocomplete): DOM source", function () {
+  describe("widget(autocomplete): DOM source", function () {
 
     beforeEach(function () {
       var f = jasmine.getFixtures();

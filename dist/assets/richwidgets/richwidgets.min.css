@@ -5847,9 +5847,6 @@ td.visible-print {
     display: none !important;
   }
 }
-.r-autocomplete {
-  display: inline;
-}
 .ui-autocomplete {
   position: absolute;
   top: 100%;
