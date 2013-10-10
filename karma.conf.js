@@ -1,5 +1,11 @@
 module.exports = function(config) {
 
+  /**
+   * This is a configuration for Karma runner for continous integration purposes.
+   *
+   * You can modify the settings when running test suite from command line, refer to online documentation
+   * for the runner or see comments bellow.
+   */
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '',
@@ -9,18 +15,30 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
 
+      /**
+       * the file which will be ran as the browser is started,
+       * it start RequestJS dependency resolution and test loading
+       */
       'test/test-main.js',
 
-      {pattern: 'lib/jquery/jquery.js', included: false},
+      /**
+       * These files are loaded by Karma HTTP server which serves resources to test,
+       * but they are not run automatically
+       */
+      // test dependencies
       {pattern: 'lib/jquery-simulate/jquery.simulate.js', included: false},
       {pattern: 'lib/jasmine-jquery/lib/jasmine-jquery.js', included: false},
-      {pattern: 'lib/jquery-ui/ui/jquery-ui.js', included: false},
       {pattern: 'lib/dom-compare/**/*.js', included: false},
+
+      // runtime dependencies
+      {pattern: 'lib/jquery/jquery.js', included: false},
+      {pattern: 'lib/jquery-ui/ui/jquery-ui.js', included: false},
+
+      // richwidgets sources
+      {pattern: 'src/**/*.js', included: false},
       {pattern: 'dist/assets/**/*.css', included: false},
 
-
-      {pattern: 'src/**/*.js', included: false},
-
+      // tests
       {pattern: 'test/**/*.js', included: false},
       {pattern: 'test/**/*.html', included: false}
     ],
@@ -34,12 +52,11 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-
     ],
 
 
     // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
+    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage', 'spec'
     reporters: ['progress'],
 
 
@@ -61,6 +78,8 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
+    //
+    // use $ karma ... -auto-watch=true from command-line
     autoWatch: false,
 
 
@@ -72,6 +91,8 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
+    //
+    // use $ karma ... -browsers=PhantomJS,Firefox,Chrome from command-line
     browsers: ['PhantomJS'],
 
 
@@ -81,6 +102,8 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
+    //
+    // use $ karma ... -single-run=false from command-line
     singleRun: true
 
   });
