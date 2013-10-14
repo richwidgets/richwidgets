@@ -156,7 +156,6 @@
           widget._getSuggestions(request, response);
         },
         search: function () {
-          this.opened = true;
           if (widget.options.autoFill) {
             if (widget.entered === widget.input.val()) {
               return false;
@@ -346,12 +345,12 @@
     },
 
     _registerListeners: function () {
-      this.input.bind("autocompletesearch", this.options.onsearch);
-      this.input.bind("autocompleteopen", this.options.onopen);
-      this.input.bind("autocompletefocus", this.options.onfocus);
-      this.input.bind("autocompleteselect", this.options.onselect);
-      this.input.bind("autocompleteclose", this.options.onclose);
-      this.input.bind("autocompletechange", this.options.onchange);
+      var widget = this;
+      $.each(['search', 'open', 'focus', 'select', 'close', 'change'], function(i, ev) {
+        if (widget.options[ev]) {
+          widget.input.on('autocomplete' + ev, widget.options[ev]);
+        }
+      });
     },
 
     _setLayout: function (layout) {

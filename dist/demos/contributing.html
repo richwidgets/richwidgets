@@ -92,6 +92,9 @@
 
 <div class="container">
   
+
+<a href="https://github.com/richwidgets/richwidgets"><img style="position: absolute; top: 50px; right: 0; border: 0; z-index: 2000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
 <h1>Contributing to RichWidgets <a href="https://travis-ci.org/richwidgets/richwidgets"><img src="https://travis-ci.org/richwidgets/richwidgets.png?branch=master" alt="Build Status"></a></h1>
 <blockquote>
 <p>A JavaScript project containing standalone javascript widgets based on Bootstrap, jQuery UI and other third-party widgets, styled with LESS.</p>
@@ -114,6 +117,26 @@ sure our widgets continue to function as we upgrade the various libraries that m
 <p>RichWidgets uses <a href="http://pivotal.github.io/jasmine/">jasmine</a> and <a href="http://karma-runner.github.io/">jasmine-jquery)(<a href="https://github.com/velesin/jasmine-jquery">https://github.com/velesin/jasmine-jquery</a>),
 using [karma</a> as our test runner.  Widget tests must go beyond simple setup/takedown of the widgets,
 and must also test all widget options and user interactions.  In this way we will be able to keep our widgets both current and stable.</p>
+<h3>Running Test Suite</h3>
+<p><em>Run all tests on particular browsers:</em></p>
+<pre><code>karma start karma.conf.js -browsers=PhantomJS,Chrome,Firefox</code></pre>
+<h3>Developing Tests</h3>
+<p><em>Run test suite continuously reacting on file changes:</em></p>
+<pre><code>karma start karma.conf.js --single-run=false --auto-watch=true --browsers=Chrome</code></pre>
+<p><em>Running selected tests:</em></p>
+<ul>
+<li>Open a javascript test source</li>
+<li>Rename the test definition from <code>it</code> to <code>iit</code><ul>
+<li>or rename the specification from <code>describe</code> to <code>ddescribe</code></li>
+</ul>
+</li>
+</ul>
+<h3>Test Configuration</h3>
+<p>Tests are configured in two files:</p>
+<ul>
+<li><code>karma.conf.js</code> - configuration for Karma runner</li>
+<li><code>test/test-main.js</code> - configuration for Module Loading (AMD)</li>
+</ul>
 
 </div>
 </body>
