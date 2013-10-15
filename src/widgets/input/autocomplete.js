@@ -183,14 +183,19 @@
 
           original = original.substring(0, input[0].selectionStart);
 
-          if (original.length > 0 && label.toLowerCase().indexOf(original.toLowerCase()) === 0) {
-            input.val(original + label.substring(original.length));
+          var lastTerm = widget._extractSearchTerm(original);
+          var prefix = original.substring(0, original.length - lastTerm.length);
+
+          if (lastTerm.length > 0 && label.toLowerCase().indexOf(lastTerm.toLowerCase()) === 0) {
+            input.val(original + label.substring(lastTerm.length));
 
             input[0].selectionStart = original.length;
-            input[0].selectionEnd = label.length;
+            input[0].selectionEnd = prefix.length + label.length;
+
             return false;
           } else {
-            return true;
+            input.val(original);
+            return false;
           }
         },
         close: function (event) {
@@ -222,11 +227,11 @@
       return this._splitTokens(term).pop();
     },
 
-    _extractSearchTerm: function (request) {
+    _extractSearchTerm: function (term) {
       if (this.options.token) {
-        return this._extractLastToken(request.term);
+        return this._extractLastToken(term);
       } else {
-        return request.term;
+        return term;
       }
     },
 
@@ -244,7 +249,7 @@
     },
 
     _getSuggestions: function (request, response) {
-      var searchTerm = this._extractSearchTerm(request);
+      var searchTerm = this._extractSearchTerm(request.term);
 
       if ($.type(searchTerm) === 'string' && searchTerm.length < this.options.minLength) {
         return false;

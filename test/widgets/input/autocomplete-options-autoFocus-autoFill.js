@@ -150,7 +150,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("pre-fills value which replaces whole input when both 'autoFocus' and 'autoFill' are used and second option is selected", function() {
+    it("autoFill doesn't pre-fill values which doesn't start with lower-cased prefix", function() {
 
       element.richAutocomplete({
         autoFocus: true,
@@ -179,11 +179,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return element.val() == 'Haskell';
+        return menu.find(".ui-menu-item:nth-child(2) a").is(".ui-state-focus");
       }, "menu to be visible", 1500);
 
       runs(function() {
-        expect(element).toHaveValue("Haskell");
+        expect(element).toHaveValue("a");
         expect(menu.find(".ui-menu-item:nth-child(2) a")).toBe(".ui-state-focus");
         expect(menu.find(".ui-menu-item:nth-child(2) a")).toHaveText("Haskell");
       });
