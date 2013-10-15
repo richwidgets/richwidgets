@@ -354,7 +354,7 @@ module.exports = function (grunt) {
           "README.md",
           "CONTRIBUTING.md",
         ],
-        tasks: ["assemble:dev"]
+        tasks: ["copy:demoAssets", "assemble:dev"]
       },
       dist: {
         options: {
