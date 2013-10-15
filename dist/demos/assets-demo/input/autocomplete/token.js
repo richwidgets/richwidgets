@@ -1,1 +1,5 @@
-$("#token").richAutocomplete({ source: source, token: ",", minLength: 1 });
+$("#token").richAutocomplete({
+  source: source,
+  token: ",",
+  minLength: 1
+});
