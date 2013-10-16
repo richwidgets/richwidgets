@@ -1,11 +1,12 @@
-"use strict";
+/*global module:false*/
+
 
 module.exports = function (grunt) {
+  "use strict";
   var path = require("path");
   var mountFolder = function (connect, dir) {
     return connect.static(path.resolve(dir));
   };
-  var bower = require("bower");
 
   var configuration = {
     pkg: grunt.file.readJSON("package.json"),
@@ -52,6 +53,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask("build", [
+    "jshint:widgets",
     "copy:font",
     "copy:jquery",
     "copy:jqueryui",
@@ -175,7 +177,7 @@ module.exports = function (grunt) {
                 "<%= config.dir.dist.assets %>/jquery/jquery.min.js",
                 "<%= config.dir.dist.assets %>/jquery-ui/minified/jquery-ui.min.js",
                 "<%= config.dir.dist.flot %>/richwidgets.flot.js",
-                "<%= config.dir.dist.richwidgets %>/richwidgets.min.js",
+                "<%= config.dir.dist.richwidgets %>/richwidgets.min.js"
               ]
           }
         ]
@@ -205,24 +207,60 @@ module.exports = function (grunt) {
         curly: true,
         eqeqeq: true,
         immed: true,
-        latedef: true,
+        latedef: 'nofunc',
         newcap: true,
         noarg: true,
         sub: true,
         undef: true,
-        unused: true,
+//        unused: true,
         boss: true,
         eqnull: true,
-        browser: true,
-        globals: {
-          jQuery: true
-        }
+        browser: true
       },
       gruntfile: {
+        options: {
+          globals: {
+            jQuery: true,
+            require: true
+          }
+        },
         src: 'Gruntfile.js'
       },
-      lib_test: {
-        src: ['src/**/*.js', 'test/**/*.js']
+      widgets: {
+        options: {
+          globals: {
+            jQuery: true
+          }
+        },
+        src: ['src/widgets/**/*.js']
+      },
+      demos: {
+        options: {
+          globals: {
+            '$': true,
+            module: true,
+            require: true
+          }
+        },
+        src: ['src/demos/**/*.js']
+      },
+      tests: {
+        options: {
+          globals: {
+            jQuery: true,
+            '$': true,
+            it: true,
+            expect: true,
+            runs: true,
+            waitsFor: true,
+            beforeEach: true,
+            afterEach: true,
+            define: true,
+            describe: true,
+            jasmine: true
+          }
+        },
+        src: ['test/**/*.js']
       }
     },
 
@@ -371,7 +409,7 @@ module.exports = function (grunt) {
         files: [
           "<%= config.dir.src.demos %>/**",
           "README.md",
-          "CONTRIBUTING.md",
+          "CONTRIBUTING.md"
         ],
         tasks: ["copy:demoAssets", "assemble:dev"]
       },

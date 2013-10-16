@@ -8,9 +8,9 @@
     /*
      * Usage: {{ include [partial] }}
      */
-    Handlebars.registerHelper("include", function(template, page) {
+    Handlebars.registerHelper("include", function(templateName, page) {
       // evaluate the template name for handlebars expressions with current context
-      var template = Handlebars.compile(template)(this);
+      var template = Handlebars.compile(templateName)(this);
 
       var src = (!page.hash) ? page.src : this.page.src;
 
