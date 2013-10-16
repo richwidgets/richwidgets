@@ -1,26 +1,11 @@
 "use strict";
 
-var path = require("path");
-
-var mountFolder = function (connect, dir) {
-  return connect.static(path.resolve(dir));
-};
-
-var renamedTasks = {};
-
 module.exports = function (grunt) {
+  var path = require("path");
+  var mountFolder = function (connect, dir) {
+    return connect.static(path.resolve(dir));
+  };
   var bower = require("bower");
-
-  require("matchdep").filterDev("grunt-*").forEach(function (plugin) {
-    grunt.loadNpmTasks(plugin);
-    if (renamedTasks[plugin]) {
-      grunt.renameTask(renamedTasks[plugin].original, renamedTasks[plugin].renamed);
-    }
-  });
-
-  grunt.loadNpmTasks('assemble');
-  grunt.loadNpmTasks('assemble-less');  // not related to assemble
-  grunt.loadNpmTasks('grunt-karma');
 
   var configuration = {
     pkg: grunt.file.readJSON("package.json"),
@@ -54,7 +39,12 @@ module.exports = function (grunt) {
               tooltip :  "<%= config.dir.lib.root %>/flotTooltip"
           }
       }
-    }
+    },
+    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
+      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
+      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n'
   };
 
   grunt.registerTask("bower", [
@@ -210,6 +200,32 @@ module.exports = function (grunt) {
       }
     },
 
+    jshint: {
+      options: {
+        curly: true,
+        eqeqeq: true,
+        immed: true,
+        latedef: true,
+        newcap: true,
+        noarg: true,
+        sub: true,
+        undef: true,
+        unused: true,
+        boss: true,
+        eqnull: true,
+        browser: true,
+        globals: {
+          jQuery: true
+        }
+      },
+      gruntfile: {
+        src: 'Gruntfile.js'
+      },
+      lib_test: {
+        src: ['src/**/*.js', 'test/**/*.js']
+      }
+    },
+
     copy: {
       font: {
         files: [
@@ -278,6 +294,9 @@ module.exports = function (grunt) {
         })
       },
       demoAssets: {
+        options: {
+          banner: '<%= banner %>'
+        },
         files: [
           {
             expand: true,
@@ -430,4 +449,12 @@ module.exports = function (grunt) {
       src: ['**']
     }
   });
+
+  // load all the grunt-* dependencies found in the package.json file
+  require("matchdep").filterDev("grunt-*").forEach(function (plugin) {
+    grunt.loadNpmTasks(plugin);
+  });
+
+  grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('assemble-less');  // not related to assemble
 };
