@@ -240,7 +240,8 @@ module.exports = function (grunt) {
           globals: {
             '$': true,
             module: true,
-            require: true
+            require: true,
+            source: true  // global used in autocomplete demos
           }
         },
         src: ['src/demos/**/*.js']
