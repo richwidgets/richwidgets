@@ -53,8 +53,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask("build", [
-    "jshint:widgets",
-    "jshint:tests",
+    "jshint",
     "copy:font",
     "copy:jquery",
     "copy:jqueryui",
