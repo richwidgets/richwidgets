@@ -3,6 +3,7 @@ node_modules
 test-results.xml
 coverage
 .grunt
+dist
 
 # IDEs
 .idea
