@@ -148,7 +148,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
           runs(function () {
             expect(changeCallback).toHaveBeenCalled();
           });
-        };
+        }
       });
 
       describe('change by drag and drop:', function () {

@@ -88,7 +88,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return keydownEventsPropagated == 1;
+        return keydownEventsPropagated === 1;
       }, "menu to be visible", 500);
 
       runs(function() {
@@ -97,7 +97,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return keydownEventsPropagated == 2;
+        return keydownEventsPropagated === 2;
       }, "menu to be visible", 500);
 
       runs(function() {
@@ -107,7 +107,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return sourceFnInvoked == 1;
+        return sourceFnInvoked === 1;
       }, "menu to be visible", 500);
 
       runs(function() {
@@ -120,7 +120,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return sourceFnInvoked == 2;
+        return sourceFnInvoked === 2;
       }, "menu to be visible", 500);
 
       runs(function() {

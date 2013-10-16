@@ -103,7 +103,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           expect(fixture.find('.ordering-list').first().attr('class')).toEqual('ordering-list select-list ' + styleClass);
 
           //given
-          styleClass = 'newClass'
+          styleClass = 'newClass';
           // when
           element.orderingList('option', 'styleClass', styleClass);
           // then
@@ -120,7 +120,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       it('applies the button text vlaues specified by the buttonText option', function () {
         function test(fixture, element) {
           // given
-          var buttonsText = {first: "abcd", up: "efgh", down: "ijkl", last: "mnop"}
+          var buttonsText = {first: "abcd", up: "efgh", down: "ijkl", last: "mnop"};
           var options = {
             buttonsText: buttonsText
           };
@@ -133,7 +133,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           expect(fixture.find('.button-column .btn-last span').first().text()).toEqual(buttonsText.last);
 
           // given
-          buttonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"}
+          buttonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"};
           // when
           element.orderingList('option', 'buttonsText', buttonsText);
           // then
@@ -183,7 +183,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         element_table.orderingList('option', 'columnClasses', newColumnClassString);
         // then
         var newColumnClasses = newColumnClassString.split(" ");
-        var header_row_cells = fixture_table.find('thead th');
+        header_row_cells = fixture_table.find('thead th');
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(/column/);
         expect(getColumnClass(header_row_cells, 0)).toMatch(newColumnClasses[0]);
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(newColumnClasses[1]);
@@ -193,7 +193,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         expect(getColumnClass(header_row_cells, 2)).not.toMatch(/column/);
         expect(getColumnClass(header_row_cells, 2)).not.toMatch(newColumnClasses[0]);
         expect(getColumnClass(header_row_cells, 2)).not.toMatch(newColumnClasses[1]);
-        var row_1_cells = fixture_table.find('tbody td');
+        row_1_cells = fixture_table.find('tbody td');
         expect(getColumnClass(row_1_cells, 0)).not.toMatch(/column/);
         expect(getColumnClass(row_1_cells, 0)).toMatch(newColumnClasses[0]);
         expect(getColumnClass(row_1_cells, 0)).not.toMatch(newColumnClasses[1]);

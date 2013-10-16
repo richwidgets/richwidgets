@@ -226,7 +226,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return element.val() == 'java';
+        return element.val() === 'java';
       }, "'java' is auto-filled word", 1500);
 
       runs(function() {
@@ -288,7 +288,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return menu.find(".ui-menu-item:first a").text() == 'Java';
+        return menu.find(".ui-menu-item:first a").text() === 'Java';
 
       }, "first item to be 'Java'", 500);
 

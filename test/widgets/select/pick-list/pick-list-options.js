@@ -151,7 +151,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           expect(fixture.find('.pick-list').first().attr('class')).toEqual('container pick-list outer ' + styleClass);
 
           //given
-          styleClass = 'newClass'
+          styleClass = 'newClass';
           // when
           element.pickList('option', 'styleClass', styleClass);
           // then
@@ -168,8 +168,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       it('applies the button text vlaues specified by the buttonText option', function () {
         function test(fixture, element) {
           // given
-          var orderButtonsText = {first: "abcd", up: "efgh", down: "ijkl", last: "mnop"}
-          var pickButtonsText = {addAll: "fghj", add: "vbmn", remove: "rtyu", removeAll: "dfgh"}
+          var orderButtonsText = {first: "abcd", up: "efgh", down: "ijkl", last: "mnop"};
+          var pickButtonsText = {addAll: "fghj", add: "vbmn", remove: "rtyu", removeAll: "dfgh"};
           var options = {
             orderButtonsText: orderButtonsText,
             pickButtonsText: pickButtonsText
@@ -188,8 +188,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           expect(fixture.find('.middle .btn-add-all span').first().text()).toEqual(pickButtonsText.addAll);
 
           // given
-          orderButtonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"}
-          pickButtonsText = {first: "qwe", up: "wer", down: "ert", last: "rty"}
+          orderButtonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"};
+          pickButtonsText = {first: "qwe", up: "wer", down: "ert", last: "rty"};
           // when
           element.pickList('option', 'orderButtonsText', orderButtonsText);
           // then
@@ -239,7 +239,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         element_table.pickList('option', 'columnClasses', newColumnClassString);
         // then
         var newColumnClasses = newColumnClassString.split(" ");
-        var header_row_cells = fixture_table.find('.source-wrapper thead th');
+        header_row_cells = fixture_table.find('.source-wrapper thead th');
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(/column/);
         expect(getColumnClass(header_row_cells, 0)).toMatch(newColumnClasses[0]);
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(newColumnClasses[1]);
@@ -249,7 +249,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         expect(getColumnClass(header_row_cells, 2)).not.toMatch(/column/);
         expect(getColumnClass(header_row_cells, 2)).not.toMatch(newColumnClasses[0]);
         expect(getColumnClass(header_row_cells, 2)).not.toMatch(newColumnClasses[1]);
-        var row_1_cells = fixture_table.find('.source-wrapper tbody td');
+        row_1_cells = fixture_table.find('.source-wrapper tbody td');
         expect(getColumnClass(row_1_cells, 0)).not.toMatch(/column/);
         expect(getColumnClass(row_1_cells, 0)).toMatch(newColumnClasses[0]);
         expect(getColumnClass(row_1_cells, 0)).not.toMatch(newColumnClasses[1]);

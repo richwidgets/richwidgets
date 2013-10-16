@@ -16,7 +16,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it("suggestions from <list> markup", function () {
       // given
-      var fixture = $("#fixture-autocomplete-with-list")
+      var fixture = $("#fixture-autocomplete-with-list");
       var element = $("input", fixture);
       var expected = $("#expected-autocomplete-with-list").detach();
       var expectedMenu = $("#expected-autocomplete-with-list--menu").detach();

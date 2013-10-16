@@ -54,6 +54,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask("build", [
     "jshint:widgets",
+    "jshint:tests",
     "copy:font",
     "copy:jquery",
     "copy:jqueryui",
@@ -257,7 +258,8 @@ module.exports = function (grunt) {
             afterEach: true,
             define: true,
             describe: true,
-            jasmine: true
+            jasmine: true,
+            requirejs: true
           }
         },
         src: ['test/**/*.js']

@@ -82,7 +82,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         var item = menu.find(".ui-menu-item");
-        return item.length == 1 && item.text() === 'Java';
+        return item.length === 1 && item.text() === 'Java';
       }, "menu should contain one item", 500);
 
       runs(function() {
@@ -102,7 +102,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         var item = menu.find(".ui-menu-item");
-        return item.length == 1 && item.text() === 'Haskell';
+        return item.length === 1 && item.text() === 'Haskell';
       }, "menu should contain one item", 500);
 
       runs(function() {
@@ -153,7 +153,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return menu.find(".ui-menu-item").length == 2;
+        return menu.find(".ui-menu-item").length === 2;
       }, "menu should contain two items", 500);
 
       runs(function() {
@@ -169,7 +169,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return menu.find(".ui-menu-item").length == 1;
+        return menu.find(".ui-menu-item").length === 1;
       }, "menu should contain one item", 500);
 
       runs(function() {
@@ -179,7 +179,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
         expect(items.get(0)).toHaveText('Haskell');
       });
-    };
+    }
 
   });
 

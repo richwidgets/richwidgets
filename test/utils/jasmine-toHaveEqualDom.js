@@ -40,13 +40,13 @@ define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
 
       var expectations = 'Expected: \n\n' + result.a.original + '\n\nbot got actual:\n\n' + result.b.original + '\n\nwhich is pretty-printed:\n\n' + result.b.pretty;
       return expectations + '\n\nReport:\n=======\n' + result.grouped;
-    }
+    };
 
-    if (!expected || expected.length == 0) {
+    if (!expected || expected.length === 0) {
       return false;
     }
 
-    if (!actual || actual.length == 0) {
+    if (!actual || actual.length === 0) {
       return false;
     }
 
@@ -80,17 +80,17 @@ define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
         original: b,
         pretty : canonizingSerializerB.serializeToString(bNormalized)
       }
-    }
+    };
   }
 
   function cleanWhitespace(node) {
     for (var i = 0; i < node.childNodes.length; i++) {
       var child = node.childNodes[i];
-      if (child.nodeType == 3 && !/\S/.test(child.nodeValue)) {
+      if (child.nodeType === 3 && !/\S/.test(child.nodeValue)) {
         node.removeChild(child);
         i--;
       }
-      if (child.nodeType == 1) {
+      if (child.nodeType === 1) {
         cleanWhitespace(child);
       }
     }
