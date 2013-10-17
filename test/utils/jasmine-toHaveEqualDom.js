@@ -62,7 +62,7 @@ define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
     body.get(0).innerHTML = b;
     var bNormalized = body.get(0);
 
-    var result = domCompare.compare(aNormalized, bNormalized);
+    var result = domCompare.compare(aNormalized, bNormalized, {stripSpaces: true, ignoreSequenceIdDifference: true});
 
     var grouped =  domCompare.GroupingReporter.report(result);
 
