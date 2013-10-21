@@ -7,7 +7,7 @@ $("#pie").chart(
                    {data: 2995787, label:  "Industrial sector"}
                 ]
         ],
-        legend:{sorted:"descending"},
+        legend:{sorted:reverse},
         charttype:"pie"
     }
 
