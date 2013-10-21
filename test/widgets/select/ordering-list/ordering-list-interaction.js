@@ -72,18 +72,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
                         selectMultipleItems(items);
                     });
                     waitsFor(function() {
-                        return item1.hasClass('ui-selected')
-                                && item4.hasClass('ui-selected')
-                                && item7.hasClass('ui-selected');
+                        return item1.hasClass('ui-selected') && item4.hasClass('ui-selected') && item7.hasClass('ui-selected');
                     }, "items should be selected", 1000);
                     runs(function() {
                         expect(widget._createKeyArray(widget.getSelected()), items);
                         fixture.find('.button-column .btn-last').click();
                     });
                     waitsFor(function() {
-                        return fixture.find('.ui-selectee:eq(5)').data('key') === item1.data('key')
-                                && fixture.find('.ui-selectee:eq(6)').data('key') === item4.data('key')
-                                && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
+                        return fixture.find('.ui-selectee:eq(5)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(6)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
                     }, 'items should be moved to end of list', 1000);
                     runs(function() {
                         expect(widget._dumpState().orderedKeys).toEqual([2, 3, 5, 6, 8, 1, 4, 7]);
@@ -141,18 +137,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
                         selectMultipleItems(items);
                     });
                     waitsFor(function() {
-                        return item1.hasClass('ui-selected')
-                                && item4.hasClass('ui-selected')
-                                && item7.hasClass('ui-selected');
+                        return item1.hasClass('ui-selected') && item4.hasClass('ui-selected') && item7.hasClass('ui-selected');
                     }, "items should be selected", 1000);
                     runs(function() {
                         expect(widget._createKeyArray(widget.getSelected()), items);
                         fixture.find('.button-column .btn-first').click();
                     });
                     waitsFor(function() {
-                        return fixture.find('.ui-selectee:eq(0)').data('key') === item1.data('key')
-                                && fixture.find('.ui-selectee:eq(1)').data('key') === item4.data('key')
-                                && fixture.find('.ui-selectee:eq(2)').data('key') === item7.data('key');
+                        return fixture.find('.ui-selectee:eq(0)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(1)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(2)').data('key') === item7.data('key');
                     }, 'items should be moved to top of list', 1000);
                     runs(function() {
                         expect(widget._dumpState().orderedKeys).toEqual([1, 4, 7, 2, 3, 5, 6, 8]);
@@ -211,18 +203,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
                         selectMultipleItems(items);
                     });
                     waitsFor(function() {
-                        return item1.hasClass('ui-selected')
-                                && item4.hasClass('ui-selected')
-                                && item7.hasClass('ui-selected');
+                        return item1.hasClass('ui-selected') && item4.hasClass('ui-selected') && item7.hasClass('ui-selected');
                     }, "items should be selected", 1000);
                     runs(function() {
                         expect(widget._createKeyArray(widget.getSelected()), items);
                         fixture.find('.button-column .btn-down').click();
                     });
                     waitsFor(function() {
-                        return fixture.find('.ui-selectee:eq(1)').data('key') === item1.data('key')
-                                && fixture.find('.ui-selectee:eq(4)').data('key') === item4.data('key')
-                                && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
+                        return fixture.find('.ui-selectee:eq(1)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(4)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
                     }, 'items should be moved down in the list', 1000);
                     runs(function() {
                         expect(widget._dumpState().orderedKeys).toEqual([2, 1, 3, 5, 4, 6, 8, 7]);
@@ -233,9 +221,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
                         fixture.find('.button-column .btn-down').click();
                     });
                     waitsFor(function() {
-                        return fixture.find('.ui-selectee:eq(2)').data('key') === item1.data('key')
-                                && fixture.find('.ui-selectee:eq(5)').data('key') === item4.data('key')
-                                && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
+                        return fixture.find('.ui-selectee:eq(2)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(5)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
                     }, 'items should be moved down in the list', 1000);
                     runs(function() {
                         expect(widget._dumpState().orderedKeys).toEqual([2, 3, 1, 5, 6, 4, 8, 7]);
@@ -293,18 +279,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
                         selectMultipleItems(items);
                     });
                     waitsFor(function() {
-                        return item1.hasClass('ui-selected')
-                                && item4.hasClass('ui-selected')
-                                && item7.hasClass('ui-selected');
+                        return item1.hasClass('ui-selected') && item4.hasClass('ui-selected') && item7.hasClass('ui-selected');
                     }, "items should be selected", 1000);
                     runs(function() {
                         expect(widget._createKeyArray(widget.getSelected()), items);
                         fixture.find('.button-column .btn-up').click();
                     });
                     waitsFor(function() {
-                        return fixture.find('.ui-selectee:eq(0)').data('key') === item1.data('key')
-                                && fixture.find('.ui-selectee:eq(2)').data('key') === item4.data('key')
-                                && fixture.find('.ui-selectee:eq(5)').data('key') === item7.data('key');
+                        return fixture.find('.ui-selectee:eq(0)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(2)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(5)').data('key') === item7.data('key');
                     }, 'items should be moved up in the list', 1000);
                     runs(function() {
                         expect(widget._dumpState().orderedKeys).toEqual([1, 2, 4, 3, 5, 7, 6, 8]);
@@ -315,9 +297,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
                         fixture.find('.button-column .btn-up').click();
                     });
                     waitsFor(function() {
-                        return fixture.find('.ui-selectee:eq(0)').data('key') === item1.data('key')
-                                && fixture.find('.ui-selectee:eq(1)').data('key') === item4.data('key')
-                                && fixture.find('.ui-selectee:eq(4)').data('key') === item7.data('key');
+                        return fixture.find('.ui-selectee:eq(0)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(1)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(4)').data('key') === item7.data('key');
                     }, 'items should be moved up in the list', 1000);
                     runs(function() {
                         expect(widget._dumpState().orderedKeys).toEqual([1, 4, 2, 3, 7, 5, 6, 8]);
@@ -403,7 +383,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
                         for (var i = 0; i < itemsArray.length; i++) {
                             multipleSelect(itemsArray[i]);
                         }
-                        item = itemsArray[0];
+                        var item = itemsArray[0];
                         item.simulate('drag', {dy: by});
                     }
 
