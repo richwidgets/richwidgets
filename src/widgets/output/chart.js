@@ -267,15 +267,17 @@
         //bind listeners
         _registerListeners:function(){
             if(this.options.zoom){
-                this.element.bind('plotselected',this._getZoomFunction(this,this.element,this.options));
+                this.element.on('plotselected',this._getZoomFunction(this,this.element,this.options));
             }
-            this.element.bind('plotclick',this._getPlotClickHandler(this.options,this.element));
-            this.element.bind('plothover',this._getPlotHoverHandler(this.options,this.element));
+            this.element.on('plotclick',this._getPlotClickHandler(this.options,this.element));
+            this.element.on('plothover',this._getPlotHoverHandler(this.options,this.element));
             if(this.options.handlers && this.options.handlers.onmouseout){
-                this.element.bind('mouseout',this.options.handlers.onmouseout);
+                this.element.on('mouseout',this.options.handlers.onmouseout);
             }
         },
 
+
+        //function handles plotclick event. it calls server-side, client-side and particular series handlers if set.
         _getPlotClickHandler:function(options,element){
             return function(event,mouse,item){
                 if(item !== null){
@@ -372,10 +374,10 @@
 
         //remove chart handler bindings
         _unbind:function(){
-            this.element.unbind("plotclick");
-            this.element.unbind("plothover");
-            this.element.unbind("plotselected");
-            this.element.unbind("mouseout");
+            this.element.off("plotclick");
+            this.element.off("plothover");
+            this.element.off("plotselected");
+            this.element.off("mouseout");
         },
 
         // Use the destroy method to clean up any modifications your widget has made to the DOM
