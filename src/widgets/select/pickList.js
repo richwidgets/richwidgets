@@ -327,22 +327,22 @@
       var widget = this;
       // the widget factory converts all events to lower case
       this.sourceList.on('sortreceive', function (event, ui) {
-        var new_ui = widget._dumpState();
-        new_ui.change = 'remove';
-        new_ui.originalEvent = event;
-        widget._trigger('change', event, new_ui);
+        var newUi = widget._dumpState();
+        newUi.change = 'remove';
+        newUi.originalEvent = event;
+        widget._trigger('change', event, newUi);
       });
       this.targetList.on('sortreceive', function (event, ui) {
-        var new_ui = widget._dumpState();
-        new_ui.change = 'add';
-        new_ui.originalEvent = event;
-        widget._trigger('change', event, new_ui);
+        var newUi = widget._dumpState();
+        newUi.change = 'add';
+        newUi.originalEvent = event;
+        widget._trigger('change', event, newUi);
       });
       this.targetList.on('targetlist_change', function (event, ui) {
-        var new_ui = widget._dumpState();
-        new_ui.change = 'sort';
-        new_ui.originalEvent = event;
-        widget._trigger('change', event, new_ui);
+        var newUi = widget._dumpState();
+        newUi.change = 'sort';
+        newUi.originalEvent = event;
+        widget._trigger('change', event, newUi);
       });
       if (this.options.switchByClick) {
         this._addClickListeners();

@@ -1,5 +1,4 @@
-var table_dragselect_options = {
+$('#table_dragselect').orderingList({
   header: 'Table layout w/ drag-select',
   dragSelect: true
-};
-$('#table_dragselect').orderingList(table_dragselect_options);
+});

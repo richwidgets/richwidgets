@@ -217,7 +217,8 @@ module.exports = function (grunt) {
         eqnull: true,
         browser: true,
         trailing: true,
-        quotmark: 'single'
+        quotmark: 'single',
+        camelcase:true
       },
       gruntfile: {
         options: {
@@ -249,6 +250,7 @@ module.exports = function (grunt) {
       },
       tests: {
         options: {
+          camelcase:false,
           globals: {
             jQuery: true,
             '$': true,

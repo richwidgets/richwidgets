@@ -1,5 +1,4 @@
-var list_dragselect_options = {
+$('#list_dragselect').orderingList({
   header: 'List layout w/ drag-select', //caption
   dragSelect: true
-};
-$('#list_dragselect').orderingList(list_dragselect_options);
+});
