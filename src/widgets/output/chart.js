@@ -374,10 +374,10 @@
 
         //remove chart handler bindings
         _unbind:function(){
-            this.element.off("plotclick");
-            this.element.off("plothover");
-            this.element.off("plotselected");
-            this.element.off("mouseout");
+            this.element.off('plotclick');
+            this.element.off('plothover');
+            this.element.off('plotselected');
+            this.element.off('mouseout');
         },
 
         // Use the destroy method to clean up any modifications your widget has made to the DOM
