@@ -2,8 +2,6 @@
   module.exports.register = function(Handlebars, options) {
     var path  = require("path");
     var fs = require('fs');
-    var grunt = require('grunt');
-    var _     = grunt.util._;
 
     /*
      * Usage: {{ include [partial] }}

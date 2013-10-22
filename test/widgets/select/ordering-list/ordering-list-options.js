@@ -1,7 +1,5 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingList'], function () {
 
-  var key = jQuery.simulate.keyCode;
-
   describe('widget(orderingList): options:', function () {
 
     var fixture_list, element_list, original_list;

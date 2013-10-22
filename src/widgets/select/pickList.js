@@ -28,7 +28,6 @@
     },
 
     _create: function () {
-      var widget = this;
       this.widgetEventPrefix = this.options.widgetEventPrefix;
       this.sourceList = this.element.find(".source");
       this.targetList = this.element.find(".target");

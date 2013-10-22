@@ -118,7 +118,6 @@
       if (this.options.disabled === true) {
         widget._disable();
       }
-      var selector = '.handle';
       this._addDragListeners();
       this.selectList.on('focusin', function (event) {
         widget._trigger('focus', event, widget._dumpState());

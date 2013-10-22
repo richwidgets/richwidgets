@@ -212,10 +212,11 @@ module.exports = function (grunt) {
         noarg: true,
         sub: true,
         undef: true,
-//        unused: true,
+        unused: "vars",
         boss: true,
         eqnull: true,
-        browser: true
+        browser: true,
+        trailing: true
       },
       gruntfile: {
         options: {
