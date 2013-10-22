@@ -369,8 +369,8 @@
 
         //returns chart object
         getPlotObject: function(){
-	        return this.plot;
-	    },
+            return this.plot;
+        },
 
         //remove chart handler bindings
         _unbind:function(){
