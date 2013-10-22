@@ -118,7 +118,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       it('applies the button text vlaues specified by the buttonText option', function () {
         function test(fixture, element) {
           // given
-          var buttonsText = {first: "abcd", up: "efgh", down: "ijkl", last: "mnop"};
+          var buttonsText = {first: 'abcd', up: 'efgh', down: 'ijkl', last: 'mnop'};
           var options = {
             buttonsText: buttonsText
           };
@@ -131,7 +131,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           expect(fixture.find('.button-column .btn-last span').first().text()).toEqual(buttonsText.last);
 
           // given
-          buttonsText = {first: "qaz", up: "wsx", down: "edc", last: "rfv"};
+          buttonsText = {first: 'qaz', up: 'wsx', down: 'edc', last: 'rfv'};
           // when
           element.orderingList('option', 'buttonsText', buttonsText);
           // then
@@ -160,7 +160,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         var getColumnClass = function (cells, index) {
           return $(cells.get(index)).attr('class');
         };
-        var columnClasses = options.columnClasses.split(" ");
+        var columnClasses = options.columnClasses.split(' ');
         var header_row_cells = fixture_table.find('thead th');
         expect(getColumnClass(header_row_cells, 0)).toMatch(columnClasses[0]);
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(columnClasses[1]);
@@ -180,7 +180,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         // when
         element_table.orderingList('option', 'columnClasses', newColumnClassString);
         // then
-        var newColumnClasses = newColumnClassString.split(" ");
+        var newColumnClasses = newColumnClassString.split(' ');
         header_row_cells = fixture_table.find('thead th');
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(/column/);
         expect(getColumnClass(header_row_cells, 0)).toMatch(newColumnClasses[0]);

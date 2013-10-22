@@ -1,1 +1,1 @@
-$("#auto-focus").richAutocomplete({ source: source, autoFocus: true });
+$('#auto-focus').richAutocomplete({ source: source, autoFocus: true });

@@ -1,4 +1,4 @@
 var table_options = {
-  header: "Table layout"
+  header: 'Table layout'
 };
-$("#table").pickList(table_options);
+$('#table').pickList(table_options);

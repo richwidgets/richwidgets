@@ -1,4 +1,4 @@
 var list_options = {
-  header: "List layout" //caption
+  header: 'List layout' //caption
 };
-$("#list").orderingList(list_options);
+$('#list').orderingList(list_options);

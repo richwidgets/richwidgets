@@ -2,7 +2,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     var key = jQuery.simulate.keyCode;
 
-    describe("widget(autocomplete): autoFill / tokens options", function() {
+    describe('widget(autocomplete): autoFill / tokens options', function() {
 
         var fixture, input;
 
@@ -23,15 +23,15 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         });
 
 
-        it("supports 'autoFill' and 'token' simultaneously", function() {
+        it('supports "autoFill" and "token" simultaneously', function() {
 
             input.richAutocomplete({
                 autoFill: true,
-                token: ",",
+                token: ',',
                 source: ['Java', 'Haskell']
             });
 
-            var menu = input.autocomplete("widget");
+            var menu = input.autocomplete('widget');
 
 
 
@@ -41,55 +41,55 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
             waitsFor(function(){
                 return menu.is(':visible');
-            }, "menu to be visible", 1000);
+            }, 'menu to be visible', 1000);
 
             runs(function() {
-                expect(input).toHaveValue("ja");
+                expect(input).toHaveValue('ja');
                 input.simulate('keydown', {keyCode: key.DOWN});
             });
 
             waitsFor(function() {
-                return menu.find(".ui-menu-item:eq(0) a").is(".ui-state-focus");
-            }, "first item to be selected", 1000);
+                return menu.find('.ui-menu-item:eq(0) a').is('.ui-state-focus');
+            }, 'first item to be selected', 1000);
 
             runs(function() {
-                expect(input).toHaveValue("java");
-                menu.find(".ui-menu-item:eq(0)").trigger("click");
+                expect(input).toHaveValue('java');
+                menu.find('.ui-menu-item:eq(0)').trigger('click');
             });
 
             waitsFor(function(){
                 return menu.is(':not(:visible)');
-            }, "menu should not be visible", 1000);
+            }, 'menu should not be visible', 1000);
 
             runs(function() {
-                expect(input).toHaveValue("Java");
+                expect(input).toHaveValue('Java');
                 appendTextToInput(',h');
             });
 
             waitsFor(function(){
                 return menu.is(':visible');
-            }, "menu to be visible", 1000);
+            }, 'menu to be visible', 1000);
 
             runs(function() {
-                expect(input).toHaveValue("Java,h");
+                expect(input).toHaveValue('Java,h');
                 input.simulate('keydown', {keyCode: key.DOWN});
             });
 
             waitsFor(function() {
-                return menu.find(".ui-menu-item:eq(0) a").is(".ui-state-focus");
-            }, "first item to be selected", 1000);
+                return menu.find('.ui-menu-item:eq(0) a').is('.ui-state-focus');
+            }, 'first item to be selected', 1000);
 
             runs(function() {
-                expect(input).toHaveValue("Java,haskell");
-                menu.find(".ui-menu-item:eq(0)").trigger("click");
+                expect(input).toHaveValue('Java,haskell');
+                menu.find('.ui-menu-item:eq(0)').trigger('click');
             });
 
             waitsFor(function(){
                 return menu.is(':not(:visible)');
-            }, "menu should not be visible", 1000);
+            }, 'menu should not be visible', 1000);
 
             runs(function() {
-                expect(input).toHaveValue("Java, Haskell");
+                expect(input).toHaveValue('Java, Haskell');
             });
 
 

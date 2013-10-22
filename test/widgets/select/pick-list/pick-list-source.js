@@ -1,6 +1,6 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingList', 'src/widgets/select/pickList'], function () {
 
-  describe("widget(pickList): source", function () {
+  describe('widget(pickList): source', function () {
 
     beforeEach(function () {
       var f = jasmine.getFixtures();
@@ -14,14 +14,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       s.appendLoad('dist/assets/richwidgets/select/pick-list.css');
     });
 
-    it("pick-list from <ol> markup", function () {
+    it('pick-list from <ol> markup', function () {
       // given
-      var fixture = $("#fixture-pick-list-list");
+      var fixture = $('#fixture-pick-list-list');
       var original = fixture.clone();
-      var element = $("#list", fixture);
-      var expected = $("#expected-pick-list-list");
+      var element = $('#list', fixture);
+      var expected = $('#expected-pick-list-list');
       var options = {
-        header: "List layout"
+        header: 'List layout'
       };
       // when
       element.pickList(options);
@@ -33,14 +33,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       expect(original).toHaveEqualInnerDom(fixture);
     });
 
-    it("pickList from <table> markup", function () {
+    it('pickList from <table> markup', function () {
       // given
-      var fixture = $("#fixture-pick-list-table");
+      var fixture = $('#fixture-pick-list-table');
       var original = fixture.clone();
-      var element = $("#table", fixture);
-      var expected = $("#expected-pick-list-table");
+      var element = $('#table', fixture);
+      var expected = $('#expected-pick-list-table');
       var options = {
-        header: "Table layout"
+        header: 'Table layout'
       };
       // when
       element.pickList(options);

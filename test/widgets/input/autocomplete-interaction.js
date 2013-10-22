@@ -1,6 +1,6 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function () {
 
-  describe("widget(autocomplete): interaction", function () {
+  describe('widget(autocomplete): interaction', function () {
 
     var fixture, element;
 
@@ -24,7 +24,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("interacts with JSON-fed autocomplete", function() {
+    it('interacts with JSON-fed autocomplete', function() {
       // given
       element.richAutocomplete({ source: ['Java', 'Haskell'] });
 
@@ -34,7 +34,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("interacts with autocomplete using function as a source", function() {
+    it('interacts with autocomplete using function as a source', function() {
       // given
       element.richAutocomplete({
         source: function (request, response) {
@@ -48,7 +48,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("handles delayed response", function() {
+    it('handles delayed response', function() {
       // given
       element.richAutocomplete({
         source: function (request, response) {
@@ -65,14 +65,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("supports tokenizing", function() {
+    it('supports tokenizing', function() {
       // given
       element.richAutocomplete({
         source: ['Java', 'Haskell'],
         token: ','
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -81,40 +81,40 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        var item = menu.find(".ui-menu-item");
+        var item = menu.find('.ui-menu-item');
         return item.length === 1 && item.text() === 'Java';
-      }, "menu should contain one item", 500);
+      }, 'menu should contain one item', 500);
 
       runs(function() {
-        menu.find(".ui-menu-item").trigger("click");
+        menu.find('.ui-menu-item').trigger('click');
       });
 
       waitsFor(function() {
         return menu.is(':not(:visible)');
-      }, "menu should not be visible", 1500);
+      }, 'menu should not be visible', 1500);
 
       runs(function() {
-        expect(element).toHaveValue("Java");
+        expect(element).toHaveValue('Java');
 
         element.val(element.val() + ', h');
         element.trigger('keydown');
       });
 
       waitsFor(function() {
-        var item = menu.find(".ui-menu-item");
+        var item = menu.find('.ui-menu-item');
         return item.length === 1 && item.text() === 'Haskell';
-      }, "menu should contain one item", 500);
+      }, 'menu should contain one item', 500);
 
       runs(function() {
-        menu.find(".ui-menu-item").trigger("click");
+        menu.find('.ui-menu-item').trigger('click');
       });
 
       waitsFor(function() {
         return menu.is(':not(:visible)');
-      }, "menu should not be visible", 1500);
+      }, 'menu should not be visible', 1500);
 
       runs(function() {
-        expect(element).toHaveValue("Java, Haskell");
+        expect(element).toHaveValue('Java, Haskell');
       });
     });
 
@@ -125,7 +125,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
      * types into input and checks expected output
      */
     function testInteraction() {
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       runs(function() {
         expect(menu).toBeHidden();
@@ -138,12 +138,12 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu should be visible", 1000);
+      }, 'menu should be visible', 1000);
 
       runs(function() {
         expect(menu).toBeVisible();
 
-        var items = menu.find(".ui-menu-item");
+        var items = menu.find('.ui-menu-item');
         expect(items).toExist();
         expect(items).toHaveLength(1);
         expect(items.get(0)).toHaveText('Java');
@@ -153,11 +153,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return menu.find(".ui-menu-item").length === 2;
-      }, "menu should contain two items", 500);
+        return menu.find('.ui-menu-item').length === 2;
+      }, 'menu should contain two items', 500);
 
       runs(function() {
-        var items = menu.find(".ui-menu-item");
+        var items = menu.find('.ui-menu-item');
         expect(items).toExist();
         expect(items).toHaveLength(2);
 
@@ -169,11 +169,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
       waitsFor(function() {
-        return menu.find(".ui-menu-item").length === 1;
-      }, "menu should contain one item", 500);
+        return menu.find('.ui-menu-item').length === 1;
+      }, 'menu should contain one item', 500);
 
       runs(function() {
-        var items = menu.find(".ui-menu-item");
+        var items = menu.find('.ui-menu-item');
         expect(items).toExist();
         expect(items).toHaveLength(1);
 

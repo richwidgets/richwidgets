@@ -1,4 +1,4 @@
-$("#cached").richAutocomplete({
+$('#cached').richAutocomplete({
   cached: true,
   minLength: 2,
   source: function (request, response) {

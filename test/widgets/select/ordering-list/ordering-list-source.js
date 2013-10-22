@@ -1,6 +1,6 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingList'], function () {
 
-  describe("widget(orderingList): source", function () {
+  describe('widget(orderingList): source', function () {
 
     beforeEach(function () {
       var f = jasmine.getFixtures();
@@ -13,14 +13,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       s.appendLoad('dist/assets/richwidgets/select/ordering-list.css');
     });
 
-    it("ordering-list from <ol> markup", function () {
+    it('ordering-list from <ol> markup', function () {
       // given
-      var fixture = $("#fixture-ordering-list-list");
+      var fixture = $('#fixture-ordering-list-list');
       var original = fixture.clone();
-      var element = $("#list", fixture);
-      var expected = $("#expected-ordering-list-list");
+      var element = $('#list', fixture);
+      var expected = $('#expected-ordering-list-list');
       var options = {
-        header: "List layout" //caption
+        header: 'List layout' //caption
       };
       // when
       element.orderingList(options);
@@ -32,14 +32,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       expect(original).toHaveEqualInnerDom(fixture);
     });
 
-    it("orderingList from <table> markup", function () {
+    it('orderingList from <table> markup', function () {
       // given
-      var fixture = $("#fixture-ordering-list-table");
+      var fixture = $('#fixture-ordering-list-table');
       var original = fixture.clone();
-      var element = $("#table", fixture);
-      var expected = $("#expected-ordering-list-table");
+      var element = $('#table', fixture);
+      var expected = $('#expected-ordering-list-table');
       var options = {
-        header: "Table layout" //caption
+        header: 'Table layout' //caption
       };
       // when
       element.orderingList(options);

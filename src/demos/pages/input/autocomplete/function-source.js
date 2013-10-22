@@ -4,4 +4,4 @@ var asyncSuggest = function (request, response) {
   }, 1000);
 };
 
-$("#function-source").richAutocomplete({ source: asyncSuggest });
+$('#function-source').richAutocomplete({ source: asyncSuggest });

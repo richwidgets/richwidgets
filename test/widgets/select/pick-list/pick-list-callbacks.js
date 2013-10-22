@@ -75,7 +75,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
 
           waitsFor(function () {
             return firstItem.hasClass('ui-selected');
-          }, "first item should be selected", 500);
+          }, 'first item should be selected', 500);
 
           runs(function () {
             expect(focusCallback).toHaveBeenCalled();
@@ -121,8 +121,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
 
           element.pickList({ change: changeCallback });
 
-          var list1 = buttonClass.indexOf('btn-add') === 0 ? ".source" : ".target";
-          var list2 = buttonClass.indexOf('btn-add') === 0 ? ".target" : ".source";
+          var list1 = buttonClass.indexOf('btn-add') === 0 ? '.source' : '.target';
+          var list2 = buttonClass.indexOf('btn-add') === 0 ? '.target' : '.source';
 
           //when
           var firstItem = fixture.find(list1 + ' .ui-selectee').first();
@@ -135,7 +135,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
 
           waitsFor(function () {
             return firstItem.hasClass('ui-selected');
-          }, "first item should be selected", 500);
+          }, 'first item should be selected', 500);
 
           runs(function () {
             fixture.find('.button-column .' + buttonClass).first().click();
@@ -158,8 +158,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'
 
           element.pickList({ change: changeCallback });
 
-          var list1 = dx > 0 ? ".source" : ".target";
-          var list2 = dx > 0 ? ".target" : ".source";
+          var list1 = dx > 0 ? '.source' : '.target';
+          var list2 = dx > 0 ? '.target' : '.source';
 
           //when
           var firstItem = fixture.find(list1 + ' .ui-selectee').first();

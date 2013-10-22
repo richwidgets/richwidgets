@@ -29,8 +29,8 @@
 
     _create: function () {
       this.widgetEventPrefix = this.options.widgetEventPrefix;
-      this.sourceList = this.element.find(".source");
-      this.targetList = this.element.find(".target");
+      this.sourceList = this.element.find('.source');
+      this.targetList = this.element.find('.target');
       this._addDomElements();
       this.sourceList.orderingList({
         showButtons: false,
@@ -52,8 +52,8 @@
         widgetEventPrefix: 'targetlist_'
       });
       if (this.options.orderable) {
-        this.sourceList.orderingList("connectWith", this.targetList);
-        this.targetList.orderingList("connectWith", this.sourceList);
+        this.sourceList.orderingList('connectWith', this.targetList);
+        this.targetList.orderingList('connectWith', this.sourceList);
       }
 
       this._registerListeners();
@@ -77,14 +77,14 @@
     destroy: function () {
       $.Widget.prototype.destroy.call(this);
       this._unregisterListeners();
-      this.sourceList.orderingList("destroy");
-      this.targetList.orderingList("destroy");
+      this.sourceList.orderingList('destroy');
+      this.targetList.orderingList('destroy');
 
       this._removeDomElements();
 
-      this.element.removeClass('inner').removeClass("row");
+      this.element.removeClass('inner').removeClass('row');
       if (!this.element.attr('class')) {
-        this.element.removeAttr("class");
+        this.element.removeAttr('class');
       }
       this._trigger('destroy', undefined, {});
       return this;
@@ -94,20 +94,20 @@
 
     removeItems: function (items, event) {
       if (this.options.disabled) { return; }
-      this.targetList.orderingList("remove", items);
-      this.sourceList.orderingList("add", items);
+      this.targetList.orderingList('remove', items);
+      this.sourceList.orderingList('add', items);
       var ui = this._dumpState();
       ui.change = 'remove';
-      this._trigger("change", event, ui);
+      this._trigger('change', event, ui);
     },
 
     addItems: function (items, event) {
       if (this.options.disabled) { return; }
-      this.sourceList.orderingList("remove", items);
-      this.targetList.orderingList("add", items);
+      this.sourceList.orderingList('remove', items);
+      this.targetList.orderingList('add', items);
       var ui = this._dumpState();
       ui.change = 'add';
-      this._trigger("change", event, ui);
+      this._trigger('change', event, ui);
     },
 
 
@@ -119,64 +119,64 @@
         return;
       }
       switch (key) {
-        case "disabled":
+        case 'disabled':
           if (value === true) {
             widget._disable();
           } else {
             widget._enable();
           }
           break;
-        case "header":
+        case 'header':
           if (!widget.options.header) {
             widget._addHeader(value);
           }
           widget.outer.find('.header-row .header').text(value);
           break;
-        case "height":
+        case 'height':
           widget._setHeight(value);
           break;
-        case "heightMin":
+        case 'heightMin':
           widget._setHeightMin(value);
           break;
-        case "heightMax":
+        case 'heightMax':
           widget._setHeightMax(value);
           break;
-        case "sourceHeader":
+        case 'sourceHeader':
           if (!widget.options.sourceHeader) {
             widget._addSubHeader(value, this.options.targetHeader);
           }
           widget.outer.find('.sub-header-row .source').text(value);
           break;
-        case "targetHeader":
+        case 'targetHeader':
           if (!widget.options.targetHeader) {
             widget._addSubHeader(value, this.options.targetHeader);
           }
           widget.outer.find('.sub-header-row .target').text(value);
           break;
-        case "styleClass":
+        case 'styleClass':
           if (widget.options.styleClass) {
             widget.outer.removeClass(widget.options.styleClass);
           }
           widget.outer.addClass(value);
           break;
-        case "columnClasses":
+        case 'columnClasses':
           widget.sourceList.orderingList('option', 'columnClasses', value);
           widget.targetList.orderingList('option', 'columnClasses', value);
           break;
-        case "orderButtonsText":
+        case 'orderButtonsText':
           widget.targetList.orderingList('option', 'buttonsText', value);
           break;
-        case "buttonsText":
+        case 'buttonsText':
           this._applyButtonsText(this.outer.find('.middle .btn-group-vertical'), value);
           break;
-        case "switchByClick":
+        case 'switchByClick':
           if (value === true) {
             widget._addClickListeners();
           } else {
             widget._removeClickListeners();
           }
           break;
-        case "switchByDblClick":
+        case 'switchByDblClick':
           if (value === true) {
             widget._addDoubleClickListeners();
           } else {
@@ -198,8 +198,8 @@
 
     _buttonStack: function () {
       var button = $('<button type="button" class="btn btn-default"/>');
-      var buttonStack = $("<div/>")
-        .addClass("btn-group-picklist");
+      var buttonStack = $('<div/>')
+        .addClass('btn-group-picklist');
       buttonStack
         .append(
           button.clone()
@@ -250,15 +250,15 @@
       if (button.hasClass('labeled')) {
         button.find('span').text(text);
       } else {
-        button.addClass("labeled").append($("<span />").text(text));
+        button.addClass('labeled').append($('<span />').text(text));
       }
     },
 
     _addParents: function () {
-      this.element.addClass("row inner").wrap(
-        $("<div />").addClass('container pick-list outer')
+      this.element.addClass('row inner').wrap(
+        $('<div />').addClass('container pick-list outer')
       );
-      this.outer = this.element.parents(".outer").first();
+      this.outer = this.element.parents('.outer').first();
       if (this.options.styleClass) {
         this.outer.addClass(this.options.styleClass);
       }
@@ -269,10 +269,10 @@
         this._addSubHeader(this.options.sourceHeader, this.options.targetHeader);
       }
       this.sourceList.wrap(
-        $("<div />").addClass('source-wrapper col-sm-5')
+        $('<div />').addClass('source-wrapper col-sm-5')
       );
       this.targetList.wrap(
-        $("<div />").addClass('target-wrapper col-sm-6')
+        $('<div />').addClass('target-wrapper col-sm-6')
       );
       this.content = this.element;
       this.outer.attr('tabindex', '-1');
@@ -280,9 +280,9 @@
 
     _addSubHeader: function (sourceHeaderText, targetHeaderText) {
       if (sourceHeaderText || targetHeaderText) {
-        var subHeaderRow = $("<div />").addClass("row sub-header-row");
-        var sourceHeader = $("<div />").addClass('col-sm-5 source header').html(sourceHeaderText);
-        var targetHeader = $("<div />").addClass('col-sm-6 col-sm-offset-1 target header').html(targetHeaderText);
+        var subHeaderRow = $('<div />').addClass('row sub-header-row');
+        var sourceHeader = $('<div />').addClass('col-sm-5 source header').html(sourceHeaderText);
+        var targetHeader = $('<div />').addClass('col-sm-6 col-sm-offset-1 target header').html(targetHeaderText);
         subHeaderRow.append(sourceHeader).append(targetHeader);
         var headerRow = this.outer.find('.header-row');
         if (headerRow.length !== 0) {
@@ -295,8 +295,8 @@
 
     _addHeader: function (headerText) {
       if (headerText) {
-        var headerRow = $("<div />").addClass("row header-row");
-        var header = $("<div />").addClass('col-xs-12 header').html(headerText);
+        var headerRow = $('<div />').addClass('row header-row');
+        var header = $('<div />').addClass('col-xs-12 header').html(headerText);
         headerRow.append(header);
         var subHeaderRow = this.outer.find('.sub-header-row');
         if (subHeaderRow.length !== 0) {
@@ -330,19 +330,19 @@
         var new_ui = widget._dumpState();
         new_ui.change = 'remove';
         new_ui.originalEvent = event;
-        widget._trigger("change", event, new_ui);
+        widget._trigger('change', event, new_ui);
       });
       this.targetList.on('sortreceive', function (event, ui) {
         var new_ui = widget._dumpState();
         new_ui.change = 'add';
         new_ui.originalEvent = event;
-        widget._trigger("change", event, new_ui);
+        widget._trigger('change', event, new_ui);
       });
       this.targetList.on('targetlist_change', function (event, ui) {
         var new_ui = widget._dumpState();
         new_ui.change = 'sort';
         new_ui.originalEvent = event;
-        widget._trigger("change", event, new_ui);
+        widget._trigger('change', event, new_ui);
       });
       if (this.options.switchByClick) {
         this._addClickListeners();
@@ -394,25 +394,25 @@
     },
 
     _disable: function () {
-      this.sourceList.orderingList("option", "disabled", true);
-      this.targetList.orderingList("option", "disabled", true);
-      this.element.addClass("disabled");
-      this.outer.find('.button-column button').attr("disabled", true);
+      this.sourceList.orderingList('option', 'disabled', true);
+      this.targetList.orderingList('option', 'disabled', true);
+      this.element.addClass('disabled');
+      this.outer.find('.button-column button').attr('disabled', true);
     },
 
     _enable: function () {
-      this.sourceList.orderingList("option", "disabled", false);
-      this.targetList.orderingList("option", "disabled", false);
-      this.element.removeClass("disabled");
-      this.outer.find('.button-column button').attr("disabled", false);
+      this.sourceList.orderingList('option', 'disabled', false);
+      this.targetList.orderingList('option', 'disabled', false);
+      this.element.removeClass('disabled');
+      this.outer.find('.button-column button').attr('disabled', false);
       this._registerListeners();
     },
 
 
     _dumpState: function () {
       var ui = {};
-      ui.pickedElements = this.targetList.orderingList("getOrderedElements");
-      ui.pickedKeys = this.targetList.orderingList("getOrderedKeys");
+      ui.pickedElements = this.targetList.orderingList('getOrderedElements');
+      ui.pickedKeys = this.targetList.orderingList('getOrderedKeys');
       return ui;
     },
 

@@ -42,7 +42,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
           waitsFor(function () {
             return firstItem.hasClass('ui-selected');
-          }, "first item should be selected", 500);
+          }, 'first item should be selected', 500);
 
           runs(function () {
             expect(widget._createKeyArray(widget.getSelected()), [firstItem.data('key')]);
@@ -80,7 +80,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
           waitsFor(function () {
             return lastItem.hasClass('ui-selected');
-          }, "item should be selected", 500);
+          }, 'item should be selected', 500);
 
           runs(function () {
             fixture.find('.button-column .btn-first').first().click();
@@ -117,7 +117,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
           waitsFor(function () {
             return item.hasClass('ui-selected');
-          }, "item should be selected", 500);
+          }, 'item should be selected', 500);
 
           runs(function () {
             fixture.find('.button-column .btn-down').first().click();
@@ -154,7 +154,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
           waitsFor(function () {
             return item.hasClass('ui-selected');
-          }, "item should be selected", 500);
+          }, 'item should be selected', 500);
 
           runs(function () {
             fixture.find('.button-column .btn-up').first().click();

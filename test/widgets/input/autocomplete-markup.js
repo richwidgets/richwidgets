@@ -1,6 +1,6 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete'], function () {
 
-  describe("widget(autocomplete): dom construction", function () {
+  describe('widget(autocomplete): dom construction', function () {
 
     var fixture, element;
 
@@ -15,15 +15,15 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       s.appendLoad('dist/assets/font-awesome/font-awesome.css');
       s.appendLoad('dist/assets/richwidgets/input/autocomplete.css');
 
-      fixture = $("#fixture");
-      element = $(".autocomplete", fixture);
+      fixture = $('#fixture');
+      element = $('.autocomplete', fixture);
     });
 
 
 
-    it("initializes DOM correctly", function () {
+    it('initializes DOM correctly', function () {
       // given
-      var expected = $("#expected");
+      var expected = $('#expected');
 
       // when
       element.richAutocomplete({ source: ['Java', 'Haskell'] });
@@ -34,9 +34,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("can be destructed", function () {
+    it('can be destructed', function () {
       // given
-      var expected = $("#expected");
+      var expected = $('#expected');
       var initialDom = fixture.html();
 
       // construct element
@@ -54,9 +54,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("can have button", function () {
+    it('can have button', function () {
       // given
-      var expected = $("#expected-with-button");
+      var expected = $('#expected-with-button');
 
       // when
       element.richAutocomplete({

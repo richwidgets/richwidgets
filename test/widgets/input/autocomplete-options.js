@@ -1,6 +1,6 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete', 'jquery-simulate'], function () {
 
-  describe("widget(autocomplete): options", function () {
+  describe('widget(autocomplete): options', function () {
 
     var fixture, element;
 
@@ -23,11 +23,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("calls 'update' when input changes and before DOM-based suggestions are updated", function() {
+    it('calls "update" when input changes and before DOM-based suggestions are updated', function() {
       var updateCalled = false;
       var request;
 
-      var source = $("<ul><li>Java</li><li>Haskell</li></ul>").after(element).get(0);
+      var source = $('<ul><li>Java</li><li>Haskell</li></ul>').after(element).get(0);
 
       // given
       element.richAutocomplete({
@@ -39,7 +39,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         }
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -49,7 +49,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         expect(updateCalled).toBe(true);
@@ -60,7 +60,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("supports 'minLength'", function() {
+    it('supports "minLength"', function() {
 
       var sourceFnInvoked = 0;
       var keydownEventsPropagated = 0;
@@ -73,11 +73,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         }
       });
 
-      element.on("keydown", function() {
+      element.on('keydown', function() {
         keydownEventsPropagated += 1;
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -87,7 +87,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return keydownEventsPropagated === 1;
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         element.val('ja');
@@ -96,7 +96,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return keydownEventsPropagated === 2;
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         // first call of search
@@ -106,7 +106,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return sourceFnInvoked === 1;
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         expect(menu).toBeVisible();
@@ -119,7 +119,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return sourceFnInvoked === 2;
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         expect(keydownEventsPropagated).toBe(4);
@@ -129,7 +129,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("uses 'cache' when two searches are triggered for same prefix", function() {
+    it('uses "cache" when two searches are triggered for same prefix', function() {
       var sourceFnInvoked = false;
 
       element.richAutocomplete({
@@ -141,7 +141,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         }
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -151,7 +151,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         expect(sourceFnInvoked).toBe(true);
@@ -163,7 +163,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':hidden');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         element.val('ja');
@@ -172,7 +172,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         expect(sourceFnInvoked).toBe(false);

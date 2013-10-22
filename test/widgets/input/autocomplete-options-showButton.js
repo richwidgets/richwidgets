@@ -1,6 +1,6 @@
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomplete', 'jquery-simulate'], function () {
 
-  describe("widget(autocomplete): showButton option", function () {
+  describe('widget(autocomplete): showButton option', function () {
 
     var fixture, input;
 
@@ -22,7 +22,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("should have button ininitial state", function() {
+    it('should have button ininitial state', function() {
       var source = ['Java', 'Haskell'];
 
       // given
@@ -31,7 +31,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         showButton: true
       });
 
-      var button = fixture.find("button");
+      var button = fixture.find('button');
 
       // then
       expect(button).toContain('i.icon-chevron-down');
@@ -39,7 +39,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("opens menu on button click", function() {
+    it('opens menu on button click', function() {
       var source = ['Java', 'Haskell'];
 
       // given
@@ -48,8 +48,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         showButton: true
       });
 
-      var menu = input.autocomplete( "widget" );
-      var button = fixture.find("button");
+      var menu = input.autocomplete( 'widget' );
+      var button = fixture.find('button');
 
       // when
       runs(function() {
@@ -58,7 +58,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         // then
@@ -69,7 +69,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("closes menu on blur", function() {
+    it('closes menu on blur', function() {
       var source = ['Java', 'Haskell'];
 
       // given
@@ -78,8 +78,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         showButton: true
       });
 
-      var menu = input.autocomplete( "widget" );
-      var button = fixture.find("button");
+      var menu = input.autocomplete( 'widget' );
+      var button = fixture.find('button');
 
       // when
       runs(function() {
@@ -88,7 +88,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         button.focus();
@@ -97,7 +97,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':not(:visible)');
-      }, "menu to hide", 500);
+      }, 'menu to hide', 500);
 
       runs(function() {
         // then
@@ -112,7 +112,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("menu can be opened again after closing", function() {
+    it('menu can be opened again after closing', function() {
       var source = ['Java', 'Haskell'];
 
       // given
@@ -121,8 +121,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         showButton: true
       });
 
-      var menu = input.autocomplete( "widget" );
-      var button = fixture.find("button");
+      var menu = input.autocomplete( 'widget' );
+      var button = fixture.find('button');
 
       // when
       runs(function() {
@@ -131,7 +131,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
         button.focus();
@@ -140,7 +140,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':not(:visible)');
-      }, "menu to hide", 500);
+      }, 'menu to hide', 500);
 
       runs(function() {
         setTimeout(function() {
@@ -150,7 +150,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible again", 500);
+      }, 'menu to be visible again', 500);
 
       runs(function() {
         // then

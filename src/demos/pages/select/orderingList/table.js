@@ -1,4 +1,4 @@
 var table_options = {
-  header: "Table layout"
+  header: 'Table layout'
 };
-$("#table").orderingList(table_options);
+$('#table').orderingList(table_options);

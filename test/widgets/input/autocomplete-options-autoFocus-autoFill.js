@@ -2,7 +2,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
   var key = jQuery.simulate.keyCode;
 
-  describe("widget(autocomplete): autoFocus / autoFill options", function () {
+  describe('widget(autocomplete): autoFocus / autoFill options', function () {
 
     var fixture, element;
 
@@ -25,14 +25,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("supports 'autoFill' option", function() {
+    it('supports "autoFill" option', function() {
 
       element.richAutocomplete({
         autoFill: true,
         source: ['Java', 'Haskell']
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -42,20 +42,20 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
-        expect(element).toHaveValue("ja");
+        expect(element).toHaveValue('ja');
 
         element.simulate('keydown', { keyCode: key.DOWN });
       });
 
       waitsFor(function() {
-        return menu.find(".ui-menu-item a").is(".ui-state-focus");
-      }, "first item to be selected", 1000);
+        return menu.find('.ui-menu-item a').is('.ui-state-focus');
+      }, 'first item to be selected', 1000);
 
       runs(function() {
-        expect(element).toHaveValue("java");
+        expect(element).toHaveValue('java');
       });
 
     });
@@ -63,14 +63,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("supports 'autoFocus' option", function() {
+    it('supports "autoFocus" option', function() {
 
       element.richAutocomplete({
         autoFocus: true,
         source: ['Java', 'Haskell']
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -80,10 +80,10 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
-        expect(menu).toContain(".ui-menu-item a.ui-state-focus");
+        expect(menu).toContain('.ui-menu-item a.ui-state-focus');
       });
 
     });
@@ -91,7 +91,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("allows to use both 'autoFocus' and 'autoFill' simultaneously", function() {
+    it('allows to use both "autoFocus" and "autoFill" simultaneously', function() {
 
       element.richAutocomplete({
         autoFocus: true,
@@ -99,7 +99,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         source: ['Java', 'Haskell']
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -109,11 +109,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
-        expect(menu).toContain(".ui-menu-item a.ui-state-focus");
-        expect(element).toHaveValue("java");
+        expect(menu).toContain('.ui-menu-item a.ui-state-focus');
+        expect(element).toHaveValue('java');
       });
 
     });
@@ -121,7 +121,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("doesn't pre-fill a value when both 'autoFocus' and 'autoFill' are used and first option is selected after opening menu", function() {
+    it('doesn\'t pre-fill a value when both "autoFocus" and "autoFill" are used and first option is selected after opening menu', function() {
 
       element.richAutocomplete({
         autoFocus: true,
@@ -129,7 +129,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         source: ['Java', 'Haskell']
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -139,18 +139,18 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
-        expect(menu).toContain(".ui-menu-item a.ui-state-focus");
-        expect(element).toHaveValue("a");
+        expect(menu).toContain('.ui-menu-item a.ui-state-focus');
+        expect(element).toHaveValue('a');
       });
 
     });
 
 
 
-    it("autoFill doesn't pre-fill values which doesn't start with lower-cased prefix", function() {
+    it('autoFill doesn\'t pre-fill values which doesn\'t start with lower-cased prefix', function() {
 
       element.richAutocomplete({
         autoFocus: true,
@@ -158,7 +158,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         source: ['Java', 'Haskell']
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -168,24 +168,24 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
-        expect(element).toHaveValue("a");
-        expect(menu.find(".ui-menu-item:first a")).toBe(".ui-state-focus");
-        expect(menu.find(".ui-menu-item:first a")).toHaveText("Java");
+        expect(element).toHaveValue('a');
+        expect(menu.find('.ui-menu-item:first a')).toBe('.ui-state-focus');
+        expect(menu.find('.ui-menu-item:first a')).toHaveText('Java');
 
         element.simulate('keydown', { keyCode: key.DOWN });
       });
 
       waitsFor(function() {
-        return menu.find(".ui-menu-item:nth-child(2) a").is(".ui-state-focus");
-      }, "menu to be visible", 1500);
+        return menu.find('.ui-menu-item:nth-child(2) a').is('.ui-state-focus');
+      }, 'menu to be visible', 1500);
 
       runs(function() {
-        expect(element).toHaveValue("a");
-        expect(menu.find(".ui-menu-item:nth-child(2) a")).toBe(".ui-state-focus");
-        expect(menu.find(".ui-menu-item:nth-child(2) a")).toHaveText("Haskell");
+        expect(element).toHaveValue('a');
+        expect(menu.find('.ui-menu-item:nth-child(2) a')).toBe('.ui-state-focus');
+        expect(menu.find('.ui-menu-item:nth-child(2) a')).toHaveText('Haskell');
       });
 
     });
@@ -193,7 +193,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("when autoFill doesn't match a value on beginning of search, nothing is pre-filled, but when a valid option is focused, it is pre-filled", function() {
+    it('when autoFill doesn\'t match a value on beginning of search, nothing is pre-filled, but when a valid option is focused, it is pre-filled', function() {
 
       element.richAutocomplete({
         autoFocus: true,
@@ -201,7 +201,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         source: ['Clojure', 'Java', 'JavaScript']
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -212,12 +212,12 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
-        expect(element).toHaveValue("j");
-        expect(menu.find(".ui-menu-item:first a")).toBe(".ui-state-focus");
-        expect(menu.find(".ui-menu-item:first a")).toHaveText("Clojure");
+        expect(element).toHaveValue('j');
+        expect(menu.find('.ui-menu-item:first a')).toBe('.ui-state-focus');
+        expect(menu.find('.ui-menu-item:first a')).toHaveText('Clojure');
 
 //        element.simulate('keydown', { keyCode: key.DOWN });
         element.val('ja');
@@ -227,13 +227,13 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return element.val() === 'java';
-      }, "'java' is auto-filled word", 1500);
+      }, '"java" is auto-filled word', 1500);
 
       runs(function() {
         expect(element[0].selectionStart).toBe(2);
         expect(element[0].selectionEnd).toBe(4);
-        expect(menu.find(".ui-menu-item:first a")).toBe(".ui-state-focus");
-        expect(menu.find(".ui-menu-item:first a")).toHaveText("Java");
+        expect(menu.find('.ui-menu-item:first a')).toBe('.ui-state-focus');
+        expect(menu.find('.ui-menu-item:first a')).toHaveText('Java');
 
         element.val('jav');
         element[0].setSelectionRange(3, 3);
@@ -243,14 +243,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       waitsFor(function() {
         var el = element[0];
         return 1 === Math.abs(el.selectionEnd - el.selectionStart);
-      }, "only last char is selected from input", 1500);
+      }, 'only last char is selected from input', 1500);
 
       runs(function() {
-        expect(element).toHaveValue("java");
+        expect(element).toHaveValue('java');
         expect(element[0].selectionStart).toBe(3);
         expect(element[0].selectionEnd).toBe(4);
-        expect(menu.find(".ui-menu-item:first a")).toBe(".ui-state-focus");
-        expect(menu.find(".ui-menu-item:first a")).toHaveText("Java");
+        expect(menu.find('.ui-menu-item:first a')).toBe('.ui-state-focus');
+        expect(menu.find('.ui-menu-item:first a')).toHaveText('Java');
       });
 
     });
@@ -258,7 +258,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
 
-    it("'autoFill' handles backspace correctly", function() {
+    it('"autoFill" handles backspace correctly', function() {
 
       element.richAutocomplete({
         autoFocus: true,
@@ -266,7 +266,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         source: ['Clojure', 'Java', 'JavaScript']
       });
 
-      var menu = element.autocomplete( "widget" );
+      var menu = element.autocomplete( 'widget' );
 
       // when
       runs(function() {
@@ -277,27 +277,27 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       waitsFor(function() {
         return menu.is(':visible');
-      }, "menu to be visible", 500);
+      }, 'menu to be visible', 500);
 
       runs(function() {
-        expect(menu.find(".ui-menu-item:first a")).toBe(".ui-state-focus");
-        expect(menu.find(".ui-menu-item:first a")).toHaveText("JavaScript");
+        expect(menu.find('.ui-menu-item:first a')).toBe('.ui-state-focus');
+        expect(menu.find('.ui-menu-item:first a')).toHaveText('JavaScript');
 
         element[0].value = 'java';
-        element.simulate("keydown", { keyCode: key.BACKSPACE });
+        element.simulate('keydown', { keyCode: key.BACKSPACE });
       });
 
       waitsFor(function() {
-        return menu.find(".ui-menu-item:first a").text() === 'Java';
+        return menu.find('.ui-menu-item:first a').text() === 'Java';
 
-      }, "first item to be 'Java'", 500);
+      }, 'first item to be "Java"', 500);
 
       runs(function() {
-        expect(menu.find(".ui-menu-item:first a")).toBe(".ui-state-focus");
-        expect(menu.find(".ui-menu-item:first a")).toHaveText("Java");
+        expect(menu.find('.ui-menu-item:first a')).toBe('.ui-state-focus');
+        expect(menu.find('.ui-menu-item:first a')).toHaveText('Java');
 
-        expect(menu.find(".ui-menu-item:nth-child(2) a")).not.toBe(".ui-state-focus");
-        expect(menu.find(".ui-menu-item:nth-child(2) a")).toHaveText("JavaScript");
+        expect(menu.find('.ui-menu-item:nth-child(2) a')).not.toBe('.ui-state-focus');
+        expect(menu.find('.ui-menu-item:nth-child(2) a')).toHaveText('JavaScript');
       });
 
     });

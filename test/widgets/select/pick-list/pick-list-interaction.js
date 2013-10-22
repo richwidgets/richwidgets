@@ -43,7 +43,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
           waitsFor(function () {
             return firstItem.hasClass('ui-selected');
-          }, "first item should be selected", 500);
+          }, 'first item should be selected', 500);
 
           runs(function () {
             fixture.find('.button-column .btn-add').first().click();
@@ -67,7 +67,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.pickList({});
 
-          element.pickList("option", "switchByClick", true);
+          element.pickList('option', 'switchByClick', true);
 
           var widget = element.data('pickList');
           expect(widget._dumpState().pickedKeys).toEqual([9]);
@@ -99,7 +99,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.pickList({});
 
-          element.pickList("option", "switchByDblClick", true);
+          element.pickList('option', 'switchByDblClick', true);
 
           var widget = element.data('pickList');
           expect(widget._dumpState().pickedKeys).toEqual([9]);

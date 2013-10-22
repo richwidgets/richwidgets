@@ -1,4 +1,4 @@
 var list_options = {
-  header: "List layout"
+  header: 'List layout'
 };
-$("#list").pickList(list_options);
+$('#list').pickList(list_options);

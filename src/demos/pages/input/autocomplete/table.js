@@ -1,1 +1,1 @@
-$("#table-source").richAutocomplete({ source: '#table-suggestions' });
+$('#table-source').richAutocomplete({ source: '#table-suggestions' });

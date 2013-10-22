@@ -1,3 +1,4 @@
+
 define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingList'], function () {
 
   describe('widget(orderingList): callback:', function () {
@@ -75,7 +76,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
 
           waitsFor(function () {
             return lastItem.hasClass('ui-selected');
-          }, "item should be selected", 500);
+          }, 'item should be selected', 500);
 
           runs(function () {
             fixture.find('.button-column .btn-first').first().click();

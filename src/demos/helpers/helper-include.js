@@ -1,12 +1,12 @@
 (function() {
   module.exports.register = function(Handlebars, options) {
-    var path  = require("path");
+    var path  = require('path');
     var fs = require('fs');
 
     /*
      * Usage: {{ include [partial] }}
      */
-    Handlebars.registerHelper("include", function(templateName, page) {
+    Handlebars.registerHelper('include', function(templateName, page) {
       // evaluate the template name for handlebars expressions with current context
       var template = Handlebars.compile(templateName)(this);
 

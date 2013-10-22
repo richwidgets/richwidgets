@@ -1,6 +1,6 @@
 (function( $ ) {
 
-    $.widget( "rf.chart", {
+    $.widget( 'rf.chart', {
 
         // These options will be used as defaults for all chart types
         options: {
@@ -10,7 +10,7 @@
             },
             tooltip:true,
             tooltipOpts: {
-                content: "%s  [%x,%y]",
+                content: '%s  [%x,%y]',
                 shifts: {
                     x: 20,
                     y: 0
@@ -26,7 +26,7 @@
                 }
             },
             tooltipOpts: {
-                content: " %p.0%, %s",
+                content: ' %p.0%, %s',
                 shifts: {
                     x: 20,
                     y: 0
@@ -36,8 +36,8 @@
         },
         dateDefaults:{
             xaxis:{
-                mode:"time",
-                timeformat:"%Y/%m/%d",
+                mode:'time',
+                timeformat:'%Y/%m/%d',
                 minTickSize:[1,'day']  //TODO
             }
         },
@@ -107,7 +107,7 @@
             }
             else if(this.options.charttype==='line'){
                 if(this.options.zoom){
-                    this.options.selection={mode: "xy"};
+                    this.options.selection={mode: 'xy'};
                 }
                 if(this.options.xtype==='class java.util.Date'){
                     this.options = $.extend(this.options,this.dateDefaults);
@@ -122,13 +122,13 @@
             // In jQuery UI 1.8, you have to manually invoke the _setOption method from the base widget
             $.Widget.prototype._setOption.apply( this, arguments );
             // In jQuery UI 1.9 and above, you use the _super method instead
-            this._super( "_setOption", key, value );
+            this._super( '_setOption', key, value );
 
             var redraw=true;
             switch( key ) {
-                case "zoom":
-                case "handlers":
-                case "particularSeriesHandlers":
+                case 'zoom':
+                case 'handlers':
+                case 'particularSeriesHandlers':
                     this._unbind();
                     this._registerListeners();
                     redraw=false;
@@ -151,12 +151,12 @@
 
         _registerListeners:function(){
             if(this.options.zoom){
-                this.element.bind("plotselected",this._getZoomFunction(this,this.element,this.options));
+                this.element.bind('plotselected',this._getZoomFunction(this,this.element,this.options));
             }
-            this.element.bind("plotclick",this._getPlotClickHandler(this.options,this.element));
-            this.element.bind("plothover",this._getPlotHoverHandler(this.options,this.element));
+            this.element.bind('plotclick',this._getPlotClickHandler(this.options,this.element));
+            this.element.bind('plothover',this._getPlotHoverHandler(this.options,this.element));
             if(this.options.handlers && this.options.handlers.onmouseout){
-                this.element.bind("mouseout",this.options.handlers.onmouseout);
+                this.element.bind('mouseout',this.options.handlers.onmouseout);
             }
         },
 
@@ -248,10 +248,10 @@
 	},
 
         _unbind:function(){
-            this.element.unbind("plotclick");
-            this.element.unbind("plothover");
-            this.element.unbind("plotselected");
-            this.element.unbind("mouseout");
+            this.element.unbind('plotclick');
+            this.element.unbind('plothover');
+            this.element.unbind('plotselected');
+            this.element.unbind('mouseout');
         },
 
         // Use the destroy method to clean up any modifications your widget has made to the DOM
