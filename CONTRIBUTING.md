@@ -32,7 +32,7 @@ and must also test all widget options and user interactions.  In this way we wil
 
 *Run all tests on particular browsers:*
 
-    karma start karma.conf.js -browsers=PhantomJS,Chrome,Firefox
+    karma start karma.conf.js --browsers=PhantomJS,Chrome,Firefox
 
 ### Developing Tests
 
