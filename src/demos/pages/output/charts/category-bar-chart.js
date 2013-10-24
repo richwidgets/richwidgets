@@ -7,8 +7,8 @@ $('#category').chart(
             }
         ],
         yaxis:{axisLabel:'Motor vehicles per 1000 people'},
-        ytype:'class java.lang.Number',
-        xtype:'class java.lang.String',
+        ytype:'number',
+        xtype:'string',
         charttype:'bar'
     }
 

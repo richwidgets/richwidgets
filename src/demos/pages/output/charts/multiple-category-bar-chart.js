@@ -6,6 +6,6 @@ $('#mulitplecategorybar').chart(
             {bars:{'show':true}, data:{Service:4258274,Agricultural:71568,Industrial:1640091}, label:'Japan'},
             {bars:{'show':true}, data:{Service:2417812,Agricultural:27205,NotKnown:955563}, label:'Other'}
         ],
-        ytype:'class java.lang.Number',xaxis:{},legend:{sorted:'ascending'},xtype:'class java.lang.String',charttype:'bar'}
+        ytype:'number',xaxis:{},legend:{sorted:'ascending'},xtype:'string',charttype:'bar'}
 
 );

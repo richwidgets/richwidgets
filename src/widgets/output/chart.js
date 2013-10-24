@@ -70,7 +70,7 @@
                 this.options.data = this.options.data[0]; //pie chart data should not be in a collection
             }
             else if(this.options.charttype==='bar'){
-                if(this.options.xtype==='class java.lang.String'){
+                if(this.options.xtype==='string'){
                     //category bar chart
                     /*transformation data from
                      [
@@ -225,7 +225,7 @@
                 if(this.options.zoom){
                     this.options.selection={mode: 'xy'};
                 }
-                if(this.options.xtype==='class java.util.Date'){
+                if(this.options.xtype==='date'){
                     this.options = $.extend(this.options,this.dateDefaults);
                     if(this.options.xaxis.format){
                         this.options.xaxis.timeformat=this.options.xaxis.format;
