@@ -469,7 +469,14 @@ module.exports = function (grunt) {
         helpers: ['src/demos/helpers/helper-*.js', 'node_modules/yfm/lib/*.js'],
         layoutdir: 'src/demos/templates/layouts',
         layout: 'default.hbs',
-        partials: ['src/demos/templates/includes/**/*.hbs']
+        partials: ['src/demos/templates/includes/**/*.hbs'],
+        postprocess: function(content) {
+          // replace links to github markdown files with relative links to html versions of the files
+          content = content.replace(/https:\/\/github\.com\/richwidgets\/richwidgets\/blob\/master\/([a-zA-Z]*)\.md/g, function(match, name) {
+            return name === 'README' ? 'about.html' : name.toLowerCase() + '.html';
+          });
+          return content;
+        }
       },
       production: {
         options: {production: true},

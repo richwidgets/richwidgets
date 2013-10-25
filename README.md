@@ -58,6 +58,8 @@ File an issue in our [issue tracker](https://github.com/richwidgets/richwidgets/
 RichWidgets is very much an open source project, your contributions are valued!  Learn how to get involved with the project
 in our [CONTRIBUTING.md](https://github.com/richwidgets/richwidgets/blob/master/CONTRIBUTING.md) guide.
 
+Read about our approach to testing in the [TESTS.md](https://github.com/richwidgets/richwidgets/blob/master/TESTS.md) guide.
+
 ## License ##
 
 [Apache License Version 2.0](https://github.com/richwidgets/richwidgets/blob/master/LICENSE.txt).
