@@ -98,6 +98,11 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
+  grunt.registerTask('site', [
+    'dist',
+    'gh-pages'
+  ]);
+
   grunt.initConfig({
     config: configuration,
     demo: grunt.file.readYAML('src/demos/data/site.yml'),

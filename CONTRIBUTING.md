@@ -26,6 +26,10 @@ code [DRY](http://en.wikipedia.org/wiki/Don%27t_Repeat_Yourself) by using the sa
 the code on the page.  Handlebars is easily extensible through it's [helper](http://assemble.io/docs/Custom-Helpers.html)
 mechanism.  If you find yourself bending over backwards to make something work, consider writing such a helper.
 
+## Publishing the demos
+
+Publish the demos to github pages using the grunt task `grunt site`
+
 ## Coding Style
 
 It helps to be consistent.  Here are the coding style conventions we have agreed to follow in this project.  this will be
