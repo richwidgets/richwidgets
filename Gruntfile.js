@@ -34,11 +34,11 @@ module.exports = function (grunt) {
         jquery: '<%= config.dir.lib.root %>/jquery',
         jqueryui: '<%= config.dir.lib.root %>/jquery-ui',
         flot: {
-              lib: '<%= config.dir.lib.root %>/flot',
-              axisLabels: '<%= config.dir.lib.root %>/flotAxisLabels',
-              orderBars: '<%= config.dir.lib.root %>/flotOrderBars',
-              tooltip :  '<%= config.dir.lib.root %>/flotTooltip'
-          }
+          lib: '<%= config.dir.lib.root %>/flot',
+          axisLabels: '<%= config.dir.lib.root %>/flotAxisLabels',
+          orderBars: '<%= config.dir.lib.root %>/flotOrderBars',
+          tooltip :  '<%= config.dir.lib.root %>/flotTooltip'
+        }
       }
     },
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -172,13 +172,12 @@ module.exports = function (grunt) {
         },
         files: [
           {
-            '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.js':
-              [
-                '<%= config.dir.dist.assets %>/jquery/jquery.min.js',
-                '<%= config.dir.dist.assets %>/jquery-ui/minified/jquery-ui.min.js',
-                '<%= config.dir.dist.flot %>/richwidgets.flot.js',
-                '<%= config.dir.dist.richwidgets %>/richwidgets.min.js'
-              ]
+            '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.js': [
+              '<%= config.dir.dist.assets %>/jquery/jquery.min.js',
+              '<%= config.dir.dist.assets %>/jquery-ui/minified/jquery-ui.min.js',
+              '<%= config.dir.dist.flot %>/richwidgets.flot.js',
+              '<%= config.dir.dist.richwidgets %>/richwidgets.min.js'
+            ]
           }
         ]
       }
@@ -191,13 +190,14 @@ module.exports = function (grunt) {
           nonull: true
         },
         src: [
-            '<%= config.dir.dist.flot %>/jquery.flot.js',
-            '<%= config.dir.dist.flot %>/jquery.flot.selection.js',
-            '<%= config.dir.dist.flot %>/jquery.flot.pie.js',
-            '<%= config.dir.dist.flot %>/jquery.flot.categories.js',
-            '<%= config.dir.dist.flot %>/jquery.flot.symbol.js',
-            '<%= config.dir.dist.flot %>/jquery.flot.tooltip.js',
-            '<%= config.dir.dist.flot %>/jquery.flot.orderBars.js'],
+          '<%= config.dir.dist.flot %>/jquery.flot.js',
+          '<%= config.dir.dist.flot %>/jquery.flot.selection.js',
+          '<%= config.dir.dist.flot %>/jquery.flot.pie.js',
+          '<%= config.dir.dist.flot %>/jquery.flot.categories.js',
+          '<%= config.dir.dist.flot %>/jquery.flot.symbol.js',
+          '<%= config.dir.dist.flot %>/jquery.flot.tooltip.js',
+          '<%= config.dir.dist.flot %>/jquery.flot.orderBars.js'
+        ],
         dest: '<%= config.dir.dist.flot %>/richwidgets.flot.js'
       }
     },
@@ -222,6 +222,7 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         options: {
+          indent: 2,
           globals: {
             jQuery: true,
             require: true
@@ -302,33 +303,33 @@ module.exports = function (grunt) {
         ]
       },
       flot: {
-            files: [
-                {
-                    expand: true,
-                    cwd: '<%= config.dir.lib.flot.lib %>',
-                    src: ['**.js','!**/examples/**','!jquery.js'],
-                    dest: '<%= config.dir.dist.assets %>/flot'
-                },
-                {
-                    expand: true,
-                    cwd: '<%= config.dir.lib.flot.axisLabels %>',
-                    src: ['**.js'],
-                    dest: '<%= config.dir.dist.assets %>/flot'
-                },
-                {
-                    expand: true,
-                    cwd: '<%= config.dir.lib.flot.orderBars %>/js',
-                    src: ['**.js'],
-                    dest: '<%= config.dir.dist.assets %>/flot'
-                },
-                {
-                    expand: true,
-                    cwd: '<%= config.dir.lib.flot.tooltip %>/js',
-                    src: ['**.js','!jquery.flot.js'],
-                    dest: '<%= config.dir.dist.assets %>/flot'
-                }
-            ]
-        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.flot.lib %>',
+            src: ['**.js','!**/examples/**','!jquery.js'],
+            dest: '<%= config.dir.dist.assets %>/flot'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.flot.axisLabels %>',
+            src: ['**.js'],
+            dest: '<%= config.dir.dist.assets %>/flot'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.flot.orderBars %>/js',
+            src: ['**.js'],
+            dest: '<%= config.dir.dist.assets %>/flot'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.flot.tooltip %>/js',
+            src: ['**.js','!jquery.flot.js'],
+            dest: '<%= config.dir.dist.assets %>/flot'
+          }
+        ]
+      },
       js: {
         files: grunt.file.expandMapping('**/*.js', '<%= config.dir.dist.richwidgets %>/', {
           cwd: 'src/widgets',
