@@ -4,14 +4,14 @@
 
     options: {
       disabled: false,
-      header: undefined,
-      height: undefined,
-      heightMin: undefined,
-      heightMax: undefined,
-      styleClass: undefined,
-      columnClasses: undefined,
+      header: null,
+      height: null,
+      heightMin: null,
+      heightMax: null,
+      styleClass: null,
+      columnClasses: null,
       showButtons: true,
-      buttonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
+      buttonsText: null, // {first: ..., up: ..., down: ..., last: ...}
       contained: true,
       dragSelect: false,
       dropOnEmpty: true,
@@ -125,13 +125,13 @@
       this.selectList.on('focusout', function (event) {
         widget._trigger('blur', event, widget._dumpState());
       });
-      if (typeof this.options.height !== 'undefined') {
+      if (this.options.height !== null) {
         this._setHeight(this.options.height);
       }
-      if (typeof this.options.heightMin !== 'undefined') {
+      if (this.options.heightMin !== null) {
         this._setHeightMin(this.options.heightMin);
       }
-      if (typeof this.options.heightMax !== 'undefined') {
+      if (this.options.heightMax !== null) {
         this._setHeightMax(this.options.heightMax);
       }
       this._trigger('create', undefined, this._dumpState());

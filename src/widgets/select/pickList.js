@@ -4,19 +4,19 @@
 
     options: {
       disabled: false,
-      header: undefined,
-      height: undefined,
-      heightMin: undefined,
-      heightMax: undefined,
-      styleClass: undefined,
-      columnClasses: undefined,
-      sourceHeader: undefined,
-      targetHeader: undefined,
-      switchByClick: undefined,
-      switchByDblClick: undefined,
+      header: null,
+      height: null,
+      heightMin: null,
+      heightMax: null,
+      styleClass: null,
+      columnClasses: null,
+      sourceHeader: null,
+      targetHeader: null,
+      switchByClick: null,
+      switchByDblClick: null,
       orderable: true,
-      orderButtonsText: undefined, // {first: ..., up: ..., down: ..., last: ...}
-      pickButtonsText: undefined, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
+      orderButtonsText: null, // {first: ..., up: ..., down: ..., last: ...}
+      pickButtonsText: null, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
       widgetEventPrefix: 'picklist_',
 
       // callbacks
@@ -62,13 +62,13 @@
         this._disable();
       }
 
-      if (typeof this.options.height !== 'undefined') {
+      if (this.options.height !== null) {
         this._setHeight(this.options.height);
       }
-      if (typeof this.options.heightMin !== 'undefined') {
+      if (this.options.heightMin !== null) {
         this._setHeightMin(this.options.heightMin);
       }
-      if (typeof this.options.heightMax !== 'undefined') {
+      if (this.options.heightMax !== null) {
         this._setHeightMax(this.options.heightMax);
       }
       this._trigger('create', undefined, this._dumpState());
