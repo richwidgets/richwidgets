@@ -27,14 +27,14 @@
       /**
        * The text to use for the source header of the pickList
        *
-       * @property header
+       * @property sourceHeader
        * @type String
        */
       sourceHeader: null,
       /**
        * The text to use for the target header of the pickList
        *
-       * @property header
+       * @property targetHeader
        * @type String
        */
       targetHeader: null,
