@@ -260,7 +260,7 @@
      * @param items {Object} A list of Elements to remove from the target of the pickList
      * @param event {Object} The event that triggered the removal of the elements.  This event will be made accessible
      * when the resulting change event is fired.
-     * @method removeItems
+     * @method addItems
      * @chainable
      */
     addItems: function (items, event) {
