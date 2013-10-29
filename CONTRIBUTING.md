@@ -40,13 +40,13 @@ jshint.
     * Use spaces (not tabs)
     * Indentation size is 2 spaces
 * Filenames
-    * All filenames will use a lowercase-hyphenated naming convention
+    * All filenames will use a lowercase-hyphenated naming convention (e.g. `popup-panel.js`)
 * LESS
-  * CSS class names use lowercase-hyphenated naming convention
+  * CSS class names use lowercase-hyphenated naming convention (e.g. `popup-panel`)
   * Define variables centrally in `src/widgets/variables.less`
   * Define mixins centrally in `src/widgets/mixins.less`
 * JavaScript
-  * Functions and variables names use camelCase
+  * Functions and variables names use camelCase (e.g. `popupPanelWidth`, `showPopup()`)
   * Single quotes `'` for strings
   * do not use `self` for capturing a reference to `this`
       * use `widget` where it makes sense to do so, `that` otherwise
@@ -56,10 +56,10 @@ jshint.
       * unnamed functions
           * `function (param1, param2) {`
 * Widget Factory
-  * use the "rich" jquery plugin namespace
-  * Widget name prefix TBD
+  * use the `rich` jquery plugin namespace
+  * Widget name prefix ***TBD***
   * Widget event prefix: stick with the default name of the widget (eg. no underscores or abbreviating)
-  * initialize all options, using null is default value is required
+  * initialize all options, using `null` as default value is required
 
 ## Creating a new widget
 
