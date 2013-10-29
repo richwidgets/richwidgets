@@ -1,3 +1,9 @@
+/**
+ * A widget for creating data chart
+ *
+ * @module Output
+ * @class chart
+ */
 (function( $ ) {
 
     $.widget( 'rf.chart', {
@@ -361,13 +367,21 @@
             };
         },
 
+        /**
+         * Redraw chart without axis ranges
+         *
+         * @method resetZoom
+         */
         resetZoom: function(){
-            //redraw chart without axis ranges
             this._draw();
         },
 
 
-        //returns chart object
+        /**
+         * Returns chart object
+         *
+         * @method getPlotObject
+         */
         getPlotObject: function(){
             return this.plot;
         },
@@ -380,7 +394,11 @@
             this.element.off('mouseout');
         },
 
-        // Use the destroy method to clean up any modifications your widget has made to the DOM
+        /**
+         * Use the destroy method to clean up any modifications your widget has made to the DOM
+         *
+         * @method destroy
+         */
         destroy: function() {
             this.plot.shutDown();
             this._unbind();

@@ -1,3 +1,9 @@
+/**
+ * An autocomplete widget
+ *
+ * @module Input
+ * @class richAutocomplete
+ */
 (function ($) {
 
   var LAYOUT = {
@@ -36,25 +42,34 @@
 
       /**
        * cached turns caching on
+       *
+       * @property cached
+       * @type Boolean
+       * @default false
        */
       cached: false,
       /**
        * defines what prefix of searchTerm will be used to query cache
+       *
+       * @property extractCacheSearchPrefix
+       * @type String
        */
       extractCacheSearchPrefix: defaultExtractCacheSearchPrefix,
       /**
-       * pluggable cache implementation
+       * pluggable cache cacheImplemenation
+       *
+       * @property cached
+       * @type Object
        */
       cacheImplemenation: $.ui.richAutocomplete.objectCache,
-
-
       /**
        * Provide function which will be used to filter array of suggestions by given searchTerm
        * function filter(array, searchTerm)
+       *
+       * @property filter
+       * @type Object
        */
       filter: $.ui.autocomplete.filter,
-
-
       /**
        * Function called when search triggered but before suggestions are composed.
        *
@@ -64,6 +79,9 @@
        *
        * when doneCallback is specified, autocomplete will wait with update of suggestions before doneCallback
        * is called. Usually it is called on the end of AJAX data update.
+       *
+       * @property update
+       * @type Function
        */
       update: null,
 

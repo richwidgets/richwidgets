@@ -1,28 +1,159 @@
+/**
+ * A widget providing sorting capabilities for a list of elements
+ *
+ * @module Select
+ * @class orderingList
+ */
 (function ($) {
 
   $.widget('rf.orderingList', {
 
     options: {
+      /**
+       * Disable the orderingList widget
+       *
+       * @property disabled
+       * @type Boolean
+       * @default false
+       */
+
       disabled: false,
+      /**
+       * The text to use for the orderingList header
+       *
+       * @property header
+       * @type String
+       */
       header: null,
+      /**
+       * The height of the orderingList
+       *
+       * @property height
+       * @type String
+       */
       height: null,
+      /**
+       * The minimum height of the orderingList
+       *
+       * @property heightMin
+       * @type String
+       */
       heightMin: null,
+      /**
+       * The maximum height of the orderingList
+       *
+       * @property heightMax
+       * @type String
+       */
       heightMax: null,
+      /**
+       * A CSS class to be added to the orderingList.
+       * Multiple classes should be space separated
+       *
+       * @property styleClass
+       * @type String
+       */
       styleClass: null,
+      /**
+       * A CSS class to be added to each column of the orderingList when table layout is used.
+       * Multiple classes should be space separated
+       *
+       * @property columnClasses
+       * @type String
+       */
       columnClasses: null,
+      /**
+       * When true, show the buttons for ordering the selected elements
+       *
+       * @property showButtons
+       * @type Boolean
+       * @default true
+       */
       showButtons: true,
-      buttonsText: null, // {first: ..., up: ..., down: ..., last: ...}
+      /**
+       * Text to be applied to the ordering buttons of the ordering list.  The text should be arranged as an object in
+       * JSON notation.
+       *
+       * eg. {first: ..., up: ..., down: ..., last: ...}
+       *
+       * @property orderButtonsText
+       * @type JSON
+       * @default null
+       */
+      buttonsText: null,
+      /**
+       * When true, it is not possible to move a selected element outside of the orderingList
+       *
+       * @property contained
+       * @type Boolean
+       * @default true
+       */
       contained: true,
+      /**
+       * When true dragging the mouse over the elements selects multiple elements.  This also reduces the drag handle
+       * used to re-order the elements.
+       *
+       * @property dragSelect
+       * @type Boolean
+       * @default true
+       */
       dragSelect: false,
+      /**
+       * Allows elements to be dragged onto an empty list when true
+       *
+       * @property dropOnEmpty
+       * @type Boolean
+       * @default true
+       */
       dropOnEmpty: true,
+      /**
+       * Allows elements to be ordered by drag and drop with the mouse when true
+       *
+       * @property mouseOrderable
+       * @type Boolean
+       * @default true
+       */
       mouseOrderable: true,
+      /**
+       * The String prefixed to all events triggered within the orderingList widget
+       *
+       * @property widgetEventPrefix
+       * @type JSON
+       * @default orderinglist_
+       */
       widgetEventPrefix: 'orderinglist_',
 
       // callbacks
+
+      /**
+       * Fired when the target list of the orderingList changes values.
+       *
+       * @event change
+       */
       change: null,
+      /**
+       * Fired after the dynamically created DOM elements of the orderingList have been created
+       *
+       * @event addDomElements
+       */
       addDomElements: null,
+      /**
+       * Fired after the orderingList has been destroyed
+       *
+       * @event destroy
+       */
       destroy: null,
+      /**
+       * Fired when the orderingList receives focus
+       *
+       * @event focus
+       */
       focus: null,
+      /**
+       * Fired when the orderingList loses focus
+       *
+       * @event focus
+       */
       blur: null
     },
 
@@ -137,6 +268,12 @@
       this._trigger('create', undefined, this._dumpState());
     },
 
+    /**
+     * Removes the orderingList functionality completely. This will return the element back to its pre-init state.
+     *
+     * @method destroy
+     * @chainable
+     */
     destroy: function () {
       $.Widget.prototype.destroy.call(this);
       this.$pluginRoot

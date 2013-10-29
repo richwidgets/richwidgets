@@ -2,7 +2,7 @@
   "name": "richfaces-widgets",
   "description": "Standalone javascript widgets",
   "version": "0.0.1-wip",
-  "homepage": "https://github.com/richfaces/richfaces-widgets",
+  "homepage": "http://richwidgets.github.io",
   "author": "JBoss RedHat",
   "contributors": [
     {
@@ -55,7 +55,8 @@
     "matchdep": "~0.1.1",
     "bower": "~1.2.7",
     "path": "~0.4.9",
-    "grunt-gh-pages": "~0.8.0"
+    "grunt-gh-pages": "~0.8.0",
+    "grunt-contrib-yuidoc": "~0.5.0"
   },
   "licenses": [
     {

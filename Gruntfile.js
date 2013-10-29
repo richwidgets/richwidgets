@@ -78,6 +78,8 @@ module.exports = function (grunt) {
     'uglify:demo',
     'cssmin:demo',
     'assemble:production',
+    'copy:demoImages',
+    'yuidoc',
     'test'
   ]);
 
@@ -94,6 +96,8 @@ module.exports = function (grunt) {
     'build',
     'copy:demoAssets',
     'assemble:dev',
+    'copy:demoImages',
+    'yuidoc',
     'connect:dev',
     'watch'
   ]);
@@ -373,6 +377,16 @@ module.exports = function (grunt) {
             dest: '<%= config.dir.dist.demos %>/assets-demo/'
           }
         ]
+      },
+      demoImages: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dir.src.demos %>',
+            src: ['**/*.png'],
+            dest: '<%= config.dir.dist.demos %>/'
+          }
+        ]
       }
     },
 
@@ -462,6 +476,22 @@ module.exports = function (grunt) {
               mountFolder(connect, 'dist')
             ];
           }
+        }
+      }
+    },
+
+    yuidoc: {
+      compile: {
+        name: '<%= config.pkg.name %>',
+        description: '<%= config.pkg.description %>',
+        logo: '../logo.png',
+        version: '<%= config.pkg.version %>',
+        url: '<%= config.pkg.homepage %>',
+        options: {
+          paths: 'src/widgets',
+          themedir: 'lib/yuidoc-bootstrap-theme',
+          helpers : ['lib/yuidoc-bootstrap-theme/helpers/helpers.js'],
+          outdir: 'dist/demos/api'
         }
       }
     },

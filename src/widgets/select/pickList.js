@@ -1,29 +1,166 @@
+/**
+ * A widget providing selection and sorting capabilities for a list of elements
+ *
+ * @module Select
+ * @class pickList
+ */
 (function ($) {
 
   $.widget('rf.pickList', {
 
     options: {
+      /**
+       * Disable the pickList widget
+       *
+       * @property disabled
+       * @type Boolean
+       * @default false
+       */
       disabled: false,
+      /**
+       * The text to use for the pickList header
+       *
+       * @property header
+       * @type String
+       */
       header: null,
-      height: null,
-      heightMin: null,
-      heightMax: null,
-      styleClass: null,
-      columnClasses: null,
+      /**
+       * The text to use for the source header of the pickList
+       *
+       * @property header
+       * @type String
+       */
       sourceHeader: null,
+      /**
+       * The text to use for the target header of the pickList
+       *
+       * @property header
+       * @type String
+       */
       targetHeader: null,
-      switchByClick: null,
-      switchByDblClick: null,
+      /**
+       * The height of the pickList
+       *
+       * @property height
+       * @type String
+       */
+      height: null,
+      /**
+       * The minimum height of the pickList
+       *
+       * @property heightMin
+       * @type String
+       */
+      heightMin: null,
+      /**
+       * The maximum height of the pickList
+       *
+       * @property heightMax
+       * @type String
+       */
+      heightMax: null,
+      /**
+       * A CSS class to be added to the pickList.
+       * Multiple classes should be space separated
+       *
+       * @property styleClass
+       * @type String
+       */
+      styleClass: null,
+      /**
+       * A CSS class to be added to each column of the pickList when table layout is used.
+       * Multiple classes should be space separated
+       *
+       * @property columnClasses
+       * @type String
+       */
+      columnClasses: null,
+      /**
+       * When true, clicking on a pickList element will move it between the source and target lists
+       *
+       * @property switchByClick
+       * @type Boolean
+       * @default false
+       */
+      switchByClick: false,
+      /**
+       * When true, double-clicking on a pickList element will move it between the source and target lists
+       *
+       * @property switchByDblClick
+       * @type Boolean
+       * @default false
+       */
+      switchByDblClick: false,
+      /**
+       * When true, elements in the target list can be re-ordered
+       *
+       * @property orderable
+       * @type Boolean
+       * @default true
+       */
       orderable: true,
+      /**
+       * Text to be applied to the ordering buttons of the target list.  The text should be arranged as an object in
+       * JSON notation.
+       *
+       * eg. {first: ..., up: ..., down: ..., last: ...}
+       *
+       * @property orderButtonsText
+       * @type JSON
+       * @default null
+       */
       orderButtonsText: null, // {first: ..., up: ..., down: ..., last: ...}
-      pickButtonsText: null, // {addAll: ..., add: ..., remove: ..., removeAll: ...}
+      /**
+       * Text to be applied to the picking buttons of the picklist.  The text should be arranged as an object in
+       * JSON notation.
+       *
+       * eg. {addAll: ..., add: ..., remove: ..., removeAll: ...}
+       *
+       * @property pickButtonsText
+       * @type JSON
+       * @default null
+       */
+      pickButtonsText: null,
+      /**
+       * The String prefixed to all events triggered within the pickList widget
+       *
+       * @property widgetEventPrefix
+       * @type JSON
+       * @default picklist_
+       */
       widgetEventPrefix: 'picklist_',
 
       // callbacks
+
+      /**
+       * Fired when the target list of the pickList changes values.
+       *
+       * @event change
+       */
       change: null,
+      /**
+       * Fired after the dynamically created DOM elements of the pickList have been created
+       *
+       * @event addDomElements
+       */
       addDomElements: null,
+      /**
+       * Fired after the pickList has been destroyed
+       *
+       * @event destroy
+       */
       destroy: null,
+      /**
+       * Fired when the pickList receives focus
+       *
+       * @event focus
+       */
       focus: null,
+      /**
+       * Fired when the pickList loses focus
+       *
+       * @event focus
+       */
       blur: null
     },
 
@@ -74,6 +211,12 @@
       this._trigger('create', undefined, this._dumpState());
     },
 
+    /**
+     * Removes the pickList functionality completely. This will return the element back to its pre-init state.
+     *
+     * @method destroy
+     * @chainable
+     */
     destroy: function () {
       $.Widget.prototype.destroy.call(this);
       this._unregisterListeners();
@@ -92,6 +235,15 @@
 
     /** Public API methods **/
 
+    /**
+     * Move items from the target list of the pickList to the source list.
+     *
+     * @param items {Object} A list of Elements to remove from the target of the pickList
+     * @param event {Object} The event that triggered the removal of the elements.  This event will be made accessible
+     * when the resulting change event is fired.
+     * @method removeItems
+     * @chainable
+     */
     removeItems: function (items, event) {
       if (this.options.disabled) { return; }
       this.targetList.orderingList('remove', items);
@@ -99,8 +251,18 @@
       var ui = this._dumpState();
       ui.change = 'remove';
       this._trigger('change', event, ui);
+      return this;
     },
 
+    /**
+     * Move items from the source list of the pickList to the target list.
+     *
+     * @param items {Object} A list of Elements to remove from the target of the pickList
+     * @param event {Object} The event that triggered the removal of the elements.  This event will be made accessible
+     * when the resulting change event is fired.
+     * @method removeItems
+     * @chainable
+     */
     addItems: function (items, event) {
       if (this.options.disabled) { return; }
       this.sourceList.orderingList('remove', items);
@@ -108,6 +270,7 @@
       var ui = this._dumpState();
       ui.change = 'add';
       this._trigger('change', event, ui);
+      return this;
     },
 
 
