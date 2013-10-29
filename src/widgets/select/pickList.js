@@ -159,7 +159,7 @@
       /**
        * Fired when the pickList loses focus
        *
-       * @event focus
+       * @event blur
        */
       blur: null
     },
