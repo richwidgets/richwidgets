@@ -16,7 +16,6 @@
        * @type Boolean
        * @default false
        */
-
       disabled: false,
       /**
        * The text to use for the orderingList header
@@ -76,7 +75,7 @@
        *
        * eg. {first: ..., up: ..., down: ..., last: ...}
        *
-       * @property orderButtonsText
+       * @property buttonsText
        * @type JSON
        * @default null
        */
@@ -152,7 +151,7 @@
       /**
        * Fired when the orderingList loses focus
        *
-       * @event focus
+       * @event blur
        */
       blur: null
     },
