@@ -78,7 +78,7 @@ module.exports = function (grunt) {
     'uglify:demo',
     'cssmin:demo',
     'assemble:production',
-    'copy:demoImages',
+    'copy:demoResources',
     'yuidoc',
     'test'
   ]);
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
     'build',
     'copy:demoAssets',
     'assemble:dev',
-    'copy:demoImages',
+    'copy:demoResources',
     'yuidoc',
     'connect:dev',
     'watch'
@@ -378,12 +378,12 @@ module.exports = function (grunt) {
           }
         ]
       },
-      demoImages: {
+      demoResources: {
         files: [
           {
             expand: true,
             cwd: '<%= config.dir.src.demos %>',
-            src: ['**/*.png'],
+            src: ['CNAME', '**/*.png'],
             dest: '<%= config.dir.dist.demos %>/'
           }
         ]
