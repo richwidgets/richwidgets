@@ -7,7 +7,7 @@
 In the rapid evolving world of Web standards, libraries, and browsers testing is of paramount importance.  We need to make
 sure our widgets continue to function as we upgrade the various libraries that make up our project.
 
-RichWidgets uses [jasmine](http://pivotal.github.io/jasmine/) and [jasmine-jquery)(https://github.com/velesin/jasmine-jquery),
+RichWidgets uses [jasmine](http://pivotal.github.io/jasmine/) and [jasmine-jquery](https://github.com/velesin/jasmine-jquery),
 using [karma](http://karma-runner.github.io/) as our test runner.  Widget tests must go beyond simple setup/takedown of the widgets,
 and must also test all widget options and user interactions.  In this way we will be able to keep our widgets both current and stable.
 
