@@ -29,6 +29,13 @@ and must also test all widget options and user interactions.  In this way we wil
 * Rename the test definition from `it` to `iit`
   * or rename the specification from `describe` to `ddescribe`
 
+*Debugging tests:*
+
+* Write ``debugger;`` anywhere in your test to set a breakpoint.
+* Run the test suite with ``--single-run=false --auto-watch=true`` options.
+* In a browser window open a console.
+* Refresh the browser tab. It should stop the execution on the defined breakpoint.
+    
 ### Test Configuration
 
 Tests are configured in two files:
