@@ -5,7 +5,7 @@
 ## Hacking on RichWidgets
 
 Begin by setting you your environment and making sure you can build RichWidgets as described the
-[README.md](https://github.com/richwidgets/richwidgets/blob/master/README.md).
+[README.md](https://github.com/richwidgets/richwidgets/blob/master/README.md#build).
 
 Widgets are highly visual constructs, and we are more effective in developing them when we get rapid feedback as we introduce changes.
 Without this rapid feedback, we are like sculptors carving blindfolded!
