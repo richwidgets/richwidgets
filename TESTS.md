@@ -11,6 +11,12 @@ RichWidgets uses [jasmine](http://pivotal.github.io/jasmine/) and [jasmine-jquer
 using [karma](http://karma-runner.github.io/) as our test runner.  Widget tests must go beyond simple setup/takedown of the widgets,
 and must also test all widget options and user interactions.  In this way we will be able to keep our widgets both current and stable.
 
+### Installing Karma
+
+*The Karma tool can be easily installed with NPM as:*
+
+    npm install -g karma
+
 ### Running Test Suite
 
 *Run all tests on particular browsers:*
