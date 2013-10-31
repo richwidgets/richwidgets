@@ -8,6 +8,10 @@ $('#zoom').chart(
       {color:'coral',data:[[2,6],[3,8],[5,4],[10,6],[14,8],[15,4]],
        lines:{show:true},label:'C product',points:{symbol:'diamond',show:true}}
     ],
-    ytype:'number',legend:{sorted:'ascending'},zoom:true,xtype:'number',charttype:'line'
+    ytype:'number',
+    legend:{sorted:'ascending'},
+    zoom:true,
+    xtype:'number',
+    charttype:'line'
   }
 );

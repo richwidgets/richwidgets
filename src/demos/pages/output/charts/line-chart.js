@@ -1,11 +1,4 @@
 $('#placeholder').chart({
-  handlers:{
-    onplotclick:function(event){
-      $('#clickdata').text('click point ' +
-        event.data.dataIndex + ' in ' +
-        event.data.item.series.label);
-    }
-  },
   data: [
     {data:[[1990,19.1],[1991,18.9],[1992,18.6],[1993,19.5],[1994,19.5],[1995,19.3],[1996,19.4],[1997,19.7],[1998,19.5],[1999,19.5],[2000,20]],label:'USA'},
     {data:[[1990,2.2],[1991,2.2],[1992,2.3],[1993,2.4],[1994,2.6],[1995,2.7],[1996,2.8],[1997,2.8],[1998,2.7],[1999,2.6],[2000,2.7]],label:'China'},
@@ -18,11 +11,11 @@ $('#placeholder').chart({
 });
 
 /*Flot style of event binding*/
-$('#placeholder').bind('plothover', function (event, pos, item) {
+$('#placeholder').on('plothover', function (event, pos, item) {
   if (item) {
     $('#hoverdata').text('hover point ' + item.dataIndex + ' in ' + item.series.label);
   }
 });
 
-$('#placeholder').bind('mouseout',function(){$('#hoverdata').text('');});
+$('#placeholder').on('mouseout',function(){$('#hoverdata').text('');});
 
