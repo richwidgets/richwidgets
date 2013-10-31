@@ -70,7 +70,7 @@
                 this.options.data = this.options.data[0]; //pie chart data should not be in a collection
             }
             else if(this.options.charttype==='bar'){
-                if(this.options.xtype==='string' || this.options.xtype==='class java.lang.String'){
+                if(this.options.xtype==='string'){
                     //category bar chart
                     /*transformation data from
                      [
@@ -225,7 +225,7 @@
                 if(this.options.zoom){
                     this.options.selection={mode: 'xy'};
                 }
-                if(this.options.xtype==='date' || this.options.xtype==='class java.util.Date'){
+                if(this.options.xtype==='date'){
                     this.options = $.extend(this.options,this.dateDefaults);
                     if(this.options.xaxis.format){
                         this.options.xaxis.timeformat=this.options.xaxis.format;
@@ -247,8 +247,6 @@
             //the change of a handler does not require chart to be redrawn
             switch( key ) {
                 case 'zoom':
-                case 'handlers':
-                case 'particularSeriesHandlers':
                     this._unbind();
                     this._registerListeners();
                     redraw=false;
@@ -275,72 +273,7 @@
             if(this.options.zoom){
                 this.element.on('plotselected',this._getZoomFunction(this,this.element,this.options));
             }
-            this.element.on('plotclick',this._getPlotClickHandler(this.options,this.element));
-            this.element.on('plothover',this._getPlotHoverHandler(this.options,this.element));
-            if(this.options.handlers && this.options.handlers.onmouseout){
-                this.element.on('mouseout',this.options.handlers.onmouseout);
-            }
-        },
 
-
-        //function handles plotclick event. it calls server-side, client-side and particular series handlers if set.
-        _getPlotClickHandler:function(options,element){
-            return function(event,mouse,item){
-                if(item !== null){
-                    //point in a chart clicked
-                    event.data={
-                        seriesIndex: item.seriesIndex,
-                        dataIndex:   item.dataIndex,
-                        x: item.datapoint[0],
-                        y: item.datapoint[1],
-                        item:item
-                    };
-
-                    //server-side
-                    if(options.handlers && options.handlers.eventFunction){
-                        options.handlers.eventFunction(event,'plotclick',
-                            event.data.seriesIndex,
-                            event.data.dataIndex,
-                            event.data.x,
-                            event.data.y);
-                    }
-
-                    //client-side
-                    if(options.handlers && options.handlers['onplotclick']){
-                        options.handlers['onplotclick'].call(element,event);
-                    }
-                    //client-side particular series handler
-                    if(options.particularSeriesHandlers && options.particularSeriesHandlers['onplotclick'][event.data.seriesIndex]){
-                        options.particularSeriesHandlers['onplotclick'][event.data.seriesIndex].call(element,event);
-                    }
-                }
-            };
-        },
-
-        //function handles plothover event. it calls client-side and particular series handlers if set.
-        _getPlotHoverHandler: function(options,element){
-            return function(event,mouse,item){
-                if(item !== null){
-                    //point in a chart clicked
-                    event.data={
-                        seriesIndex: item.seriesIndex,
-                        dataIndex:   item.dataIndex,
-                        x: item.datapoint[0],
-                        y: item.datapoint[1],
-                        item:item
-                    };
-
-                    //client-side
-                    if(options.handlers && options.handlers['onplothover']){
-                        options.handlers['onplothover'].call(element,event);
-                    }
-
-                    //client-side particular series handler
-                    if(options.particularSeriesHandlers && options.particularSeriesHandlers['onplothover'][event.data.seriesIndex]){
-                        options.particularSeriesHandlers['onplothover'][event.data.seriesIndex].call(element,event);
-                    }
-                }
-            };
         },
 
 
@@ -388,10 +321,7 @@
 
         //remove chart handler bindings
         _unbind:function(){
-            this.element.off('plotclick');
-            this.element.off('plothover');
             this.element.off('plotselected');
-            this.element.off('mouseout');
         },
 
         /**
