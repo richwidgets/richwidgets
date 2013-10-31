@@ -137,7 +137,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         minLength: 2,
         source: function (request, response) {
           sourceFnInvoked = true;
-          response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
+          response($.ui.autocomplete.filter(['Java', 'JavaScript', 'Haskell'], request.term));
         }
       });
 
@@ -177,8 +177,17 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       runs(function() {
         expect(sourceFnInvoked).toBe(false);
 
-        element.val('');
+        element.val('javascr');
         element.trigger('keydown');
+      });
+
+      waitsFor(function() {
+        var item = menu.find('.ui-menu-item');
+        return item.length === 1 && item.text() === 'JavaScript';
+      }, 'menu contains one item', 500);
+
+      runs(function() {
+        expect(sourceFnInvoked).toBe(false);
       });
 
     });

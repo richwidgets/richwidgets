@@ -278,23 +278,30 @@
       });
 
       if (this.cache) {
-        req.term = this.options.extractCacheSearchPrefix.call(this, searchTerm);
+        this._getCachedSuggestions(req, response);
+      } else {
+        this._retrieveSuggestions(req, response);
+      }
+    },
+
+    _getCachedSuggestions: function (request, response) {
+      var prefix = this.options.extractCacheSearchPrefix.call(this, request.term);
+
+      var cached = this.cache.get(prefix);
+
+      if (cached) {
+        response.call(window, this.options.filter(cached, request.term));
+        return;
       }
 
-      var resp = $.proxy(function () {
-        if (this.cache) {
-          this.cache.put(searchTerm, arguments);
-        }
+      var resp = $.proxy(function (result) {
+        this.cache.put(prefix, result);
         return response.apply(window, arguments);
       }, this);
 
-      if (this.cache) {
-        var result = this.cache.get(searchTerm);
-        if (result) {
-          response.apply(window, result);
-          return;
-        }
-      }
+      var req = $.extend({}, request, {
+        term: prefix
+      });
 
       this._retrieveSuggestions(req, resp);
     },
