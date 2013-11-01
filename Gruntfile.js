@@ -205,7 +205,8 @@ module.exports = function (grunt) {
           '<%= config.dir.dist.flot %>/jquery.flot.categories.js',
           '<%= config.dir.dist.flot %>/jquery.flot.symbol.js',
           '<%= config.dir.dist.flot %>/jquery.flot.tooltip.js',
-          '<%= config.dir.dist.flot %>/jquery.flot.orderBars.js'
+          '<%= config.dir.dist.flot %>/jquery.flot.orderBars.js',
+          '<%= config.dir.dist.flot %>/jquery.flot.resize.js'
         ],
         dest: '<%= config.dir.dist.flot %>/richwidgets.flot.js'
       }
