@@ -64,7 +64,10 @@ module.exports = function (grunt) {
     'less:widgets',
     'less:dist',
     'concat:flot',
-    'uglify:dist'
+    'uglify:dist',
+    'copy:demoAssets',
+    'copy:demoResources',
+    'yuidoc',
   ]);
 
   grunt.registerTask('default', [
@@ -74,12 +77,9 @@ module.exports = function (grunt) {
   grunt.registerTask('dist', [
     'clean:dist',
     'build',
-    'copy:demoAssets',
     'uglify:demo',
     'cssmin:demo',
     'assemble:production',
-    'copy:demoResources',
-    'yuidoc',
     'test'
   ]);
 
@@ -94,10 +94,8 @@ module.exports = function (grunt) {
   grunt.registerTask('dev', [
     'clean:demo',
     'build',
-    'copy:demoAssets',
     'assemble:dev',
-    'copy:demoResources',
-    'yuidoc',
+//    'karma:dev',
     'connect:dev',
     'watch'
   ]);
@@ -413,8 +411,11 @@ module.exports = function (grunt) {
         singleRun: true,
         autoWatch: false
       },
-      auto: {
-        autoWatch: true
+      dev: {
+        singleRun: false,
+        autoWatch: false,
+        background: true,  // run karma in a child process so it doesn't block subsequent grunt tasks
+        reporters: 'dots'
       }
     },
 
@@ -431,6 +432,12 @@ module.exports = function (grunt) {
         files: ['<%= config.dir.src.widgets %>/**/*.js'],
         tasks: ['copy:js']
       },
+      // Activate once the following issue is resolved:
+      // https://github.com/gruntjs/grunt-contrib-watch/issues/186
+      // karma: {
+      //   files: ['<%= config.dir.src.widgets %>/**/*.js', '<%= config.dir.test.root %>/**/*.js'],
+      //   tasks: ['karma:dev:run']
+      // },
       demo: {
         files: [
           '<%= config.dir.src.demos %>/**',
