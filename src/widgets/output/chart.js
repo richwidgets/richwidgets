@@ -311,11 +311,7 @@
       return this.plot;
     },
 
-    /**
-     * Removes chart handler bindings
-     *
-     * @method _unbind
-     */
+
     _unbind: function () {
       this.element.off('plotselected');
     },
