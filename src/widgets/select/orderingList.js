@@ -815,6 +815,10 @@
         this.content.removeClass('with-handle');
         this.element.find('.handle').remove();
       }
+      if (this.options.disabled === true) {
+        this.element.removeClass('disabled');
+        this.element.find('.ui-disabled').removeClass('ui-disabled');
+      }
       this.element.removeClass('list');
     },
 
