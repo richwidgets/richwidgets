@@ -113,6 +113,116 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       });
     });
 
+    describe('dragSelect options:', function () {
+      it('when dragSelect is true, handle is visible', function () {
+        function test(fixture, element) {
+          // given
+          var options = {
+            dragSelect: true
+          };
+          // when
+          element.orderingList(options);
+          // then
+          var items = element.find('.ui-selectee');
+          expect(items.length).toEqual(8);
+          for (var i = 0; i < items.length; i++) {
+            expect($(items[i]).find('.handle > .icon-move').is(':visible')).toEqual(true);
+          }
+        }
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('when dragSelect is false, handle is not visible', function () {
+        function test(fixture, element) {
+          // given
+          var options = {
+            dragSelect: false
+          };
+          // when
+          element.orderingList(options);
+          // then
+          var items = element.find('.ui-selectee');
+          expect(items.length).toEqual(8);
+          for (var i = 0; i < items.length; i++) {
+            expect($(items[i]).find('.handle > .icon-move').is(':visible')).toEqual(false);
+          }
+        }
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('when dragSelect is true, then multiple items can be selected by mouse:', function () {
+        function test(fixture, element) {
+          // given
+          element.orderingList({dragSelect: true});
+          var widget = element.data('orderingList');
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          // when
+          var item = $(fixture.find('.ui-selectee:contains(4)'));
+          //then
+          runs(function () {
+            item.trigger('mousedown');
+            item.simulate('drag', {dy: 80});
+            item.trigger('mouseup');
+          });
+          waitsFor(function () {
+            return fixture.find('.ui-selectee:contains(5)').hasClass('ui-selected');
+          }, 'fifth item should be selected', 500);
+          runs(function () {
+            expect(widget._createKeyArray(widget.getSelected())).toEqual([4, 5, 6]);
+          });
+        }
+
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('when dragSelect is true, items can be dragged by a handle:', function () {
+        function test(fixture, element) {
+          // given
+          element.orderingList({dragSelect: true});
+          var widget = element.data('orderingList');
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          // when
+          var moveBy2Elements = 80;
+          var item5 = fixture.find('.ui-selectee:contains(5)');
+          var item5Handle = item5.find('.handle');
+          //then
+          runs(function () {
+            item5Handle.trigger('mousedown');
+            item5Handle.simulate('drag', {dy: moveBy2Elements});
+            item5Handle.trigger('mouseup');
+          });
+          waitsFor(function () {
+            return item5.hasClass('ui-selected');
+          }, 'fifth item should be selected', 500);
+          runs(function () {
+            expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 6, 7, 5, 8]);
+          });
+          // move back
+          runs(function () {
+            item5Handle.trigger('mousedown');
+            item5Handle.simulate('drag', {dy: -moveBy2Elements});
+            item5Handle.trigger('mouseup');
+          });
+          waitsFor(function () {
+            return item5.hasClass('ui-selected');
+          }, 'fifth item should be selected', 500);
+          runs(function () {
+            expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          });
+          runs(function () {
+            // clear style after item selection so the afterEach function will pass
+            // issue #83
+            item5.removeAttr('style');
+          });
+        }
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+    });
+
     describe('button options:', function () {
 
       it('applies the button text vlaues specified by the buttonText option', function () {
