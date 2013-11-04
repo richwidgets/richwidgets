@@ -18,7 +18,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
     });
 
     afterEach(function() {
-      element.richAutocomplete('destroy');
+      element.autocomplete('destroy');
       fixture.remove();
     });
 
@@ -26,7 +26,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('interacts with JSON-fed autocomplete', function() {
       // given
-      element.richAutocomplete({ source: ['Java', 'Haskell'] });
+      element.autocomplete({ source: ['Java', 'Haskell'] });
 
       // then
       testInteraction();
@@ -36,7 +36,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('interacts with autocomplete using function as a source', function() {
       // given
-      element.richAutocomplete({
+      element.autocomplete({
         source: function (request, response) {
           response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
         }
@@ -50,7 +50,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('handles delayed response', function() {
       // given
-      element.richAutocomplete({
+      element.autocomplete({
         source: function (request, response) {
           setTimeout(function () {
             response($.ui.autocomplete.filter(['Java', 'Haskell'], request.term));
@@ -63,11 +63,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     });
 
-
-
     it('supports tokenizing', function() {
       // given
-      element.richAutocomplete({
+      element.autocomplete({
         source: ['Java', 'Haskell'],
         token: ','
       });
@@ -106,7 +104,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       }, 'menu should contain one item', 500);
 
       runs(function() {
-        menu.find('.ui-menu-item').trigger('click');
+        var item = menu.find('.ui-menu-item');
+        item.click();
       });
 
       waitsFor(function() {

@@ -4,7 +4,7 @@ function updateDom() {
   $('#updatable-suggestions').append($('<li>Test' + counter++ + '</li>'));
 }
 
-$('#updatable').richAutocomplete({
+$('#updatable').autocomplete({
   source: '#updatable-suggestions',
   update: function (request, done) {
     setTimeout(function () {

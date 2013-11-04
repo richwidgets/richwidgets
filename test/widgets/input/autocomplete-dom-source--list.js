@@ -26,7 +26,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       element.height('20');
 
       // when
-      element.richAutocomplete({ source: $('ul', fixture).get(0) });
+      element.autocomplete({ source: $('ul', fixture).get(0) });
       var menu = element.autocomplete( 'widget' );
 
       // then
@@ -49,7 +49,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
         expect(menu).toHaveEqualOuterDom(expectedMenu.children().first());
 
-        element.richAutocomplete('destroy');
+        element.autocomplete('destroy');
         fixture.remove();
       });
     });

@@ -26,7 +26,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var expected = $('#expected');
 
       // when
-      element.richAutocomplete({ source: ['Java', 'Haskell'] });
+      element.autocomplete({ source: ['Java', 'Haskell'] });
 
       // then
       expect(fixture).toHaveEqualInnerDom(expected);
@@ -40,13 +40,13 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var initialDom = fixture.html();
 
       // construct element
-      element.richAutocomplete({
+      element.autocomplete({
         source: ['Java', 'Haskell']
       });
       expect(fixture).toHaveEqualInnerDom(expected);
 
       // when
-      element.richAutocomplete('destroy');
+      element.autocomplete('destroy');
 
       // then
       expect(fixture).toHaveEqualInnerDom(initialDom);
@@ -59,7 +59,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var expected = $('#expected-with-button');
 
       // when
-      element.richAutocomplete({
+      element.autocomplete({
         source: ['Java', 'Haskell'],
         showButton: true
       });

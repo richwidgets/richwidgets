@@ -18,7 +18,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
     });
 
     afterEach(function() {
-      element.richAutocomplete('destroy');
+      element.autocomplete('destroy');
       fixture.remove();
     });
 
@@ -27,7 +27,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('supports "autoFill" option', function() {
 
-      element.richAutocomplete({
+      element.autocomplete({
         autoFill: true,
         source: ['Java', 'Haskell']
       });
@@ -65,7 +65,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('supports "autoFocus" option', function() {
 
-      element.richAutocomplete({
+      element.autocomplete({
         autoFocus: true,
         source: ['Java', 'Haskell']
       });
@@ -93,7 +93,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('allows to use both "autoFocus" and "autoFill" simultaneously', function() {
 
-      element.richAutocomplete({
+      element.autocomplete({
         autoFocus: true,
         autoFill: true,
         source: ['Java', 'Haskell']
@@ -123,7 +123,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('doesn\'t pre-fill a value when both "autoFocus" and "autoFill" are used and first option is selected after opening menu', function() {
 
-      element.richAutocomplete({
+      element.autocomplete({
         autoFocus: true,
         autoFill: true,
         source: ['Java', 'Haskell']
@@ -152,7 +152,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('autoFill doesn\'t pre-fill values which doesn\'t start with lower-cased prefix', function() {
 
-      element.richAutocomplete({
+      element.autocomplete({
         autoFocus: true,
         autoFill: true,
         source: ['Java', 'Haskell']
@@ -195,7 +195,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('when autoFill doesn\'t match a value on beginning of search, nothing is pre-filled, but when a valid option is focused, it is pre-filled', function() {
 
-      element.richAutocomplete({
+      element.autocomplete({
         autoFocus: true,
         autoFill: true,
         source: ['Clojure', 'Java', 'JavaScript']
@@ -260,7 +260,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
     it('"autoFill" handles backspace correctly', function() {
 
-      element.richAutocomplete({
+      element.autocomplete({
         autoFocus: true,
         autoFill: true,
         source: ['Clojure', 'Java', 'JavaScript']

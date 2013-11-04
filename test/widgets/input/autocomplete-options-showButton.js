@@ -16,7 +16,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
     });
 
     afterEach(function() {
-      input.richAutocomplete('destroy');
+      input.autocomplete('destroy');
       fixture.remove();
     });
 
@@ -26,7 +26,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var source = ['Java', 'Haskell'];
 
       // given
-      input.richAutocomplete({
+      input.autocomplete({
         source: source,
         showButton: true
       });
@@ -43,7 +43,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var source = ['Java', 'Haskell'];
 
       // given
-      input.richAutocomplete({
+      input.autocomplete({
         source: source,
         showButton: true
       });
@@ -73,7 +73,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var source = ['Java', 'Haskell'];
 
       // given
-      input.richAutocomplete({
+      input.autocomplete({
         source: source,
         showButton: true
       });
@@ -116,7 +116,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var source = ['Java', 'Haskell'];
 
       // given
-      input.richAutocomplete({
+      input.autocomplete({
         source: source,
         showButton: true
       });

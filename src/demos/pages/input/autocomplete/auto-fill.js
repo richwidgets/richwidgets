@@ -1,1 +1,1 @@
-$('#auto-fill').richAutocomplete({ source: source, autoFill: true });
+$('#auto-fill').autocomplete({ source: source, autoFill: true });

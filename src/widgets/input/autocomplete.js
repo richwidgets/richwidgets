@@ -10,7 +10,7 @@
  * * built-in button
  *
  * @module Input
- * @class richAutocomplete
+ * @class autocomplete
  */
 (function ($) {
 
@@ -19,23 +19,7 @@
     table: 1
   };
 
-  $.ui.richAutocomplete = {};
-
-  $.extend($.ui.richAutocomplete, {
-    objectCache: function () {
-      var cache = {};
-      return {
-        get: function (term) {
-          return cache[term];
-        },
-        put: function (term, value) {
-          cache[term] = value;
-        }
-      };
-    }
-  });
-
-  $.widget('rf.richAutocomplete', {
+  $.widget('rich.autocomplete', $.ui.autocomplete, {
 
     LAYOUT: LAYOUT,
 
@@ -148,8 +132,9 @@
        *
        * @property cacheImplementation
        * @type Object
+       * @default $.rich.autocomplete.objectCache
        */
-      cacheImplemenation: $.ui.richAutocomplete.objectCache,
+      cacheImplemenation: objectCache,
 
       /**
        * Provide function which will be used to filter array of suggestions by given searchTerm:
@@ -161,6 +146,15 @@
        */
       filter: $.ui.autocomplete.filter,
 
+      /**
+       * The delay in milliseconds between when a keystroke occurs and when a search is performed. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive.
+       *
+       * @property delay
+       * @type Integer
+       * @default 0
+       */
+      delay: 0,
+
       /* INHERITED OPTIONS */
 
       /**
@@ -169,14 +163,6 @@
        * @property appendTo
        * @type Selector
        * @default null
-       */
-
-      /**
-       * The delay in milliseconds between when a keystroke occurs and when a search is performed. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive.
-       *
-       * @property delay
-       * @type Integer
-       * @default 300
        */
 
       /**
@@ -276,20 +262,16 @@
     _create: function () {
       var widget = this;
       this.input = this.element;
+      this.callbacks = {};
 
       // initialize DOM structure
       this.root = this._initDom();
 
+      this._super();
+
       if (this.options.cached) {
         this.cache = new this.options.cacheImplemenation();
       }
-
-      if (!this.options.layout) {
-        this._setOption('layout', this.LAYOUT.list);
-      }
-
-      var autocompleteOptions = this._getAutocompleteOptions();
-      this.input.autocomplete(autocompleteOptions);
 
       this.input.keydown(function(event) {
         widget.lastKeyupEvent = event;
@@ -297,28 +279,46 @@
 
       this._registerListeners();
 
-      if (this.options.source) {
-        this._setOption('source', this.options.source);
-      }
-
-      if (this.input.disabled) {
-        this._setOption('disabled', true);
-      }
+      this._setOptions({
+        source: this.options.source
+      });
     },
 
     _destroy: function () {
-      this.input.autocomplete('destroy');
       this._destroyDom();
+      this._super();
     },
 
     _enable: function () {
-      this.input.autocomplete('enable');
       this.button.removeAttr('disabled');
+      this._super();
     },
 
     _disable: function () {
-      this.input.autocomplete('disable');
       this.button.attr('disabled', 'disabled');
+      this._super();
+    },
+
+    _setOption: function (key, value) {
+
+      if (key === 'layout') {
+        this._setLayout(value);
+      }
+      if (key === 'disabled') {
+        if (value) {
+          this._disable();
+        } else {
+          this._enable();
+        }
+      }
+
+      if (key === 'source') {
+        if (isDomBasedSource(value)) {
+          this._updateDomSuggestions();
+        }
+      }
+
+      this._super(key, value);
     },
 
     /* PUBLIC METHODS */
@@ -413,76 +413,75 @@
       this.root.remove();
     },
 
-    _getAutocompleteOptions: function () {
-      var widget = this;
+    _handlers: {
 
-      return {
-        delay: 0,
-        minLength: this.options.minLength,
-        autoFocus: this.options.autoFocus,
-        source: function (request, response) {
-          widget._getSuggestions(request, response);
-        },
-        search: function () {
-          if (widget.options.autoFill) {
-            if (widget.entered === widget.input.val()) {
-              return false;
-            }
-          }
-          widget.entered = widget.input.val();
-
-          if (widget.button) {
-            widget.button.off('click', widget.buttonClickHandler);
-            widget.button.find('i').removeClass('icon-chevron-down');
-            widget.button.find('i').addClass('icon-chevron-up');
-          }
-        },
-        focus: function (event, ui) {
-          if (!widget.options.autoFill) {
+      search: function () {
+        if (this.options.autoFill) {
+          if (this.entered === this.input.val()) {
             return false;
           }
-          if (widget.lastKeyupEvent.keyCode === 8) {
-            // refuse to auto-fill on on backspace
-            return false;
-          }
-          var input = widget.input,
-            original = widget.entered,
-            label = ui.item.label;
+        }
+        this.entered = this.input.val();
 
-          original = original.substring(0, input[0].selectionStart);
+        if (this.button) {
+          this.button.off('click', this.buttonClickHandler);
+          this.button.find('i').removeClass('icon-chevron-down');
+          this.button.find('i').addClass('icon-chevron-up');
+        }
+      },
 
-          var lastTerm = widget._extractSearchTerm(original);
-          var prefix = original.substring(0, original.length - lastTerm.length);
-
-          if (lastTerm.length > 0 && label.toLowerCase().indexOf(lastTerm.toLowerCase()) === 0) {
-            input.val(original + label.substring(lastTerm.length));
-
-            input[0].selectionStart = original.length;
-            input[0].selectionEnd = prefix.length + label.length;
-
-            return false;
-          } else {
-            input.val(original);
-            return false;
-          }
-        },
-        close: function (event) {
-          if (widget.button) {
-            widget.button.find('i').removeClass('icon-chevron-up');
-            widget.button.find('i').addClass('icon-chevron-down');
-
-            // we must delay attaching of event handler because otherwise the click will happen
-            // and the handler will be triggered right after closing the menu
-            setTimeout(function() {
-              widget.button.on('click', widget.buttonClickHandler);
-            }, 150);
-          }
-        },
-        select: function (event, ui) {
-          this.value = widget._selectValue(event, ui, this.value);
+      focus: function (event, ui) {
+        if (!this.options.autoFill) {
           return false;
         }
-      };
+        if (this.lastKeyupEvent.keyCode === 8) {
+          // refuse to auto-fill on on backspace
+          return false;
+        }
+        var input = this.input,
+          original = this.entered,
+          label = ui.item.label;
+
+        original = original.substring(0, input[0].selectionStart);
+
+        var lastTerm = this._extractSearchTerm(original);
+        var prefix = original.substring(0, original.length - lastTerm.length);
+
+        if (lastTerm.length > 0 && label.toLowerCase().indexOf(lastTerm.toLowerCase()) === 0) {
+          input.val(original + label.substring(lastTerm.length));
+
+          input[0].selectionStart = original.length;
+          input[0].selectionEnd = prefix.length + label.length;
+
+          return false;
+        } else {
+          input.val(original);
+          return false;
+        }
+      },
+
+      close: function (event) {
+        if (this.button) {
+          this.button.find('i').removeClass('icon-chevron-up');
+          this.button.find('i').addClass('icon-chevron-down');
+
+          // we must delay attaching of event handler because otherwise the click will happen
+          // and the handler will be triggered right after closing the menu
+          setTimeout($.proxy(function() {
+            this.button.on('click', this.buttonClickHandler);
+          }, this), 150);
+        }
+
+        // workaround for a bug where $.ui.menu plugin doesn't reset mouseHandled flag
+        $(document).click();
+      },
+
+      select: function (event, ui) {
+        this.value = this._selectValue(event, ui, this.input.val());
+        this.input.val(this.value);
+        return false;
+      }
+
     },
 
     _splitTokens: function (val) {
@@ -514,6 +513,10 @@
       } else {
         return ui.item.value;
       }
+    },
+
+    _initSource: function() {
+      this.source = this._getSuggestions;
     },
 
     _getSuggestions: function (request, response) {
@@ -612,7 +615,7 @@
         this._setOption('layout', layout);
       }
 
-      this._setOption('suggestions', suggestions);
+      this.options.suggestions = suggestions;
     },
 
     _preventTabbing: function () {
@@ -626,64 +629,65 @@
 
     _registerListeners: function () {
       var widget = this;
-      $.each(['search', 'open', 'focus', 'select', 'close', 'change'], function(i, ev) {
-        if (widget.options[ev]) {
-          widget.input.on('autocomplete' + ev, widget.options[ev]);
-        }
+      $.each(this._handlers, function(ev, handler) {
+        widget.input.on('autocomplete' + ev, $.proxy(function() {
+          var result = handler.apply(this, arguments);
+          //console.log(ev + ': ' + result);
+          return result;
+        }, widget));
       });
     },
 
-    _setLayout: function (layout) {
-      var data = this.input.autocomplete().data('ui-autocomplete');
-      switch (layout) {
+    _renderMenu: function(ul, items) {
+      if (this.options.layout === this.LAYOUT.table) {
+        ul.addClass('ui-autocomplete-layout-table');
+      }
+      return this._superApply(arguments);
+    },
+
+    _renderItem: function(ul, item) {
+      switch (this.options.layout) {
         case this.LAYOUT.list :
-          data._renderMenu = $.ui.autocomplete.prototype._renderMenu;
-          data._renderItem = function (ul, item) {
-            var content = item.dom ? $('<a>').html(item.dom.html()) : $('<a>').text(item.label);
-            return $('<li>').append(content).appendTo(ul);
-          };
-          break;
+          var content = item.dom ? $('<a>').html(item.dom.html()) : $('<a>').text(item.label);
+          return $('<li>').append(content).appendTo(ul);
         case this.LAYOUT.table :
-          this._setOption('appendTo', $('<div class="ui-autocomplete-layout-table-wrapper">').appendTo($('body')));
-          data._renderMenu = function (ul, items) {
-            ul.addClass('ui-autocomplete-layout-table');
-            return $.ui.autocomplete.prototype._renderMenu.call(this, ul, items);
-          };
-          data._renderItem = function (ul, item) {
-            var link = $('<a>');
-            item.dom.find('td').each(function () {
-              $('<span>').html($(this).html()).appendTo(link);
-            });
-            return $('<li></li>')
-              .data('item.autocomplete', item)
-              .append(link)
-              .appendTo(ul);
-          };
-          break;
+          var link = $('<a>');
+          item.dom.find('td').each(function () {
+            $('<span>').html($(this).html()).appendTo(link);
+          });
+          return $('<li></li>')
+            .data('item.autocomplete', item)
+            .append(link)
+            .appendTo(ul);
       }
     },
 
-    _setOption: function (key, value) {
-      if (key === 'layout') {
-        this._setLayout(value);
-      }
-      if (key === 'disabled') {
-        if (value) {
-          this._disable();
-        } else {
-          this._enable();
-        }
-      }
-
-      this._super(key, value);
-
-      if (key === 'source') {
-        if (isDomBasedSource(value)) {
-          this._updateDomSuggestions();
-        }
+    _setLayout: function (layout) {
+      switch (layout) {
+        case this.LAYOUT.list :
+          break;
+        case this.LAYOUT.table :
+          this._setOption('appendTo', $('<div class="ui-autocomplete-layout-table-wrapper">').appendTo($('body')));
+          break;
       }
     }
   });
+
+  $.extend($.rich.autocomplete, {
+    objectCache: objectCache
+  });
+
+  function objectCache() {
+    var cache = {};
+    return {
+      get: function (term) {
+        return cache[term];
+      },
+      put: function (term, value) {
+        cache[term] = value;
+      }
+    };
+  }
 
   /**
    * Default implementation of extracting searchTerm prefix for checking cache

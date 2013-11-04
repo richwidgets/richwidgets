@@ -1,1 +1,1 @@
-$('#list-source').richAutocomplete({ source: '#list-suggestions' });
+$('#list-source').autocomplete({ source: '#list-suggestions' });

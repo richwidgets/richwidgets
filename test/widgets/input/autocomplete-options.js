@@ -16,7 +16,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
     });
 
     afterEach(function() {
-      element.richAutocomplete('destroy');
+      element.autocomplete('destroy');
       fixture.remove();
     });
 
@@ -30,7 +30,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var source = $('<ul><li>Java</li><li>Haskell</li></ul>').after(element).get(0);
 
       // given
-      element.richAutocomplete({
+      element.autocomplete({
         source: source,
         token: ',',
         update: function(r) {
@@ -65,7 +65,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var sourceFnInvoked = 0;
       var keydownEventsPropagated = 0;
 
-      element.richAutocomplete({
+      element.autocomplete({
         minLength: 3,
         source: function (request, response) {
           sourceFnInvoked += 1;
@@ -132,7 +132,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
     it('uses "cache" when two searches are triggered for same prefix', function() {
       var sourceFnInvoked = false;
 
-      element.richAutocomplete({
+      element.autocomplete({
         cached: true,
         minLength: 2,
         source: function (request, response) {

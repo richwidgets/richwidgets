@@ -18,14 +18,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
         });
 
         afterEach(function() {
-            input.richAutocomplete('destroy');
+            input.autocomplete('destroy');
             fixture.remove();
         });
 
 
         it('supports "autoFill" and "token" simultaneously', function() {
 
-            input.richAutocomplete({
+            input.autocomplete({
                 autoFill: true,
                 token: ',',
                 source: ['Java', 'Haskell']
@@ -81,6 +81,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
             runs(function() {
                 expect(input).toHaveValue('Java,haskell');
+
                 menu.find('.ui-menu-item:eq(0)').trigger('click');
             });
 
