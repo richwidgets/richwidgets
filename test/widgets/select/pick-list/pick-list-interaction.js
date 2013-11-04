@@ -30,7 +30,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           // given
           element.pickList();
           var widget = element.data('pickList');
-          expect(widget._uiHash().pickedKeys).toEqual([9]);
+          expect(widget._uiHash().pickedKeys).toEqual([9, 10, 11]);
 
           // when
           var firstItem = fixture.find('.source .ui-selectee').first();
@@ -54,7 +54,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           }, 'item should be moved to top of target list', 500);
 
           runs(function () {
-            expect(widget._uiHash().pickedKeys).toEqual([1, 9]);
+            expect(widget._uiHash().pickedKeys).toEqual([1, 9, 10, 11]);
           });
         }
 
@@ -70,7 +70,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           element.pickList('option', 'switchByClick', true);
 
           var widget = element.data('pickList');
-          expect(widget._uiHash().pickedKeys).toEqual([9]);
+          expect(widget._uiHash().pickedKeys).toEqual([9, 10, 11]);
 
           // when
           var item = $(fixture.find('.source .ui-selectee').get(3));
@@ -84,10 +84,10 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
           waitsFor(function () {
             return fixture.find('.target .ui-selectee').first().data('key') === item.data('key');
-          }, 'item should be moved to the target', 5000);
+          }, 'item should be moved to the target', 500);
 
           runs(function () {
-            expect(widget._uiHash().pickedKeys).toEqual([4, 9]);
+            expect(widget._uiHash().pickedKeys).toEqual([4, 9, 10, 11]);
           });
         }
         test(fixture_list, element_list);
@@ -102,7 +102,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           element.pickList('option', 'switchByDblClick', true);
 
           var widget = element.data('pickList');
-          expect(widget._uiHash().pickedKeys).toEqual([9]);
+          expect(widget._uiHash().pickedKeys).toEqual([9, 10, 11]);
 
           // when
           var item = $(fixture.find('.source .ui-selectee').get(3));
@@ -116,10 +116,10 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
           waitsFor(function () {
             return fixture.find('.target .ui-selectee').first().data('key') === item.data('key');
-          }, 'item should be moved to the target', 5000);
+          }, 'item should be moved to the target', 500);
 
           runs(function () {
-            expect(widget._uiHash().pickedKeys).toEqual([4, 9]);
+            expect(widget._uiHash().pickedKeys).toEqual([4, 9, 10, 11]);
           });
         }
         test(fixture_list, element_list);

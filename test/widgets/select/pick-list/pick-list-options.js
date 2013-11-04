@@ -261,5 +261,62 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         expect(getColumnClass(row_1_cells, 2)).not.toMatch(newColumnClasses[1]);
       });
     });
+
+    it('disabled option: ', function () {
+      function test(fixture, element) {
+        // given
+        var options = {
+          disabled: true,
+          header: 'lala tralaal foo bar'
+        };
+
+        // when
+        element.pickList(options);
+        
+        // then
+        var listClassAttr = element.attr('class');
+        var sourceClassAttr = element.find('.source').attr('class');
+        var targetClassAttr = element.find('.target').attr('class');
+        var buttons = element.find('.btn');
+
+        expect(listClassAttr).toContain('disabled');
+        expect(sourceClassAttr).toContain('disabled');
+        expect(targetClassAttr).toContain('disabled');
+        buttons.each(function (index) {
+          expect(this.disabled).toEqual(true);
+        });
+
+        element.pickList('option', 'disabled', false);
+      }
+
+      test(fixture_list, element_list);
+      test(fixture_table, element_table);
+    });
+
+    it('height/heightMin/heightMax option: ', function () {
+      function test(fixture, element) {
+        // given
+
+        var options = {
+          height: 300,
+          heightMin: 400,
+          heightMax: 154,
+        };
+        
+        // when
+        element.pickList(options);
+        
+        // then
+        runs(function () {
+          var styleAttr = element.find('.scroll-box').attr('style');
+          expect(styleAttr).toContain('height: 300px');
+          expect(styleAttr).toContain('min-height: 400px');
+          expect(styleAttr).toContain('max-height: 154px');
+        });
+      }
+
+      test(fixture_list, element_list);
+      test(fixture_table, element_table);
+    });
   });
 });
