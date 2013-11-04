@@ -36,8 +36,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       // when
       runs(function() {
-        element.val('ja');
-        element.trigger('keydown');
+        appendTextToInput('ja');
       });
 
       waitsFor(function() {
@@ -74,8 +73,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       // when
       runs(function() {
-        element.val('ja');
-        element.trigger('keydown');
+        appendTextToInput('ja');
       });
 
       waitsFor(function() {
@@ -103,8 +101,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       // when
       runs(function() {
-        element.val('ja');
-        element.trigger('keydown');
+        appendTextToInput('ja');
       });
 
       waitsFor(function() {
@@ -133,8 +130,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       // when
       runs(function() {
-        element.val('a');
-        element.trigger('keydown');
+        appendTextToInput('a');
       });
 
       waitsFor(function() {
@@ -162,8 +158,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
       // when
       runs(function() {
-        element.val('a');
-        element.trigger('keydown');
+        appendTextToInput('a');
       });
 
       waitsFor(function() {
@@ -301,6 +296,12 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       });
 
     });
+
+    function appendTextToInput(text) {
+      element.focus();
+      element.val(element.val() + text);
+      element.trigger('keydown');
+    }
 
   });
 
