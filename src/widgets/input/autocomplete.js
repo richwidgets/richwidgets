@@ -28,6 +28,15 @@
       /* OPTIONS */
 
       /**
+       * The delay in milliseconds between when a keystroke occurs and when a search is performed. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive.
+       *
+       * @property delay
+       * @type Integer
+       * @default 0
+       */
+      delay: 0,
+
+      /**
        * Allows to repeat auto-completion several times by using separator between words.
        *
        * You can provide multiple tokens.
@@ -112,16 +121,6 @@
       cached: false,
 
       /**
-       * Function that determines what prefix of search term will be used to query a cache:
-       *
-       * function extractCachePrefix(searchTerm)
-       *
-       * @property extractCacheSearchPrefix
-       * @type Function
-       */
-      extractCacheSearchPrefix: defaultExtractCacheSearchPrefix,
-
-      /**
        * Allows to plug in implementation of cache, which in turn allows to use stores like Local Storage
        * for remembering values.
        *
@@ -132,9 +131,20 @@
        *
        * @property cacheImplementation
        * @type Object
-       * @default $.rich.autocomplete.objectCache
+       * @default $.rich.autocomplete.ObjectCache
        */
-      cacheImplemenation: objectCache,
+      cacheImplemenation: ObjectCache,
+
+      /**
+       * Function that determines what prefix of search term will be used to query a cache:
+       *
+       * `function cachePrefixExtract(searchTerm)` - default implementation extracts first `minLength` characters of a search term
+       *
+       * @property cachePrefixExtract
+       * @type Function
+       * @default $.rich.autocomplete.cachePrefixExtract
+       */
+      cachePrefixExtract: cachePrefixExtract,
 
       /**
        * Provide function which will be used to filter array of suggestions by given searchTerm:
@@ -145,15 +155,6 @@
        * @type Function
        */
       filter: $.ui.autocomplete.filter,
-
-      /**
-       * The delay in milliseconds between when a keystroke occurs and when a search is performed. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive.
-       *
-       * @property delay
-       * @type Integer
-       * @default 0
-       */
-      delay: 0,
 
       /* INHERITED OPTIONS */
 
@@ -270,17 +271,19 @@
       this._super();
 
       if (this.options.cached) {
-        this.cache = new this.options.cacheImplemenation();
+        this.cache = new (this.options.cacheImplemenation)();
       }
 
       this.input.keydown(function(event) {
         widget.lastKeyupEvent = event;
       });
 
-      this._registerListeners();
-
       this._setOptions({
         source: this.options.source
+      });
+
+      $.each(this._handlers, function(ev, handler) {
+        widget.input.on('autocomplete' + ev, $.proxy(handler, widget));
       });
     },
 
@@ -301,9 +304,6 @@
 
     _setOption: function (key, value) {
 
-      if (key === 'layout') {
-        this._setLayout(value);
-      }
       if (key === 'disabled') {
         if (value) {
           this._disable();
@@ -319,6 +319,10 @@
       }
 
       this._super(key, value);
+
+      if (key === 'layout') {
+        this._initLayout();
+      }
     },
 
     /* PUBLIC METHODS */
@@ -413,6 +417,50 @@
       this.root.remove();
     },
 
+    /**
+     * @override
+     */
+    _initSource: function() {
+      this.source = this._getSuggestions;
+    },
+
+    /**
+     * @override
+     */
+    _renderMenu: function(ul, items) {
+      if (this.options.layout === this.LAYOUT.table) {
+        ul.addClass('ui-autocomplete-layout-table');
+      }
+      return this._superApply(arguments);
+    },
+
+    /**
+     * @override
+     */
+    _renderItem: function(ul, item) {
+      switch (this.options.layout) {
+        case this.LAYOUT.list :
+          var content = item.dom ? $('<a>').html(item.dom.html()) : $('<a>').text(item.label);
+          return $('<li>').append(content).appendTo(ul);
+        case this.LAYOUT.table :
+          var link = $('<a>');
+          item.dom.find('td').each(function () {
+            $('<span>').html($(this).html()).appendTo(link);
+          });
+          return $('<li></li>')
+            .data('item.autocomplete', item)
+            .append(link)
+            .appendTo(ul);
+      }
+    },
+
+    _initLayout: function () {
+      if (this.options.layout === this.LAYOUT.table) {
+        this._setOption('appendTo', $('<div class="ui-autocomplete-layout-table-wrapper">').appendTo($('body')));
+      }
+    },
+
+    // callbacks for important jQuery UI Autocomplete events that helps to handle extension functionality
     _handlers: {
 
       search: function () {
@@ -460,7 +508,7 @@
         }
       },
 
-      close: function (event) {
+      close: function () {
         if (this.button) {
           this.button.find('i').removeClass('icon-chevron-up');
           this.button.find('i').addClass('icon-chevron-down');
@@ -484,24 +532,6 @@
 
     },
 
-    _splitTokens: function (val) {
-      var regexp = new RegExp('\\s*' + this.options.token + '\\s*');
-      return val.split(regexp);
-    },
-
-
-    _extractLastToken: function (term) {
-      return this._splitTokens(term).pop();
-    },
-
-    _extractSearchTerm: function (term) {
-      if (this.options.token) {
-        return this._extractLastToken(term);
-      } else {
-        return term;
-      }
-    },
-
     _selectValue: function (event, ui, value) {
       if (this.options.token) {
         var terms = this._splitTokens(value);
@@ -515,8 +545,21 @@
       }
     },
 
-    _initSource: function() {
-      this.source = this._getSuggestions;
+    _extractSearchTerm: function (term) {
+      if (this.options.token) {
+        return this._extractLastToken(term);
+      } else {
+        return term;
+      }
+    },
+
+    _extractLastToken: function (term) {
+      return this._splitTokens(term).pop();
+    },
+
+    _splitTokens: function (val) {
+      var regexp = new RegExp('\\s*' + this.options.token + '\\s*');
+      return val.split(regexp);
     },
 
     _getSuggestions: function (request, response) {
@@ -538,7 +581,7 @@
     },
 
     _getCachedSuggestions: function (request, response) {
-      var prefix = this.options.extractCacheSearchPrefix.call(this, request.term);
+      var prefix = this.options.cachePrefixExtract.call(this, request.term);
 
       var cached = this.cache.get(prefix);
 
@@ -616,68 +659,16 @@
       }
 
       this.options.suggestions = suggestions;
-    },
-
-    _preventTabbing: function () {
-      this.element.bind('keydown', function (event) {
-        if (event.keyCode === $.ui.keyCode.TAB &&
-          $(this).data('autocomplete').menu.active) {
-          event.preventDefault();
-        }
-      });
-    },
-
-    _registerListeners: function () {
-      var widget = this;
-      $.each(this._handlers, function(ev, handler) {
-        widget.input.on('autocomplete' + ev, $.proxy(function() {
-          var result = handler.apply(this, arguments);
-          //console.log(ev + ': ' + result);
-          return result;
-        }, widget));
-      });
-    },
-
-    _renderMenu: function(ul, items) {
-      if (this.options.layout === this.LAYOUT.table) {
-        ul.addClass('ui-autocomplete-layout-table');
-      }
-      return this._superApply(arguments);
-    },
-
-    _renderItem: function(ul, item) {
-      switch (this.options.layout) {
-        case this.LAYOUT.list :
-          var content = item.dom ? $('<a>').html(item.dom.html()) : $('<a>').text(item.label);
-          return $('<li>').append(content).appendTo(ul);
-        case this.LAYOUT.table :
-          var link = $('<a>');
-          item.dom.find('td').each(function () {
-            $('<span>').html($(this).html()).appendTo(link);
-          });
-          return $('<li></li>')
-            .data('item.autocomplete', item)
-            .append(link)
-            .appendTo(ul);
-      }
-    },
-
-    _setLayout: function (layout) {
-      switch (layout) {
-        case this.LAYOUT.list :
-          break;
-        case this.LAYOUT.table :
-          this._setOption('appendTo', $('<div class="ui-autocomplete-layout-table-wrapper">').appendTo($('body')));
-          break;
-      }
     }
+
   });
 
   $.extend($.rich.autocomplete, {
-    objectCache: objectCache
+    ObjectCache: ObjectCache,
+    cachePrefixExtract: cachePrefixExtract
   });
 
-  function objectCache() {
+  function ObjectCache() {
     var cache = {};
     return {
       get: function (term) {
@@ -689,10 +680,7 @@
     };
   }
 
-  /**
-   * Default implementation of extracting searchTerm prefix for checking cache
-   */
-  function defaultExtractCacheSearchPrefix(searchTerm) {
+  function cachePrefixExtract(searchTerm) {
     if (searchTerm && this.options.minLength > 0 && this.options.minLength < searchTerm.length) {
       return searchTerm.substring(0, this.options.minLength);
     } else {
