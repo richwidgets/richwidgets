@@ -87,7 +87,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       });
     });
 
-    describe('class options:', function () {
+    describe('styleClass options:', function () {
       it('sets the style class', function () {
         function test(fixture, element) {
           // given
@@ -223,9 +223,207 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
       });
     });
 
+//    enable after issue #81 fixed
+//    xdescribe('mouseOrderable options:', function () {
+//      it('when mouseOrderable is false, then multiple items can be selected by mouse: ', function () {
+//        function test(fixture, element) {
+//          // given
+//          var options = {
+//            mouseOrderable: false
+//          };
+//          // when
+//          element.orderingList(options);
+//          var widget = element.data('orderingList');
+//          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+//          var item = fixture.find('.ui-selectee:contains(4)');
+//          //then
+//          runs(function () {
+//            item.trigger('mousedown');
+//            item.simulate('drag', {dy: 80});
+//            item.trigger('mouseup');
+//          });
+//          waitsFor(function () {
+//            return fixture.find('.ui-selectee:contains(4)').hasClass('ui-selected');
+//          }, 'fifth item should be selected', 500);
+//          runs(function () {
+//            expect(widget._createKeyArray(widget.getSelected())).toEqual([4, 5, 6]);
+//          });
+//        }
+//        test(fixture_list, element_list);
+//        test(fixture_table, element_table);
+//      });
+//
+//      it('when mouseOrderable is false, then there are no handles like with dragSelect=true: ', function () {
+//        function test(fixture, element) {
+//          // given
+//          var options = {
+//            mouseOrderable: false
+//          };
+//          // when
+//          element.orderingList(options);
+//          // then
+//          var items = element.find('.ui-selectee');
+//          expect(items.length).toEqual(8);
+//          for (var i = 0; i < items.length; i++) {
+//            expect($(items[i]).find('.handle > .icon-move').is(':visible')).toEqual(false);
+//          }
+//        }
+//        test(fixture_list, element_list);
+//        test(fixture_table, element_table);
+//      });
+//    });
+
+    describe('height options:', function () {
+      it('height', function () {
+        function test(fixture, element) {
+          // given
+          var heightToSet = '300px';
+          var options = {
+            height: heightToSet
+          };
+          // when
+          element.orderingList(options);
+          // then
+          expect(fixture.find('.scroll-box').css('height')).toEqual(heightToSet);
+
+          //given
+          heightToSet = '400px';
+          // when
+          element.orderingList('option', 'height', heightToSet);
+          // then
+          expect(fixture.find('.scroll-box').css('height')).toEqual(heightToSet);
+        }
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('heightMax', function () {
+        function test(fixture, element) {
+          // given
+          var heightToSet = '300px';
+          var options = {
+            heightMax: heightToSet
+          };
+          // when
+          element.orderingList(options);
+          // then
+          expect(fixture.find('.scroll-box').css('max-height')).toEqual(heightToSet);
+
+          // change the heightMin option
+          //given
+          heightToSet = '400px';
+          // when
+          element.orderingList('option', 'heightMax', heightToSet);
+          // then
+          expect(fixture.find('.scroll-box').css('max-height')).toEqual(heightToSet);
+
+          // change the height to be greater than max-height
+          //given
+          var newHeight = '500px';
+          // when
+          element.orderingList('option', 'height', newHeight);
+          // then
+          expect(fixture.find('.scroll-box').css('max-height')).toEqual(heightToSet);
+          expect(fixture.find('.scroll-box').css('height')).toEqual(heightToSet);
+          expect(fixture.find('.scroll-box').css('height')).not.toEqual(newHeight);
+        }
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+
+      it('heightMin', function () {
+        function test(fixture, element) {
+          // given
+          var heightToSet = '300px';
+          var options = {
+            heightMin: heightToSet
+          };
+          // when
+          element.orderingList(options);
+          // then
+          expect(fixture.find('.scroll-box').css('min-height')).toEqual(heightToSet);
+
+          // change the heightMin option
+          //given
+          heightToSet = '400px';
+          // when
+          element.orderingList('option', 'heightMin', heightToSet);
+          // then
+          expect(fixture.find('.scroll-box').css('min-height')).toEqual(heightToSet);
+
+          // change the height to be lesser than min-height
+          //given
+          var newHeight = '200px';
+          // when
+          element.orderingList('option', 'height', newHeight);
+          // then
+          expect(fixture.find('.scroll-box').css('min-height')).toEqual(heightToSet);
+          expect(fixture.find('.scroll-box').css('height')).toEqual(heightToSet);
+          expect(fixture.find('.scroll-box').css('height')).not.toEqual(newHeight);
+        }
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+    });
+
+    describe('disabled options:', function () {
+      it('disabled list', function () {
+        // given
+        var options = {
+          disabled: true
+        };
+        // when
+        element_list.orderingList(options);
+
+        // list contains disabled classes
+        expect(element_list.attr('class')).toEqual('list ui-sortable ui-selectable ui-sortable-disabled ui-selectable-disabled ui-state-disabled disabled');
+
+        // items contain disabled classes
+        var items = element_list.find('li');
+        expect(items.length).toEqual(8);
+        for (var i = 0; i < items.length; i++) {
+          expect($(items[i]).attr('class')).toEqual('ui-disabled');
+        }
+
+        // buttons contain disabled classes
+        var buttons = fixture_list.find('.btn');
+        expect(buttons.length).toEqual(4);
+        for (i = 0; i < buttons.length; i++) {
+          expect($(buttons[i]).attr('disabled')).toEqual('disabled');
+        }
+      });
+
+      it('disabled table', function () {
+        // given
+        var options = {
+          disabled: true
+        };
+        // when
+        element_table.orderingList(options);
+
+        // table contains disabled classes
+        expect(element_table.attr('class')).toEqual('list disabled');
+        expect(element_table.find('tbody').attr('class')).toEqual('ui-sortable ui-selectable ui-sortable-disabled ui-selectable-disabled ui-state-disabled');
+
+        // items contain disabled classes
+        var items = element_table.find('tbody > tr');
+        expect(items.length).toEqual(8);
+        for (var i = 0; i < items.length; i++) {
+          expect($(items[i]).attr('class')).toEqual('ui-disabled');
+        }
+
+        // buttons contain disabled classes
+        var buttons = fixture_table.find('.btn');
+        expect(buttons.length).toEqual(4);
+        for (i = 0; i < buttons.length; i++) {
+          expect($(buttons[i]).attr('disabled')).toEqual('disabled');
+        }
+      });
+    });
+
     describe('button options:', function () {
 
-      it('applies the button text vlaues specified by the buttonText option', function () {
+      it('applies the button text values specified by the buttonText option', function () {
         function test(fixture, element) {
           // given
           var buttonsText = {first: 'abcd', up: 'efgh', down: 'ijkl', last: 'mnop'};
@@ -254,14 +452,34 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
         test(fixture_list, element_list);
         test(fixture_table, element_table);
       });
+
+      it('when showButtons option is false, then no buttons are visible', function () {
+        function test(fixture, element) {
+          // given
+          var options = {
+            showButtons: false
+          };
+          // when
+          element.orderingList(options);
+          // then
+          expect(fixture.find('.button-column').is(':visible')).toBe(false);
+          expect(fixture.find('.button-column .btn-first span').is(':visible')).toBe(false);
+          expect(fixture.find('.button-column .btn-up span').is(':visible')).toBe(false);
+          expect(fixture.find('.button-column .btn-down span').is(':visible')).toBe(false);
+          expect(fixture.find('.button-column .btn-last span').is(':visible')).toBe(false);
+        }
+
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
     });
 
-    describe('class options:', function () {
+    describe('columnClasses options:', function () {
 
-      it('uses the columnClasses option for layout', function () {
+      it('uses the columnClasses option for table layout', function () {
         // given
         var options = {
-          header: 'Table layout w/ columnClasses',
+          header: 'Table layout with columnClasses',
           columnClasses: 'column-1 column-2'
         };
         // when
