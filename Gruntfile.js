@@ -67,7 +67,7 @@ module.exports = function (grunt) {
     'uglify:dist',
     'copy:demoAssets',
     'copy:demoResources',
-    'yuidoc',
+    'yuidoc'
   ]);
 
   grunt.registerTask('default', [
@@ -430,7 +430,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= config.dir.src.widgets %>/**/*.js'],
-        tasks: ['copy:js']
+        tasks: ['copy:js', 'yuidoc']
       },
       // Activate once the following issue is resolved:
       // https://github.com/gruntjs/grunt-contrib-watch/issues/186
