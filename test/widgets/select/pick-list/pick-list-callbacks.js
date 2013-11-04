@@ -6,15 +6,15 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
     var fixture_table, element_table, original_table;
 
     beforeEach(function () {
-      var f = jasmine.getFixtures();
-      f.load('test/widgets/select/pick-list/pick-list-source.html');
-
       var s = jasmine.getStyleFixtures();
-      s.appendLoad('dist/assets/bootstrap/bootstrap.css');
       s.appendLoad('dist/assets/font-awesome/font-awesome.css');
+      s.appendLoad('dist/assets/bootstrap/bootstrap.css');
       s.appendLoad('dist/assets/richwidgets/select/select-list.css');
       s.appendLoad('dist/assets/richwidgets/select/ordering-list.css');
       s.appendLoad('dist/assets/richwidgets/select/pick-list.css');
+
+      var f = jasmine.getFixtures();
+      f.load('test/widgets/select/pick-list/pick-list-source.html');
 
       fixture_list = $('#fixture-pick-list-list');
       original_list = fixture_list.clone();
@@ -25,7 +25,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
     });
 
     describe('lifecycle events: ', function () {
-      it('create:', function () {
+      it('create/destroy/addDomElementsCallback:', function () {
         function test(fixture, element) {
           // given
           var createCallback = jasmine.createSpy('createCallback');
@@ -111,7 +111,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           testChangeByButtonClick(fixture_table, element_table, 'btn-remove');
         });
 
-        it('btn-remove:', function () {
+        it('btn-remove-all:', function () {
           testChangeByButtonClick(fixture_list, element_list, 'btn-remove-all');
           testChangeByButtonClick(fixture_table, element_table, 'btn-remove-all');
         });
@@ -173,23 +173,74 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
           waitsFor(function () {
             return fixture.find(list2 + ' .ui-selectee').first().data('key') === firstItem.data('key');
-          }, 'item should be moved to top of opposing list', 500);
+          }, 'item should be moved to top of opposing list', 1000);
 
           runs(function () {
             expect(changeCallback).toHaveBeenCalled();
           });
-
         }
 
         var dx = 400;
         it('drag to target:', function () {
+          //different dy is because target list does not have <thead>
+          //source list does have
           test(fixture_list, element_list, dx, 0);
-          test(fixture_table, element_table, dx, 20);
+          test(fixture_table, element_table, dx, -40);
         });
 
         it('drag to source:', function () {
           test(fixture_list, element_list, -dx, 0);
           test(fixture_table, element_table, -dx, 20);
+        });
+      });
+
+    describe('change by item click/dblclick:', function () {
+        function test(fixture, element, clickFromWhichList, event) {
+          var changeCallback = jasmine.createSpy('changeCallback');
+          
+          // given
+          element.pickList({ switchByClick : true });
+          element.pickList({ switchByDblClick : true });
+          element.pickList({ change: changeCallback });
+
+          var list1 = clickFromWhichList.indexOf('source') === 0 ? '.source' : '.target';
+          var list2 = clickFromWhichList.indexOf('source') === 0 ? '.target' : '.source';
+
+          //when
+          var firstItem = fixture.find(list1 + ' .ui-selectee').first();
+
+          //then
+          runs(function () {
+            firstItem.trigger(event);
+          });
+          
+          waitsFor(function () {
+            return fixture.find(list2 + ' .ui-selectee').first().data('key') === firstItem.data('key');
+          }, 'item should be moved to top of opposing list', 500);
+
+          runs(function () {
+            expect(changeCallback).toHaveBeenCalled();
+          });
+        }
+
+        it('click to target:', function () {
+          test(fixture_list, element_list, 'target', 'click');
+          test(fixture_table, element_table, 'target', 'click');
+        });
+
+        it('click to source:', function () {
+          test(fixture_list, element_list, 'source', 'click');
+          test(fixture_table, element_table, 'source', 'click');
+        });
+
+        it('dbclick to target:', function () {
+          test(fixture_list, element_list, 'target', 'dblclick');
+          test(fixture_table, element_table, 'target', 'dblclick');
+        });
+
+        it('dbclick to source:', function () {
+          test(fixture_list, element_list, 'source', 'dblclick');
+          test(fixture_table, element_table, 'source', 'dblclick');
         });
       });
     });
