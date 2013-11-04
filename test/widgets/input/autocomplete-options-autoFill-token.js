@@ -94,6 +94,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
 
             function appendTextToInput(text) {
+                input.focus();
                 input.val(input.val() + text);
                 input.trigger('keydown');
             }
