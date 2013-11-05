@@ -636,7 +636,7 @@
       items.detach();
       var ui = this._dumpState();
       ui.movement = 'remove';
-      this._trigger('change', event, ui);
+      this._trigger('change', {}, ui);
       return items;
     },
 
@@ -651,7 +651,7 @@
       this.$pluginRoot.prepend(items);
       var ui = this._dumpState();
       ui.movement = 'add';
-      this._trigger('change', event, ui);
+      this._trigger('change', {}, ui);
       return items;
     },
 
