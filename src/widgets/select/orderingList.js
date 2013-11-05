@@ -280,9 +280,10 @@
      */
     destroy: function () {
       $.Widget.prototype.destroy.call(this);
-      this.$pluginRoot
-        .sortable('destroy')
-        .selectable('destroy');
+      if (this.options.mouseOrderable === true) {
+        this.$pluginRoot.sortable('destroy');
+      }
+      this.$pluginRoot.selectable('destroy');
       this._removeDomElements();
 
       // remove empty class attributes                             y
