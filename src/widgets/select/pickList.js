@@ -254,7 +254,7 @@
       if (this.options.disabled) { return; }
       this.targetList.orderingList('remove', items);
       this.sourceList.orderingList('add', items);
-      var ui = this._dumpState();
+      var ui = this._uiHash();
       ui.change = 'remove';
       this._trigger('change', event, ui);
       return this;
@@ -274,7 +274,7 @@
       if (this.options.disabled) { return; }
       this.sourceList.orderingList('remove', items);
       this.targetList.orderingList('add', items);
-      var ui = this._dumpState();
+      var ui = this._uiHash();
       ui.change = 'add';
       this._trigger('change', event, ui);
       return this;
@@ -497,19 +497,19 @@
       var widget = this;
       // the widget factory converts all events to lower case
       this.sourceList.on('sortreceive', function (event, ui) {
-        var newUi = widget._dumpState();
+        var newUi = widget._uiHash();
         newUi.change = 'remove';
         newUi.originalEvent = event;
         widget._trigger('change', event, newUi);
       });
       this.targetList.on('sortreceive', function (event, ui) {
-        var newUi = widget._dumpState();
+        var newUi = widget._uiHash();
         newUi.change = 'add';
         newUi.originalEvent = event;
         widget._trigger('change', event, newUi);
       });
       this.targetList.on('targetlist_change', function (event, ui) {
-        var newUi = widget._dumpState();
+        var newUi = widget._uiHash();
         newUi.change = 'sort';
         newUi.originalEvent = event;
         widget._trigger('change', event, newUi);
@@ -521,10 +521,10 @@
         this._addDoubleClickListeners();
       }
       this.outer.on('focusin.picklist', function (event) {
-        widget._trigger('focus', event, widget._dumpState());
+        widget._trigger('focus', event, widget._uiHash());
       });
       this.outer.on('focusout.picklist', function (event) {
-        widget._trigger('blur', event, widget._dumpState());
+        widget._trigger('blur', event, widget._uiHash());
       });
     },
 
@@ -579,7 +579,7 @@
     },
 
 
-    _dumpState: function () {
+    _uiHash: function () {
       var ui = {};
       ui.pickedElements = this.targetList.orderingList('getOrderedElements');
       ui.pickedKeys = this.targetList.orderingList('getOrderedKeys');

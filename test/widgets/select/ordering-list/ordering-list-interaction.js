@@ -30,7 +30,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
 
           // when
           var firstItem = fixture.find('.ui-selectee').first();
@@ -55,7 +55,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, 'item should be moved to end of list', 500);
 
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([2, 3, 4, 5, 6, 7, 8, 1]);
+            expect(widget._uiHash().orderedKeys).toEqual([2, 3, 4, 5, 6, 7, 8, 1]);
           });
         }
 
@@ -68,7 +68,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
           var item4 = fixture.find('.ui-selectee:contains(4)');
@@ -89,7 +89,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             return fixture.find('.ui-selectee:eq(5)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(6)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
           }, 'items should be moved to end of list', 1000);
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([2, 3, 5, 6, 8, 1, 4, 7]);
+            expect(widget._uiHash().orderedKeys).toEqual([2, 3, 5, 6, 8, 1, 4, 7]);
           });
         }
 
@@ -102,7 +102,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var lastItem = fixture.find('.ui-selectee').last();
 
@@ -124,7 +124,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, 'first item should be moved to top of list', 500);
 
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([8, 1, 2, 3, 4, 5, 6, 7]);
+            expect(widget._uiHash().orderedKeys).toEqual([8, 1, 2, 3, 4, 5, 6, 7]);
           });
         }
 
@@ -137,7 +137,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
           var item4 = fixture.find('.ui-selectee:contains(4)');
@@ -160,7 +160,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, 'items should be moved to top of list', 1000);
 
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([1, 4, 7, 2, 3, 5, 6, 8]);
+            expect(widget._uiHash().orderedKeys).toEqual([1, 4, 7, 2, 3, 5, 6, 8]);
           });
         }
 
@@ -173,7 +173,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item = $(fixture.find('.ui-selectee').get(1));
 
@@ -196,7 +196,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, 'first item should be moved down', 500);
 
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([1, 3, 2, 4, 5, 6, 7, 8]);
+            expect(widget._uiHash().orderedKeys).toEqual([1, 3, 2, 4, 5, 6, 7, 8]);
           });
         }
 
@@ -210,7 +210,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
           var item4 = fixture.find('.ui-selectee:contains(4)');
@@ -231,7 +231,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             return fixture.find('.ui-selectee:eq(1)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(4)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
           }, 'items should be moved down in the list', 1000);
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([2, 1, 3, 5, 4, 6, 8, 7]);
+            expect(widget._uiHash().orderedKeys).toEqual([2, 1, 3, 5, 4, 6, 8, 7]);
           });
           // second time
           runs(function () {
@@ -242,7 +242,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             return fixture.find('.ui-selectee:eq(2)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(5)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(7)').data('key') === item7.data('key');
           }, 'items should be moved down in the list', 1000);
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([2, 3, 1, 5, 6, 4, 8, 7]);
+            expect(widget._uiHash().orderedKeys).toEqual([2, 3, 1, 5, 6, 4, 8, 7]);
           });
         }
 
@@ -255,7 +255,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item = $(fixture.find('.ui-selectee').get(3));
 
@@ -277,7 +277,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             return $(fixture.find('.ui-selectee').get(2)).data('key') === item.data('key');
           }, 'item should be moved up', 500);
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([1, 2, 4, 3, 5, 6, 7, 8]);
+            expect(widget._uiHash().orderedKeys).toEqual([1, 2, 4, 3, 5, 6, 7, 8]);
           });
         }
 
@@ -290,7 +290,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
           var item4 = fixture.find('.ui-selectee:contains(4)');
@@ -311,7 +311,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             return fixture.find('.ui-selectee:eq(0)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(2)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(5)').data('key') === item7.data('key');
           }, 'items should be moved up in the list', 1000);
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([1, 2, 4, 3, 5, 7, 6, 8]);
+            expect(widget._uiHash().orderedKeys).toEqual([1, 2, 4, 3, 5, 7, 6, 8]);
           });
           // second time
           runs(function () {
@@ -322,7 +322,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             return fixture.find('.ui-selectee:eq(0)').data('key') === item1.data('key') && fixture.find('.ui-selectee:eq(1)').data('key') === item4.data('key') && fixture.find('.ui-selectee:eq(4)').data('key') === item7.data('key');
           }, 'items should be moved up in the list', 1000);
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([1, 4, 2, 3, 7, 5, 6, 8]);
+            expect(widget._uiHash().orderedKeys).toEqual([1, 4, 2, 3, 7, 5, 6, 8]);
           });
         }
 
@@ -335,7 +335,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({dragSelect: true});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
 
           // when
           var item = $(fixture.find('.ui-selectee').get(3));
@@ -368,7 +368,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item = fixture.find('.ui-selectee:contains(8)');
           //then
@@ -378,7 +378,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             item.trigger('mouseup');
           });
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([8, 1, 2, 3, 4, 5, 6, 7]);
+            expect(widget._uiHash().orderedKeys).toEqual([8, 1, 2, 3, 4, 5, 6, 7]);
           });
         }
 
@@ -391,7 +391,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.orderingList({});
           var widget = element.data('orderingList');
-          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
           var item4 = fixture.find('.ui-selectee:contains(4)');
@@ -401,7 +401,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
             selectMultipleItemsAndDragBy([item1, item4, item7], -10);
           });
           runs(function () {
-            expect(widget._dumpState().orderedKeys).toEqual([1, 4, 7, 2, 3, 5, 6, 8]);
+            expect(widget._uiHash().orderedKeys).toEqual([1, 4, 7, 2, 3, 5, 6, 8]);
           });
 
 

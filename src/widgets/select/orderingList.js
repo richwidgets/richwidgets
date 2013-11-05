@@ -219,7 +219,7 @@
             ui.item.after(widget.currentItems.not(ui.item).detach());
           }
           widget.currentItems.not('.placeholder').show();
-          var ui2 = widget._dumpState();
+          var ui2 = widget._uiHash();
           ui2.movement = 'drag';
           if (widget.fillItem) {
             widget._updateFillRow();
@@ -256,10 +256,10 @@
       }
       this._addDragListeners();
       this.selectList.on('focusin', function (event) {
-        widget._trigger('focus', event, widget._dumpState());
+        widget._trigger('focus', event, widget._uiHash());
       });
       this.selectList.on('focusout', function (event) {
-        widget._trigger('blur', event, widget._dumpState());
+        widget._trigger('blur', event, widget._uiHash());
       });
       if (this.options.height !== null) {
         this._setHeight(this.options.height);
@@ -550,7 +550,7 @@
       if (this.options.disabled) { return; }
       var first = items.prevAll().not('.ui-selected').last();
       $(items).insertBefore(first);
-      var ui = this._dumpState();
+      var ui = this._uiHash();
       ui.movement = 'moveTop';
       this._trigger('change', event, ui);
       return this;
@@ -574,7 +574,7 @@
           $item.insertBefore(prev);
         }
       });
-      var ui = this._dumpState();
+      var ui = this._uiHash();
       ui.movement = 'moveUp';
       this._trigger('change', event, ui);
       return this;
@@ -600,7 +600,7 @@
           $item.insertAfter(next);
         }
       });
-      var ui = this._dumpState();
+      var ui = this._uiHash();
       ui.movement = 'moveDown';
       this._trigger('change', event, ui);
       return this;
@@ -619,7 +619,7 @@
       if (this.options.disabled) { return; }
       var last = items.nextAll().not('.ui-selected').last();
       $(items).insertAfter(last);
-      var ui = this._dumpState();
+      var ui = this._uiHash();
       ui.movement = 'moveLast';
       this._trigger('change', event, ui);
       return this;
@@ -634,7 +634,7 @@
      */
     remove: function (items) {
       items.detach();
-      var ui = this._dumpState();
+      var ui = this._uiHash();
       ui.movement = 'remove';
       this._trigger('change', {}, ui);
       return items;
@@ -649,7 +649,7 @@
      */
     add: function (items) {
       this.$pluginRoot.prepend(items);
-      var ui = this._dumpState();
+      var ui = this._uiHash();
       ui.movement = 'add';
       this._trigger('change', {}, ui);
       return items;
@@ -695,7 +695,7 @@
             }
           });
       }
-      this._trigger('addDomElements', undefined, this._dumpState());
+      this._trigger('addDomElements', undefined, this._uiHash());
     },
 
     _addColumnClasses: function(columnClasses) {
@@ -893,7 +893,7 @@
       this._addDragListeners();
     },
 
-    _dumpState: function () {
+    _uiHash: function () {
       var ui = {};
       ui.orderedElements = this.getOrderedElements();
       ui.orderedKeys = this.getOrderedKeys();

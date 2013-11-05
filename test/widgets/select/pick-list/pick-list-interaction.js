@@ -30,7 +30,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           // given
           element.pickList();
           var widget = element.data('pickList');
-          expect(widget._dumpState().pickedKeys).toEqual([9]);
+          expect(widget._uiHash().pickedKeys).toEqual([9]);
 
           // when
           var firstItem = fixture.find('.source .ui-selectee').first();
@@ -54,7 +54,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, 'item should be moved to top of target list', 500);
 
           runs(function () {
-            expect(widget._dumpState().pickedKeys).toEqual([1, 9]);
+            expect(widget._uiHash().pickedKeys).toEqual([1, 9]);
           });
         }
 
@@ -70,7 +70,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           element.pickList('option', 'switchByClick', true);
 
           var widget = element.data('pickList');
-          expect(widget._dumpState().pickedKeys).toEqual([9]);
+          expect(widget._uiHash().pickedKeys).toEqual([9]);
 
           // when
           var item = $(fixture.find('.source .ui-selectee').get(3));
@@ -87,7 +87,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, 'item should be moved to the target', 5000);
 
           runs(function () {
-            expect(widget._dumpState().pickedKeys).toEqual([4, 9]);
+            expect(widget._uiHash().pickedKeys).toEqual([4, 9]);
           });
         }
         test(fixture_list, element_list);
@@ -102,7 +102,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           element.pickList('option', 'switchByDblClick', true);
 
           var widget = element.data('pickList');
-          expect(widget._dumpState().pickedKeys).toEqual([9]);
+          expect(widget._uiHash().pickedKeys).toEqual([9]);
 
           // when
           var item = $(fixture.find('.source .ui-selectee').get(3));
@@ -119,7 +119,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           }, 'item should be moved to the target', 5000);
 
           runs(function () {
-            expect(widget._dumpState().pickedKeys).toEqual([4, 9]);
+            expect(widget._uiHash().pickedKeys).toEqual([4, 9]);
           });
         }
         test(fixture_list, element_list);
