@@ -542,11 +542,11 @@
      *
      * @method unSelectAll
      * @param items {Object} the items to move to the top
-     * @param [event={}] {Object} the event used that triggered this movement
+     * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
      */
     moveTop: function (items, event) {
-      event = event || {};
+      event = event || null;
       if (this.options.disabled) { return; }
       var first = items.prevAll().not('.ui-selected').last();
       $(items).insertBefore(first);
@@ -561,11 +561,11 @@
      *
      * @method moveUp
      * @param items {Object} the items to move up
-     * @param [event={}] {Object} the event used that triggered this movement
+     * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
      */
     moveUp: function (items, event) {
-      event = event || {};
+      event = event || null;
       if (this.options.disabled) { return; }
       $(items).each(function () {
         var $item = $(this);
@@ -585,11 +585,11 @@
      *
      * @method moveDown
      * @param items {Object} the items to move down
-     * @param [event={}] {Object} the event used that triggered this movement
+     * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
      */
     moveDown: function (items, event) {
-      event = event || {};
+      event = event || null;
       if (this.options.disabled) { return; }
       $(items).sort(function () {
         return 1;
@@ -611,11 +611,11 @@
      *
      * @method moveLast
      * @param items {Object} the items to move to the end
-     * @param [event={}] {Object} the event used that triggered this movement
+     * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
      */
     moveLast: function (items, event) {
-      event = event || {};
+      event = event || null;
       if (this.options.disabled) { return; }
       var last = items.nextAll().not('.ui-selected').last();
       $(items).insertAfter(last);

@@ -244,12 +244,13 @@
      * Move items from the target list of the pickList to the source list.
      *
      * @param items {Object} A list of Elements to remove from the target list of the pickList
-     * @param [event] {Object} The event that triggered the removal of the elements.  This event will be made accessible
+     * @param [event=null] {Object} The event that triggered the removal of the elements.  This event will be made accessible
      * when the resulting change event is fired.
      * @method removeItems
      * @chainable
      */
     removeItems: function (items, event) {
+      event = event || null;
       if (this.options.disabled) { return; }
       this.targetList.orderingList('remove', items);
       this.sourceList.orderingList('add', items);
@@ -263,12 +264,13 @@
      * Move items from the source list of the pickList to the target list.
      *
      * @param items {Object} A list of Elements to remove from the source list of the pickList
-     * @param [event] {Object} The event that triggered the removal of the elements.  This event will be made accessible
+     * @param [event=null] {Object} The event that triggered the removal of the elements.  This event will be made accessible
      * when the resulting change event is fired.
      * @method addItems
      * @chainable
      */
     addItems: function (items, event) {
+      event = event || null;
       if (this.options.disabled) { return; }
       this.sourceList.orderingList('remove', items);
       this.targetList.orderingList('add', items);
