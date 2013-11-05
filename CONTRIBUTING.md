@@ -57,9 +57,18 @@ jshint.
           * `function (param1, param2) {`
 * Widget Factory
   * use the `rich` jquery plugin namespace
-  * Widget name prefix ***TBD***
+  * No widget name prefix when it is not required
+    * i.e. when we extend upstream plugin's functionality, we make sure the API is compatible (e.g. `rich.autocomplete` extending `ui.autocomplete`)
   * Widget event prefix: stick with the default name of the widget (eg. no underscores or abbreviating)
   * initialize all options, using `null` as default value is required
+  * order of methods inside widget definition
+    1. lifecycle methods (e.g. `_create`, `_destroy`, `_enable`, `_disable`)
+    1. public API methods (e.g. `showPopup()`)
+    1. private methods
+      1. initialization methods (e.g. `_initDom()`, `_bindListeners()`
+      1. cleanup methods (E.g. `_cleanDom()`)
+      1. event handlers
+      1. other private methods
 
 ## Creating a new widget
 
