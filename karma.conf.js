@@ -43,6 +43,83 @@ module.exports = function(config) {
       {pattern: 'test/**/*.html', included: false}
     ],
 
+    /**
+     * Sauce Labs configuration. Set your username in an environment variable SAUCE_USERNAME
+     * and your access key to a variable SAUCE_ACCESS_KEY.
+     */
+    sauceLabs: {
+      startConnect: true,
+      testName: 'RichWidgets'
+    },
+
+    /**
+     * This section defines custom launchers for Sauce Labs, i.e. browsers that can be used for testing.
+     * For the list of all supported browsers see https://saucelabs.com/docs/platforms
+     */
+    customLaunchers: {
+      SL_Chrome_latest: {
+        base: 'SauceLabs',
+        browserName: 'chrome'
+      },
+      SL_Firefox_ESR: {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        version: 24
+      },
+      SL_Firefox_latest: {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        version: 25
+      },
+      SL_IE_11: {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        version: 11,
+        platform: "Windows 8.1"
+      },
+      SL_IE_10: {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        version: 10,
+        platform: "Windows 8"
+      },
+      SL_IE_9: {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        version: 9,
+        platform: "Windows 7"
+      },
+      SL_IE_8: {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        version: 8,
+        platform: "Windows 7"
+      },
+      SL_Safari_latest: {
+        base: 'SauceLabs',
+        browserName: 'safari',
+        version: 6,
+        platform: "OS X 10.8"
+      },
+      SL_Opera_latest: {
+        base: 'SauceLabs',
+        browserName: 'opera',
+        version: 12
+      },
+      SL_iPhone_latest: {
+        base: 'SauceLabs',
+        browserName: 'iphone',
+        version: "6.1",
+        platform: "OS X 10.8"
+      },
+      SL_Android_4: {
+        base: 'SauceLabs',
+        browserName: 'android',
+        version: "4.0",
+        platform: "Linux"
+      }
+    },
+
 
     preprocessors: {
       // do not preprocess HTML files with html2js
@@ -91,6 +168,9 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
+    //
+    // You can also run the tests on Sauce Labs using browsers defined in customLaunchers
+    // section, e.g. SL_Chrome_latest.
     //
     // use $ karma ... -browsers=PhantomJS,Firefox,Chrome from command-line
     browsers: ['PhantomJS'],
