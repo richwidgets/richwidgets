@@ -459,50 +459,113 @@
 
     /** Public API methods **/
 
+    /**
+     * Connect the orderingList with another orderingList, allowing items to be dragged between them.
+     *
+     * @param target {Object} The orderingList with which to connect.
+     * @method connectWith
+     * @chainable
+     */
     connectWith: function (target) {
       if (! this.options.mouseOrderable) {
-        return;
+        return this;
       }
       var targetOrderingList = target.data('rfOrderingList');
       this.$pluginRoot.sortable('option', 'connectWith', targetOrderingList.$pluginRoot);
       this._addFillRow();
       target.on('sortover', $.proxy(this._updateFillRow, this));  // own 'out' event causes placeholder interference
+      return this;
     },
 
+    /**
+     * Determine if the given item is selected
+     *
+     * @method isSelected
+     * @param item {Object} jQuery object of one of the orderingList elements
+     * @returns {Boolean} True if the item is selected, false otherwise
+     */
     isSelected: function (item) {
       return $(item).hasClass('ui-selected');
     },
 
+    /**
+     * Find and return the list of oerderingList elements that are selected
+     *
+     * @method getSelected
+     * @returns {Object} A jQuery list of selected items
+     */
     getSelected: function() {
       return this.element.find('.ui-selected');
     },
 
+    /**
+     * Select the given item
+     *
+     * @method selectItem
+     * @param item {Object} jQuery object of the orderingList element to select
+     * @chainable
+     */
     selectItem: function (item) {
       $(item).addClass('ui-selected');
+      return this;
     },
 
+    /**
+     * Un-select the given item
+     *
+     * @method unSelectItem
+     * @param item {Object} jQuery object of the orderingList element to un-select
+     * @chainable
+     */
     unSelectItem: function (item) {
       $(item).removeClass('ui-selected');
+      return this;
     },
 
+    /**
+     * Un-select the all the items
+     *
+     * @method unSelectAll
+     * @chainable
+     */
     unSelectAll: function () {
       var widget = this;
       this._removeDomElements();
       this.element.children().each(function () {
         widget.unSelectItem(this);
       });
+      return this;
     },
 
+    /**
+     * Move the given items to the top of the orderingList
+     *
+     * @method unSelectAll
+     * @param items {Object} the items to move to the top
+     * @param [event={}] {Object} the event used that triggered this movement
+     * @chainable
+     */
     moveTop: function (items, event) {
+      event = event || {};
       if (this.options.disabled) { return; }
       var first = items.prevAll().not('.ui-selected').last();
       $(items).insertBefore(first);
       var ui = this._dumpState();
       ui.movement = 'moveTop';
       this._trigger('change', event, ui);
+      return this;
     },
 
+    /**
+     * Move the given items up one step in the orderingList
+     *
+     * @method moveUp
+     * @param items {Object} the items to move up
+     * @param [event={}] {Object} the event used that triggered this movement
+     * @chainable
+     */
     moveUp: function (items, event) {
+      event = event || {};
       if (this.options.disabled) { return; }
       $(items).each(function () {
         var $item = $(this);
@@ -514,9 +577,19 @@
       var ui = this._dumpState();
       ui.movement = 'moveUp';
       this._trigger('change', event, ui);
+      return this;
     },
 
+    /**
+     * Move the given items down one step in the orderingList
+     *
+     * @method moveDown
+     * @param items {Object} the items to move down
+     * @param [event={}] {Object} the event used that triggered this movement
+     * @chainable
+     */
     moveDown: function (items, event) {
+      event = event || {};
       if (this.options.disabled) { return; }
       $(items).sort(function () {
         return 1;
@@ -530,17 +603,35 @@
       var ui = this._dumpState();
       ui.movement = 'moveDown';
       this._trigger('change', event, ui);
+      return this;
     },
 
+    /**
+     * Move the given items to the end of the orderingList
+     *
+     * @method moveLast
+     * @param items {Object} the items to move to the end
+     * @param [event={}] {Object} the event used that triggered this movement
+     * @chainable
+     */
     moveLast: function (items, event) {
+      event = event || {};
       if (this.options.disabled) { return; }
       var last = items.nextAll().not('.ui-selected').last();
       $(items).insertAfter(last);
       var ui = this._dumpState();
       ui.movement = 'moveLast';
       this._trigger('change', event, ui);
+      return this;
     },
 
+    /**
+     * Remove the given items from the orderingList
+     *
+     * @method remove
+     * @param items {Object} the items to remove
+     * @returns {Object} the items removed from the orderingList
+     */
     remove: function (items) {
       items.detach();
       var ui = this._dumpState();
@@ -549,6 +640,13 @@
       return items;
     },
 
+    /**
+     * Add the given items to the orderingList
+     *
+     * @method add
+     * @param items {Object} the items to add
+     * @returns {Object} the items added to the orderingList
+     */
     add: function (items) {
       this.$pluginRoot.prepend(items);
       var ui = this._dumpState();
@@ -557,10 +655,22 @@
       return items;
     },
 
+    /**
+     * Retrieve the jQuery list of selected elements in the orderingList
+     *
+     * @method getOrderedElements
+     * @returns {Object} the jQuery list of selected elements
+     */
     getOrderedElements: function () {
       return this.element.find('.ui-selectee');
     },
 
+    /**
+     * Retrieve the keys of the selected elements in the orderingList
+     *
+     * @method getOrderedElements
+     * @returns {Array} An array of the keys of the selected elements
+     */
     getOrderedKeys: function () {
       return (this._createKeyArray( this.getOrderedElements()));
     },
