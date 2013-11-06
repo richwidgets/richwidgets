@@ -11,6 +11,7 @@
  *
  * @module Input
  * @class autocomplete
+ * @uses $.ui.autocomplete
  */
 (function ($) {
 
@@ -165,6 +166,7 @@
        * @type Selector
        * @default null
        */
+      // option implemented in $.ui.autocomplete
 
       /**
        * Disables the autocomplete if set to true.
@@ -173,6 +175,7 @@
        * @type Boolean
        * @default false
        */
+      // option implemented in $.ui.autocomplete
 
       /**
        * Identifies the position of the suggestions menu in relation to the associated input element. The of option defaults to the input element, but you can specify another element to position against. You can refer to the jQuery UI Position utility for more details about the various options.
@@ -181,6 +184,7 @@
        * @type Object
        * @default `{ my: "left top", at: "left bottom", collision: "none" }`
        */
+      // option implemented in $.ui.autocomplete
 
       /* EVENTS */
 
@@ -204,19 +208,24 @@
        * Triggered when the field is blurred, if the value has changed.
        *
        * @event change
+       *
+       * @override
        */
+      // event implemented in $.ui.autocomplete
 
       /**
        * Triggered when the menu is hidden. Not every close event will be accompanied by a change event.
        *
        * @event close
        */
+      // event implemented in $.ui.autocomplete
 
       /**
        * Triggered when the autocomplete is created.
        *
        * @event create
        */
+      // event implemented in $.ui.autocomplete
 
       /**
        * Triggered when focus is moved to an item (not selecting).
@@ -225,12 +234,14 @@
        *
        * @event focus
        */
+      // event implemented in $.ui.autocomplete
 
       /**
        * Triggered when the suggestion menu is opened or updated.
        *
        * @event open
        */
+      // event implemented in $.ui.autocomplete
 
       /**
        * Triggered after a search completes, before the menu is shown.
@@ -239,6 +250,7 @@
        *
        * @event response
        */
+      // event implemented in $.ui.autocomplete
 
       /**
        * Triggered before a search is performed, after minLength and delay are met.
@@ -246,6 +258,7 @@
        *
        * @event search
        */
+      // event implemented in $.ui.autocomplete
 
       /**
        * Triggered when an item is selected from the menu.
@@ -254,6 +267,7 @@
        *
        * @event select
        */
+      // event implemented in $.ui.autocomplete
 
       /* PRIVATE OPTIONS */
       layout: LAYOUT.list
@@ -333,25 +347,31 @@
      * Closes the Autocomplete menu. Useful in combination with the search method, to close the open menu.
      *
      * @method close
+     *
+     * @uses $.ui.autocomplete
      */
+    // method implemented in $.ui.autocomplete
 
     /**
      * Removes the autocomplete functionality completely. This will return the element back to its pre-init state.
      *
      * @method destroy
      */
+    // method implemented in $.ui.autocomplete
 
     /**
      * Disables the autocomplete.
      *
      * @method disable
      */
+    // method implemented in $.ui.autocomplete
 
     /**
      * Enables the autocomplete.
      *
      * @method enable
      */
+    // method implemented in $.ui.autocomplete
 
     /**
      * `option( optionName )`
@@ -372,6 +392,7 @@
      *
      * @method option
      */
+    // method implemented in $.ui.autocomplete
 
     /**
      * Triggers a search event and invokes the data source if the event is not canceled.
@@ -381,12 +402,14 @@
      * @method search
      * @param {String} [value] optional
      */
+    // method implemented in $.ui.autocomplete
 
     /**
      * Returns a jQuery object containing the menu element. Although the menu items are constantly created and destroyed, the menu element itself is created during initialization and is constantly reused.
      *
      * @method widget
      */
+    // method implemented in $.ui.autocomplete
 
 
     /* PRIVATE METHODS */
