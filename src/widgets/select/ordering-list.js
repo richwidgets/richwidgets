@@ -568,7 +568,7 @@
           this._applyButtonsText(this.selectList.find('.btn-group-vertical'), value);
           break;
       }
-      $.Widget.prototype._setOption.apply(widget, arguments);
+      this._super(key, value);
     },
 
     _addDragListeners: function() {

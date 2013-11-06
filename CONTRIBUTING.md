@@ -71,6 +71,7 @@ jshint.
       1. common utility methods (e.g. `_enable()`, `_disable()`, `_uiHash()`)
       1. event handlers
       1. other private methods (E.g. `_uiHash()`)
+  * use `this._super(key, value)` or `this._superApply(arguments)` for delegation to parent implementation
 
 ## Creating a new widget
 
