@@ -442,7 +442,8 @@ module.exports = function (grunt) {
         files: [
           '<%= config.dir.src.demos %>/**',
           'README.md',
-          'CONTRIBUTING.md'
+          'CONTRIBUTING.md',
+          'TESTS.md'
         ],
         tasks: ['copy:demoAssets', 'assemble:dev']
       },

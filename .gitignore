@@ -10,3 +10,4 @@ dist
 
 # test output
 libpeerconnection.log
+sauce_connect.log

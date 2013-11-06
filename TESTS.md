@@ -25,26 +25,42 @@ and must also test all widget options and user interactions.  In this way we wil
 
 ### Developing Tests
 
-*Run test suite continuously reacting on file changes:*
+#### Run test suite continuously reacting on file changes:*
 
     karma start karma.conf.js --single-run=false --auto-watch=true --browsers=Chrome
 
-*Running selected tests:*
+#### Running selected tests:
 
 * Open a javascript test source
 * Rename the test definition from `it` to `iit`
   * or rename the specification from `describe` to `ddescribe`
 
-*Debugging tests:*
+#### Debugging tests:
 
 * Write ``debugger;`` anywhere in your test to set a breakpoint.
 * Run the test suite with ``--single-run=false --auto-watch=true`` options.
 * In a browser window open a console.
 * Refresh the browser tab. It should stop the execution on the defined breakpoint.
     
-### Test Configuration
+#### Test Configuration
 
 Tests are configured in two files:
 
 * `karma.conf.js` - configuration for Karma runner
 * `test/test-main.js` - configuration for Module Loading (AMD)
+
+### Running Tests on SauceLabs:
+
+In order to run tests on browsers you don't normally have access to,
+or for purposes of continous integration, we leverage Karma - SauceLabs runner.
+
+In order to set it up locally, you have to setup environmental variables:
+
+    export SAUCE_USERNAME=your_username
+    export SAUCE_ACCESS_KEY=your_generated_access_key
+
+Then you can start one of browsers:
+
+    karma start --single-run=false --auto-watch=true --browsers=SL_Firefox_latest
+
+Consult `customLaunchers` section in `karma.conf.js` for all the configured browsers.
