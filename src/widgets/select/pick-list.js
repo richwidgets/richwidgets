@@ -216,12 +216,6 @@
       }
     },
 
-    /**
-     * Removes the pickList functionality completely. This will return the element back to its pre-init state.
-     *
-     * @method destroy
-     * @chainable
-     */
     _destroy: function () {
       this._super();
       this._unregisterListeners();
@@ -235,7 +229,6 @@
         this.element.removeAttr('class');
       }
       this._trigger('destroy', undefined, {});
-      return this;
     },
 
     /** Public API methods **/

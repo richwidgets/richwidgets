@@ -306,39 +306,6 @@
       this._super();
     },
 
-    _enable: function () {
-      this.button.removeAttr('disabled');
-      this._super();
-    },
-
-    _disable: function () {
-      this.button.attr('disabled', 'disabled');
-      this._super();
-    },
-
-    _setOption: function (key, value) {
-
-      if (key === 'disabled') {
-        if (value) {
-          this._disable();
-        } else {
-          this._enable();
-        }
-      }
-
-      if (key === 'source') {
-        if (isDomBasedSource(value)) {
-          this._updateDomSuggestions();
-        }
-      }
-
-      this._super(key, value);
-
-      if (key === 'layout') {
-        this._initLayout();
-      }
-    },
-
     /* PUBLIC METHODS */
 
     /* INHERITED PUBLIC METHODS */
@@ -414,6 +381,29 @@
 
     /* PRIVATE METHODS */
 
+    _setOption: function (key, value) {
+
+      if (key === 'disabled') {
+        if (value) {
+          this._disable();
+        } else {
+          this._enable();
+        }
+      }
+
+      if (key === 'source') {
+        if (isDomBasedSource(value)) {
+          this._updateDomSuggestions();
+        }
+      }
+
+      this._super(key, value);
+
+      if (key === 'layout') {
+        this._initLayout();
+      }
+    },
+
     _initDom: function () {
       this.root = $($('<div class="r-autocomplete"></div>').insertBefore(this.input)[0]);
       this.root.append(this.input.detach());
@@ -440,15 +430,25 @@
       this.root.remove();
     },
 
+    _enable: function () {
+      this.button.removeAttr('disabled');
+      this._super();
+    },
+
+    _disable: function () {
+      this.button.attr('disabled', 'disabled');
+      this._super();
+    },
+
     /**
-     * @override
+     * @override $.ui.autocomplete._initSource
      */
     _initSource: function() {
       this.source = this._getSuggestions;
     },
 
     /**
-     * @override
+     * @override $.ui.autocomplete._renderMenu
      */
     _renderMenu: function(ul, items) {
       if (this.options.layout === this.LAYOUT.table) {
@@ -458,7 +458,7 @@
     },
 
     /**
-     * @override
+     * @override $.ui.autocomplete._renderItem
      */
     _renderItem: function(ul, item) {
       switch (this.options.layout) {
@@ -483,7 +483,9 @@
       }
     },
 
-    // callbacks for important jQuery UI Autocomplete events that helps to handle extension functionality
+    /**
+     * callbacks for important jQuery UI Autocomplete events that helps to handle extension functionality
+     */
     _handlers: {
 
       search: function () {

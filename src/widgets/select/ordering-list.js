@@ -272,12 +272,6 @@
       }
     },
 
-    /**
-     * Removes the orderingList functionality completely. This will return the element back to its pre-init state.
-     *
-     * @method destroy
-     * @chainable
-     */
     _destroy: function () {
       this._super();
       if (this.options.mouseOrderable === true) {
@@ -318,143 +312,6 @@
         });
       }
       this._trigger('destroy', undefined, {});
-    },
-
-    _addDragListeners: function() {
-      var widget = this;
-      if (this.options.dragSelect === false) {
-        this.element.on('mousedown', '.ui-selectee', function (event) {
-          var item = $(this);
-          if (widget.selectList.get(0) !== document.activeElement) {
-            widget.selectList.focus();
-          }
-          var list = item.parents('.list').first();
-          list.data('richOrderingList').mouseStarted = true;
-        });
-        this.$pluginRoot.on('mousemove', '.ui-selectee', function (event) {
-          var item = $(this);
-          var list = item.parents('.list').first();
-          var orderingList = list.data('richOrderingList');
-          if (orderingList.mouseStarted) {
-            orderingList.mouseStarted = false;
-            if (!item.hasClass('ui-selected')) {
-              var selectable = orderingList.$pluginRoot.data('uiSelectable');
-              selectable._mouseStart(event);
-              selectable._mouseStop(event);
-            }
-          }
-        });
-        this.element.on('mouseup', '.ui-selectee', function (event) {
-          var item = $(this);
-          var list = item.parents('.list').first();
-          var orderingList = list.data('richOrderingList');
-          if (orderingList.mouseStarted) {
-            orderingList.mouseStarted = false;
-            var selectable = orderingList.$pluginRoot.data('uiSelectable');
-            selectable._mouseStart(event);
-            selectable._mouseStop(event);
-          }
-        });
-      } else {
-        this.element.find('.handle').on('mousedown', function (event) {
-          var item = $(this).parents('.ui-selectee').first();
-          if (!item.hasClass('ui-selected')) {
-            var list = item.parents('.list').first();
-            var selectable = list.data('richOrderingList').$pluginRoot.data('uiSelectable');
-            selectable._mouseStart(event);
-            selectable._mouseStop(event);
-          }
-        });
-      }
-    },
-
-    _removeDragListeners: function() {
-      if (this.options.dragSelect === false) {
-        this.element.off('mousedown', '.ui-selectee');
-        this.element.off('mousemove', '.ui-selectee');
-        this.element.off('mouseup', '.ui-selectee');
-      } else {
-        this.element.find('.handle').off('mousedown');
-      }
-    },
-
-    _listHelper: function (e, item) {
-      var $helper = $('<ol />').addClass('helper')
-        .css('height', 'auto').css('width', this.element.css('width'));
-      item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass('helper-item').show().appendTo($helper);
-      return $helper;
-    },
-
-    _rowHelper: function (e, item) {
-      var $helper = $('<div />').addClass('helper').css('height', 'auto');
-      item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass('helper-item').show().appendTo($helper);
-      /* we lose the cell width in the clone, so we re-set it here: */
-      var firstRow = $helper.children('tr').first();
-      /* we only need to set the column widths on the first row */
-      firstRow.children().each(function (colindex) {
-        var originalCell = item.children().get(colindex);
-        var originalWidth = $(originalCell).css('width');
-        $(this).css('width', originalWidth);
-      });
-      return $helper;
-    },
-
-    _setOption: function (key, value) {
-      var widget = this;
-      if (this.options.key === value) {
-        return;
-      }
-      switch (key) {
-        case 'disabled':
-          if (value === true) {
-            widget._disable();
-          } else {
-            widget._enable();
-          }
-          break;
-        case 'header':
-          if (!widget.header) {
-            widget._addHeader();
-          }
-          widget.header.text(value);
-          break;
-        case 'height':
-          widget._setHeight(value);
-          break;
-        case 'heightMin':
-          widget._setHeightMin(value);
-          break;
-        case 'heightMax':
-          widget._setHeightMax(value);
-          break;
-        case 'columnClasses':
-          if (widget.options.columnClasses) {
-            widget._removeColumnClasses(widget.options.columnClasses);
-          }
-          widget._addColumnClasses(value);
-          break;
-        case 'styleClass':
-          if (widget.options.styleClass) {
-            widget.selectList.removeClass(this.options.styleClass);
-          }
-          widget.selectList.addClass(value);
-          break;
-        case 'buttonsText':
-          this._applyButtonsText(this.selectList.find('.btn-group-vertical'), value);
-          break;
-      }
-      $.Widget.prototype._setOption.apply(widget, arguments);
-    },
-
-    _createKeyArray: function (items) {
-      var keys = [];
-      items.each(function () {
-        var $this = $(this);
-        var dataKey = $this.data('key');
-        var key = (typeof dataKey !== 'undefined') ? dataKey : $this.text();
-        keys.push(key);
-      });
-      return keys;
     },
 
     /** Public API methods **/
@@ -594,12 +451,12 @@
       $(items).sort(function () {
         return 1;
       }).each(function () {
-        var $item = $(this);
-        var next = $item.nextAll().not('.ui-selected').first();
-        if (next.length > 0) {
-          $item.insertAfter(next);
-        }
-      });
+          var $item = $(this);
+          var next = $item.nextAll().not('.ui-selected').first();
+          if (next.length > 0) {
+            $item.insertAfter(next);
+          }
+        });
       var ui = this._uiHash();
       ui.movement = 'moveDown';
       this._trigger('change', event, ui);
@@ -673,6 +530,143 @@
      */
     getOrderedKeys: function () {
       return (this._createKeyArray( this.getOrderedElements()));
+    },
+
+    _setOption: function (key, value) {
+      var widget = this;
+      if (this.options.key === value) {
+        return;
+      }
+      switch (key) {
+        case 'disabled':
+          if (value === true) {
+            widget._disable();
+          } else {
+            widget._enable();
+          }
+          break;
+        case 'header':
+          if (!widget.header) {
+            widget._addHeader();
+          }
+          widget.header.text(value);
+          break;
+        case 'height':
+          widget._setHeight(value);
+          break;
+        case 'heightMin':
+          widget._setHeightMin(value);
+          break;
+        case 'heightMax':
+          widget._setHeightMax(value);
+          break;
+        case 'columnClasses':
+          if (widget.options.columnClasses) {
+            widget._removeColumnClasses(widget.options.columnClasses);
+          }
+          widget._addColumnClasses(value);
+          break;
+        case 'styleClass':
+          if (widget.options.styleClass) {
+            widget.selectList.removeClass(this.options.styleClass);
+          }
+          widget.selectList.addClass(value);
+          break;
+        case 'buttonsText':
+          this._applyButtonsText(this.selectList.find('.btn-group-vertical'), value);
+          break;
+      }
+      $.Widget.prototype._setOption.apply(widget, arguments);
+    },
+
+    _addDragListeners: function() {
+      var widget = this;
+      if (this.options.dragSelect === false) {
+        this.element.on('mousedown', '.ui-selectee', function (event) {
+          var item = $(this);
+          if (widget.selectList.get(0) !== document.activeElement) {
+            widget.selectList.focus();
+          }
+          var list = item.parents('.list').first();
+          list.data('richOrderingList').mouseStarted = true;
+        });
+        this.$pluginRoot.on('mousemove', '.ui-selectee', function (event) {
+          var item = $(this);
+          var list = item.parents('.list').first();
+          var orderingList = list.data('richOrderingList');
+          if (orderingList.mouseStarted) {
+            orderingList.mouseStarted = false;
+            if (!item.hasClass('ui-selected')) {
+              var selectable = orderingList.$pluginRoot.data('uiSelectable');
+              selectable._mouseStart(event);
+              selectable._mouseStop(event);
+            }
+          }
+        });
+        this.element.on('mouseup', '.ui-selectee', function (event) {
+          var item = $(this);
+          var list = item.parents('.list').first();
+          var orderingList = list.data('richOrderingList');
+          if (orderingList.mouseStarted) {
+            orderingList.mouseStarted = false;
+            var selectable = orderingList.$pluginRoot.data('uiSelectable');
+            selectable._mouseStart(event);
+            selectable._mouseStop(event);
+          }
+        });
+      } else {
+        this.element.find('.handle').on('mousedown', function (event) {
+          var item = $(this).parents('.ui-selectee').first();
+          if (!item.hasClass('ui-selected')) {
+            var list = item.parents('.list').first();
+            var selectable = list.data('richOrderingList').$pluginRoot.data('uiSelectable');
+            selectable._mouseStart(event);
+            selectable._mouseStop(event);
+          }
+        });
+      }
+    },
+
+    _removeDragListeners: function() {
+      if (this.options.dragSelect === false) {
+        this.element.off('mousedown', '.ui-selectee');
+        this.element.off('mousemove', '.ui-selectee');
+        this.element.off('mouseup', '.ui-selectee');
+      } else {
+        this.element.find('.handle').off('mousedown');
+      }
+    },
+
+    _listHelper: function (e, item) {
+      var $helper = $('<ol />').addClass('helper')
+        .css('height', 'auto').css('width', this.element.css('width'));
+      item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass('helper-item').show().appendTo($helper);
+      return $helper;
+    },
+
+    _rowHelper: function (e, item) {
+      var $helper = $('<div />').addClass('helper').css('height', 'auto');
+      item.parent().children('.ui-selected').not('.ui-sortable-placeholder').clone().addClass('helper-item').show().appendTo($helper);
+      /* we lose the cell width in the clone, so we re-set it here: */
+      var firstRow = $helper.children('tr').first();
+      /* we only need to set the column widths on the first row */
+      firstRow.children().each(function (colindex) {
+        var originalCell = item.children().get(colindex);
+        var originalWidth = $(originalCell).css('width');
+        $(this).css('width', originalWidth);
+      });
+      return $helper;
+    },
+
+    _createKeyArray: function (items) {
+      var keys = [];
+      items.each(function () {
+        var $this = $(this);
+        var dataKey = $this.data('key');
+        var key = (typeof dataKey !== 'undefined') ? dataKey : $this.text();
+        keys.push(key);
+      });
+      return keys;
     },
 
     /** Initialisation methods **/
