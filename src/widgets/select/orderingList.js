@@ -523,7 +523,7 @@
     },
 
     /**
-     * Un-select the all the items
+     * Un-select all items in the orderingList
      *
      * @method unSelectAll
      * @chainable
@@ -540,7 +540,7 @@
     /**
      * Move the given items to the top of the orderingList
      *
-     * @method unSelectAll
+     * @method moveTop
      * @param items {Object} the items to move to the top
      * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
@@ -656,7 +656,7 @@
     },
 
     /**
-     * Retrieve the jQuery list of selected elements in the orderingList
+     * Retrieve the jQuery list of all items in the orderingList
      *
      * @method getOrderedElements
      * @returns {Object} the jQuery list of selected elements
@@ -666,7 +666,7 @@
     },
 
     /**
-     * Retrieve the keys of the selected elements in the orderingList
+     * Retrieve the keys of all items in the orderingList
      *
      * @method getOrderedElements
      * @returns {Array} An array of the keys of the selected elements
