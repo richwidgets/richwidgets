@@ -30,7 +30,7 @@ Executing a plugin to include the widget's functionality is as simple as:
 $('#myDiv').widgetName(options);
 ```
 
-For a list of available widgets and their associated options check out the [API Docs](/api).
+For a list of available widgets and their associated options check out the [API Docs](http://www.richwidgets.io/api/).
 
 ### Invoking public methods
 
