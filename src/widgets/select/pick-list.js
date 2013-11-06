@@ -121,14 +121,6 @@
        * @default null
        */
       pickButtonsText: null,
-      /**
-       * The String prefixed to all events triggered within the pickList widget
-       *
-       * @property widgetEventPrefix
-       * @type JSON
-       * @default picklist_
-       */
-      widgetEventPrefix: 'picklist_',
 
       // callbacks
 

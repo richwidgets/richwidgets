@@ -113,14 +113,6 @@
        * @default true
        */
       mouseOrderable: true,
-      /**
-       * The String prefixed to all events triggered within the orderingList widget
-       *
-       * @property widgetEventPrefix
-       * @type JSON
-       * @default orderinglist_
-       */
-      widgetEventPrefix: 'orderinglist_',
 
       // callbacks
 
