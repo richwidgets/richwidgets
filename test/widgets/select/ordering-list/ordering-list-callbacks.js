@@ -1,5 +1,5 @@
 
-define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingList'], function () {
+define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-list'], function () {
 
   describe('widget(orderingList): callback:', function () {
 

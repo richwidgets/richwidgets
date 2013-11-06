@@ -1,4 +1,4 @@
-define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/pickList'], function () {
+define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-list', 'src/widgets/select/pick-list'], function () {
 
   describe('widget(pickList): callback:', function () {
 

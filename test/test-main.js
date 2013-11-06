@@ -45,8 +45,8 @@
 
       // richwidgets modules
       'src/widgets/input/autocomplete': { deps: ['jquery', 'jquery-ui'] },
-      'src/widgets/select/orderingList': { deps: ['jquery', 'jquery-ui'] },
-      'src/widgets/select/pickList': { deps: ['jquery', 'jquery-ui', 'src/widgets/select/orderingList'] }
+      'src/widgets/select/ordering-list': { deps: ['jquery', 'jquery-ui'] },
+      'src/widgets/select/pick-list': { deps: ['jquery', 'jquery-ui', 'src/widgets/select/ordering-list'] }
     },
 
     // ask Require.js to load these files (all our tests)
