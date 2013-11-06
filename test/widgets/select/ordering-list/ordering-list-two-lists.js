@@ -39,9 +39,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           connectLists(list1, list2);
 
           var widget1 = list1.data('orderingList');
-          expect(widget1._dumpState().orderedKeys).toEqual([1, 2, 3, 4]);
+          expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
           var widget2 = list2.data('orderingList');
-          expect(widget2._dumpState().orderedKeys).toEqual(['a']);
+          expect(widget2._uiHash().orderedKeys).toEqual(['a']);
 
           // when
           var itemA = list2.find('.ui-selectee:contains(\'Item a\')');
@@ -52,18 +52,18 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           });
 
           waitsFor(function () {
-            return widget1._dumpState().orderedKeys.length === 5;
+            return widget1._uiHash().orderedKeys.length === 5;
           }, 'item to move to list1', 500);
 
           // then
           runs(function () {
-            var state = widget1._dumpState().orderedKeys;
+            var state = widget1._uiHash().orderedKeys;
             expect(state).toContain('a');
             expect(state).toContain(1);
             expect(state).toContain(2);
             expect(state).toContain(3);
             expect(state).toContain(4);
-            expect(widget2._dumpState().orderedKeys).toEqual([]);
+            expect(widget2._uiHash().orderedKeys).toEqual([]);
           });
 
           // try to drop to empty list
@@ -76,18 +76,18 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           });
 
           waitsFor(function () {
-            return widget1._dumpState().orderedKeys.length === (dropOnEmpty === true ? 4 : 5);
+            return widget1._uiHash().orderedKeys.length === (dropOnEmpty === true ? 4 : 5);
           }, 'item to move to list2', 500);
 
           // then
           runs(function () {
             if (dropOnEmpty === true) {
-              expect(widget1._dumpState().orderedKeys).toEqual([1, 2, 3, 4]);
-              expect(widget2._dumpState().orderedKeys).toEqual(['a']);
+              expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
+              expect(widget2._uiHash().orderedKeys).toEqual(['a']);
             }
             else {
-              expect(widget1._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 'a']);
-              expect(widget2._dumpState().orderedKeys).toEqual([]);
+              expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 'a']);
+              expect(widget2._uiHash().orderedKeys).toEqual([]);
             }
           });
         }
@@ -112,9 +112,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           connectLists(list1, list2);
 
           var widget1 = list1.data('orderingList');
-          expect(widget1._dumpState().orderedKeys).toEqual([1, 2, 3, 4]);
+          expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
           var widget2 = list2.data('orderingList');
-          expect(widget2._dumpState().orderedKeys).toEqual(['a']);
+          expect(widget2._uiHash().orderedKeys).toEqual(['a']);
 
           // when
           var itemA = list2.find('.ui-selectee:contains(\'Item a\')');
@@ -125,22 +125,22 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/orderingL
           });
 
           waitsFor(function () {
-            return (contained === true ? itemA.hasClass('ui-selected') : widget1._dumpState().orderedKeys.length === 5);
+            return (contained === true ? itemA.hasClass('ui-selected') : widget1._uiHash().orderedKeys.length === 5);
           }, 'item to be selected', 500);
 
           // then
           runs(function () {
             if (contained === false) {
-              var state = widget1._dumpState().orderedKeys;
+              var state = widget1._uiHash().orderedKeys;
               expect(state).toContain('a');
               expect(state).toContain(1);
               expect(state).toContain(2);
               expect(state).toContain(3);
               expect(state).toContain(4);
-              expect(widget2._dumpState().orderedKeys).toEqual([]);
+              expect(widget2._uiHash().orderedKeys).toEqual([]);
             } else {
-              expect(widget1._dumpState().orderedKeys).toEqual([1, 2, 3, 4]);
-              expect(widget2._dumpState().orderedKeys).toEqual(['a']);
+              expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
+              expect(widget2._uiHash().orderedKeys).toEqual(['a']);
             }
           });
         }
