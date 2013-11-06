@@ -52,9 +52,9 @@ jshint.
       * use `widget` where it makes sense to do so, `that` otherwise
   * function white-spaces
       * named functions
-          * `function name(param1, param2) {`
+          * `function name(param1, param2) {}`
       * unnamed functions
-          * `function (param1, param2) {`
+          * `function (param1, param2) {}`
 * Widget Factory
   * Use the `rich` jquery plugin namespace
   * No widget name prefix when it is not required
@@ -63,11 +63,12 @@ jshint.
   * Initialize all options, using `null` as default value is required
   * Widget state should be collected for use in _trigger invocations using a method called `_uiHash`
   * order of methods inside widget definition
-    1. lifecycle methods (e.g. `_create`, `_destroy`, `_enable`, `_disable`)
+    1. lifecycle methods (e.g. `_create()`, `_destroy()`)
     1. public API methods (e.g. `showPopup()`)
     1. private methods
-      1. initialization methods (e.g. `_initDom()`, `_bindListeners()`
+      1. initialization methods (e.g. `_setOption()`, `_initDom()`, `_bindListeners()`)
       1. cleanup methods (E.g. `_cleanDom()`)
+      1. common utility methods (e.g. `_enable()`, `_disable()`, `_uiHash()`)
       1. event handlers
       1. other private methods (E.g. `_uiHash()`)
 
