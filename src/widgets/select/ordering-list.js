@@ -278,8 +278,8 @@
      * @method destroy
      * @chainable
      */
-    destroy: function () {
-      $.Widget.prototype.destroy.call(this);
+    _destroy: function () {
+      this._super();
       if (this.options.mouseOrderable === true) {
         this.$pluginRoot.sortable('destroy');
       }

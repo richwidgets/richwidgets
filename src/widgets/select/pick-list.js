@@ -222,8 +222,8 @@
      * @method destroy
      * @chainable
      */
-    destroy: function () {
-      $.Widget.prototype.destroy.call(this);
+    _destroy: function () {
+      this._super();
       this._unregisterListeners();
       this.sourceList.orderingList('destroy');
       this.targetList.orderingList('destroy');
