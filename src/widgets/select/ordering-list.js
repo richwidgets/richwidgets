@@ -6,7 +6,7 @@
  */
 (function ($) {
 
-  $.widget('rf.orderingList', {
+  $.widget('rich.orderingList', {
 
     options: {
       /**
@@ -329,12 +329,12 @@
             widget.selectList.focus();
           }
           var list = item.parents('.list').first();
-          list.data('rfOrderingList').mouseStarted = true;
+          list.data('richOrderingList').mouseStarted = true;
         });
         this.$pluginRoot.on('mousemove', '.ui-selectee', function (event) {
           var item = $(this);
           var list = item.parents('.list').first();
-          var orderingList = list.data('rfOrderingList');
+          var orderingList = list.data('richOrderingList');
           if (orderingList.mouseStarted) {
             orderingList.mouseStarted = false;
             if (!item.hasClass('ui-selected')) {
@@ -347,7 +347,7 @@
         this.element.on('mouseup', '.ui-selectee', function (event) {
           var item = $(this);
           var list = item.parents('.list').first();
-          var orderingList = list.data('rfOrderingList');
+          var orderingList = list.data('richOrderingList');
           if (orderingList.mouseStarted) {
             orderingList.mouseStarted = false;
             var selectable = orderingList.$pluginRoot.data('uiSelectable');
@@ -360,7 +360,7 @@
           var item = $(this).parents('.ui-selectee').first();
           if (!item.hasClass('ui-selected')) {
             var list = item.parents('.list').first();
-            var selectable = list.data('rfOrderingList').$pluginRoot.data('uiSelectable');
+            var selectable = list.data('richOrderingList').$pluginRoot.data('uiSelectable');
             selectable._mouseStart(event);
             selectable._mouseStop(event);
           }
@@ -470,7 +470,7 @@
       if (! this.options.mouseOrderable) {
         return this;
       }
-      var targetOrderingList = target.data('rfOrderingList');
+      var targetOrderingList = target.data('richOrderingList');
       this.$pluginRoot.sortable('option', 'connectWith', targetOrderingList.$pluginRoot);
       this._addFillRow();
       target.on('sortover', $.proxy(this._updateFillRow, this));  // own 'out' event causes placeholder interference

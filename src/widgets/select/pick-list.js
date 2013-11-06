@@ -6,7 +6,7 @@
  */
 (function ($) {
 
-  $.widget('rf.pickList', {
+  $.widget('rich.pickList', {
 
     options: {
       /**
