@@ -517,7 +517,7 @@
     /**
      * Retrieve the keys of all items in the orderingList
      *
-     * @method getOrderedElements
+     * @method getOrderedKeys
      * @returns {Array} An array of the keys of the selected elements
      */
     getOrderedKeys: function () {
