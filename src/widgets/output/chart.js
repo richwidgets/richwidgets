@@ -15,7 +15,7 @@
        * Specifies the type of chart.
        * According to this property and xtypex ytype, proper default options corresponding to chart type
        * are applied and data are transformed to the format expected by flot.
-       * Following values are supported: line,bar,pie
+       * Following values are supported: `line`,`bar`,`pie`
        * Options is not required. If it is not used the options and data format remains the same as flot uses by default.
        * @property charttype
        * @default null
@@ -47,26 +47,18 @@
 
 
 
-      /**
-       * Options customizing the chart grid.
-       * @property grid
-       */
-      grid: {
-
-        /**
-         * Grid accepts click events.
-         * @property clickable
-         * @type boolean
-         * @default true
-         */
+     /**
+      * Options customizing the chart grid.
+      * @type Object
+      * @property grid
+      *   @property clickable {boolean}
+      *   Grid accepts click events.
+      *   @property hoverable {boolean}
+      *   Grid fires mouseover event. Necessary for tooltip to work.
+      *
+      */
+     grid: {
         clickable: true,
-
-        /**
-         * Grid fires mouseover events. Necessary for tooltip to work.
-         * @property hoverable
-         * @type boolen
-         * @default true
-         */
         hoverable: true
       },
 
@@ -80,7 +72,11 @@
 
       /**
        * Customizes the tooltip.
+       * @type Object
        * @property tooltipOpts
+       *    @property content {String}
+       *    Specify the tooltip format
+       *
        */
       tooltipOpts: {
         content: '%s  [%x,%y]',
