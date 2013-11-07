@@ -10,11 +10,78 @@
 
     // These options will be used as defaults for all chart types
     options: {
+
+      /**
+       * Specifies the type of chart.
+       * According to this property and xtypex ytype, proper default options corresponding to chart type
+       * are applied and data are transformed to the format expected by flot.
+       * Following values are supported: line,bar,pie
+       * Options is not required. If it is not used the options and data format remains the same as flot uses by default.
+       * @property charttype
+       * @default null
+       */
+      charttype: '',
+
+      /**
+       * Specify the data type of values plotted on x-axis
+       * Following options are supported: number,string,date
+       * @property xtype
+       * @default null
+       */
+      xtype: '',
+
+      /**
+       * Specify the data type of values plotted on x-axis
+       * Following options are supported: number,string,date
+       * @property xtype
+       * @default null
+       */
+      ytype: '',
+
+      /**
+       * Allows to zoom the chart. Supported only when line chart is used. Requires charttype to be set.
+       * @property zoom
+       * @default false
+       */
+      zoom: false,
+
+
+
+      /**
+       * Options customizing the chart grid.
+       * @property grid
+       */
       grid: {
+
+        /**
+         * Grid accepts click events.
+         * @property clickable
+         * @type boolean
+         * @default true
+         */
         clickable: true,
+
+        /**
+         * Grid fires mouseover events. Necessary for tooltip to work.
+         * @property hoverable
+         * @type boolen
+         * @default true
+         */
         hoverable: true
       },
+
+      /**
+       * Turns on tooltip (text shown when mouse points to a part of a chart)
+       * @property tooltip
+       * @type boolean
+       * @default true
+       */
       tooltip: true,
+
+      /**
+       * Customizes the tooltip.
+       * @property tooltipOpts
+       */
       tooltipOpts: {
         content: '%s  [%x,%y]',
         shifts: {
@@ -22,7 +89,38 @@
           y: 0
         },
         defaultTheme: false
-      }
+      },
+
+      legend: {
+        postion:'ne',
+        sorted: 'ascending'
+      },
+
+      xaxis:{
+        min: null,
+        max: null,
+        autoscaleMargin: null,
+        axisLabel: ''
+      },
+
+      yaxis:{
+        min: null,
+        max: null,
+        autoscaleMargin: 0.2,
+        axisLabel: ''
+      },
+
+
+
+
+      /**
+       * Data to be plotted. The format is the same used by flot. The format may differ if the charttype
+       * option is set to pie or bar.
+       * @property data
+       * @default []
+       */
+      data:[]
+
     },
 
     // Default options for pie chart
@@ -33,12 +131,7 @@
         }
       },
       tooltipOpts: {
-        content: ' %p.0%, %s',
-        shifts: {
-          x: 20,
-          y: 0
-        },
-        defaultTheme: false
+        content: ' %p.0%, %s'
       }
     },
 
