@@ -10,3 +10,7 @@ $('#mulitplecategorybar').chart({
   xtype:'string',
   charttype:'bar'
 });
+
+$('#mulitplecategorybar').on('plotclick',function(event,pos,item){
+  console.log(item.datapoint[0],'..',item.datapoint[1]);
+});
