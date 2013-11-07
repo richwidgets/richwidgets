@@ -58,8 +58,10 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
         function test(list) {
           list.orderingList({});
+          
           var elements = list.orderingList('getOrderedElements');
           expect(elements.length).toEqual(8);
+          
           for (var i = 0; i < elements.length; i++) {
             expect($(elements[i]).is(':contains(Item ' + (i + 1) + ')')).toBe(true);
           }
@@ -75,20 +77,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           var item = list.find('.ui-selectee:contains(\'Item 1\')');
 
           runs(function () {
-            item.trigger('mousedown').trigger('mouseup');
+            moveItemToBottom(item, fixture);
           });
-
-          waitsFor(function () {
-            return item.hasClass('ui-selected');
-          }, 500, 'item to be selected');
-
-          runs(function () {
-            fixture.find('.btn-last').click();
-          });
-          waitsFor(function () {
-            return item.index() === 7;
-          }, 500, 'item to be moved');
-
+          
           runs(function () {
             var elements = list.orderingList('getOrderedElements');
             expect(elements.length).toEqual(8);
@@ -97,6 +88,36 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
             }
             // last item (the moved element) should contain 'Item 1' 
             expect($(elements).last().is(':contains(Item 1)')).toBe(true);
+          });
+        }
+      });
+    });
+    
+    describe('getOrderedKeys:', function () {
+      it('from initial state of list:', function () {
+        test(element_list);
+        test(element_table);
+
+        function test(list) {
+          list.orderingList({});
+          expect(list.orderingList('getOrderedKeys')).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+        }
+      });
+
+      it('after first item moved to last position:', function () {
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+
+        function test(fixture, list) {
+          list.orderingList({});
+          var item = list.find('.ui-selectee:contains(\'Item 1\')');
+
+          runs(function () {
+            moveItemToBottom(item, fixture);
+          });
+          
+          runs(function () {
+            expect(list.orderingList('getOrderedKeys')).toEqual([2, 3, 4, 5, 6, 7, 8, 1]);
           });
         }
       });
@@ -244,7 +265,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         test(element_table, '.ui-selectee:first');
       });
 
-      it('remove items with index greater than 3:', function () {
+      it('remove all items with index greater than 3:', function () {
         test(element_list, '.ui-selectee:gt(3)');
         test(element_table, '.ui-selectee:gt(3)');
       });
@@ -274,7 +295,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         test(element_list, '.ui-selectee:first');
         test(element_table, '.ui-selectee:first');
       });
-      it('select multiple items with index greater than 3:', function () {
+      it('select all items with index greater than 3:', function () {
         test(element_list, '.ui-selectee:gt(3)');
         test(element_table, '.ui-selectee:gt(3)');
       });
@@ -369,6 +390,24 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
         itemsArray[i].trigger(ctrlClickDown).trigger(ctrlClickUp);
       }
+    }
+
+    function moveItemToBottom(item, fixture) {
+      runs(function () {
+        item.trigger('mousedown').trigger('mouseup');
+      });
+
+      waitsFor(function () {
+        return item.hasClass('ui-selected');
+      }, 500, 'item to be selected');
+
+      runs(function () {
+        fixture.find('.btn-last').click();
+      });
+
+      waitsFor(function () {
+        return item.index() === 7;
+      }, 500, 'item to be moved');
     }
   });
 });
