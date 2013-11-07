@@ -38,6 +38,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
       }
     });
 
+    // option contained is tested in ordering-list-two-lists.js
+    // option dropOnEmpty is tested in ordering-list-two-lists.js
+
     describe('header option:', function () {
 
       it('places the header option into the DOM', function () {
@@ -115,7 +118,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
     describe('dragSelect options:', function () {
       it('when dragSelect is true, handle is visible', function () {
-        function test(fixture, element) {
+        function test(element) {
           // given
           var options = {
             dragSelect: true
@@ -129,12 +132,12 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
             expect($(items[i]).find('.handle > .icon-move').is(':visible')).toEqual(true);
           }
         }
-        test(fixture_list, element_list);
-        test(fixture_table, element_table);
+        test(element_list);
+        test(element_table);
       });
 
       it('when dragSelect is false, handle is not visible', function () {
-        function test(fixture, element) {
+        function test(element) {
           // given
           var options = {
             dragSelect: false
@@ -148,34 +151,13 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
             expect($(items[i]).find('.handle > .icon-move').is(':visible')).toEqual(false);
           }
         }
-        test(fixture_list, element_list);
-        test(fixture_table, element_table);
+        test(element_list);
+        test(element_table);
       });
 
       it('when dragSelect is true, then multiple items can be selected by mouse:', function () {
-        function test(fixture, element) {
-          // given
-          element.orderingList({dragSelect: true});
-          var widget = element.data('orderingList');
-          expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
-          // when
-          var item = $(fixture.find('.ui-selectee:contains(4)'));
-          //then
-          runs(function () {
-            item.trigger('mousedown');
-            item.simulate('drag', {dy: 80});
-            item.trigger('mouseup');
-          });
-          waitsFor(function () {
-            return fixture.find('.ui-selectee:contains(5)').hasClass('ui-selected');
-          }, 'fifth item should be selected', 500);
-          runs(function () {
-            expect(widget._createKeyArray(widget.getSelected())).toEqual([4, 5, 6]);
-          });
-        }
-
-        test(fixture_list, element_list);
-        test(fixture_table, element_table);
+        testMultipleItemsCanBeSelectedByMouse(element_list, {dragSelect: true});
+        testMultipleItemsCanBeSelectedByMouse(element_table, {dragSelect: true});
       });
 
       it('when dragSelect is true, items can be dragged by a handle:', function () {
@@ -223,55 +205,12 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
       });
     });
 
-//    enable after issue #81 fixed
-//    xdescribe('mouseOrderable options:', function () {
-//      it('when mouseOrderable is false, then multiple items can be selected by mouse: ', function () {
-//        function test(fixture, element) {
-//          // given
-//          var options = {
-//            mouseOrderable: false
-//          };
-//          // when
-//          element.orderingList(options);
-//          var widget = element.data('orderingList');
-//          expect(widget._dumpState().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
-//          var item = fixture.find('.ui-selectee:contains(4)');
-//          //then
-//          runs(function () {
-//            item.trigger('mousedown');
-//            item.simulate('drag', {dy: 80});
-//            item.trigger('mouseup');
-//          });
-//          waitsFor(function () {
-//            return fixture.find('.ui-selectee:contains(4)').hasClass('ui-selected');
-//          }, 'fifth item should be selected', 500);
-//          runs(function () {
-//            expect(widget._createKeyArray(widget.getSelected())).toEqual([4, 5, 6]);
-//          });
-//        }
-//        test(fixture_list, element_list);
-//        test(fixture_table, element_table);
-//      });
-//
-//      it('when mouseOrderable is false, then there are no handles like with dragSelect=true: ', function () {
-//        function test(fixture, element) {
-//          // given
-//          var options = {
-//            mouseOrderable: false
-//          };
-//          // when
-//          element.orderingList(options);
-//          // then
-//          var items = element.find('.ui-selectee');
-//          expect(items.length).toEqual(8);
-//          for (var i = 0; i < items.length; i++) {
-//            expect($(items[i]).find('.handle > .icon-move').is(':visible')).toEqual(false);
-//          }
-//        }
-//        test(fixture_list, element_list);
-//        test(fixture_table, element_table);
-//      });
-//    });
+    describe('mouseOrderable options:', function () {
+      it('when mouseOrderable is false, then multiple items can be selected by mouse: ', function () {
+        testMultipleItemsCanBeSelectedByMouse(element_list, {mouseOrderable: false});
+        testMultipleItemsCanBeSelectedByMouse(element_table, {mouseOrderable: false});
+      });
+    });
 
     describe('height options:', function () {
       it('height', function () {
@@ -532,4 +471,27 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
       });
     });
   });
+
+  function testMultipleItemsCanBeSelectedByMouse(element, listOptions) {
+    // given
+    element.orderingList(listOptions);
+    var widget = element.data('orderingList');
+    expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+    // when
+    var item = $(element.find('.ui-selectee:contains(4)'));
+    //then
+    runs(function () {
+      item.trigger('mousedown');
+      item.simulate('drag', {dy: 80});
+      item.trigger('mouseup');
+    });
+    
+    waitsFor(function () {
+      return element.find('.ui-selectee:contains(6)').hasClass('ui-selected');
+    }, 'item to be selected', 500);
+    
+    runs(function () {
+      expect(widget._createKeyArray(widget.getSelected())).toEqual([4, 5, 6]);
+    });
+  }
 });

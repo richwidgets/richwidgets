@@ -28,6 +28,45 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
       list2.orderingList('connectWith', list1);
     }
 
+    describe('moving items between two lists cannot be done, when two lists are not connected:', function () {
+      function test(list1, list2) {
+        // given
+        list1.orderingList({});
+        list2.orderingList({contained: false});
+
+        //no connectLists function called
+
+        var widget1 = list1.data('orderingList');
+        expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
+        var widget2 = list2.data('orderingList');
+        expect(widget2._uiHash().orderedKeys).toEqual(['a']);
+
+        // when
+        var itemA = list2.find('.ui-selectee:contains(\'Item a\')');
+        runs(function () {
+          itemA.trigger('mousedown');
+          itemA.simulate('drag', {dy: -80});
+          itemA.trigger('mouseup');
+        });
+
+        waitsFor(function () {
+          return itemA.hasClass('ui-selected');
+        }, 'item to be selected', 500);
+
+        // then
+        runs(function () {
+          expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
+          expect(widget2._uiHash().orderedKeys).toEqual(['a']);
+        });
+      }
+
+      it('moving item from second list to first list will only select that item:', function () {
+        test(element_list1, element_list2, true);
+        test(element_table1, element_table2, true);
+      });
+
+    });
+
     describe('moving items between two connected lists:', function () {
 
       describe('dropOnEmpty option:', function () {
@@ -126,7 +165,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
           waitsFor(function () {
             return (contained === true ? itemA.hasClass('ui-selected') : widget1._uiHash().orderedKeys.length === 5);
-          }, 'item to be selected', 500);
+          }, 'item to be moved or selected', 500);
 
           // then
           runs(function () {
