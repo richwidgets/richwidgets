@@ -39,14 +39,28 @@
        */
       targetHeader: null,
       /**
-       * The height of the pickList
+       * The height of the pickList.
+       * Specify the value as either:
+       *
+       * 1. A String with appropriate units, eg.:
+       *        height: '120px'
+       *
+       * 2. An integer without any units, in which case the units of `px` are assumed:
+       *        height: 120
        *
        * @property height
        * @type String
        */
       height: null,
       /**
-       * The minimum height of the pickList
+       * The minimum height of the pickList.
+       * Specify the value as either:
+       *
+       * 1. A String with appropriate units, eg.:
+       *        heightMin: '120px'
+       *
+       * 2. An integer without any units, in which case the units of `px` are assumed:
+       *        heightMin: 120
        *
        * @property heightMin
        * @type String
@@ -54,6 +68,13 @@
       heightMin: null,
       /**
        * The maximum height of the pickList
+       * Specify the value as either:
+       *
+       * 1. A String with appropriate units, eg.:
+       *        heightMax: '120px'
+       *
+       * 2. An integer without any units, in which case the units of `px` are assumed:
+       *        heightMax: 120
        *
        * @property heightMax
        * @type String
