@@ -358,9 +358,15 @@
       buttonStack
         .append(
           button.clone()
-            .addClass('btn-remove-all col-sm-12 col-xs-3')
-            .html('<i class="icon icon-left-all" />')
-            .on('click.pickList', $.proxy(this._removeAllHandler, this))
+            .addClass('btn-add-all col-sm-12 col-xs-3')
+            .html('<i class="icon icon-right-all" />')
+            .on('click.pickList', $.proxy(this._addAllHandler, this))
+        )
+        .append(
+          button.clone()
+            .addClass('btn-add col-sm-12 col-xs-3')
+            .html('<i class="icon icon-right" />')
+            .on('click.pickList', $.proxy(this._addHandler, this))
         )
         .append(
           button.clone()
@@ -370,16 +376,9 @@
         )
         .append(
           button.clone()
-            .addClass('btn-add col-sm-12 col-xs-3')
-            .html('<i class="icon icon-right" />')
-            .on('click.pickList', $.proxy(this._addHandler, this))
-        )
-        .append(
-          button
-            .clone()
-            .addClass('btn-add-all col-sm-12 col-xs-3')
-            .html('<i class="icon icon-right-all" />')
-            .on('click.pickList', $.proxy(this._addAllHandler, this))
+            .addClass('btn-remove-all col-sm-12 col-xs-3')
+            .html('<i class="icon icon-left-all" />')
+            .on('click.pickList', $.proxy(this._removeAllHandler, this))
         );
       if (this.options.pickButtonsText) {
         this._applyButtonsText(buttonStack, this.options.pickButtonsText);
