@@ -482,11 +482,11 @@
      * @returns {Object} the items removed from the orderingList
      */
     remove: function (items) {
-      items.detach();
+      var removed = this.$pluginRoot.find(items).detach();
       var ui = this._uiHash();
       ui.movement = 'remove';
       this._trigger('change', {}, ui);
-      return items;
+      return removed;
     },
 
     /**
