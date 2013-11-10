@@ -102,6 +102,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('site', [
     'dist',
+    'clean:pages',
     'gh-pages'
   ]);
 
@@ -111,7 +112,8 @@ module.exports = function (grunt) {
 
     clean: {
       dist: [ '<%= config.dir.dist.root %>' ],
-      demo: ['<%= demo.destination %>/**/*.{html,md}']
+      demo: ['<%= demo.destination %>/**/*.{html,md}'],
+      pages: ['.grunt/grunt-gh-pages/gh-pages']
     },
 
     less: {
