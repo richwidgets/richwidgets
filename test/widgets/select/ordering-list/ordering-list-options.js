@@ -164,7 +164,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({dragSelect: true});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var moveBy2Elements = 80;
@@ -475,7 +475,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
   function testMultipleItemsCanBeSelectedByMouse(element, listOptions) {
     // given
     element.orderingList(listOptions);
-    var widget = element.data('orderingList');
+    var widget = element.data('richOrderingList');
     expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
     // when
     var item = $(element.find('.ui-selectee:contains(4)'));

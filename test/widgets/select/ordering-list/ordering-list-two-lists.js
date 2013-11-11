@@ -36,9 +36,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
         //no connectLists function called
 
-        var widget1 = list1.data('orderingList');
+        var widget1 = list1.data('richOrderingList');
         expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
-        var widget2 = list2.data('orderingList');
+        var widget2 = list2.data('richOrderingList');
         expect(widget2._uiHash().orderedKeys).toEqual(['a']);
 
         // when
@@ -77,9 +77,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           list2.orderingList({contained: false});
           connectLists(list1, list2);
 
-          var widget1 = list1.data('orderingList');
+          var widget1 = list1.data('richOrderingList');
           expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
-          var widget2 = list2.data('orderingList');
+          var widget2 = list2.data('richOrderingList');
           expect(widget2._uiHash().orderedKeys).toEqual(['a']);
 
           // when
@@ -150,9 +150,9 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           list2.orderingList({contained: contained});
           connectLists(list1, list2);
 
-          var widget1 = list1.data('orderingList');
+          var widget1 = list1.data('richOrderingList');
           expect(widget1._uiHash().orderedKeys).toEqual([1, 2, 3, 4]);
-          var widget2 = list2.data('orderingList');
+          var widget2 = list2.data('richOrderingList');
           expect(widget2._uiHash().orderedKeys).toEqual(['a']);
 
           // when

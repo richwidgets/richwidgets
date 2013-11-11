@@ -29,7 +29,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.pickList();
-          var widget = element.data('pickList');
+          var widget = element.data('richPickList');
           expect(widget._uiHash().pickedKeys).toEqual([9, 10, 11]);
 
           // when
@@ -69,7 +69,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
           element.pickList('option', 'switchByClick', true);
 
-          var widget = element.data('pickList');
+          var widget = element.data('richPickList');
           expect(widget._uiHash().pickedKeys).toEqual([9, 10, 11]);
 
           // when
@@ -101,7 +101,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
           element.pickList('option', 'switchByDblClick', true);
 
-          var widget = element.data('pickList');
+          var widget = element.data('richPickList');
           expect(widget._uiHash().pickedKeys).toEqual([9, 10, 11]);
 
           // when

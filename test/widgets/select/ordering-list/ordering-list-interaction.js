@@ -29,7 +29,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
 
           // when
@@ -67,7 +67,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
@@ -101,7 +101,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var lastItem = fixture.find('.ui-selectee').last();
@@ -136,7 +136,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
@@ -172,7 +172,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item = $(fixture.find('.ui-selectee').get(1));
@@ -209,7 +209,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
@@ -254,7 +254,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item = $(fixture.find('.ui-selectee').get(3));
@@ -289,7 +289,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
@@ -337,7 +337,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item = fixture.find('.ui-selectee:contains(8)');
@@ -360,7 +360,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         function test(fixture, element) {
           // given
           element.orderingList({});
-          var widget = element.data('orderingList');
+          var widget = element.data('richOrderingList');
           expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
           // when
           var item1 = fixture.find('.ui-selectee:contains(1)');
