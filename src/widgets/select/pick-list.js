@@ -345,8 +345,8 @@
         case 'orderButtonsText':
           widget.targetList.orderingList('option', 'buttonsText', value);
           break;
-        case 'buttonsText':
-          this._applyButtonsText(this.outer.find('.middle .btn-group-vertical'), value);
+        case 'pickButtonsText':
+          this._applyButtonsText(this.outer.find('.middle .btn-group-picklist'), value);
           break;
         case 'switchByClick':
           if (value === true) {
