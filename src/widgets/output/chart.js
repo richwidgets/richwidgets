@@ -50,6 +50,7 @@
      /**
       * Options customizing the chart grid.
       * @type Object
+      * @default {clickable:true, hoverable:true}
       * @property grid
       *   @property clickable {boolean}
       *   Grid accepts click events.
@@ -73,10 +74,11 @@
       /**
        * Customizes the tooltip.
        * @type Object
+       * @default { content: '%s [%x,%y]'}
        * @property tooltipOpts
        *    @property content {String}
-       *    Specify the tooltip format
-       *
+       *    Specify the tooltip format. Use %s for series label, %x for X values, %y for Y value
+       *    @property defaultTheme
        */
       tooltipOpts: {
         content: '%s  [%x,%y]',
@@ -87,11 +89,36 @@
         defaultTheme: false
       },
 
+      /**
+       * Legend properties
+       * @type Object
+       * @default {postion:'ne', sorted: 'ascending'}
+       * @property legend
+       *    @property position {String}
+       *    Defines the placement of the legend in the grid. One of ne,nw,se,sw
+       *    @property sorted {String}
+       *    Defines the order of labels in the legend. One of ascending,descending,false.
+       */
       legend: {
         postion:'ne',
         sorted: 'ascending'
       },
 
+      /**
+       * Customizes the horizontal axis
+       * @type Object
+       * @default {min: null, max: null,autoscaleMargin: null, axisLabel: ''}
+       * @property xaxis
+       *   @property min {Number}
+       *   Minimal value shown on axis
+       *   @property max {Number}
+       *   Maximal values show on axis
+       *   @property autoscaleMargin {Number}
+       *   It's the fraction of margin that the scaling algorithm will add
+       *   to avoid that the outermost points ends up on the grid border
+       *   @property axisLabel {String}
+       *   Axis description
+       */
       xaxis:{
         min: null,
         max: null,
@@ -99,6 +126,21 @@
         axisLabel: ''
       },
 
+      /**
+       * Customizes the vertical axis
+       * @type Object
+       * @default {min: null, max: null,autoscaleMargin: 0.2,axisLabel: ''}
+       * @property xaxis
+       *   @property min {Number}
+       *   Minimal value shown on axis
+       *   @property max {Number}
+       *   Maximal values show on axis
+       *   @property autoscaleMargin {Number}
+       *   It's the fraction of margin that the scaling algorithm will add to
+       *   avoid that the outermost points ends up on the grid border.
+       *   @property axisLabel {String}
+       *   Axis description
+       */
       yaxis:{
         min: null,
         max: null,
