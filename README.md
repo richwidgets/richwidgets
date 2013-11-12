@@ -1,4 +1,4 @@
-# RichWidgets [![Build Status](https://travis-ci.org/richwidgets/richwidgets.png?branch=master)](https://travis-ci.org/richwidgets/richwidgets) #
+# RichWidgets [![Build Status](https://travis-ci.org/richwidgets/richwidgets.png?branch=master)](https://travis-ci.org/richwidgets/richwidgets) [![devDependency Status](https://david-dm.org/richwidgets/richwidgets/dev-status.png)](https://david-dm.org/richwidgets/richwidgets#info=devDependencies) #
 
 > A JavaScript project containing standalone javascript widgets based on Bootstrap, jQuery UI and other third-party widgets, styled with LESS.
 
