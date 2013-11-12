@@ -769,10 +769,10 @@
     _addButtons: function () {
       var buttonStack = $('<div/>')
         .addClass('btn-group-vertical');
-      this._addButton(buttonStack, 'first', 'icon-arrow-up', $.proxy(this._firstHandler, this));
-      this._addButton(buttonStack, 'up', 'icon-arrow-up', $.proxy(this._upHandler, this));
-      this._addButton(buttonStack, 'down', 'icon-arrow-down', $.proxy(this._downHandler, this));
-      this._addButton(buttonStack, 'last', 'icon-arrow-down', $.proxy(this._lastHandler, this));
+      this._addButton(buttonStack, 'first', $.proxy(this._firstHandler, this));
+      this._addButton(buttonStack, 'up', $.proxy(this._upHandler, this));
+      this._addButton(buttonStack, 'down', $.proxy(this._downHandler, this));
+      this._addButton(buttonStack, 'last', $.proxy(this._lastHandler, this));
       if (this.options.buttonsText) {
         this._applyButtonsText(buttonStack, this.options.buttonsText);
       }
@@ -802,13 +802,13 @@
       }
     },
 
-    _addButton: function (buttonStack, buttonClass, icon, handler) {
+    _addButton: function (buttonStack, buttonClass, handler) {
       var button = $('<button/>')
         .attr('type', 'button')
         .addClass('btn btn-default')
         .addClass('btn-' + buttonClass)
         .on('click.orderingList', handler)
-        .append($('<i />').addClass('icon icon-' + buttonClass));
+        .append($('<i />').addClass('fa icon-' + buttonClass));
       buttonStack.append(button);
     },
 
@@ -821,14 +821,14 @@
         if (this.strategy === 'table') {
           this.element
             .find('tbody > tr')
-            .prepend('<th class="handle"><i class="icon-move"></i></th>');
+            .prepend('<th class="handle"><i class="fa fa-arrows"></i></th>');
           this.element
             .find('thead > tr')
             .prepend('<th class="handle"></th>');
         } else if (this.strategy === 'list') {
           this.element
             .find('li')
-            .prepend('<div class="handle"><i class="icon-move"></i></div>');
+            .prepend('<div class="handle"><i class="fa fa-arrows"></i></div>');
         }
       }
     },

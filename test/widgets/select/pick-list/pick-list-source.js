@@ -26,11 +26,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
       // when
       element.pickList(options);
       // then
-      expect(expected).toHaveEqualInnerDom(fixture);
+      expect(fixture).toHaveEqualInnerDom(expected);
       // when
       element.pickList('destroy');
       // then
-      expect(original).toHaveEqualInnerDom(fixture);
+      expect(fixture).toHaveEqualInnerDom(original);
     });
 
     it('pickList from <table> markup', function () {
@@ -45,11 +45,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
       // when
       element.pickList(options);
       // then
-      expect(expected).toHaveEqualInnerDom(fixture);
+      expect(fixture).toHaveEqualInnerDom(expected);
       // when
       element.pickList('destroy');
       // then
-      expect(original).toHaveEqualInnerDom(fixture);
+      expect(fixture).toHaveEqualInnerDom(original);
     });
 
   });

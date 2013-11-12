@@ -129,7 +129,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           var items = element.find('.ui-selectee');
           expect(items.length).toEqual(8);
           for (var i = 0; i < items.length; i++) {
-            expect($(items[i]).find('.handle > .icon-move').is(':visible')).toEqual(true);
+            expect($(items[i]).find('.handle > .fa-arrows').is(':visible')).toEqual(true);
           }
         }
         test(element_list);
@@ -148,7 +148,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           var items = element.find('.ui-selectee');
           expect(items.length).toEqual(8);
           for (var i = 0; i < items.length; i++) {
-            expect($(items[i]).find('.handle > .icon-move').is(':visible')).toEqual(false);
+            expect($(items[i]).find('.handle > .fa-arrows').is(':visible')).toEqual(false);
           }
         }
         test(element_list);

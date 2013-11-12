@@ -383,25 +383,25 @@
         .append(
           button.clone()
             .addClass('btn-add-all col-sm-12 col-xs-3')
-            .html('<i class="icon icon-right-all" />')
+            .html('<i class="fa icon-right-all" />')
             .on('click.pickList', $.proxy(this._addAllHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-add col-sm-12 col-xs-3')
-            .html('<i class="icon icon-right" />')
+            .html('<i class="fa icon-right" />')
             .on('click.pickList', $.proxy(this._addHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-remove col-sm-12 col-xs-3')
-            .html('<i class="icon icon-left" />')
+            .html('<i class="fa icon-left" />')
             .on('click.pickList', $.proxy(this._removeHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-remove-all col-sm-12 col-xs-3')
-            .html('<i class="icon icon-left-all" />')
+            .html('<i class="fa icon-left-all" />')
             .on('click.pickList', $.proxy(this._removeAllHandler, this))
         );
       if (this.options.pickButtonsText) {
