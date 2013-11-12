@@ -578,6 +578,13 @@
       return (this._createKeyArray( this.getOrderedElements()));
     },
 
+    /**
+     * Removes the ordering list functionality completely. This will return the element back to its pre-init state.
+     *
+     * @method destroy
+     */
+    // method implemented in $.widget
+
     _setOption: function (key, value) {
       var widget = this;
       if (this.options.key === value) {

@@ -282,6 +282,13 @@
       return this;
     },
 
+    /**
+     * Removes the pick list functionality completely. This will return the element back to its pre-init state.
+     *
+     * @method destroy
+     */
+    // method implemented in $.widget
+
 
     /** Initialisation methods **/
 
