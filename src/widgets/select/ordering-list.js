@@ -229,12 +229,22 @@
             ui.item.after(widget.currentItems.not(ui.item).detach());
           }
           widget.currentItems.not('.placeholder').show();
-          var ui2 = widget._uiHash();
-          ui2.movement = 'drag';
           if (widget.fillItem) {
             widget._updateFillRow();
           }
-          widget._trigger('change', event, ui2);
+        },
+        update: function(event, ui) {
+          if (ui.sender === null && ui.item.parents('.ordering-list').get(0) === widget.element.parents('.ordering-list').get(0)) {
+            var ui2 = widget._uiHash();
+            ui2.change = 'move';
+            ui2.movement = 'drag';
+            widget._trigger('change', event, ui2);
+          }
+        },
+        receive: function (event, ui) {
+          var newUi = widget._uiHash();
+          newUi.change = 'add';
+          widget._trigger('change', event, newUi);
         }
       };
       if (this.element.is('table')) {
@@ -416,10 +426,15 @@
       event = event || null;
       if (this.options.disabled) { return; }
       var first = items.prevAll().not('.ui-selected').last();
+      var initialState = this.getOrderedKeys();
       $(items).insertBefore(first);
-      var ui = this._uiHash();
-      ui.movement = 'moveTop';
-      this._trigger('change', event, ui);
+      var finalState = this.getOrderedKeys();
+      if (initialState.toString() !== finalState.toString()) {
+        var ui = this._uiHash();
+        ui.change = 'move';
+        ui.movement = 'moveTop';
+        this._trigger('change', event, ui);
+      }
       return this;
     },
 
@@ -434,6 +449,7 @@
     moveUp: function (items, event) {
       event = event || null;
       if (this.options.disabled) { return; }
+      var initialState = this.getOrderedKeys();
       $(items).each(function () {
         var $item = $(this);
         var prev = $item.prevAll().not('.ui-selected').first();
@@ -441,9 +457,13 @@
           $item.insertBefore(prev);
         }
       });
-      var ui = this._uiHash();
-      ui.movement = 'moveUp';
-      this._trigger('change', event, ui);
+      var finalState = this.getOrderedKeys();
+      if (initialState.toString() !== finalState.toString()) {
+        var ui = this._uiHash();
+        ui.change = 'move';
+        ui.movement = 'moveUp';
+        this._trigger('change', event, ui);
+      }
       return this;
     },
 
@@ -458,6 +478,7 @@
     moveDown: function (items, event) {
       event = event || null;
       if (this.options.disabled) { return; }
+      var initialState = this.getOrderedKeys();
       $(items).sort(function () {
         return 1;
       }).each(function () {
@@ -467,9 +488,13 @@
             $item.insertAfter(next);
           }
         });
-      var ui = this._uiHash();
-      ui.movement = 'moveDown';
-      this._trigger('change', event, ui);
+      var finalState = this.getOrderedKeys();
+      if (initialState.toString() !== finalState.toString()) {
+        var ui = this._uiHash();
+        ui.change = 'move';
+        ui.movement = 'moveDown';
+        this._trigger('change', event, ui);
+      }
       return this;
     },
 
@@ -484,11 +509,16 @@
     moveLast: function (items, event) {
       event = event || null;
       if (this.options.disabled) { return; }
+      var initialState = this.getOrderedKeys();
       var last = items.nextAll().not('.ui-selected').last();
       $(items).insertAfter(last);
-      var ui = this._uiHash();
-      ui.movement = 'moveLast';
-      this._trigger('change', event, ui);
+      var finalState = this.getOrderedKeys();
+      if (initialState.toString() !== finalState.toString()) {
+        var ui = this._uiHash();
+        ui.change = 'move';
+        ui.movement = 'moveLast';
+        this._trigger('change', event, ui);
+      }
       return this;
     },
 
@@ -500,9 +530,12 @@
      * @returns {Object} the items removed from the orderingList
      */
     remove: function (items) {
+      if (!items || items.length === 0) {
+        return null;
+      }
       var removed = this.$pluginRoot.find(items).detach();
       var ui = this._uiHash();
-      ui.movement = 'remove';
+      ui.change = 'remove';
       this._trigger('change', {}, ui);
       return removed;
     },
@@ -515,9 +548,12 @@
      * @returns {Object} the items added to the orderingList
      */
     add: function (items) {
+      if (!items || items.length === 0) {
+        return null;
+      }
       this.$pluginRoot.prepend(items);
       var ui = this._uiHash();
-      ui.movement = 'add';
+      ui.change = 'add';
       this._trigger('change', {}, ui);
       return items;
     },
@@ -897,6 +933,19 @@
       this._addDragListeners();
     },
 
+    /**
+     * A dump of the current state of the widget
+     *
+     * @method _uiHash
+     * @private
+     * @returns {Object} A `ui` object holding the current state.  The `ui` object has the properties:
+     * ````javascript
+     * {
+     *   change: 'move'| 'add' | 'remove',
+     *   movement: 'drag' | 'moveUp' | 'moveTop' | 'moveDown' | 'moveLast'
+     * }
+     * ````
+     */
     _uiHash: function () {
       var ui = {};
       ui.orderedElements = this.getOrderedElements();

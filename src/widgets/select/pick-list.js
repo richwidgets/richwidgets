@@ -260,9 +260,7 @@
       if (this.options.disabled) { return; }
       this.targetList.orderingList('remove', items);
       this.sourceList.orderingList('add', items);
-      var ui = this._uiHash();
-      ui.change = 'remove';
-      this._trigger('change', event, ui);
+      // do not trigger an event here, as the pickList will trigger an event off of the underlying orderingList event
       return this;
     },
 
@@ -280,9 +278,7 @@
       if (this.options.disabled) { return; }
       this.sourceList.orderingList('remove', items);
       this.targetList.orderingList('add', items);
-      var ui = this._uiHash();
-      ui.change = 'add';
-      this._trigger('change', event, ui);
+      // do not trigger an event here, as the pickList will trigger an event off of the underlying orderingList event
       return this;
     },
 
@@ -504,19 +500,12 @@
       this.sourceList.on('sortreceive', function (event, ui) {
         var newUi = widget._uiHash();
         newUi.change = 'remove';
-        newUi.originalEvent = event;
-        widget._trigger('change', event, newUi);
-      });
-      this.targetList.on('sortreceive', function (event, ui) {
-        var newUi = widget._uiHash();
-        newUi.change = 'add';
-        newUi.originalEvent = event;
         widget._trigger('change', event, newUi);
       });
       this.targetList.on('targetlist_change', function (event, ui) {
         var newUi = widget._uiHash();
-        newUi.change = 'sort';
-        newUi.originalEvent = event;
+        newUi.change = ui.change;
+        newUi.movement = ui.movement;
         widget._trigger('change', event, newUi);
       });
       if (this.options.switchByClick) {
