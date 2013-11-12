@@ -8,7 +8,7 @@
     "jquery": "1.9.1",
     "jquery-ui": "1.9.2",
     "bootstrap": "3.0.2",
-    "font-awesome": "3.2.1",
+    "font-awesome": "4.0.3",
     "flot" : "0.8.0",
     "flotAxisLabels":"https://github.com/markrcote/flot-axislabels.git",
     "flotTooltip":"https://github.com/krzysu/flot.tooltip.git",
