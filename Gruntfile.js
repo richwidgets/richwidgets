@@ -113,7 +113,8 @@ module.exports = function (grunt) {
     clean: {
       dist: [ '<%= config.dir.dist.root %>' ],
       demo: ['<%= demo.destination %>/**/*.{html,md}'],
-      pages: ['.grunt/grunt-gh-pages/gh-pages']
+      pages: ['.grunt/grunt-gh-pages/gh-pages'],
+      bower: ['lib']
     },
 
     less: {
