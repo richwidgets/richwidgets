@@ -10,18 +10,18 @@
     "bootstrap": "3.0.2",
     "font-awesome": "4.0.3",
     "flot" : "0.8.0",
-    "flotAxisLabels":"https://github.com/markrcote/flot-axislabels.git",
-    "flotTooltip":"https://github.com/krzysu/flot.tooltip.git",
-    "flotOrderBars":"https://github.com/emmerich/flot-orderBars.git",
+    "flotAxisLabels":"markrcote/flot-axislabels#fcfde41709057b1087288e20f49f0e8a75025845",
+    "flotTooltip":"krzysu/flot.tooltip#11c117e11cf50fa5876c23a81a8296feb94dee93",
+    "flotOrderBars":"emmerich/flot-orderBars#d44ff4f2fec4c8bb1254e59567ee39fa3684372e",
 
     "requirejs": "2.1.8",
     "jasmine-jquery": "1.5.3",
-    "dom-compare": "lfryc/dom-compare#requirejs",
-    "jquery-simulate": "*",
+    "dom-compare": "lfryc/dom-compare#e7aeb0852ab26a0a79e48fe6831e5e1ab5a25e41",
+    "jquery-simulate": "jquery/jquery-simulate#25938de20622a6c127a7082bd751f6d2f88eabd4",
 
     "modernizr": "2.6.2",
     "highlightjs": "7.3.0",
 
-    "yuidoc-bootstrap-theme": "https://github.com/richwidgets/yuidoc-bootstrap-theme.git"
+    "yuidoc-bootstrap-theme": "richwidgets/yuidoc-bootstrap-theme#8a1432d7b363309667483ea2927976ae0b500393"
   }
 }
