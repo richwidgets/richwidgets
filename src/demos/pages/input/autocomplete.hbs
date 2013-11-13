@@ -33,7 +33,7 @@ demos: [
         <div class="panel panel-default">
           <div class="panel-body">
             {{include "autocomplete/{{this.id}}.html" ../page}}
-            <script src="{{assets-demo ../page/dirname}}/input/autocomplete/{{this.id}}.js"></script>
+
           </div>
           <div class="panel-footer">
             {{include "autocomplete/{{this.id}}-description.html" ../page}}
@@ -48,13 +48,9 @@ demos: [
       </div>
 
     </div>
-
-    <!--<h4>Source:</h4>-->
-    <!--<div class="row">-->
-      <!--{{set 'html_source' "src/demos/pages/input/autocomplete/{{this.id}}.html" }}-->
-      <!--{{set 'js_source' "src/demos/pages/input/autocomplete/{{this.id}}.js" }}-->
-      <!--<div class="col col-md-6">{{#markdown}}{{embed html_source}}{{/markdown}}</div>-->
-      <!--<div class="col col-md-6">{{#markdown}}{{embed js_source}}{{/markdown}}</div>-->
-    <!--</div>-->
   </fieldset>
+  {{/each}}
+
+  {{#each demos}}
+    <script src="{{assets-demo ../page/dirname}}/input/autocomplete/{{this.id}}.js"></script>
   {{/each}}
