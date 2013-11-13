@@ -457,14 +457,16 @@
       this.element.off('plotselected');
     },
 
-    /**
-     * Use the destroy method to clean up any modifications your widget has made to the DOM
-     *
-     * @method _destroy
-     */
     _destroy: function () {
       this.plot.shutDown();
       this._unbind();
     }
+
+    /**
+     * Removes the chart functionality completely. This will return the element back to its pre-init state.
+     *
+     * @method destroy
+     */
+    // method implemented in jquery.ui.widget.js
   });
 }(jQuery) );
