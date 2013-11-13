@@ -46,7 +46,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           }, 'first item should be selected', 500);
 
           runs(function () {
-            fixture.find('.button-column .btn-add').first().click();
+            fixture.find('.pick-button-column .btn-add').first().click();
           });
 
           waitsFor(function () {
