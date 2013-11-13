@@ -237,7 +237,7 @@
 
       this._removeDomElements();
 
-      this.element.removeClass('inner')
+      this.element.removeClass('inner');
       if (!this.element.attr('class')) {
         this.element.removeAttr('class');
       }
