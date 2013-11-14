@@ -835,7 +835,14 @@
 
     _addParents: function () {
       this.element.addClass('list').wrap(
-        $('<div />').addClass('ordering-list select-list').attr('tabindex', -1).append(
+        $('<div />').addClass('ordering-list select-list').attr('tabindex', -1)
+          .focus(function(){
+            var x = window.scrollX, y = window.scrollY;
+            setTimeout(function() {
+              window.scrollTo(x,y);
+            }, 0);
+          })
+          .append(
           $('<div />').addClass('content').append(
             $('<div />').addClass('scroll-box')
           )
