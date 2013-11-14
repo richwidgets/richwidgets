@@ -75,6 +75,7 @@ $('#myDiv').widgetName('destroy');
 Along with cloning the project you will need to install the following tools:
 
 - Node and NPM: [instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager), [official website](https://npmjs.org/)
+  - recommended version: Node 0.10.22
 - Grunt: [instructions](http://gruntjs.com/getting-started), [official website](http://gruntjs.com/)
 - Bower: [instructions on official website](http://bower.io/)
 
