@@ -133,14 +133,18 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
           function test(fixture, element, buttonClass, startIndex) {
             var changeCallback = jasmine.createSpy('changeCallback');
+            var changeCallback2 = jasmine.createSpy('changeCallback2');
 
             element.orderingList({change: changeCallback});
+
+            element.on('orderinglistchange', changeCallback2);
 
             // when
             var firstItem = fixture.find('.ui-selectee:eq(' + startIndex + ')');
 
             runs(function () {
               expect(changeCallback).not.toHaveBeenCalled();
+              expect(changeCallback2).not.toHaveBeenCalled();
             });
 
             // then
@@ -172,6 +176,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
             runs(function () {
               expect(changeCallback.callCount).toEqual(1);
+              expect(changeCallback2.callCount).toEqual(1);
             });
 
             function _thresholdValue (value) {

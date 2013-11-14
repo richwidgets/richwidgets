@@ -197,11 +197,16 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
     describe('change by item click/dblclick:', function () {
         function test(fixture, element, clickFromWhichList, event) {
           var changeCallback = jasmine.createSpy('changeCallback');
-          
+          var changeCallback2 = jasmine.createSpy('changeCallback2');
+
           // given
-          element.pickList({ switchByClick : true });
-          element.pickList({ switchByDblClick : true });
-          element.pickList({ change: changeCallback });
+          element.pickList({
+            switchByClick : true,
+            switchByDblClick : true,
+            change: changeCallback
+          });
+
+          element.on('picklistchange', changeCallback2);
 
           var list1 = clickFromWhichList.indexOf('source') === 0 ? '.source' : '.target';
           var list2 = clickFromWhichList.indexOf('source') === 0 ? '.target' : '.source';
@@ -220,6 +225,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
 
           runs(function () {
             expect(changeCallback).toHaveBeenCalled();
+            expect(changeCallback2).toHaveBeenCalled();
           });
         }
 
