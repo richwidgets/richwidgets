@@ -383,25 +383,25 @@
         .append(
           button.clone()
             .addClass('btn-add-all')
-            .html('<i class="fa icon-right-all" />')
+            .html('<i class="fa richicon-right-all" />')
             .on('click.pickList', $.proxy(this._addAllHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-add')
-            .html('<i class="fa icon-right" />')
+            .html('<i class="fa richicon-right" />')
             .on('click.pickList', $.proxy(this._addHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-remove')
-            .html('<i class="fa icon-left" />')
+            .html('<i class="fa richicon-left" />')
             .on('click.pickList', $.proxy(this._removeHandler, this))
         )
         .append(
           button.clone()
             .addClass('btn-remove-all')
-            .html('<i class="fa icon-left-all" />')
+            .html('<i class="fa richicon-left-all" />')
             .on('click.pickList', $.proxy(this._removeAllHandler, this))
         );
       if (this.options.pickButtonsText) {

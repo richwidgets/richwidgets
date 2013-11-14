@@ -812,7 +812,7 @@
         .addClass('btn btn-default')
         .addClass('btn-' + buttonClass)
         .on('click.orderingList', handler)
-        .append($('<i />').addClass('fa icon-' + buttonClass));
+        .append($('<i />').addClass('fa richicon-' + buttonClass));
       buttonStack.append(button);
     },
 
