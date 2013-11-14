@@ -425,9 +425,10 @@
     moveTop: function (items, event) {
       event = event || null;
       if (this.options.disabled) { return; }
-      var first = items.prevAll().not('.ui-selected').last();
+      var moved = this.$pluginRoot.find(items);
+      var first = moved.prevAll().not('.ui-selected').last();
       var initialState = this.getOrderedKeys();
-      $(items).insertBefore(first);
+      $(moved).insertBefore(first);
       var finalState = this.getOrderedKeys();
       if (initialState.toString() !== finalState.toString()) {
         var ui = this._uiHash();
@@ -450,7 +451,8 @@
       event = event || null;
       if (this.options.disabled) { return; }
       var initialState = this.getOrderedKeys();
-      $(items).each(function () {
+      var moved = this.$pluginRoot.find(items);
+      $(moved).each(function () {
         var $item = $(this);
         var prev = $item.prevAll().not('.ui-selected').first();
         if (prev.length > 0) {
@@ -479,7 +481,8 @@
       event = event || null;
       if (this.options.disabled) { return; }
       var initialState = this.getOrderedKeys();
-      $(items).sort(function () {
+      var moved = this.$pluginRoot.find(items);
+      $(moved).sort(function () {
         return 1;
       }).each(function () {
           var $item = $(this);
@@ -510,8 +513,9 @@
       event = event || null;
       if (this.options.disabled) { return; }
       var initialState = this.getOrderedKeys();
-      var last = items.nextAll().not('.ui-selected').last();
-      $(items).insertAfter(last);
+      var moved = this.$pluginRoot.find(items);
+      var last = moved.nextAll().not('.ui-selected').last();
+      $(moved).insertAfter(last);
       var finalState = this.getOrderedKeys();
       if (initialState.toString() !== finalState.toString()) {
         var ui = this._uiHash();
