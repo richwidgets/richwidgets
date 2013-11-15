@@ -3,14 +3,10 @@
 
 .pick-list {
   margin-bottom: @line-height-base;
-  display: block;
+  display: table;
   padding-left : 0;
   padding-right : 0;
   outline : none;
-
-   .inner {
-     .make-row();
-   }
 
   .header {
     font-family: @headings-font-family;
@@ -21,61 +17,14 @@
     margin-bottom: (@line-height-computed / 2);
   }
 
-  .source-wrapper {
-    .make-sm-column(5);
-  }
-
-  .target-wrapper {
-    .make-sm-column(6);
-  }
-
-  .ordering-list .header {
-    @media (min-width: @screen-sm) {
-      display: none;
-    }
-  }
-
-  .target-wrapper .header {
-    @media (max-width: @screen-xs-max) {
-      padding-top: 35px;
-    }
-  }
-
-  .header-row {
-    .make-row();
-    .header {
-      .make-xs-column(12);
-    }
-  }
-
-  .sub-header-row {
-    .make-row();
-    .source {
-      .make-sm-column(5);
-    }
-    .target {
-      .make-sm-column(6);
-      .make-sm-column-offset(1);
-    }
-
-    @media (max-width: @screen-xs-max) {
-      display: none;
-    }
-  }
-
   .pick-button-column {
     text-align: center;
     z-index: 1;
-    .make-sm-column(1);
-
-    @media (min-width: @screen-sm) {
-      height: @list-min-height;
-      line-height: @list-min-height;
-    }
   }
 
   .btn-group-picklist {  // a responsize btn-group
     > .btn {
+      display: block;
       border-radius: 0;
       padding: 0;
       text-align: center;
@@ -89,13 +38,58 @@
         padding-right: 0.5em;
       }
     }
+  }
 
-    @media (min-width: @screen-sm) {
-      min-width: @size-clickable;
-      display: inline-block;
-      vertical-align: middle;
+  @media (min-width: @screen-sm) {
+    .inner {
+      display: table-row;
+    }
+
+    .ordering-list .header {
+      display: none;
+    }
+
+    .source-wrapper {
+      display: table-cell;
+      width: 50%;
+      vertical-align: top;
+    }
+
+    .target-wrapper {
+      display: table-cell;
+      width: 50%;
+      vertical-align: top;
+    }
+    .pick-button-column {
+      padding: 5px;
+      display: table-cell;
+      vertical-align: top;
+    }
+
+    .header-row {
+      display: table-row;
+    }
+
+    .sub-header-row {
+      display: table-row;
+      .source {
+        display: table-cell;
+      }
+      .middle {
+        display: table-cell;
+      }
+      .target {
+        display: table-cell;
+      }
+
+    }
+
+    .btn-group-picklist {
+      flex-direction: column;
+      display:flex;
 
       > .btn {
+        min-width: @size-clickable;
         height: @size-clickable;
       }
 
@@ -122,12 +116,43 @@
       .richicon-right-all:before {
         content: @fa-var-angle-double-right;
       }
+
+    }
+  }
+
+  @media (max-width: @screen-xs-max) {
+    width:100%;
+
+    .inner {
+      width: 100%;
     }
 
-    @media (max-width: @screen-xs-max) {
+    .source-wrapper {
+      width: 100%;
+    }
+
+    .target-wrapper {
+      width: 100%;
+    }
+    .pick-button-column {
+      width: 100%;
+    }
+
+    .header-row {
+      width: 100%;
+    }
+
+    .sub-header-row {
+      display: none;
+    }
+
+
+    .btn-group-picklist {
       max-width: none;
 
       > .btn {
+        display: inline-block;
+        width: 25%;
         height: @size-touchable;
         max-width: none;
 
@@ -157,10 +182,6 @@
         content: @fa-var-angle-double-down;
       }
     }
-  }
 
-  .btn-add-all, .btn-add, .btn-remove, .btn-remove-all {
-    .make-sm-column(12);
-    .make-xs-column(3);
   }
 }
