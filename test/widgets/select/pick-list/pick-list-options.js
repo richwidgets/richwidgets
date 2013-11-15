@@ -148,14 +148,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           // when
           element.pickList(options);
           // then
-          expect(fixture.find('.pick-list').first().attr('class')).toEqual('container pick-list outer ' + styleClass);
+          expect(fixture.find('.pick-list').first().attr('class')).toEqual('pick-list outer ' + styleClass);
 
           //given
           styleClass = 'newClass';
           // when
           element.pickList('option', 'styleClass', styleClass);
           // then
-          expect(fixture.find('.pick-list').first().attr('class')).toEqual('container pick-list outer ' + styleClass);
+          expect(fixture.find('.pick-list').first().attr('class')).toEqual('pick-list outer ' + styleClass);
         }
 
         test(fixture_list, element_list);
