@@ -419,15 +419,16 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         // given
         var options = {
           header: 'Table layout with columnClasses',
-          columnClasses: 'column-1 column-2'
+          columnClasses: 'column-1, column-2'
         };
         // when
         element_table.orderingList(options);
+        var widget = element_table.data('orderingList');
         // then
         var getColumnClass = function (cells, index) {
           return $(cells.get(index)).attr('class');
         };
-        var columnClasses = options.columnClasses.split(' ');
+        var columnClasses = widget._splitColumnClasses(options.columnClasses);
         var header_row_cells = fixture_table.find('thead th');
         expect(getColumnClass(header_row_cells, 0)).toMatch(columnClasses[0]);
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(columnClasses[1]);
@@ -443,11 +444,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         expect(getColumnClass(row_1_cells, 2)).not.toMatch(columnClasses[0]);
         expect(getColumnClass(row_1_cells, 2)).not.toMatch(columnClasses[1]);
         // given
-        var newColumnClassString = 'foo-3 foo-4';
+        var newColumnClassString = 'foo-3,foo-4';
         // when
         element_table.orderingList('option', 'columnClasses', newColumnClassString);
         // then
-        var newColumnClasses = newColumnClassString.split(' ');
+        var newColumnClasses = widget._splitColumnClasses(newColumnClassString);
         header_row_cells = fixture_table.find('thead th');
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(/column/);
         expect(getColumnClass(header_row_cells, 0)).toMatch(newColumnClasses[0]);
@@ -467,6 +468,62 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         expect(getColumnClass(row_1_cells, 1)).toMatch(newColumnClasses[1]);
         expect(getColumnClass(row_1_cells, 2)).not.toMatch(/column/);
         expect(getColumnClass(row_1_cells, 2)).not.toMatch(newColumnClasses[0]);
+        expect(getColumnClass(row_1_cells, 2)).not.toMatch(newColumnClasses[1]);
+      });
+      it('uses the columnClasses option for table layout with a repeating pattern', function () {
+        // given
+        var options = {
+          header: 'Table layout with columnClasses',
+          columnClasses: 'column-1,column-2,*'
+        };
+        // when
+        element_table.orderingList(options);
+        var widget = element_table.data('orderingList');
+        // then
+        var getColumnClass = function (cells, index) {
+          return $(cells.get(index)).attr('class');
+        };
+        var columnClasses = widget._splitColumnClasses(options.columnClasses);
+        var header_row_cells = fixture_table.find('thead th');
+        expect(getColumnClass(header_row_cells, 0)).toMatch(columnClasses[0]);
+        expect(getColumnClass(header_row_cells, 0)).not.toMatch(columnClasses[1]);
+        expect(getColumnClass(header_row_cells, 1)).not.toMatch(columnClasses[0]);
+        expect(getColumnClass(header_row_cells, 1)).toMatch(columnClasses[1]);
+        expect(getColumnClass(header_row_cells, 2)).toMatch(columnClasses[0]);
+        expect(getColumnClass(header_row_cells, 2)).not.toMatch(columnClasses[1]);
+        var row_1_cells = fixture_table.find('tbody td');
+        expect(getColumnClass(row_1_cells, 0)).toMatch(columnClasses[0]);
+        expect(getColumnClass(row_1_cells, 0)).not.toMatch(columnClasses[1]);
+        expect(getColumnClass(row_1_cells, 1)).not.toMatch(columnClasses[0]);
+        expect(getColumnClass(row_1_cells, 1)).toMatch(columnClasses[1]);
+        expect(getColumnClass(row_1_cells, 2)).toMatch(columnClasses[0]);
+        expect(getColumnClass(row_1_cells, 2)).not.toMatch(columnClasses[1]);
+
+        // given
+        var newColumnClassString = 'foo-3 foo-3b, foo-4, *';
+        // when
+        element_table.orderingList('option', 'columnClasses', newColumnClassString);
+        // then
+        var newColumnClasses = widget._splitColumnClasses(newColumnClassString);
+        header_row_cells = fixture_table.find('thead th');
+        expect(getColumnClass(header_row_cells, 0)).not.toMatch(/column/);
+        expect(getColumnClass(header_row_cells, 0)).toMatch(newColumnClasses[0]);
+        expect(getColumnClass(header_row_cells, 0)).not.toMatch(newColumnClasses[1]);
+        expect(getColumnClass(header_row_cells, 1)).not.toMatch(/column/);
+        expect(getColumnClass(header_row_cells, 1)).not.toMatch(newColumnClasses[0]);
+        expect(getColumnClass(header_row_cells, 1)).toMatch(newColumnClasses[1]);
+        expect(getColumnClass(header_row_cells, 2)).not.toMatch(/column/);
+        expect(getColumnClass(header_row_cells, 2)).toMatch(newColumnClasses[0]);
+        expect(getColumnClass(header_row_cells, 2)).not.toMatch(newColumnClasses[1]);
+        row_1_cells = fixture_table.find('tbody td');
+        expect(getColumnClass(row_1_cells, 0)).not.toMatch(/column/);
+        expect(getColumnClass(row_1_cells, 0)).toMatch(newColumnClasses[0]);
+        expect(getColumnClass(row_1_cells, 0)).not.toMatch(newColumnClasses[1]);
+        expect(getColumnClass(row_1_cells, 1)).not.toMatch(/column/);
+        expect(getColumnClass(row_1_cells, 1)).not.toMatch(newColumnClasses[0]);
+        expect(getColumnClass(row_1_cells, 1)).toMatch(newColumnClasses[1]);
+        expect(getColumnClass(row_1_cells, 2)).not.toMatch(/column/);
+        expect(getColumnClass(row_1_cells, 2)).toMatch(newColumnClasses[0]);
         expect(getColumnClass(row_1_cells, 2)).not.toMatch(newColumnClasses[1]);
       });
     });

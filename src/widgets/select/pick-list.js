@@ -89,8 +89,15 @@
        */
       styleClass: null,
       /**
-       * A CSS class to be added to each column of the pickList when table layout is used.
-       * Multiple classes should be space separated
+       /**
+       * When _table_ layout is used,
+       * _columnClasses_ specifies a comma-delimited list of CSS style classes to apply to each column.
+       * A space separated list of classes may be specified for an individual column.
+       *
+       * If the number of elements in this list is less than the number of column children,
+       * the class will be applied to every n-fold column where n is the order the class in this list.
+       *
+       *  If there are more class names than columns, the overflow ones are ignored.
        *
        * @property columnClasses
        * @type String

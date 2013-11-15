@@ -210,15 +210,16 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         // given
         var options = {
           header: 'Table layout w/ columnClasses',
-          columnClasses: 'column-1 column-2'
+          columnClasses: 'column-1,column-2'
         };
         // when
         element_table.pickList(options);
+        var orderingListWidget = element_table.data('pickList').sourceList.data('orderingList');
         // then
         var getColumnClass = function (cells, index) {
           return $(cells.get(index)).attr('class');
         };
-        var columnClasses = options.columnClasses.split(' ');
+        var columnClasses = orderingListWidget._splitColumnClasses(options.columnClasses);
         var header_row_cells = fixture_table.find('.source-wrapper thead th');
         expect(getColumnClass(header_row_cells, 0)).toMatch(columnClasses[0]);
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(columnClasses[1]);
@@ -234,11 +235,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         expect(getColumnClass(row_1_cells, 2)).not.toMatch(columnClasses[0]);
         expect(getColumnClass(row_1_cells, 2)).not.toMatch(columnClasses[1]);
         // given
-        var newColumnClassString = 'foo-3 foo-4';
+        var newColumnClassString = 'foo-3, foo-4 ';
         // when
         element_table.pickList('option', 'columnClasses', newColumnClassString);
         // then
-        var newColumnClasses = newColumnClassString.split(' ');
+        var newColumnClasses = orderingListWidget._splitColumnClasses(newColumnClassString);
         header_row_cells = fixture_table.find('.source-wrapper thead th');
         expect(getColumnClass(header_row_cells, 0)).not.toMatch(/column/);
         expect(getColumnClass(header_row_cells, 0)).toMatch(newColumnClasses[0]);
