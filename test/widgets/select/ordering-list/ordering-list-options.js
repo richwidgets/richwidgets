@@ -217,10 +217,11 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           };
           element.orderingList(options);
           var widget = element.data('orderingList');
+          var newItem;
           if (widget.strategy === 'table') {
-            var newItem = $('<tr class="ui-selectee test" data-key="9" />');
+            newItem = $('<tr class="ui-selectee test" data-key="9" />');
           } else {
-            var newItem = $('<li class="ui-selectee test" data-key="9" />');
+            newItem = $('<li class="ui-selectee test" data-key="9" />');
           }
           expect(newItem.data('key')).toEqual(9);
           widget.add(newItem);
@@ -232,7 +233,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           widget.remove(newItem);
           widget._checkSort();  // invoke the sort to return to initial state
           expect(widget.getOrderedKeys()).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
-        };
+        }
         test(fixture_list, element_list);
         test(fixture_table, element_table);
       });
