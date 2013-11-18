@@ -207,6 +207,37 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
       });
     });
 
+    describe('sortFunction option:' , function () {
+      it('when the user provided sortfunction is defined, it is invoked when an item is added to the list', function() {
+        function test(fixture, element) {
+          var options = {
+            sortFunction: function (a, b) {  // a reverse sort
+              return $(b).data('key') - $(a).data('key');
+            }
+          };
+          element.orderingList(options);
+          var widget = element.data('orderingList');
+          if (widget.strategy === 'table') {
+            var newItem = $('<tr class="ui-selectee test" data-key="9" />');
+          } else {
+            var newItem = $('<li class="ui-selectee test" data-key="9" />');
+          }
+          expect(newItem.data('key')).toEqual(9);
+          widget.add(newItem);
+          expect(widget.getOrderedKeys()).toEqual([9, 8, 7, 6, 5, 4, 3, 2, 1]);
+
+          element.orderingList('option', 'sortFunction', function (a, b) {
+            return $(a).data('key') - $(b).data('key');
+          });
+          widget.remove(newItem);
+          widget._checkSort();  // invoke the sort to return to initial state
+          expect(widget.getOrderedKeys()).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+        };
+        test(fixture_list, element_list);
+        test(fixture_table, element_table);
+      });
+    });
+
     describe('height options:', function () {
       it('height', function () {
         function test(fixture, element) {
