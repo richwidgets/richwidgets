@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="fragment" content="!"/>
+
+  <title>Charts</title>
+
+
+
+  <link rel="stylesheet" href="../assets-demo/richwidgets-demo.min.css">
+  <script src="../assets-demo/richwidgets-demo.min.js"></script>
+
+
+  <link rel="stylesheet" href="../assets-demo/output/charts/charts.css">
+  
+
+  <link rel="stylesheet" href="../assets-demo/highlightjs/styles/github.css">
+  <script src="../assets-demo/modernizr/modernizr.js"></script>
+  <script src="../assets-demo/highlightjs/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../assets-demo/bootstrap/js/dropdown.js"></script>
+  <script src="../assets-demo/bootstrap/js/collapse.js"></script>
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../">RichWidgets</a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+
+        <li ><a href="../">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Widgets <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            
+              
+            
+              
+            
+              
+            
+              
+                <li ><a href="../input/autocomplete.html">Autocomplete</a></li>
+              
+            
+              
+                <li  class="active"><a href="charts.html">Charts</a></li>
+              
+            
+              
+                <li ><a href="../select/ordering-list.html">OrderingList</a></li>
+              
+            
+              
+                <li ><a href="../select/pick-list.html">PickList</a></li>
+              
+            
+              
+            
+          </ul>
+        </li>
+        <li><a href="/api">API Docs</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ><a href="../about.html">About</a></li>
+        <li ><a href="../tests.html">Testing</a></li>
+        <li ><a href="../contributing.html">Contributing</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container">
+  
+   <h2>Chart demos</h2>
+
+    
+        <fieldset>
+            <legend>Line chart with event handlers</legend>
+            <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="placeholder" class="rich-chart-responsive"></div>
+<span id="clickdata"></span>
+<br/>
+<span id="hoverdata"></span>
+                        </div>
+                        <div class="panel-footer">
+                            <p>Basic line chart</p>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                
+                
+                <pre><code class="language-html">&lt;div id=&quot;placeholder&quot; class=&quot;rich-chart-responsive&quot;&gt;&lt;/div&gt;
+&lt;span id=&quot;clickdata&quot;&gt;&lt;/span&gt;
+&lt;br/&gt;
+&lt;span id=&quot;hoverdata&quot;&gt;&lt;/span&gt;</code></pre>
+
+                <pre><code class="language-js">$(<span class="string">'#placeholder'</span>).chart({
+  data: [
+    {data:[[<span class="number">1990</span>,<span class="number">19.1</span>],[<span class="number">1991</span>,<span class="number">18.9</span>],[<span class="number">1992</span>,<span class="number">18.6</span>],[<span class="number">1993</span>,<span class="number">19.5</span>],[<span class="number">1994</span>,<span class="number">19.5</span>],[<span class="number">1995</span>,<span class="number">19.3</span>],[<span class="number">1996</span>,<span class="number">19.4</span>],[<span class="number">1997</span>,<span class="number">19.7</span>],[<span class="number">1998</span>,<span class="number">19.5</span>],[<span class="number">1999</span>,<span class="number">19.5</span>],[<span class="number">2000</span>,<span class="number">20</span>]],label:<span class="string">'USA'</span>},
+    {data:[[<span class="number">1990</span>,<span class="number">2.2</span>],[<span class="number">1991</span>,<span class="number">2.2</span>],[<span class="number">1992</span>,<span class="number">2.3</span>],[<span class="number">1993</span>,<span class="number">2.4</span>],[<span class="number">1994</span>,<span class="number">2.6</span>],[<span class="number">1995</span>,<span class="number">2.7</span>],[<span class="number">1996</span>,<span class="number">2.8</span>],[<span class="number">1997</span>,<span class="number">2.8</span>],[<span class="number">1998</span>,<span class="number">2.7</span>],[<span class="number">1999</span>,<span class="number">2.6</span>],[<span class="number">2000</span>,<span class="number">2.7</span>]],label:<span class="string">'China'</span>},
+    {data:[[<span class="number">1990</span>,<span class="number">9.4</span>],[<span class="number">1991</span>,<span class="number">9.4</span>],[<span class="number">1992</span>,<span class="number">9.5</span>],[<span class="number">1993</span>,<span class="number">9.4</span>],[<span class="number">1994</span>,<span class="number">9.9</span>],[<span class="number">1995</span>,<span class="number">9.9</span>],[<span class="number">1996</span>,<span class="number">10.1</span>],[<span class="number">1997</span>,<span class="number">10.1</span>],[<span class="number">1998</span>,<span class="number">9.7</span>],[<span class="number">1999</span>,<span class="number">9.5</span>],[<span class="number">2000</span>,<span class="number">9.7</span>]],label:<span class="string">'Japan'</span>},
+    {data:[[<span class="number">1992</span>,<span class="number">14</span>],[<span class="number">1993</span>,<span class="number">12.8</span>],[<span class="number">1994</span>,<span class="number">10.9</span>],[<span class="number">1995</span>,<span class="number">10.5</span>],[<span class="number">1996</span>,<span class="number">10.4</span>],[<span class="number">1997</span>,<span class="number">10</span>],[<span class="number">1998</span>,<span class="number">9.6</span>],[<span class="number">1999</span>,<span class="number">9.7</span>],[<span class="number">2000</span>,<span class="number">9.8</span>]],label:<span class="string">'Russia'</span>}
+  ],
+  yaxis:{axisLabel:<span class="string">'metric tons of CO2 per capita'</span>},ytype:<span class="string">'number'</span>,
+  xaxis:{axisLabel:<span class="string">'year'</span>},zoom:<span class="literal">false</span>,xtype:<span class="string">'number'</span>,
+  charttype:<span class="string">'line'</span>
+});
+
+<span class="comment">/*Flot style of event binding*/</span>
+$(<span class="string">'#placeholder'</span>).on(<span class="string">'plothover'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(event, pos, item)</span> {</span>
+  <span class="keyword">if</span> (item) {
+    $(<span class="string">'#hoverdata'</span>).text(<span class="string">'hover point '</span> + item.dataIndex + <span class="string">' in '</span> + item.series.label);
+  }
+});
+
+$(<span class="string">'#placeholder'</span>).on(<span class="string">'mouseout'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>$(<span class="string">'#hoverdata'</span>).text(<span class="string">''</span>);});</code></pre>
+
+            </div>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Pie chart</legend>
+            <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="pie" class="rich-chart-responsive"></div>
+                        </div>
+                        <div class="panel-footer">
+                            <p></p>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                
+                
+                <pre><code class="language-html">&lt;div id=&quot;pie&quot; class=&quot;rich-chart-responsive&quot;&gt;&lt;/div&gt;</code></pre>
+
+                <pre><code class="language-js">$(<span class="string">'#pie'</span>).chart({
+  data: [
+          [
+            {data: <span class="number">12500746</span>, label: <span class="string">'Service sector'</span>},
+            {data: <span class="number">188217</span>,   label: <span class="string">'Agricultural sector'</span>},
+            {data: <span class="number">2995787</span>, label:  <span class="string">'Industrial sector'</span>}
+          ]
+        ],
+  legend:{sorted:<span class="string">'ascending'</span>},
+  charttype:<span class="string">'pie'</span>
+});</code></pre>
+
+            </div>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Number bar chart</legend>
+            <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="bar" class="rich-chart-responsive"></div>
+                        </div>
+                        <div class="panel-footer">
+                            <p></p>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                
+                
+                <pre><code class="language-html">&lt;div id=&quot;bar&quot; class=&quot;rich-chart-responsive&quot;&gt;&lt;/div&gt;</code></pre>
+
+                <pre><code class="language-js">$(<span class="string">'#bar'</span>).chart({
+  data: [[[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">5</span>],[<span class="number">10</span>,<span class="number">4</span>]]],
+  series:{
+    bars:{show:<span class="literal">true</span>}
+  },
+  charttype: <span class="string">'bar'</span>
+});</code></pre>
+
+            </div>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Category bar chart</legend>
+            <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="category" class="rich-chart-responsive"></div>
+                        </div>
+                        <div class="panel-footer">
+                            <p></p>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                
+                
+                <pre><code class="language-html">&lt;div id=&quot;category&quot; class=&quot;rich-chart-responsive&quot;&gt;&lt;/div&gt;</code></pre>
+
+                <pre><code class="language-js">$(<span class="string">'#category'</span>).chart(
+  {
+    data: [
+      {
+        bars: {show: <span class="literal">true</span>},
+          data: {<span class="string">'United States'</span>: <span class="number">797</span>, <span class="string">'San Marino'</span>: <span class="number">1263</span>, <span class="string">'Croatia'</span>: <span class="number">380</span>, <span class="string">'Denmark'</span>: <span class="number">480</span>, <span class="string">'Vietnam'</span>: <span class="number">13</span>}
+      }
+          ],
+    yaxis: {axisLabel: <span class="string">'Motor vehicles per 1000 people'</span>},
+    ytype: <span class="string">'number'</span>,
+    xtype: <span class="string">'string'</span>,
+    charttype: <span class="string">'bar'</span>
+  }
+
+);</code></pre>
+
+            </div>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Multiple category bar chart</legend>
+            <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="mulitplecategorybar" class="rich-chart-responsive"></div>
+                        </div>
+                        <div class="panel-footer">
+                            <p>Example of processing data. The series with label 'Other': missing 'Industrial' record is considered to be zero, added 'not_know' is ignored.</p>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                
+                
+                <pre><code class="language-html">&lt;div id=&quot;mulitplecategorybar&quot; class=&quot;rich-chart-responsive&quot;&gt;&lt;/div&gt;</code></pre>
+
+                <pre><code class="language-js">$(<span class="string">'#mulitplecategorybar'</span>).chart({
+  data: [
+    {bars:{show:<span class="literal">true</span>}, data:{Service:<span class="number">12500746</span>,Agricultural:<span class="number">188217</span>,Industrial:<span class="number">2995787</span>}, label:<span class="string">'United States'</span>},
+    {bars:{show:<span class="literal">true</span>}, data:{Service:<span class="number">3669259</span>,Agricultural:<span class="number">830931</span>,Industrial:<span class="number">3726848</span>}, label:<span class="string">'China'</span>},
+    {bars:{show:<span class="literal">true</span>}, data:{Service:<span class="number">4258274</span>,Agricultural:<span class="number">71568</span>,Industrial:<span class="number">1640091</span>}, label:<span class="string">'Japan'</span>},
+    {bars:{show:<span class="literal">true</span>}, data:{Service:<span class="number">2417812</span>,Agricultural:<span class="number">27205</span>,NotKnown:<span class="number">955563</span>}, label:<span class="string">'Other'</span>}
+  ],
+  ytype:<span class="string">'number'</span>,
+  legend: {sorted:<span class="string">'ascending'</span>},
+  xtype:<span class="string">'string'</span>,
+  charttype:<span class="string">'bar'</span>
+});</code></pre>
+
+            </div>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Line chart with zoom</legend>
+            <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="zoom" class="rich-chart-responsive"></div>
+<a href="#" onclick="$('#zoom').chart('resetZoom'); return false;">Reset zoom</a>
+                        </div>
+                        <div class="panel-footer">
+                            <p></p>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                
+                
+                <pre><code class="language-html">&lt;div id=&quot;zoom&quot; class=&quot;rich-chart-responsive&quot;&gt;&lt;/div&gt;
+&lt;a href=&quot;#&quot; onclick=&quot;$(&#39;#zoom&#39;).chart(&#39;resetZoom&#39;); return false;&quot;&gt;Reset zoom&lt;/a&gt;</code></pre>
+
+                <pre><code class="language-js">$(<span class="string">'#zoom'</span>).chart(
+  {
+    data: [
+      {color:<span class="string">'darkcyan'</span>,data:[[<span class="number">1</span>,<span class="number">8</span>],[<span class="number">2</span>,<span class="number">12</span>],[<span class="number">3</span>,<span class="number">13</span>],[<span class="number">4</span>,<span class="number">14</span>],[<span class="number">5</span>,<span class="number">16</span>],[<span class="number">6</span>,<span class="number">18</span>],[<span class="number">7</span>,<span class="number">15</span>],[<span class="number">8</span>,<span class="number">20</span>],[<span class="number">9</span>,<span class="number">21</span>],[<span class="number">10</span>,<span class="number">15</span>],[<span class="number">12</span>,<span class="number">16</span>],[<span class="number">13</span>,<span class="number">18</span>],[<span class="number">14</span>,<span class="number">20</span>]],
+       lines:{show:<span class="literal">true</span>},label:<span class="string">'A product'</span>,points:{symbol:<span class="string">'square'</span> ,show:<span class="literal">true</span>}},
+      {color:<span class="string">'chocolate'</span>,data:[[<span class="number">2</span>,<span class="number">6</span>],[<span class="number">3</span>,<span class="number">10</span>],[<span class="number">4</span>,<span class="number">11</span>],[<span class="number">5</span>,<span class="number">12</span>],[<span class="number">6</span>,<span class="number">15</span>],[<span class="number">7</span>,<span class="number">16</span>],[<span class="number">8</span>,<span class="number">14</span>],[<span class="number">9</span>,<span class="number">14</span>],[<span class="number">10</span>,<span class="number">14</span>]],
+       lines:{show:<span class="literal">true</span>},label:<span class="string">'B product'</span>,points:{show:<span class="literal">true</span>}},
+      {color:<span class="string">'coral'</span>,data:[[<span class="number">2</span>,<span class="number">6</span>],[<span class="number">3</span>,<span class="number">8</span>],[<span class="number">5</span>,<span class="number">4</span>],[<span class="number">10</span>,<span class="number">6</span>],[<span class="number">14</span>,<span class="number">8</span>],[<span class="number">15</span>,<span class="number">4</span>]],
+       lines:{show:<span class="literal">true</span>},label:<span class="string">'C product'</span>,points:{symbol:<span class="string">'diamond'</span>,show:<span class="literal">true</span>}}
+    ],
+    ytype:<span class="string">'number'</span>,
+    legend:{sorted:<span class="string">'ascending'</span>},
+    zoom:<span class="literal">true</span>,
+    xtype:<span class="string">'number'</span>,
+    charttype:<span class="string">'line'</span>
+  }
+);</code></pre>
+
+            </div>
+        </fieldset>
+    
+
+    
+      <script src="../assets-demo/output/charts/line-chart.js"></script>
+    
+      <script src="../assets-demo/output/charts/pie-chart.js"></script>
+    
+      <script src="../assets-demo/output/charts/numberbar-chart.js"></script>
+    
+      <script src="../assets-demo/output/charts/category-bar-chart.js"></script>
+    
+      <script src="../assets-demo/output/charts/multiple-category-bar-chart.js"></script>
+    
+      <script src="../assets-demo/output/charts/line-chart-zoom.js"></script>
+    
+
+</div>
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-7306415-8', 'richwidgets.io');
+        ga('send', 'pageview');
+    </script>
+
+
+</body>
+</html>

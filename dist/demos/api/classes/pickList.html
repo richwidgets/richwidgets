@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>pickList - richfaces-widgets</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="richfaces-widgets" src="../../logo.png" style="max-height: 65%;" title="richfaces-widgets">
+        
+            richfaces-widgets
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-wip</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/autocomplete", "classes/chart", "classes/orderingList", "classes/pickList", "modules/Input", "modules/Output", "modules/Select"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Widgets</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/autocomplete.html">autocomplete</a></li>
+                    
+                        <li><a href="../classes/chart.html">chart</a></li>
+                    
+                        <li><a href="../classes/orderingList.html">orderingList</a></li>
+                    
+                        <li><a href="../classes/pickList.html">pickList</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Input.html">Input</a></li>
+                    
+                        <li><a href="../modules/Output.html">Output</a></li>
+                    
+                        <li><a href="../modules/Select.html">Select</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>pickList <small>Widget</small></h1>
+</div>
+
+<div class="well well-small">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_widgets_select_pick-list.js.html#l1"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:1</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/Select.html">Select</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="well well-small">
+    <p>A widget providing selection and sorting capabilities for a list of elements</p>
+
+</div>
+
+
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
+
+        
+            <li><a data-toggle="tab" href="#methods">Methods</a></li>
+        
+        
+            <li><a data-toggle="tab" href="#properties">Properties</a></li>
+        
+        
+        
+            <li><a data-toggle="tab" href="#events">Events</a></li>
+        
+    </ul>
+
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_addItems" data-tablink="addItems">addItems</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_destroy" data-tablink="destroy">destroy</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_removeItems" data-tablink="removeItems">removeItems</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_disabled" data-tablink="disabled">disabled</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_header" data-tablink="header">header</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_height" data-tablink="height">height</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_heightMax" data-tablink="heightMax">heightMax</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_heightMin" data-tablink="heightMin">heightMin</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_orderable" data-tablink="orderable">orderable</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_orderButtonsText" data-tablink="orderButtonsText">orderButtonsText</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_pickButtonsText" data-tablink="pickButtonsText">pickButtonsText</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_sourceHeader" data-tablink="sourceHeader">sourceHeader</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_styleClass" data-tablink="styleClass">styleClass</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_switchByClick" data-tablink="switchByClick">switchByClick</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_switchByDblClick" data-tablink="switchByDblClick">switchByDblClick</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_targetHeader" data-tablink="targetHeader">targetHeader</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+                <div class="index-section events">
+                    <h3>Events</h3>
+
+                    <ul class="index-list events">
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_addDomElements" data-tablink="addDomElements">addDomElements</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_blur" data-tablink="blur">blur</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_change" data-tablink="change">change</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_create" data-tablink="create">create</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_destroy" data-tablink="destroy">destroy</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_focus" data-tablink="focus">focus</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+        </div>
+
+        
+            <div id="methods" class="tab-pane">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_addItems" class="method item">
+    <h3 class="name"><code>addItems</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>items</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[event=null]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l278"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:278</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Move items from the source list of the pickList to the target list.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">items</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A list of Elements to remove from the source list of the pickList</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[event=null]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The event that triggered the removal of the elements.  This event will be made accessible
+when the resulting change event is fired.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_destroy" class="method item">
+    <h3 class="name"><code>destroy</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l296"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:296</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Removes the pick list functionality completely. This will return the element back to its pre-init state.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_removeItems" class="method item">
+    <h3 class="name"><code>removeItems</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>items</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[event=null]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l260"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:260</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Move items from the target list of the pickList to the source list.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">items</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A list of Elements to remove from the target list of the pickList</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[event=null]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The event that triggered the removal of the elements.  This event will be made accessible
+when the resulting change event is fired.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="tab-pane">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_disabled" class="property item">
+    <h3 class="name"><code>disabled</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l12"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:12</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Disable the pickList widget</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_header" class="property item">
+    <h3 class="name"><code>header</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l20"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:20</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The text to use for the pickList header</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_height" class="property item">
+    <h3 class="name"><code>height</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l41"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:41</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The height of the pickList.
+Specify the value as either:</p>
+<ol>
+<li><p>A String with appropriate units, eg.:</p>
+<pre class="code prettyprint"><code>height: &#39;120px&#39;</code></pre>
+</li>
+<li><p>An integer without any units, in which case the units of <code>px</code> are assumed:</p>
+<pre class="code prettyprint"><code>height: 120</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_heightMax" class="property item">
+    <h3 class="name"><code>heightMax</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l69"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:69</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The maximum height of the pickList
+Specify the value as either:</p>
+<ol>
+<li><p>A String with appropriate units, eg.:</p>
+<pre class="code prettyprint"><code>heightMax: &#39;120px&#39;</code></pre>
+</li>
+<li><p>An integer without any units, in which case the units of <code>px</code> are assumed:</p>
+<pre class="code prettyprint"><code>heightMax: 120</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_heightMin" class="property item">
+    <h3 class="name"><code>heightMin</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l55"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:55</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The minimum height of the pickList.
+Specify the value as either:</p>
+<ol>
+<li><p>A String with appropriate units, eg.:</p>
+<pre class="code prettyprint"><code>heightMin: &#39;120px&#39;</code></pre>
+</li>
+<li><p>An integer without any units, in which case the units of <code>px</code> are assumed:</p>
+<pre class="code prettyprint"><code>heightMin: 120</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_orderable" class="property item">
+    <h3 class="name"><code>orderable</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l124"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:124</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>When true, elements in the target list can be re-ordered</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> true</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_orderButtonsText" class="property item">
+    <h3 class="name"><code>orderButtonsText</code></h3>
+    <span class="type">JSON</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l132"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:132</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Text to be applied to the ordering buttons of the target list.  The text should be arranged as an object in
+JSON notation.</p>
+<p>eg. {first: ..., up: ..., down: ..., last: ...}</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_pickButtonsText" class="property item">
+    <h3 class="name"><code>pickButtonsText</code></h3>
+    <span class="type">JSON</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l143"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:143</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Text to be applied to the picking buttons of the picklist.  The text should be arranged as an object in
+JSON notation.</p>
+<p>eg. {addAll: ..., add: ..., remove: ..., removeAll: ...}</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_sourceHeader" class="property item">
+    <h3 class="name"><code>sourceHeader</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l27"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:27</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The text to use for the source header of the pickList</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_styleClass" class="property item">
+    <h3 class="name"><code>styleClass</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l83"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:83</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A CSS class to be added to the pickList.
+Multiple classes should be space separated</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_switchByClick" class="property item">
+    <h3 class="name"><code>switchByClick</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l108"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:108</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>When true, clicking on a pickList element will move it between the source and target lists</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_switchByDblClick" class="property item">
+    <h3 class="name"><code>switchByDblClick</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l116"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:116</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>When true, double-clicking on a pickList element will move it between the source and target lists</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> true</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_targetHeader" class="property item">
+    <h3 class="name"><code>targetHeader</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l34"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:34</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The text to use for the target header of the pickList</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+            <div id="events" class="tab-pane">
+                <h2 class="off-left">Events</h2>
+
+                
+                    <div id="event_addDomElements" class="events item">
+    <h3 class="name"><code>addDomElements</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l163"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:163</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fired after the dynamically created DOM elements of the pickList have been created</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_blur" class="events item">
+    <h3 class="name"><code>blur</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l187"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:187</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fired when the pickList loses focus</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_change" class="events item">
+    <h3 class="name"><code>change</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l157"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:157</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fired when the target list of the pickList changes values.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_create" class="events item">
+    <h3 class="name"><code>create</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l169"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:169</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fired after the pickList has been created</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_destroy" class="events item">
+    <h3 class="name"><code>destroy</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l175"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:175</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fired after the pickList has been destroyed</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_focus" class="events item">
+    <h3 class="name"><code>focus</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_select_pick-list.js.html#l181"><code>src&#x2F;widgets&#x2F;select&#x2F;pick-list.js:181</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fired when the pickList receives focus</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+            </div>
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

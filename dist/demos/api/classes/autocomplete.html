@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>autocomplete - richfaces-widgets</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="richfaces-widgets" src="../../logo.png" style="max-height: 65%;" title="richfaces-widgets">
+        
+            richfaces-widgets
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-wip</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/autocomplete", "classes/chart", "classes/orderingList", "classes/pickList", "modules/Input", "modules/Output", "modules/Select"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Widgets</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/autocomplete.html">autocomplete</a></li>
+                    
+                        <li><a href="../classes/chart.html">chart</a></li>
+                    
+                        <li><a href="../classes/orderingList.html">orderingList</a></li>
+                    
+                        <li><a href="../classes/pickList.html">pickList</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Input.html">Input</a></li>
+                    
+                        <li><a href="../modules/Output.html">Output</a></li>
+                    
+                        <li><a href="../modules/Select.html">Select</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>autocomplete <small>Widget</small></h1>
+</div>
+
+<div class="well well-small">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_widgets_input_autocomplete.js.html#l1"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:1</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/Input.html">Input</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="well well-small">
+    <p>Autocomplete enables users to quickly find and select from a pre-populated list of values as they type, leveraging searching and filtering.</p>
+<p>The widget is based on popular jQuery UI Autocomplete widget, but it brings some advanced built-in features:</p>
+<ul>
+<li>caching</li>
+<li>tokenizing</li>
+<li>using DOM as a source of suggestions</li>
+<li>auto-fill</li>
+<li>built-in button</li>
+</ul>
+
+</div>
+
+
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#index">Index</a></li>
+
+        
+            <li><a data-toggle="tab" href="#methods">Methods</a></li>
+        
+        
+            <li><a data-toggle="tab" href="#properties">Properties</a></li>
+        
+        
+        
+            <li><a data-toggle="tab" href="#events">Events</a></li>
+        
+    </ul>
+
+    <div class="tab-content">
+        <div id="index" class="tab-pane active">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_close" data-tablink="close">close</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_destroy" data-tablink="destroy">destroy</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_disable" data-tablink="disable">disable</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_enable" data-tablink="enable">enable</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_option" data-tablink="option">option</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_search" data-tablink="search">search</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_widget" data-tablink="widget">widget</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_appendTo" data-tablink="appendTo">appendTo</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_autoFill" data-tablink="autoFill">autoFill</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_autoFocus" data-tablink="autoFocus">autoFocus</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_cached" data-tablink="cached">cached</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_cacheImplementation" data-tablink="cacheImplementation">cacheImplementation</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_cachePrefixExtract" data-tablink="cachePrefixExtract">cachePrefixExtract</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_delay" data-tablink="delay">delay</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_disabled" data-tablink="disabled">disabled</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_filter" data-tablink="filter">filter</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_minLength" data-tablink="minLength">minLength</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_position" data-tablink="position">position</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_showButton" data-tablink="showButton">showButton</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_source" data-tablink="source">source</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_token" data-tablink="token">token</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+                <div class="index-section events">
+                    <h3>Events</h3>
+
+                    <ul class="index-list events">
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_change" data-tablink="change">change</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_close" data-tablink="close">close</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_create" data-tablink="create">create</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_focus" data-tablink="focus">focus</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_open" data-tablink="open">open</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_response" data-tablink="response">response</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_search" data-tablink="search">search</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_select" data-tablink="select">select</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#" data-tabid="#events" data-anchor="#event_update" data-tablink="update">update</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+        </div>
+
+        
+            <div id="methods" class="tab-pane">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_close" class="method item">
+    <h3 class="name"><code>close</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l313"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:313</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Closes the Autocomplete menu. Useful in combination with the search method, to close the open menu.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_destroy" class="method item">
+    <h3 class="name"><code>destroy</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l322"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:322</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Removes the autocomplete functionality completely. This will return the element back to its pre-init state.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_disable" class="method item">
+    <h3 class="name"><code>disable</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l329"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:329</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Disables the autocomplete.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_enable" class="method item">
+    <h3 class="name"><code>enable</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l336"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:336</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Enables the autocomplete.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_option" class="method item">
+    <h3 class="name"><code>option</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l343"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:343</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p><code>option( optionName )</code></p>
+<p>Gets an object containing key/value pairs representing the current autocomplete options hash.</p>
+<p><code>option()</code></p>
+<p>Gets an object containing key/value pairs representing the current autocomplete options hash.</p>
+<p><code>option( optionName, value )</code></p>
+<p>Sets the value of the autocomplete option associated with the specified optionName.</p>
+<p><code>option( options )</code></p>
+<p>Sets one or more options for the autocomplete.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_search" class="method item">
+    <h3 class="name"><code>search</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[value]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l364"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:364</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggers a search event and invokes the data source if the event is not canceled.
+Can be used by a selectbox-like button to open the suggestions when clicked.
+When invoked with no parameters, the current input&#39;s value is used.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[value]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>optional</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_widget" class="method item">
+    <h3 class="name"><code>widget</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l374"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:374</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns a jQuery object containing the menu element. Although the menu items are constantly created and destroyed, the menu element itself is created during initialization and is constantly reused.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="tab-pane">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_appendTo" class="property item">
+    <h3 class="name"><code>appendTo</code></h3>
+    <span class="type">Selector</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l162"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:162</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Which element the menu should be appended to. When the value is null, the parents of the input field will be checked for a class of ui-front. If an element with the ui-front class is found, the menu will be appended to that element. Regardless of the value, if no element is found, the menu will be appended to the body.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_autoFill" class="property item">
+    <h3 class="name"><code>autoFill</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l69"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:69</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Auto filling mode previews a selected suggestion in the input as a user types.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_autoFocus" class="property item">
+    <h3 class="name"><code>autoFocus</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l60"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:60</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Auto focusing mode selects first suggestion in a list once it appears, so user can just confirm it using enter key.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_cached" class="property item">
+    <h3 class="name"><code>cached</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l111"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:111</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Turns suggestions caching on.</p>
+<p>In caching mode, autocomplete first tries to look suggestions for given term up in cache given by
+<code>cacheImplementation</code> option and if no suggestions are found, autocomplete uses classic <code>source</code>
+to retrieve suggestions.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_cacheImplementation" class="property item">
+    <h3 class="name"><code>cacheImplementation</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l124"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:124</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Allows to plug in implementation of cache, which in turn allows to use stores like Local Storage
+for remembering values.</p>
+<p><code>cacheImplementation</code> is an class with two methods:</p>
+<ul>
+<li><code>function get(searchTerm)</code> - returns all cached suggestions for given searchTerm prefix</li>
+<li><code>function set(searchTerm, suggestions)</code> - stores all provided suggestions into cache under given searchTerm prefix</li>
+</ul>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> $.rich.autocomplete.ObjectCache</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_cachePrefixExtract" class="property item">
+    <h3 class="name"><code>cachePrefixExtract</code></h3>
+    <span class="type">Function</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l139"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:139</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Function that determines what prefix of search term will be used to query a cache:</p>
+<p><code>function cachePrefixExtract(searchTerm)</code> - default implementation extracts first <code>minLength</code> characters of a search term</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> $.rich.autocomplete.cachePrefixExtract</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_delay" class="property item">
+    <h3 class="name"><code>delay</code></h3>
+    <span class="type">Integer</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l31"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:31</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The delay in milliseconds between when a keystroke occurs and when a search is performed. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> 0</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_disabled" class="property item">
+    <h3 class="name"><code>disabled</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l171"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:171</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Disables the autocomplete if set to true.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_filter" class="property item">
+    <h3 class="name"><code>filter</code></h3>
+    <span class="type">Function</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l150"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:150</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Provide function which will be used to filter array of suggestions by given searchTerm:</p>
+<p><code>function filter(array, searchTerm)</code></p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_minLength" class="property item">
+    <h3 class="name"><code>minLength</code></h3>
+    <span class="type">Number</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l102"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:102</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The minimum number of characters a user must type before a search is performed. Zero is useful for local data with just a few items, but a higher value should be used when a single character search could match a few thousand items.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> 0</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_position" class="property item">
+    <h3 class="name"><code>position</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l180"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:180</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Identifies the position of the suggestions menu in relation to the associated input element. The of option defaults to the input element, but you can specify another element to position against. You can refer to the jQuery UI Position utility for more details about the various options.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> &#x60;{ my: &quot;left top&quot;, at: &quot;left bottom&quot;, collision: &quot;none&quot; }&#x60;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_showButton" class="property item">
+    <h3 class="name"><code>showButton</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l51"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:51</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Allows to append a button to the input to allow opening suggestion box by mouse.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_source" class="property item">
+    <h3 class="name"><code>source</code></h3>
+    <span class="type">Unknown</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l78"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:78</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Defines the data to use, must be specified.</p>
+<p><strong>Multiple types supported:</strong></p>
+<ul>
+<li><p><strong>Array:</strong> An array can be used for local data.There are two supported formats:</p>
+<ul>
+<li>An array of strings: <code>[ "Choice1", "Choice2" ]</code></li>
+<li><p>An array of objects with <code>label</code> and <code>value</code> properties: <code>[ { label: "Choice1", value: "value1" }, ... ]</code></p>
+<p>The label property is displayed in the suggestion menu. The value will be inserted into the input element when a user selects an item. If just one property is specified, it will be used for both, e.g., if you provide only value properties, the value will also be used as the label.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>String:</strong> When a string is used, the Autocomplete plugin expects that string to point to a URL resource that will return JSON data. It can be on the same host or on a different one (must provide JSONP). The Autocomplete plugin does not filter the results, instead a query string is added with a term field, which the server-side script should use for filtering the results. For example, if the source option is set to "<a href="http://example.com">http://example.com</a>" and the user types foo, a GET request would be made to <a href="http://example.com?term=foo">http://example.com?term=foo</a>. The data itself can be in the same format as the local data described above.</p>
+</li>
+<li><p><strong>Function:</strong> The third variation, a callback, provides the most flexibility and can be used to connect any data source to Autocomplete. The callback gets two arguments:</p>
+<ul>
+<li>A request object, with a single term property, which refers to the value currently in the text input. For example, if the user enters "new yo" in a city field, the Autocomplete term will equal "new yo".</li>
+<li><p>A response callback, which expects a single argument: the data to suggest to the user. This data should be filtered based on the provided term, and can be in any of the formats described above for simple local data. It&#39;s important when providing a custom source callback to handle errors during the request. You must always call the response callback even if you encounter an error. This ensures that the widget always has the correct state.</p>
+<p>When filtering data locally, you can make use of the built-in $.ui.autocomplete.escapeRegex function. It&#39;ll take a single string argument and escape all regex characters, making the result safe to pass to new RegExp().</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_token" class="property item">
+    <h3 class="name"><code>token</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l40"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:40</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Allows to repeat auto-completion several times by using separator between words.</p>
+<p>You can provide multiple tokens.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+            <div id="events" class="tab-pane">
+                <h2 class="off-left">Events</h2>
+
+                
+                    <div id="event_change" class="events item">
+    <h3 class="name"><code>change</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l207"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:207</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered when the field is blurred, if the value has changed.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_close" class="events item">
+    <h3 class="name"><code>close</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l216"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:216</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered when the menu is hidden. Not every close event will be accompanied by a change event.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_create" class="events item">
+    <h3 class="name"><code>create</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l223"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:223</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered when the autocomplete is created.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_focus" class="events item">
+    <h3 class="name"><code>focus</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l230"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:230</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered when focus is moved to an item (not selecting).
+The default action is to replace the text field&#39;s value with the value of the focused item, though only if the event was triggered by a keyboard interaction.
+Canceling this event prevents the value from being updated, but does not prevent the menu item from being focused.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_open" class="events item">
+    <h3 class="name"><code>open</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l239"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:239</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered when the suggestion menu is opened or updated.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_response" class="events item">
+    <h3 class="name"><code>response</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l246"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:246</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered after a search completes, before the menu is shown.
+Useful for local manipulation of suggestion data, where a custom source option callback is not required.
+This event is always triggered when a search completes, even if the menu will not be shown because there are no results or the Autocomplete is disabled.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_search" class="events item">
+    <h3 class="name"><code>search</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l255"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:255</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered before a search is performed, after minLength and delay are met.
+If canceled, then no request will be started and no items suggested.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_select" class="events item">
+    <h3 class="name"><code>select</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l263"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:263</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered when an item is selected from the menu.
+The default action is to replace the text field&#39;s value with the value of the selected item.
+Canceling this event prevents the value from being updated, but does not prevent the menu from closing.</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_update" class="events item">
+    <h3 class="name"><code>update</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_widgets_input_autocomplete.js.html#l191"><code>src&#x2F;widgets&#x2F;input&#x2F;autocomplete.js:191</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered when search is triggered but before raw suggestions are parsed/processed.</p>
+<p>It gives chance to update <code>source</code> of suggestions as reflection to current search term.</p>
+<p>function update(request [, doneCallback])</p>
+<ul>
+<li><code>request</code> is object which contains search term: <code>{ term: &#39;searchTerm&#39; }</code></li>
+<li>when <code>doneCallback</code> is provided, widget will wait until <code>doneCallback</code> is called. Usually it is called on the end of AJAX data update.</li>
+</ul>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+            </div>
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

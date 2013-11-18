@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="fragment" content="!"/>
+
+  <title>About</title>
+
+
+
+  <link rel="stylesheet" href="assets-demo/richwidgets-demo.min.css">
+  <script src="assets-demo/richwidgets-demo.min.js"></script>
+
+
+  
+
+  <link rel="stylesheet" href="assets-demo/highlightjs/styles/github.css">
+  <script src="assets-demo/modernizr/modernizr.js"></script>
+  <script src="assets-demo/highlightjs/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="assets-demo/bootstrap/js/dropdown.js"></script>
+  <script src="assets-demo/bootstrap/js/collapse.js"></script>
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href=".">RichWidgets</a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+
+        <li ><a href=".">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Widgets <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            
+              
+            
+              
+            
+              
+            
+              
+                <li ><a href="input/autocomplete.html">Autocomplete</a></li>
+              
+            
+              
+                <li ><a href="output/charts.html">Charts</a></li>
+              
+            
+              
+                <li ><a href="select/ordering-list.html">OrderingList</a></li>
+              
+            
+              
+                <li ><a href="select/pick-list.html">PickList</a></li>
+              
+            
+              
+            
+          </ul>
+        </li>
+        <li><a href="/api">API Docs</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li  class="active"><a href="about.html">About</a></li>
+        <li ><a href="tests.html">Testing</a></li>
+        <li ><a href="contributing.html">Contributing</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container">
+  
+<h1 id="richwidgets-build-status-https-travis-ci-org-richwidgets-richwidgets-png-branch-master-https-travis-ci-org-richwidgets-richwidgets-devdependency-status-https-david-dm-org-richwidgets-richwidgets-dev-status-png-https-david-dm-org-richwidgets-richwidgets-info-devdependencies-">RichWidgets <a href="https://travis-ci.org/richwidgets/richwidgets"><img src="https://travis-ci.org/richwidgets/richwidgets.png?branch=master" alt="Build Status"></a> <a href="https://david-dm.org/richwidgets/richwidgets#info=devDependencies"><img src="https://david-dm.org/richwidgets/richwidgets/dev-status.png" alt="devDependency Status"></a></h1>
+<blockquote>
+<p>A JavaScript project containing standalone javascript widgets based on Bootstrap, jQuery UI and other third-party widgets, styled with LESS.</p>
+</blockquote>
+<h2 id="why-another-widget-set-">Why another widget set?</h2>
+<p>In the RichWidgets project we are curating a set of OSS responsive javascript widgets.  Existing OSS widgets are leveraged wherever possible,
+either consuming them directly as widgets, or by composing them into new widgets.  These widgets are then made available through this project
+with a consistent API and Look and Feel - making it easier for you to add rich functionality to your web apps (or web frameworks!).</p>
+<p>The current RichWidget architecture is centered around the <a href="http://api.jqueryui.com/jQuery.widget/">jQuery UI widget factory</a>
+with <a href="http://lesscss.org">LESS</a> &amp; <a href="http://getbootstrap.com">Bootstrap</a> for styling and theming.  Candidate widgets that
+do not use the widget factory will be wrapped with the widget factory to provide a consistent widget API.</p>
+<p><a name='using'></a></p>
+<h2 id="using-the-widgets">Using the widgets</h2>
+<p>Preview the widgets and see some sample use cases on our demo site: <a href="http://richwidgets.io">http://richwidgets.io</a>.</p>
+<p>To consume Richwidgets in your application/framework, you will currently have to <a href="#build">build</a> the widget assets.</p>
+<p>(Note: In the time-frame of our 0.1 release we will <a href="https://github.com/richwidgets/richwidgets/issues/78">provide RichWidgets</a> as a Bower package.)</p>
+<h3 id="executing-a-richwidget">Executing a RichWidget</h3>
+<p>RichWidgets are jQuery plugins (built using the jQuery UI Widget Factory).
+Executing a plugin to include the widget&#39;s functionality is as simple as:</p>
+<pre><code class="language-javascript">$(<span class="string">'#myDiv'</span>).widgetName(options);</code></pre>
+<p>For a list of available widgets and their associated options check out the <a href="http://www.richwidgets.io/api/">API Docs</a>.</p>
+<h3 id="invoking-public-methods">Invoking public methods</h3>
+<p>A widget&#39;s public methods are available through the <a href="http://api.jqueryui.com/jQuery.widget/">jQuery UI Widget factory</a> API.
+Accessing a public API method in this way looks like:</p>
+<pre><code class="language-javascript">$(<span class="string">'#myDiv'</span>).widgetName(<span class="string">'methodName'</span>, param1, parma2, ....);</code></pre>
+<p>Accessing private methods is discouraged, but can be done so as follows:</p>
+<pre><code class="language-javascript"><span class="keyword">var</span> widget = $(<span class="string">'myDiv'</span>).data(<span class="string">'widgetName'</span>);
+widget._privateMethod(params);</code></pre>
+<p>Acessing private methods can be handy for testing purposes, or for extending a widget.
+However the private method API has not contract of stability.
+If you find yourself needing to access a private method consider <a href="https://github.com/richwidgets/richwidgets/issues">filing an issue</a>
+requesting that the functionality be exposed via a public method.</p>
+<h3 id="mutating-widget-options">Mutating widget options</h3>
+<p>The options used to initialize a widget via the <code>options</code> parameter can be mutated using the <code>option</code> public API method of the jQuery UI widget factory:</p>
+<pre><code class="language-javascript">$(<span class="string">'#myDiv'</span>).widgetName(<span class="string">'option'</span>, <span class="string">'optionName'</span>, param1, parma2, ....);</code></pre>
+<h3 id="cleanup">Cleanup</h3>
+<p>All widgets support the <code>destroy</code> method.  Invoking this method will remove the widget and restore your DOM to it&#39;s initial state:</p>
+<pre><code class="language-javascript">$(<span class="string">'#myDiv'</span>).widgetName(<span class="string">'destroy'</span>);</code></pre>
+<p><a name='build'></a></p>
+<h2 id="build-from-source">Build from source</h2>
+<p>Along with cloning the project you will need to install the following tools:</p>
+<ul>
+<li>Node and NPM: <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">instructions</a>, <a href="https://npmjs.org/">official website</a><ul>
+<li>recommended version: Node 0.10.22</li>
+</ul>
+</li>
+<li>Grunt: <a href="http://gruntjs.com/getting-started">instructions</a>, <a href="http://gruntjs.com/">official website</a></li>
+<li>Bower: <a href="http://bower.io/">instructions on official website</a></li>
+</ul>
+<p>Once installed, go to the project root and run the following commands:</p>
+<ul>
+<li><code>npm install</code></li>
+<li><code>grunt bower</code></li>
+<li><code>grunt</code></li>
+</ul>
+<p>This should drop a bunch of logs in your shell and use up some bandwith. Once it&#39;s completed, you will have built the
+richwidgets <code>dist</code> folder which contains both <code>demos</code> of the widgets, as well as all the compiled widgets&#39; <code>assets</code>.</p>
+<h2 id="run-the-demo">Run the demo</h2>
+<p>Now that widgets and demo have been built with the <code>grunt</code> command, you can view the widgets by either:</p>
+<ol>
+<li>Navigating your browser to the <code>dist/demo</code> folder</li>
+<li>Run the command <code>grunt connect:demo:keepalive</code> and navigate your browser to <a href="http://localhost:9000/">http://localhost:9000/</a></li>
+</ol>
+<div class="alert alert-info">
+<strong>Remember!</strong> The demos are also available <span class=".alert-link"><a href="http://richwidgets.io">online</a>.</span>
+</div>
+
+<p><a name='issues'></a></p>
+<h2 id="reporting-bugs">Reporting Bugs</h2>
+<p>Have a problem with one of our widgets?  Is there a particular widget you&#39;d like to see incorporated in the project?
+File an issue in our <a href="https://github.com/richwidgets/richwidgets/issues">issue tracker</a>.</p>
+<p><a name='contributing'></a></p>
+<h2 id="contributors">Contributors</h2>
+<p>RichWidgets is very much an open source project, your contributions are valued!  Learn how to get involved with the project
+in our <a href="https://github.com/richwidgets/richwidgets/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> guide.</p>
+<p>Read about our approach to testing in the <a href="https://github.com/richwidgets/richwidgets/blob/master/TESTS.md">TESTS.md</a> guide.</p>
+<p><a name='license'></a></p>
+<h2 id="license">License</h2>
+<p><a href="https://github.com/richwidgets/richwidgets/blob/master/LICENSE.txt">Apache License Version 2.0</a>.</p>
+
+</div>
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-7306415-8', 'richwidgets.io');
+        ga('send', 'pageview');
+    </script>
+
+
+</body>
+</html>

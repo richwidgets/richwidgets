@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="fragment" content="!"/>
+
+  <title>OrderingList</title>
+
+
+
+  <link rel="stylesheet" href="../assets-demo/richwidgets-demo.min.css">
+  <script src="../assets-demo/richwidgets-demo.min.js"></script>
+
+
+  
+
+  <link rel="stylesheet" href="../assets-demo/highlightjs/styles/github.css">
+  <script src="../assets-demo/modernizr/modernizr.js"></script>
+  <script src="../assets-demo/highlightjs/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../assets-demo/bootstrap/js/dropdown.js"></script>
+  <script src="../assets-demo/bootstrap/js/collapse.js"></script>
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../">RichWidgets</a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+
+        <li ><a href="../">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Widgets <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            
+              
+            
+              
+            
+              
+            
+              
+                <li ><a href="../input/autocomplete.html">Autocomplete</a></li>
+              
+            
+              
+                <li ><a href="../output/charts.html">Charts</a></li>
+              
+            
+              
+                <li  class="active"><a href="ordering-list.html">OrderingList</a></li>
+              
+            
+              
+                <li ><a href="pick-list.html">PickList</a></li>
+              
+            
+              
+            
+          </ul>
+        </li>
+        <li><a href="/api">API Docs</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ><a href="../about.html">About</a></li>
+        <li ><a href="../tests.html">Testing</a></li>
+        <li ><a href="../contributing.html">Contributing</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container">
+  
+<h2>OrderingList Demos</h2>
+
+<p>
+<p>The orderingList is a widget use to manually sort elements in a list, supporting both a list layout and
+a table layout.  It is based on the jQuery UI <a href="http://jqueryui.com/sortable/">sortable</a> and <a href="http://jqueryui.com/selectable/">selectable</a>
+plugins.</p>
+
+</p>
+
+<h3>OrderingList in List mode:</h3>
+<p>A simple orderingList widget with items laid out in list format.  To use the widget, simply invoke the plugin passing
+in a reference to the <code>&lt;ol&gt;</code> element that identifies your list element.  The widget will create any additional
+DOM nodes required to enable user interactions.</p>
+
+<div class="container-fluid ">
+
+  <div class="row">
+    <div class="col col-lg-6"><ol id="list">
+  <li data-key="1">Item 1</li>
+  <li data-key="2">Item 2</li>
+  <li data-key="3">Item 3</li>
+  <li data-key="4">Item 4</li>
+  <li data-key="5">Item 5</li>
+  <li data-key="6">Item 6</li>
+  <li data-key="7">Item 7</li>
+  <li data-key="8">Item 8</li>
+</ol></div>
+  </div>
+
+  <h4>Source:</h4>
+
+  <div class="row">
+    <div class="col col-md-6"><pre><code class="language-html">&lt;ol id=&quot;list&quot;&gt;
+  &lt;li data-key=&quot;1&quot;&gt;Item 1&lt;/li&gt;
+  &lt;li data-key=&quot;2&quot;&gt;Item 2&lt;/li&gt;
+  &lt;li data-key=&quot;3&quot;&gt;Item 3&lt;/li&gt;
+  &lt;li data-key=&quot;4&quot;&gt;Item 4&lt;/li&gt;
+  &lt;li data-key=&quot;5&quot;&gt;Item 5&lt;/li&gt;
+  &lt;li data-key=&quot;6&quot;&gt;Item 6&lt;/li&gt;
+  &lt;li data-key=&quot;7&quot;&gt;Item 7&lt;/li&gt;
+  &lt;li data-key=&quot;8&quot;&gt;Item 8&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+</div>
+    <div class="col col-md-6"><pre><code class="language-js">$(<span class="string">'#list'</span>).orderingList({
+  header: <span class="string">'List layout'</span> <span class="comment">//caption</span>
+});</code></pre>
+</div>
+  </div>
+
+  <h3>OrderingList in List mode w/ drag select:</h3>
+
+  <p>The orderingList supports a <code>dragSelect</code> mode of operation, where the drag and drop clickable area is
+  limited to the drag handles, allowing the rest of the item real estate to trigger selection by click and drag of
+  the mouse.</p>
+
+  <div class="row">
+    <div class="col col-lg-6"><ol id="list_dragselect">
+  <li data-key="1">Item 1</li>
+  <li data-key="2">Item 2</li>
+  <li data-key="3">Item 3</li>
+  <li data-key="4">Item 4</li>
+  <li data-key="5">Item 5</li>
+  <li data-key="6">Item 6</li>
+  <li data-key="7">Item 7</li>
+  <li data-key="8">Item 8</li>
+</ol></div>
+  </div>
+
+  <h4>Source:</h4>
+
+  <div class="row">
+    <div class="col col-md-6"><pre><code class="language-html">&lt;ol id=&quot;list_dragselect&quot;&gt;
+  &lt;li data-key=&quot;1&quot;&gt;Item 1&lt;/li&gt;
+  &lt;li data-key=&quot;2&quot;&gt;Item 2&lt;/li&gt;
+  &lt;li data-key=&quot;3&quot;&gt;Item 3&lt;/li&gt;
+  &lt;li data-key=&quot;4&quot;&gt;Item 4&lt;/li&gt;
+  &lt;li data-key=&quot;5&quot;&gt;Item 5&lt;/li&gt;
+  &lt;li data-key=&quot;6&quot;&gt;Item 6&lt;/li&gt;
+  &lt;li data-key=&quot;7&quot;&gt;Item 7&lt;/li&gt;
+  &lt;li data-key=&quot;8&quot;&gt;Item 8&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+</div>
+    <div class="col col-md-6"><pre><code class="language-js">$(<span class="string">'#list_dragselect'</span>).orderingList({
+  header: <span class="string">'List layout w/ drag-select'</span>, <span class="comment">//caption</span>
+  dragSelect: <span class="literal">true</span>
+});</code></pre>
+</div>
+  </div>
+
+  <h3>OrderingList in Table mode:</h3>
+
+  <p>Should your use case require the ordered display if item metadata, use the orderingList in a table layout.</p>
+
+  <div class="row">
+    <div class="col col-lg-6"><table id="table">
+  <thead>
+  <tr>
+    <th>Icon</th>
+    <th>Label</th>
+    <th>#</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-key="1">
+    <td><i class="fa fa-flask"></i></td>
+    <td>Item 1</td>
+    <td>1</td>
+  </tr>
+  <tr data-key="2">
+    <td><i class="fa fa-bell"></i></td>
+    <td>Item 2</td>
+    <td>2</td>
+  </tr>
+  <tr data-key="3">
+    <td><i class="fa fa-bolt"></i></td>
+    <td>Item 3</td>
+    <td>3</td>
+  </tr>
+  <tr data-key="4">
+    <td><i class="fa fa-plane"></i></td>
+    <td>Item 4</td>
+    <td>4</td>
+  </tr>
+  <tr data-key="5">
+    <td><i class="fa fa-pencil"></i></td>
+    <td>Item 5</td>
+    <td>5</td>
+  </tr>
+  <tr data-key="6">
+    <td><i class="fa fa-star"></i></td>
+    <td>Item 6</td>
+    <td>6</td>
+  </tr>
+  <tr data-key="7">
+    <td><i class="fa fa-trophy"></i></td>
+    <td>Item 7</td>
+    <td>7</td>
+  </tr>
+  <tr data-key="8">
+    <td><i class="fa fa-legal"></i></td>
+    <td>Item 8</td>
+    <td>8</td>
+  </tr>
+  </tbody>
+</table></div>
+  </div>
+
+  <h4>Source:</h4>
+
+  <div class="row">
+    <div class="col col-md-6"><pre><code class="language-html">&lt;table id=&quot;table&quot;&gt;
+  &lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Icon&lt;/th&gt;
+    &lt;th&gt;Label&lt;/th&gt;
+    &lt;th&gt;#&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+  &lt;tr data-key=&quot;1&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-flask&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 1&lt;/td&gt;
+    &lt;td&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;2&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-bell&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 2&lt;/td&gt;
+    &lt;td&gt;2&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;3&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-bolt&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 3&lt;/td&gt;
+    &lt;td&gt;3&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;4&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-plane&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 4&lt;/td&gt;
+    &lt;td&gt;4&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;5&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 5&lt;/td&gt;
+    &lt;td&gt;5&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;6&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-star&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 6&lt;/td&gt;
+    &lt;td&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;7&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-trophy&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 7&lt;/td&gt;
+    &lt;td&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;8&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-legal&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 8&lt;/td&gt;
+    &lt;td&gt;8&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</div>
+    <div class="col col-md-6"><pre><code class="language-js">$(<span class="string">'#table'</span>).orderingList({
+  header: <span class="string">'Table layout'</span>
+});</code></pre>
+</div>
+  </div>
+
+  <h3>OrderingList in Table mode w/ drag select:</h3>
+
+  <p>The table layout similarly supports the <code>dragSelect</code> mode of operation.</p>
+
+  <div class="row">
+    <div class="col col-lg-6"><table id="table_dragselect">
+  <thead>
+  <tr>
+    <th>Icon</th>
+    <th>Label</th>
+    <th>#</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr data-key="1">
+    <td><i class="fa fa-flask"></i></td>
+    <td>Item 1</td>
+    <td>1</td>
+  </tr>
+  <tr data-key="2">
+    <td><i class="fa fa-bell"></i></td>
+    <td>Item 2</td>
+    <td>2</td>
+  </tr>
+  <tr data-key="3">
+    <td><i class="fa fa-bolt"></i></td>
+    <td>Item 3</td>
+    <td>3</td>
+  </tr>
+  <tr data-key="4">
+    <td><i class="fa fa-plane"></i></td>
+    <td>Item 4</td>
+    <td>4</td>
+  </tr>
+  <tr data-key="5">
+    <td><i class="fa fa-pencil"></i></td>
+    <td>Item 5</td>
+    <td>5</td>
+  </tr>
+  <tr data-key="6">
+    <td><i class="fa fa-star"></i></td>
+    <td>Item 6</td>
+    <td>6</td>
+  </tr>
+  <tr data-key="7">
+    <td><i class="fa fa-trophy"></i></td>
+    <td>Item 7</td>
+    <td>7</td>
+  </tr>
+  <tr data-key="8">
+    <td><i class="fa fa-legal"></i></td>
+    <td>Item 8</td>
+    <td>8</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+  </div>
+
+  <h4>Source:</h4>
+
+  <div class="row">
+    <div class="col col-md-6"><pre><code class="language-html">&lt;table id=&quot;table_dragselect&quot;&gt;
+  &lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Icon&lt;/th&gt;
+    &lt;th&gt;Label&lt;/th&gt;
+    &lt;th&gt;#&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+  &lt;tr data-key=&quot;1&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-flask&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 1&lt;/td&gt;
+    &lt;td&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;2&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-bell&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 2&lt;/td&gt;
+    &lt;td&gt;2&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;3&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-bolt&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 3&lt;/td&gt;
+    &lt;td&gt;3&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;4&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-plane&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 4&lt;/td&gt;
+    &lt;td&gt;4&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;5&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 5&lt;/td&gt;
+    &lt;td&gt;5&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;6&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-star&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 6&lt;/td&gt;
+    &lt;td&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;7&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-trophy&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 7&lt;/td&gt;
+    &lt;td&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr data-key=&quot;8&quot;&gt;
+    &lt;td&gt;&lt;i class=&quot;fa fa-legal&quot;&gt;&lt;/i&gt;&lt;/td&gt;
+    &lt;td&gt;Item 8&lt;/td&gt;
+    &lt;td&gt;8&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</div>
+    <div class="col col-md-6"><pre><code class="language-js">$(<span class="string">'#table_dragselect'</span>).orderingList({
+  header: <span class="string">'Table layout w/ drag-select'</span>,
+  dragSelect: <span class="literal">true</span>
+});</code></pre>
+</div>
+  </div>
+
+  <script src="../assets-demo/select/ordering-list/list.js"></script>
+  <script src="../assets-demo/select/ordering-list/list_drag.js"></script>
+  <script src="../assets-demo/select/ordering-list/table.js"></script>
+  <script src="../assets-demo/select/ordering-list/table_drag.js"></script>
+</div>
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-7306415-8', 'richwidgets.io');
+        ga('send', 'pageview');
+    </script>
+
+
+</body>
+</html>

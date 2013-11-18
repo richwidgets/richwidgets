@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/widgets/input/autocomplete.js - richfaces-widgets</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="richfaces-widgets" src="../../logo.png" style="max-height: 65%;" title="richfaces-widgets">
+        
+            richfaces-widgets
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-wip</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/autocomplete", "classes/chart", "classes/orderingList", "classes/pickList", "modules/Input", "modules/Output", "modules/Select"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Widgets</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/autocomplete.html">autocomplete</a></li>
+                    
+                        <li><a href="../classes/chart.html">chart</a></li>
+                    
+                        <li><a href="../classes/orderingList.html">orderingList</a></li>
+                    
+                        <li><a href="../classes/pickList.html">pickList</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Input.html">Input</a></li>
+                    
+                        <li><a href="../modules/Output.html">Output</a></li>
+                    
+                        <li><a href="../modules/Select.html">Select</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/widgets/input/autocomplete.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * Autocomplete enables users to quickly find and select from a pre-populated list of values as they type, leveraging searching and filtering.
+ *
+ * The widget is based on popular jQuery UI Autocomplete widget, but it brings some advanced built-in features:
+ *
+ * * caching
+ * * tokenizing
+ * * using DOM as a source of suggestions
+ * * auto-fill
+ * * built-in button
+ *
+ * @module Input
+ * @class autocomplete
+ * @uses $.ui.autocomplete
+ */
+(function ($) {
+
+  var LAYOUT = {
+    list: 0,
+    table: 1
+  };
+
+  $.widget(&#x27;rich.autocomplete&#x27;, $.ui.autocomplete, {
+
+    LAYOUT: LAYOUT,
+
+    options: {
+
+      /* OPTIONS */
+
+      /**
+       * The delay in milliseconds between when a keystroke occurs and when a search is performed. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive.
+       *
+       * @property delay
+       * @type Integer
+       * @default 0
+       */
+      delay: 0,
+
+      /**
+       * Allows to repeat auto-completion several times by using separator between words.
+       *
+       * You can provide multiple tokens.
+       *
+       * @property token
+       * @type String
+       * @default null
+       */
+      token: &#x27;&#x27;,
+
+      /**
+       * Allows to append a button to the input to allow opening suggestion box by mouse.
+       *
+       * @property showButton
+       * @type Boolean
+       * @default false
+       */
+      showButton: false,
+
+      /**
+       * Auto focusing mode selects first suggestion in a list once it appears, so user can just confirm it using enter key.
+       *
+       * @property autoFocus
+       * @type Boolean
+       * @default false
+       */
+      autoFocus: false,
+
+      /**
+       * Auto filling mode previews a selected suggestion in the input as a user types.
+       *
+       * @property autoFill
+       * @type Boolean
+       * @default false
+       */
+      autoFill: false,
+
+      /**
+       * Defines the data to use, must be specified.
+       *
+       * **Multiple types supported:**
+       *
+       * * **Array:** An array can be used for local data.There are two supported formats:
+       *    * An array of strings: &#x60;[ &quot;Choice1&quot;, &quot;Choice2&quot; ]&#x60;
+       *    * An array of objects with &#x60;label&#x60; and &#x60;value&#x60; properties: &#x60;[ { label: &quot;Choice1&quot;, value: &quot;value1&quot; }, ... ]&#x60;
+       *
+       *    The label property is displayed in the suggestion menu. The value will be inserted into the input element when a user selects an item. If just one property is specified, it will be used for both, e.g., if you provide only value properties, the value will also be used as the label.
+       *
+       * * **String:** When a string is used, the Autocomplete plugin expects that string to point to a URL resource that will return JSON data. It can be on the same host or on a different one (must provide JSONP). The Autocomplete plugin does not filter the results, instead a query string is added with a term field, which the server-side script should use for filtering the results. For example, if the source option is set to &quot;http://example.com&quot; and the user types foo, a GET request would be made to http://example.com?term=foo. The data itself can be in the same format as the local data described above.
+       *
+       * * **Function:** The third variation, a callback, provides the most flexibility and can be used to connect any data source to Autocomplete. The callback gets two arguments:
+       *    * A request object, with a single term property, which refers to the value currently in the text input. For example, if the user enters &quot;new yo&quot; in a city field, the Autocomplete term will equal &quot;new yo&quot;.
+       *    * A response callback, which expects a single argument: the data to suggest to the user. This data should be filtered based on the provided term, and can be in any of the formats described above for simple local data. It&#x27;s important when providing a custom source callback to handle errors during the request. You must always call the response callback even if you encounter an error. This ensures that the widget always has the correct state.
+       *
+       *    When filtering data locally, you can make use of the built-in $.ui.autocomplete.escapeRegex function. It&#x27;ll take a single string argument and escape all regex characters, making the result safe to pass to new RegExp().
+       *
+       * @property source
+       * @required
+       */
+      source: [],
+
+      /**
+       * The minimum number of characters a user must type before a search is performed. Zero is useful for local data with just a few items, but a higher value should be used when a single character search could match a few thousand items.
+       *
+       * @property minLength
+       * @type Number
+       * @default 0
+       */
+      minLength: 0,
+
+      /**
+       * Turns suggestions caching on.
+       *
+       * In caching mode, autocomplete first tries to look suggestions for given term up in cache given by
+       * &#x60;cacheImplementation&#x60; option and if no suggestions are found, autocomplete uses classic &#x60;source&#x60;
+       * to retrieve suggestions.
+       *
+       * @property cached
+       * @type Boolean
+       * @default false
+       */
+      cached: false,
+
+      /**
+       * Allows to plug in implementation of cache, which in turn allows to use stores like Local Storage
+       * for remembering values.
+       *
+       * &#x60;cacheImplementation&#x60; is an class with two methods:
+       *
+       * - &#x60;function get(searchTerm)&#x60; - returns all cached suggestions for given searchTerm prefix
+       * - &#x60;function set(searchTerm, suggestions)&#x60; - stores all provided suggestions into cache under given searchTerm prefix
+       *
+       * @property cacheImplementation
+       * @type Object
+       * @default $.rich.autocomplete.ObjectCache
+       */
+      cacheImplemenation: ObjectCache,
+
+      /**
+       * Function that determines what prefix of search term will be used to query a cache:
+       *
+       * &#x60;function cachePrefixExtract(searchTerm)&#x60; - default implementation extracts first &#x60;minLength&#x60; characters of a search term
+       *
+       * @property cachePrefixExtract
+       * @type Function
+       * @default $.rich.autocomplete.cachePrefixExtract
+       */
+      cachePrefixExtract: cachePrefixExtract,
+
+      /**
+       * Provide function which will be used to filter array of suggestions by given searchTerm:
+       *
+       * &#x60;function filter(array, searchTerm)&#x60;
+       *
+       * @property filter
+       * @type Function
+       */
+      filter: $.ui.autocomplete.filter,
+
+      /* INHERITED OPTIONS */
+
+      /**
+       * Which element the menu should be appended to. When the value is null, the parents of the input field will be checked for a class of ui-front. If an element with the ui-front class is found, the menu will be appended to that element. Regardless of the value, if no element is found, the menu will be appended to the body.
+       *
+       * @property appendTo
+       * @type Selector
+       * @default null
+       */
+      // option implemented in $.ui.autocomplete
+
+      /**
+       * Disables the autocomplete if set to true.
+       *
+       * @property disabled
+       * @type Boolean
+       * @default false
+       */
+      // option implemented in $.ui.autocomplete
+
+      /**
+       * Identifies the position of the suggestions menu in relation to the associated input element. The of option defaults to the input element, but you can specify another element to position against. You can refer to the jQuery UI Position utility for more details about the various options.
+       *
+       * @property position
+       * @type Object
+       * @default &#x60;{ my: &quot;left top&quot;, at: &quot;left bottom&quot;, collision: &quot;none&quot; }&#x60;
+       */
+      // option implemented in $.ui.autocomplete
+
+      /* EVENTS */
+
+      /**
+       * Triggered when search is triggered but before raw suggestions are parsed/processed.
+       *
+       * It gives chance to update &#x60;source&#x60; of suggestions as reflection to current search term.
+       *
+       * function update(request [, doneCallback])
+       *
+       * * &#x60;request&#x60; is object which contains search term: &#x60;{ term: &#x27;searchTerm&#x27; }&#x60;
+       * * when &#x60;doneCallback&#x60; is provided, widget will wait until &#x60;doneCallback&#x60; is called. Usually it is called on the end of AJAX data update.
+       *
+       * @event update
+       */
+      update: null,
+
+      /* INHERITED EVENTS */
+
+      /**
+       * Triggered when the field is blurred, if the value has changed.
+       *
+       * @event change
+       *
+       * @override
+       */
+      // event implemented in $.ui.autocomplete
+
+      /**
+       * Triggered when the menu is hidden. Not every close event will be accompanied by a change event.
+       *
+       * @event close
+       */
+      // event implemented in $.ui.autocomplete
+
+      /**
+       * Triggered when the autocomplete is created.
+       *
+       * @event create
+       */
+      // event implemented in $.ui.autocomplete
+
+      /**
+       * Triggered when focus is moved to an item (not selecting).
+       * The default action is to replace the text field&#x27;s value with the value of the focused item, though only if the event was triggered by a keyboard interaction.
+       * Canceling this event prevents the value from being updated, but does not prevent the menu item from being focused.
+       *
+       * @event focus
+       */
+      // event implemented in $.ui.autocomplete
+
+      /**
+       * Triggered when the suggestion menu is opened or updated.
+       *
+       * @event open
+       */
+      // event implemented in $.ui.autocomplete
+
+      /**
+       * Triggered after a search completes, before the menu is shown.
+       * Useful for local manipulation of suggestion data, where a custom source option callback is not required.
+       * This event is always triggered when a search completes, even if the menu will not be shown because there are no results or the Autocomplete is disabled.
+       *
+       * @event response
+       */
+      // event implemented in $.ui.autocomplete
+
+      /**
+       * Triggered before a search is performed, after minLength and delay are met.
+       * If canceled, then no request will be started and no items suggested.
+       *
+       * @event search
+       */
+      // event implemented in $.ui.autocomplete
+
+      /**
+       * Triggered when an item is selected from the menu.
+       * The default action is to replace the text field&#x27;s value with the value of the selected item.
+       * Canceling this event prevents the value from being updated, but does not prevent the menu from closing.
+       *
+       * @event select
+       */
+      // event implemented in $.ui.autocomplete
+
+      /* PRIVATE OPTIONS */
+      layout: LAYOUT.list
+
+    },
+
+    _create: function () {
+      var widget = this;
+      this.input = this.element;
+      this.callbacks = {};
+
+      // initialize DOM structure
+      this.root = this._initDom();
+
+      this._super();
+
+      if (this.options.cached) {
+        this.cache = new (this.options.cacheImplemenation)();
+      }
+
+      this.input.keydown(function(event) {
+        widget.lastKeyupEvent = event;
+      });
+
+      this._setOptions({
+        source: this.options.source
+      });
+
+      $.each(this._handlers, function(ev, handler) {
+        widget.input.on(&#x27;autocomplete&#x27; + ev, $.proxy(handler, widget));
+      });
+    },
+
+    _destroy: function () {
+      this._destroyDom();
+      this._super();
+    },
+
+    /* PUBLIC METHODS */
+
+    /* INHERITED PUBLIC METHODS */
+
+    /**
+     * Closes the Autocomplete menu. Useful in combination with the search method, to close the open menu.
+     *
+     * @method close
+     *
+     * @uses $.ui.autocomplete
+     */
+    // method implemented in $.ui.autocomplete
+
+    /**
+     * Removes the autocomplete functionality completely. This will return the element back to its pre-init state.
+     *
+     * @method destroy
+     */
+    // method implemented in $.ui.autocomplete
+
+    /**
+     * Disables the autocomplete.
+     *
+     * @method disable
+     */
+    // method implemented in $.ui.autocomplete
+
+    /**
+     * Enables the autocomplete.
+     *
+     * @method enable
+     */
+    // method implemented in $.ui.autocomplete
+
+    /**
+     * &#x60;option( optionName )&#x60;
+     *
+     * Gets an object containing key/value pairs representing the current autocomplete options hash.
+     *
+     * &#x60;option()&#x60;
+     *
+     * Gets an object containing key/value pairs representing the current autocomplete options hash.
+     *
+     * &#x60;option( optionName, value )&#x60;
+     *
+     * Sets the value of the autocomplete option associated with the specified optionName.
+     *
+     * &#x60;option( options )&#x60;
+     *
+     * Sets one or more options for the autocomplete.
+     *
+     * @method option
+     */
+    // method implemented in $.ui.autocomplete
+
+    /**
+     * Triggers a search event and invokes the data source if the event is not canceled.
+     * Can be used by a selectbox-like button to open the suggestions when clicked.
+     * When invoked with no parameters, the current input&#x27;s value is used.
+     *
+     * @method search
+     * @param {String} [value] optional
+     */
+    // method implemented in $.ui.autocomplete
+
+    /**
+     * Returns a jQuery object containing the menu element. Although the menu items are constantly created and destroyed, the menu element itself is created during initialization and is constantly reused.
+     *
+     * @method widget
+     */
+    // method implemented in $.ui.autocomplete
+
+
+    /* PRIVATE METHODS */
+
+    _setOption: function (key, value) {
+
+      if (key === &#x27;disabled&#x27;) {
+        if (value) {
+          this._disable();
+        } else {
+          this._enable();
+        }
+      }
+
+      if (key === &#x27;source&#x27;) {
+        if (isDomBasedSource(value)) {
+          this._updateDomSuggestions();
+        }
+      }
+
+      this._super(key, value);
+
+      if (key === &#x27;layout&#x27;) {
+        this._initLayout();
+      }
+    },
+
+    _initDom: function () {
+      this.root = $($(&#x27;&lt;div class=&quot;r-autocomplete&quot;&gt;&lt;/div&gt;&#x27;).insertBefore(this.input)[0]);
+      this.root.append(this.input.detach());
+
+      if (this.options.showButton) {
+        var widget = this;
+
+        this.root.addClass(&#x27;input-group&#x27;);
+        this.button = $(&#x27;&lt;span class=&quot;input-group-btn&quot;&gt;&lt;button class=&quot;btn btn-light&quot; type=&quot;button&quot;&gt;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/button&gt;&lt;/i&gt;&lt;/span&gt;&#x27;).appendTo(this.root).find(&#x27;button&#x27;);
+
+        this.buttonClickHandler = function () {
+          widget.input.autocomplete(&#x27;search&#x27;);
+          widget.input.focus();
+        };
+
+        this.button.on(&#x27;click&#x27;, this.buttonClickHandler);
+      }
+
+      return this.root;
+    },
+
+    _destroyDom: function () {
+      this.input.detach().insertAfter(this.root);
+      this.root.remove();
+    },
+
+    _enable: function () {
+      this.button.removeAttr(&#x27;disabled&#x27;);
+      this._super();
+    },
+
+    _disable: function () {
+      this.button.attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
+      this._super();
+    },
+
+    /**
+     * @override $.ui.autocomplete._initSource
+     */
+    _initSource: function() {
+      this.source = this._getSuggestions;
+    },
+
+    /**
+     * @override $.ui.autocomplete._renderMenu
+     */
+    _renderMenu: function(ul, items) {
+      if (this.options.layout === this.LAYOUT.table) {
+        ul.addClass(&#x27;ui-autocomplete-layout-table&#x27;);
+      }
+      return this._superApply(arguments);
+    },
+
+    /**
+     * @override $.ui.autocomplete._renderItem
+     */
+    _renderItem: function(ul, item) {
+      switch (this.options.layout) {
+        case this.LAYOUT.list :
+          var content = item.dom ? $(&#x27;&lt;a&gt;&#x27;).html(item.dom.html()) : $(&#x27;&lt;a&gt;&#x27;).text(item.label);
+          return $(&#x27;&lt;li&gt;&#x27;).append(content).appendTo(ul);
+        case this.LAYOUT.table :
+          var link = $(&#x27;&lt;a&gt;&#x27;);
+          item.dom.find(&#x27;td&#x27;).each(function () {
+            $(&#x27;&lt;span&gt;&#x27;).html($(this).html()).appendTo(link);
+          });
+          return $(&#x27;&lt;li&gt;&lt;/li&gt;&#x27;)
+            .data(&#x27;item.autocomplete&#x27;, item)
+            .append(link)
+            .appendTo(ul);
+      }
+    },
+
+    _initLayout: function () {
+      if (this.options.layout === this.LAYOUT.table) {
+        this._setOption(&#x27;appendTo&#x27;, $(&#x27;&lt;div class=&quot;ui-autocomplete-layout-table-wrapper&quot;&gt;&#x27;).appendTo($(&#x27;body&#x27;)));
+      }
+    },
+
+    /**
+     * callbacks for important jQuery UI Autocomplete events that helps to handle extension functionality
+     */
+    _handlers: {
+
+      search: function () {
+        if (this.options.autoFill) {
+          if (this.entered === this.input.val()) {
+            return false;
+          }
+        }
+        this.entered = this.input.val();
+
+        if (this.button) {
+          this.button.off(&#x27;click&#x27;, this.buttonClickHandler);
+          this.button.find(&#x27;i&#x27;).removeClass(&#x27;fa-chevron-down&#x27;);
+          this.button.find(&#x27;i&#x27;).addClass(&#x27;fa-chevron-up&#x27;);
+        }
+      },
+
+      focus: function (event, ui) {
+        if (!this.options.autoFill) {
+          return false;
+        }
+        if (this.lastKeyupEvent.keyCode === 8) {
+          // refuse to auto-fill on on backspace
+          return false;
+        }
+        var input = this.input,
+          original = this.entered,
+          label = ui.item.label;
+
+        original = original.substring(0, input[0].selectionStart);
+
+        var lastTerm = this._extractSearchTerm(original);
+        var prefix = original.substring(0, original.length - lastTerm.length);
+
+        if (lastTerm.length &gt; 0 &amp;&amp; label.toLowerCase().indexOf(lastTerm.toLowerCase()) === 0) {
+          input.val(original + label.substring(lastTerm.length));
+
+          input[0].selectionStart = original.length;
+          input[0].selectionEnd = prefix.length + label.length;
+
+          return false;
+        } else {
+          input.val(original);
+          return false;
+        }
+      },
+
+      close: function () {
+        if (this.button) {
+          this.button.find(&#x27;i&#x27;).removeClass(&#x27;fa-chevron-up&#x27;);
+          this.button.find(&#x27;i&#x27;).addClass(&#x27;fa-chevron-down&#x27;);
+
+          // we must delay attaching of event handler because otherwise the click will happen
+          // and the handler will be triggered right after closing the menu
+          setTimeout($.proxy(function() {
+            this.button.on(&#x27;click&#x27;, this.buttonClickHandler);
+          }, this), 150);
+        }
+
+        // workaround for a bug where $.ui.menu plugin doesn&#x27;t reset mouseHandled flag
+        $(document).click();
+      },
+
+      select: function (event, ui) {
+        this.value = this._selectValue(event, ui, this.input.val());
+        this.input.val(this.value);
+        return false;
+      }
+
+    },
+
+    _selectValue: function (event, ui, value) {
+      if (this.options.token) {
+        var terms = this._splitTokens(value);
+        // remove the current input
+        terms.pop();
+        // add the selected item
+        terms.push(ui.item.value);
+        return terms.join(this.options.token + &#x27; &#x27;);
+      } else {
+        return ui.item.value;
+      }
+    },
+
+    _extractSearchTerm: function (term) {
+      if (this.options.token) {
+        return this._extractLastToken(term);
+      } else {
+        return term;
+      }
+    },
+
+    _extractLastToken: function (term) {
+      return this._splitTokens(term).pop();
+    },
+
+    _splitTokens: function (val) {
+      var regexp = new RegExp(&#x27;\\s*&#x27; + this.options.token + &#x27;\\s*&#x27;);
+      return val.split(regexp);
+    },
+
+    _getSuggestions: function (request, response) {
+      var searchTerm = this._extractSearchTerm(request.term);
+
+      if ($.type(searchTerm) === &#x27;string&#x27; &amp;&amp; searchTerm.length &lt; this.options.minLength) {
+        return false;
+      }
+
+      var req = $.extend({}, request, {
+        term: searchTerm
+      });
+
+      if (this.cache) {
+        this._getCachedSuggestions(req, response);
+      } else {
+        this._retrieveSuggestions(req, response);
+      }
+    },
+
+    _getCachedSuggestions: function (request, response) {
+      var prefix = this.options.cachePrefixExtract.call(this, request.term);
+
+      var cached = this.cache.get(prefix);
+
+      if (cached) {
+        response.call(window, this.options.filter(cached, request.term));
+        return;
+      }
+
+      var resp = $.proxy(function (result) {
+        this.cache.put(prefix, result);
+        return response.apply(window, arguments);
+      }, this);
+
+      var req = $.extend({}, request, {
+        term: prefix
+      });
+
+      this._retrieveSuggestions(req, resp);
+    },
+
+    _retrieveSuggestions: function (request, response) {
+      var source = this.options.source;
+
+      if (isDomBasedSource(source)) {
+        // DOM-based
+        this._suggestFromDom(request, response);
+      } else if ($.isFunction(source)) {
+        // function-based
+        source(request, response);
+      } else {
+        // array-based
+        response(this.options.filter(source, request.term));
+      }
+    },
+
+    _suggestFromDom: function(request, response) {
+      var updateFn = this.options.update;
+
+      var updateSuggestionsAndRespond = $.proxy(function () {
+        this._updateDomSuggestions();
+        response(this.options.filter(this.options.suggestions, request.term));
+      }, this);
+
+      if ($.isFunction(updateFn)) {
+        // has the function second parameter? (which is &#x27;done&#x27; callback)
+        if (updateFn.length &gt;= 2) {
+          updateFn.call(window, request, updateSuggestionsAndRespond);
+        } else {
+          updateFn.call(window, request);
+          updateSuggestionsAndRespond();
+        }
+      } else {
+        response(this.options.filter(this.options.suggestions, request.term));
+      }
+    },
+
+    _updateDomSuggestions: function () {
+      var suggestions = [];
+      var domSource = $(this.options.source);
+      var layout = LAYOUT.list;
+
+      if (domSource.is(&#x27;table&#x27;)) {
+        layout = LAYOUT.table;
+        domSource = domSource.children(&#x27;tbody&#x27;);
+      }
+      $(domSource).children(&#x27;tr, li&#x27;).each(function () {
+        suggestions.push({
+          value: $(this).data(&#x27;label&#x27;) || $(this).text().trim(),
+          dom: $(this).clone()
+        });
+      });
+
+      if (this.option(&#x27;layout&#x27;) !== layout) {
+        this._setOption(&#x27;layout&#x27;, layout);
+      }
+
+      this.options.suggestions = suggestions;
+    }
+
+  });
+
+  $.extend($.rich.autocomplete, {
+    ObjectCache: ObjectCache,
+    cachePrefixExtract: cachePrefixExtract
+  });
+
+  function ObjectCache() {
+    var cache = {};
+    return {
+      get: function (term) {
+        return cache[term];
+      },
+      put: function (term, value) {
+        cache[term] = value;
+      }
+    };
+  }
+
+  function cachePrefixExtract(searchTerm) {
+    if (searchTerm &amp;&amp; this.options.minLength &gt; 0 &amp;&amp; this.options.minLength &lt; searchTerm.length) {
+      return searchTerm.substring(0, this.options.minLength);
+    } else {
+      return searchTerm;
+    }
+  }
+
+  function isDomBasedSource(source) {
+    return source instanceof HTMLElement || typeof source === &#x27;string&#x27;;
+  }
+
+}(jQuery));
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

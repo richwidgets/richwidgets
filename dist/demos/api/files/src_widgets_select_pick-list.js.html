@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/widgets/select/pick-list.js - richfaces-widgets</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="richfaces-widgets" src="../../logo.png" style="max-height: 65%;" title="richfaces-widgets">
+        
+            richfaces-widgets
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1-wip</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/autocomplete", "classes/chart", "classes/orderingList", "classes/pickList", "modules/Input", "modules/Output", "modules/Select"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Widgets</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/autocomplete.html">autocomplete</a></li>
+                    
+                        <li><a href="../classes/chart.html">chart</a></li>
+                    
+                        <li><a href="../classes/orderingList.html">orderingList</a></li>
+                    
+                        <li><a href="../classes/pickList.html">pickList</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Input.html">Input</a></li>
+                    
+                        <li><a href="../modules/Output.html">Output</a></li>
+                    
+                        <li><a href="../modules/Select.html">Select</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/widgets/select/pick-list.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * A widget providing selection and sorting capabilities for a list of elements
+ *
+ * @module Select
+ * @class pickList
+ */
+(function ($) {
+
+  $.widget(&#x27;rich.pickList&#x27;, {
+
+    options: {
+      /**
+       * Disable the pickList widget
+       *
+       * @property disabled
+       * @type Boolean
+       * @default false
+       */
+      disabled: false,
+      /**
+       * The text to use for the pickList header
+       *
+       * @property header
+       * @type String
+       */
+      header: null,
+      /**
+       * The text to use for the source header of the pickList
+       *
+       * @property sourceHeader
+       * @type String
+       */
+      sourceHeader: null,
+      /**
+       * The text to use for the target header of the pickList
+       *
+       * @property targetHeader
+       * @type String
+       */
+      targetHeader: null,
+      /**
+       * The height of the pickList.
+       * Specify the value as either:
+       *
+       * 1. A String with appropriate units, eg.:
+       *        height: &#x27;120px&#x27;
+       *
+       * 2. An integer without any units, in which case the units of &#x60;px&#x60; are assumed:
+       *        height: 120
+       *
+       * @property height
+       * @type String
+       */
+      height: null,
+      /**
+       * The minimum height of the pickList.
+       * Specify the value as either:
+       *
+       * 1. A String with appropriate units, eg.:
+       *        heightMin: &#x27;120px&#x27;
+       *
+       * 2. An integer without any units, in which case the units of &#x60;px&#x60; are assumed:
+       *        heightMin: 120
+       *
+       * @property heightMin
+       * @type String
+       */
+      heightMin: null,
+      /**
+       * The maximum height of the pickList
+       * Specify the value as either:
+       *
+       * 1. A String with appropriate units, eg.:
+       *        heightMax: &#x27;120px&#x27;
+       *
+       * 2. An integer without any units, in which case the units of &#x60;px&#x60; are assumed:
+       *        heightMax: 120
+       *
+       * @property heightMax
+       * @type String
+       */
+      heightMax: null,
+      /**
+       * A CSS class to be added to the pickList.
+       * Multiple classes should be space separated
+       *
+       * @property styleClass
+       * @type String
+       */
+      styleClass: null,
+      /**
+       /**
+       * When _table_ layout is used,
+       * _columnClasses_ specifies a comma-delimited list of CSS style classes to apply to each column.
+       * A space separated list of classes may be specified for an individual column.
+       *
+       * If the number of classes in this list is less than the number of column children, then no class will be
+       * applied to the columns greater than the number of classes.  If however the final class in the list is the &#x60;*&#x60;
+       * character, the classes will instead be applied in a repeating manner every n-fold column, where n is the order
+       * the class in this list.
+       *
+       *  If there are more class names than columns, the overflow ones are ignored.
+       *
+       * @property columnClasses
+       * @type String
+       */
+      columnClasses: null,
+      /**
+       * When true, clicking on a pickList element will move it between the source and target lists
+       *
+       * @property switchByClick
+       * @type Boolean
+       * @default false
+       */
+      switchByClick: false,
+      /**
+       * When true, double-clicking on a pickList element will move it between the source and target lists
+       *
+       * @property switchByDblClick
+       * @type Boolean
+       * @default true
+       */
+      switchByDblClick: true,
+      /**
+       * When true, elements in the target list can be re-ordered
+       *
+       * @property orderable
+       * @type Boolean
+       * @default true
+       */
+      orderable: true,
+      /**
+       * Text to be applied to the ordering buttons of the target list.  The text should be arranged as an object in
+       * JSON notation.
+       *
+       * eg. {first: ..., up: ..., down: ..., last: ...}
+       *
+       * @property orderButtonsText
+       * @type JSON
+       * @default null
+       */
+      orderButtonsText: null, // {first: ..., up: ..., down: ..., last: ...}
+      /**
+       * Text to be applied to the picking buttons of the picklist.  The text should be arranged as an object in
+       * JSON notation.
+       *
+       * eg. {addAll: ..., add: ..., remove: ..., removeAll: ...}
+       *
+       * @property pickButtonsText
+       * @type JSON
+       * @default null
+       */
+      pickButtonsText: null,
+
+      // callbacks
+
+      /**
+       * Fired when the target list of the pickList changes values.
+       *
+       * @event change
+       */
+      change: null,
+      /**
+       * Fired after the dynamically created DOM elements of the pickList have been created
+       *
+       * @event addDomElements
+       */
+      addDomElements: null,
+      /**
+       * Fired after the pickList has been created
+       *
+       * @event create
+       */
+      create: null,
+      /**
+       * Fired after the pickList has been destroyed
+       *
+       * @event destroy
+       */
+      destroy: null,
+      /**
+       * Fired when the pickList receives focus
+       *
+       * @event focus
+       */
+      focus: null,
+      /**
+       * Fired when the pickList loses focus
+       *
+       * @event blur
+       */
+      blur: null
+    },
+
+    _create: function () {
+      if (this.options.widgetEventPrefix) {
+        this.widgetEventPrefix = this.options.widgetEventPrefix;
+      }
+      this.sourceList = this.element.find(&#x27;.source&#x27;);
+      this.targetList = this.element.find(&#x27;.target&#x27;);
+      this._addDomElements();
+      this.sourceList.orderingList({
+        showButtons: false,
+        mouseOrderable: this.options.orderable,
+        contained: false,
+        columnClasses: this.options.columnClasses,
+        disabled: this.options.disabled,
+        header: this.options.sourceHeader,
+        widgetEventPrefix: &#x27;sourcelist_&#x27;
+      });
+      this.targetList.orderingList({
+        showButtons: this.options.orderable,
+        mouseOrderable: this.options.orderable,
+        contained: false,
+        columnClasses: this.options.columnClasses,
+        buttonsText: this.options.orderButtonsText,
+        disabled: this.options.disabled,
+        header: this.options.targetHeader,
+        widgetEventPrefix: &#x27;targetlist_&#x27;
+      });
+      if (this.options.orderable) {
+        this.sourceList.orderingList(&#x27;connectWith&#x27;, this.targetList);
+        this.targetList.orderingList(&#x27;connectWith&#x27;, this.sourceList);
+      }
+
+      this._registerListeners();
+
+      if (this.options.disabled === true) {
+        this._disable();
+      }
+
+      if (this.options.height !== null) {
+        this._setHeight(this.options.height);
+      }
+      if (this.options.heightMin !== null) {
+        this._setHeightMin(this.options.heightMin);
+      }
+      if (this.options.heightMax !== null) {
+        this._setHeightMax(this.options.heightMax);
+      }
+    },
+
+    _destroy: function () {
+      this._super();
+      this._unregisterListeners();
+      this.sourceList.orderingList(&#x27;destroy&#x27;);
+      this.targetList.orderingList(&#x27;destroy&#x27;);
+
+      this._removeDomElements();
+
+      this.element.removeClass(&#x27;inner&#x27;);
+      if (!this.element.attr(&#x27;class&#x27;)) {
+        this.element.removeAttr(&#x27;class&#x27;);
+      }
+      this._trigger(&#x27;destroy&#x27;, undefined, {});
+    },
+
+    /** Public API methods **/
+
+    /**
+     * Move items from the target list of the pickList to the source list.
+     *
+     * @param items {Object} A list of Elements to remove from the target list of the pickList
+     * @param [event=null] {Object} The event that triggered the removal of the elements.  This event will be made accessible
+     * when the resulting change event is fired.
+     * @method removeItems
+     * @chainable
+     */
+    removeItems: function (items, event) {
+      event = event || null;
+      if (this.options.disabled) { return; }
+      this.targetList.orderingList(&#x27;remove&#x27;, items);
+      this.sourceList.orderingList(&#x27;add&#x27;, items);
+      // do not trigger an event here, as the pickList will trigger an event off of the underlying orderingList event
+      return this;
+    },
+
+    /**
+     * Move items from the source list of the pickList to the target list.
+     *
+     * @param items {Object} A list of Elements to remove from the source list of the pickList
+     * @param [event=null] {Object} The event that triggered the removal of the elements.  This event will be made accessible
+     * when the resulting change event is fired.
+     * @method addItems
+     * @chainable
+     */
+    addItems: function (items, event) {
+      event = event || null;
+      if (this.options.disabled) { return; }
+      this.sourceList.orderingList(&#x27;remove&#x27;, items);
+      this.targetList.orderingList(&#x27;add&#x27;, items);
+      // do not trigger an event here, as the pickList will trigger an event off of the underlying orderingList event
+      return this;
+    },
+
+    /**
+     * Removes the pick list functionality completely. This will return the element back to its pre-init state.
+     *
+     * @method destroy
+     */
+    // method implemented in $.widget
+
+
+    /** Initialisation methods **/
+
+    _setOption: function (key, value) {
+      var widget = this;
+      if (this.options.key === value) {
+        return;
+      }
+      switch (key) {
+        case &#x27;disabled&#x27;:
+          if (value === true) {
+            widget._disable();
+          } else {
+            widget._enable();
+          }
+          break;
+        case &#x27;header&#x27;:
+          if (!widget.options.header) {
+            widget._addHeader(value);
+          }
+          widget.outer.find(&#x27;.header-row .header&#x27;).text(value);
+          break;
+        case &#x27;height&#x27;:
+          widget._setHeight(value);
+          break;
+        case &#x27;heightMin&#x27;:
+          widget._setHeightMin(value);
+          break;
+        case &#x27;heightMax&#x27;:
+          widget._setHeightMax(value);
+          break;
+        case &#x27;sourceHeader&#x27;:
+          if (!widget.options.sourceHeader &amp;&amp; !widget.options.targetHeader) {
+            widget._addSubHeader(value,  widget.options.targetHeader);
+          }
+          widget.outer.find(&#x27;.sub-header-row .source&#x27;).text(value);
+          break;
+        case &#x27;targetHeader&#x27;:
+          if (!widget.options.sourceHeader &amp;&amp; !widget.options.targetHeader) {
+            widget._addSubHeader(widget.options.sourceHeader, value);
+          }
+          widget.outer.find(&#x27;.sub-header-row .target&#x27;).text(value);
+          break;
+        case &#x27;styleClass&#x27;:
+          if (widget.options.styleClass) {
+            widget.outer.removeClass(widget.options.styleClass);
+          }
+          widget.outer.addClass(value);
+          break;
+        case &#x27;columnClasses&#x27;:
+          widget.sourceList.orderingList(&#x27;option&#x27;, &#x27;columnClasses&#x27;, value);
+          widget.targetList.orderingList(&#x27;option&#x27;, &#x27;columnClasses&#x27;, value);
+          break;
+        case &#x27;orderButtonsText&#x27;:
+          widget.targetList.orderingList(&#x27;option&#x27;, &#x27;buttonsText&#x27;, value);
+          break;
+        case &#x27;pickButtonsText&#x27;:
+          this._applyButtonsText(this.outer.find(&#x27;.middle .btn-group-picklist&#x27;), value);
+          break;
+        case &#x27;switchByClick&#x27;:
+          if (value === true) {
+            widget._addClickListeners();
+          } else {
+            widget._removeClickListeners();
+          }
+          break;
+        case &#x27;switchByDblClick&#x27;:
+          if (value === true) {
+            widget._addDoubleClickListeners();
+          } else {
+            widget._removeDoubleClickListeners();
+          }
+          break;
+      }
+      this._super(key, value);
+    },
+
+
+    _addDomElements: function () {
+      this._addParents();
+      var buttonColumn = $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;middle pick-button-column&#x27;);
+      buttonColumn.append(this._buttonStack());
+      this.sourceList.parent().after(buttonColumn);
+      this._trigger(&#x27;addDomElements&#x27;, undefined, {});
+    },
+
+    _buttonStack: function () {
+      var button = $(&#x27;&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;/&gt;&#x27;);
+      var buttonStack = $(&#x27;&lt;div/&gt;&#x27;)
+        .addClass(&#x27;btn-group-picklist&#x27;);
+      buttonStack
+        .append(
+          button.clone()
+            .addClass(&#x27;btn-add-all&#x27;)
+            .html(&#x27;&lt;i class=&quot;fa richicon-right-all&quot; /&gt;&#x27;)
+            .on(&#x27;click.pickList&#x27;, $.proxy(this._addAllHandler, this))
+        )
+        .append(
+          button.clone()
+            .addClass(&#x27;btn-add&#x27;)
+            .html(&#x27;&lt;i class=&quot;fa richicon-right&quot; /&gt;&#x27;)
+            .on(&#x27;click.pickList&#x27;, $.proxy(this._addHandler, this))
+        )
+        .append(
+          button.clone()
+            .addClass(&#x27;btn-remove&#x27;)
+            .html(&#x27;&lt;i class=&quot;fa richicon-left&quot; /&gt;&#x27;)
+            .on(&#x27;click.pickList&#x27;, $.proxy(this._removeHandler, this))
+        )
+        .append(
+          button.clone()
+            .addClass(&#x27;btn-remove-all&#x27;)
+            .html(&#x27;&lt;i class=&quot;fa richicon-left-all&quot; /&gt;&#x27;)
+            .on(&#x27;click.pickList&#x27;, $.proxy(this._removeAllHandler, this))
+        );
+      if (this.options.pickButtonsText) {
+        this._applyButtonsText(buttonStack, this.options.pickButtonsText);
+      }
+      return buttonStack;
+    },
+
+    _applyButtonsText: function(buttonStack, buttonsText) {
+      this._applyButtonText(buttonStack.find(&#x27;.btn-add-all&#x27;), buttonsText.addAll);
+      this._applyButtonText(buttonStack.find(&#x27;.btn-add&#x27;), buttonsText.add);
+      this._applyButtonText(buttonStack.find(&#x27;.btn-remove&#x27;), buttonsText.remove);
+      this._applyButtonText(buttonStack.find(&#x27;.btn-remove-all&#x27;), buttonsText.removeAll);
+    },
+
+    _applyButtonText: function(button, text) {
+      if (!text) {
+        if (button.hasClass(&#x27;labeled&#x27;)) {
+          button.removeClass(&#x27;labeled&#x27;);
+          button.find(&#x27;span&#x27;).remove();
+        }
+        return;
+      }
+      if (button.hasClass(&#x27;labeled&#x27;)) {
+        button.find(&#x27;span&#x27;).text(text);
+      } else {
+        button.addClass(&#x27;labeled&#x27;).append($(&#x27;&lt;span /&gt;&#x27;).text(text));
+      }
+    },
+
+    _addParents: function () {
+      this.element.addClass(&#x27;inner&#x27;).wrap(
+        $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;pick-list outer&#x27;)
+      );
+      this.outer = this.element.parents(&#x27;.outer&#x27;).first();
+      if (this.options.styleClass) {
+        this.outer.addClass(this.options.styleClass);
+      }
+      if (this.options.header) {
+        this._addHeader(this.options.header);
+      }
+      if (this.options.sourceHeader || this.options.targetHeader) {
+        this._addSubHeader(this.options.sourceHeader, this.options.targetHeader);
+      }
+      this.sourceList.wrap(
+        $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;source-wrapper&#x27;)
+      );
+      this.targetList.wrap(
+        $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;target-wrapper&#x27;)
+      );
+      this.content = this.element;
+      this.outer.attr(&#x27;tabindex&#x27;, &#x27;-1&#x27;);
+    },
+
+    _addSubHeader: function (sourceHeaderText, targetHeaderText) {
+      if (sourceHeaderText || targetHeaderText) {
+        var subHeaderRow = $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;sub-header-row&#x27;);
+        var sourceHeader = $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;source header&#x27;).html(sourceHeaderText);
+        var targetHeader = $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;target header&#x27;).html(targetHeaderText);
+        subHeaderRow.append(sourceHeader).append(&#x27;&lt;div class=&quot;middle&quot; /&gt;&#x27;).append(targetHeader);
+        var headerRow = this.outer.find(&#x27;.header-row&#x27;);
+        if (headerRow.length !== 0) {
+          subHeaderRow.insertAfter(headerRow);
+        } else {
+          this.outer.prepend(subHeaderRow);
+        }
+      }
+    },
+
+    _addHeader: function (headerText) {
+      if (headerText) {
+        var headerRow = $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;header-row&#x27;);
+        var header = $(&#x27;&lt;div /&gt;&#x27;).addClass(&#x27;header&#x27;).html(headerText);
+        headerRow.append(header);
+        var subHeaderRow = this.outer.find(&#x27;.sub-header-row&#x27;);
+        if (subHeaderRow.length !== 0) {
+          headerRow.insertBefore(subHeaderRow);
+        } else {
+          this.outer.prepend(headerRow);
+        }
+      }
+    },
+
+    _setHeight: function(height) {
+      this.sourceList.orderingList(&#x27;option&#x27;, &#x27;height&#x27;, height);
+      this.targetList.orderingList(&#x27;option&#x27;, &#x27;height&#x27;, height);
+    },
+
+    _setHeightMin: function(height) {
+      this.sourceList.orderingList(&#x27;option&#x27;, &#x27;heightMin&#x27;, height);
+      this.targetList.orderingList(&#x27;option&#x27;, &#x27;heightMin&#x27;, height);
+    },
+
+    _setHeightMax: function(height) {
+      this.sourceList.orderingList(&#x27;option&#x27;, &#x27;heightMax&#x27;, height);
+      this.targetList.orderingList(&#x27;option&#x27;, &#x27;heightMax&#x27;, height);
+
+    },
+
+    _registerListeners: function () {
+      var widget = this;
+      // the widget factory converts all events to lower case
+      this.sourceList.on(&#x27;sortreceive&#x27;, function (event, ui) {
+        var newUi = widget._uiHash();
+        newUi.change = &#x27;remove&#x27;;
+        widget._trigger(&#x27;change&#x27;, event, newUi);
+      });
+      this.targetList.on(&#x27;targetlist_change&#x27;, function (event, ui) {
+        var newUi = widget._uiHash();
+        newUi.change = ui.change;
+        newUi.movement = ui.movement;
+        widget._trigger(&#x27;change&#x27;, event, newUi);
+      });
+      if (this.options.switchByClick) {
+        this._addClickListeners();
+      }
+      if (this.options.switchByDblClick) {
+        this._addDoubleClickListeners();
+      }
+      this.outer.on(&#x27;focusin.picklist&#x27;, function (event) {
+        widget._trigger(&#x27;focus&#x27;, event, widget._uiHash());
+      });
+      this.outer.on(&#x27;focusout.picklist&#x27;, function (event) {
+        widget._trigger(&#x27;blur&#x27;, event, widget._uiHash());
+      });
+    },
+
+    _unregisterListeners: function () {
+      this.outer.off(&#x27;focusin.picklist&#x27;);
+      this.outer.off(&#x27;focusout.picklist&#x27;);
+    },
+
+    _addClickListeners: function () {
+      var widget = this;
+      this.sourceList.on(&#x27;click.pickList&#x27;, &#x27;.ui-selectee&#x27;, function(event) {
+        widget.addItems($(this), event);
+      });
+      this.targetList.on(&#x27;click.pickList&#x27;, &#x27;.ui-selectee&#x27;, function(event) {
+        widget.removeItems($(this), event);
+      });
+    },
+
+    _removeClickListeners: function () {
+      this.sourceList.off(&#x27;click.picklist&#x27;, &#x27;.ui-selectee&#x27;);
+      this.targetList.off(&#x27;click.picklist&#x27;, &#x27;.ui-selectee&#x27;);
+    },
+
+    _addDoubleClickListeners: function () {
+      var widget = this;
+      this.sourceList.on(&#x27;dblclick.pickList&#x27;, &#x27;.ui-selectee&#x27;, function(event) {
+        widget.addItems($(this), event);
+      });
+      this.targetList.on(&#x27;dblclick.pickList&#x27;, &#x27;.ui-selectee&#x27;, function(event) {
+        widget.removeItems($(this), event);
+      });
+    },
+
+    _removeDoubleClickListeners: function () {
+      this.sourceList.off(&#x27;dblclick.picklist&#x27;, &#x27;.ui-selectee&#x27;);
+      this.targetList.off(&#x27;dblclick.picklist&#x27;, &#x27;.ui-selectee&#x27;);
+    },
+
+    _disable: function () {
+      this.sourceList.orderingList(&#x27;option&#x27;, &#x27;disabled&#x27;, true);
+      this.targetList.orderingList(&#x27;option&#x27;, &#x27;disabled&#x27;, true);
+      this.element.addClass(&#x27;disabled&#x27;);
+      this.outer.find(&#x27;.pick-button-column button&#x27;).attr(&#x27;disabled&#x27;, true);
+    },
+
+    _enable: function () {
+      this.sourceList.orderingList(&#x27;option&#x27;, &#x27;disabled&#x27;, false);
+      this.targetList.orderingList(&#x27;option&#x27;, &#x27;disabled&#x27;, false);
+      this.element.removeClass(&#x27;disabled&#x27;);
+      this.outer.find(&#x27;.pick-button-column button&#x27;).attr(&#x27;disabled&#x27;, false);
+      this._registerListeners();
+    },
+
+
+    _uiHash: function () {
+      var ui = {};
+      ui.pickedElements = this.targetList.orderingList(&#x27;getOrderedElements&#x27;);
+      ui.pickedKeys = this.targetList.orderingList(&#x27;getOrderedKeys&#x27;);
+      return ui;
+    },
+
+    /** Cleanup methods **/
+
+    _removeDomElements: function () {
+      this.sourceList.parents(&#x27;.source-wrapper&#x27;).first().replaceWith(this.sourceList.detach());
+      this.targetList.parents(&#x27;.target-wrapper&#x27;).first().replaceWith(this.targetList.detach());
+      this.element.find(&#x27;.middle&#x27;).remove();
+      var list = this.element.detach();
+      this.outer.replaceWith(list);
+    },
+
+    /** Event Handlers **/
+
+    _removeAllHandler: function (event) {
+      var items = $(&#x27;.ui-selectee&#x27;, this.targetList);
+      this.removeItems(items, event);
+      this.sourceList.orderingList(&#x27;selectItem&#x27;, items);
+    },
+
+    _removeHandler: function (event) {
+      this.removeItems($(&#x27;.ui-selected&#x27;, this.targetList), event);
+    },
+
+    _addHandler: function (event) {
+      this.addItems($(&#x27;.ui-selected&#x27;, this.sourceList), event);
+    },
+
+    _addAllHandler: function (event) {
+      var items = $(&#x27;.ui-selectee&#x27;, this.sourceList);
+      this.addItems(items, event);
+      this.targetList.orderingList(&#x27;selectItem&#x27;, items);
+    }
+
+  });
+
+}(jQuery));
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
