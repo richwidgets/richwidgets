@@ -5,15 +5,15 @@ define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
       /**
        * Verifies that provided DOM nodes are equal including their subtrees
        */
-      toHaveEqualOuterDom: function(expected) {
-        return expectToHaveEqualDom.call(this, outerHTML(this.actual), outerHTML(expected));
+      toHaveEqualOuterDom: function(expected, options) {
+        return expectToHaveEqualDom.call(this, outerHTML(this.actual), outerHTML(expected), options);
       },
 
       /**
        * Verified that a provided DOM nodes subtree has same inner structure of nodes, ignoring the contents of provided nodes themselves.
        */
-      toHaveEqualInnerDom: function(expected) {
-        return expectToHaveEqualDom.call(this, innerHTML(this.actual), innerHTML(expected));
+      toHaveEqualInnerDom: function(expected, options) {
+        return expectToHaveEqualDom.call(this, innerHTML(this.actual), innerHTML(expected), options);
       }
     });
   });
@@ -32,9 +32,11 @@ define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
     return $(e).get(0).outerHTML;
   }
 
-  function expectToHaveEqualDom(actual, expected) {
+  function expectToHaveEqualDom(actual, expected, options) {
 
-    var result = expectEqualHtml(actual, expected);
+    options = options || {};
+
+    var result = expectEqualHtml(actual, expected, options);
 
     this.message = function() {
 
@@ -53,7 +55,7 @@ define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
     return result.result;
   }
 
-  function expectEqualHtml(b, a) {
+  function expectEqualHtml(b, a, options) {
     var body = $('<body>');
     body.get(0).innerHTML = a;
     var aNormalized = body.get(0);
@@ -62,7 +64,8 @@ define(['lib/dom-compare/index', 'jquery'], function (domCompare, $) {
     body.get(0).innerHTML = b;
     var bNormalized = body.get(0);
 
-    var result = domCompare.compare(aNormalized, bNormalized, {stripSpaces: true, ignoreSequenceIdDifference: true});
+    var domCompareOptions = $.extend({}, {stripSpaces: true}, options);
+    var result = domCompare.compare(aNormalized, bNormalized, domCompareOptions);
 
     var grouped =  domCompare.GroupingReporter.report(result);
 

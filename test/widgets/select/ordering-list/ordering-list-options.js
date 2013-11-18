@@ -28,13 +28,13 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
         // when
         element_list.orderingList('destroy');
         // then
-        expect(fixture_list).toHaveEqualInnerDom(original_list);
+        expect(fixture_list).toHaveEqualInnerDom(original_list, { ignoreStyleDifference: true });
       }
       if (element_table.data('orderingList') != null) {
         // when
         element_table.orderingList('destroy');
         // then
-        expect(fixture_table).toHaveEqualInnerDom(original_table);
+        expect(fixture_table).toHaveEqualInnerDom(original_table, { ignoreStyleDifference: true });
       }
     });
 
@@ -193,11 +193,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
           }, 'fifth item should be selected', 500);
           runs(function () {
             expect(widget._uiHash().orderedKeys).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
-          });
-          runs(function () {
-            // clear style after item selection so the afterEach function will pass
-            // issue #83
-            item5.removeAttr('style');
           });
         }
         test(fixture_list, element_list);

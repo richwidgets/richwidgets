@@ -16,7 +16,7 @@
 
     "requirejs": "2.1.8",
     "jasmine-jquery": "1.5.3",
-    "dom-compare": "lfryc/dom-compare#e7aeb0852ab26a0a79e48fe6831e5e1ab5a25e41",
+    "dom-compare": "lfryc/dom-compare#39ff578bba29656bfde40f6d525d493749b5d688",
     "jquery-simulate": "jquery/jquery-simulate#25938de20622a6c127a7082bd751f6d2f88eabd4",
 
     "modernizr": "2.6.2",

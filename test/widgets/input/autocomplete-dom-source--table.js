@@ -47,7 +47,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       runs(function() {
         expect(menu).toBeVisible();
 
-        expect(menu).toHaveEqualInnerDom(expectedMenu.children().first());
+        expect(menu).toHaveEqualInnerDom(expectedMenu.children().first(), { ignoreSequenceIdDifference: true });
 
         element.autocomplete('destroy');
         fixture.remove();
