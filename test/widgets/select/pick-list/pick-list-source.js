@@ -45,7 +45,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
       // when
       element.pickList(options);
       // then
-      expect(fixture).toHaveEqualInnerDom(expected);
+      expect(fixture).toHaveEqualInnerDom(expected, { ignoreStyleDifference: true });
       // when
       element.pickList('destroy');
       // then
