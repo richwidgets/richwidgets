@@ -1,3 +1,30 @@
 @import "bootstrap/less/mixins";
 @import "font-awesome/less/mixins";
 @import "rcue/less/mixins";
+
+// buttonGroup
+.dropdown-buttons(@color; @background; @border) {
+  @lighter-background30: lighten(@background, 30%);
+  @lighter-background10: lighten(@background, 10%);
+  + ul.dropdown-menu {
+    background: @lighter-background30;
+    border-color: @border;
+    .box-shadow(0 6px 12px rgba(red(@border),blue(@border),green(@border),.25));
+
+
+    .btn-dd {
+      color: contrast(@lighter-background30, @color, #000000, 32%);
+      background: @lighter-background30;
+    }
+
+    > li {
+      > a {
+        &:hover {
+          background: @lighter-background10;
+          border-color: @background;
+          color: contrast(@lighter-background10, @color, #000000);
+        };
+      }
+    }
+  }
+}

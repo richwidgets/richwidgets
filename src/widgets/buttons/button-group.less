@@ -1,0 +1,30 @@
+@import "../mixins";
+@import "../variables";
+@import "bootstrap/less/buttons";
+@import "rcue/less/buttons";
+@import "bootstrap/less/button-groups";
+@import "rcue/less/dropdowns";
+
+// dropdown sizing
+.btn-group-xs .dropdown-menu .btn-dd { .btn-xs();}
+.btn-group-sm .dropdown-menu .btn-dd { .btn-sm();}
+.btn-group-lg .dropdown-menu .btn-dd { .btn-lg();}
+
+.btn-group-justified {
+  .btn-group {
+    float: none;
+    display: table-cell;
+    width: 1%;
+  }
+}
+
+.btn-primary { .dropdown-buttons(@btn-primary-color, @btn-primary-bg, @btn-primary-border) }
+.btn-warning { .dropdown-buttons(@btn-warning-color, @btn-warning-bg, @btn-warning-border) }
+.btn-danger { .dropdown-buttons(@btn-danger-color, @btn-danger-bg, @btn-danger-border) }
+.btn-success { .dropdown-buttons(@btn-success-color, @btn-success-bg, @btn-success-border) }
+.btn-info { .dropdown-buttons(@btn-info-color, @btn-info-bg, @btn-info-border) }
+
+//fix for Firefox
+.btn-group-justified .dropdown-menu {
+  left: initial;
+}
