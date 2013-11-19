@@ -122,7 +122,7 @@ module.exports = function (grunt) {
         options: {
           paths: ['<%= config.dir.lib.bootstrap %>/less']
         },
-        src: '<%= config.dir.lib.bootstrap %>/less/bootstrap.less',
+        src: 'lib/rcue/less/rcue.less',
         dest: '<%= config.dir.dist.assets %>/bootstrap/bootstrap.css'
       },
       fontawesome: {
