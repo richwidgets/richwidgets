@@ -255,6 +255,17 @@
        */
       mouseOrderable: true,
 
+      /**
+       * Function used to sort the elements after an item has been added to the list.
+       * &#x60;sortFunction&#x60; must meet the API requirements of the compareFunction for the
+       * [Array.prototype.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+       * method.
+       *
+       * @property sortFunction
+       * @type Function
+       */
+      sortFunction: null,
+
       // callbacks
 
       /**
@@ -355,6 +366,19 @@
           if (widget.fillItem) {
             widget._updateFillRow();
           }
+          var receivingWidget = ui.item.parents(&#x27;.list&#x27;).data(&#x27;orderingList&#x27;);
+          if (receivingWidget !== widget) {
+            receivingWidget._checkSort();
+
+            // fire change events here instead of in the &#x27;receive&#x27; handler since we manually add/remove the extra drag elements
+            var remUi = widget._uiHash();
+            remUi.change = &#x27;remove&#x27;;
+            widget._trigger(&#x27;change&#x27;, event, remUi);
+
+            var addUi = receivingWidget;
+            addUi.change = &#x27;add&#x27;;
+            receivingWidget._trigger(&#x27;change&#x27;, event, addUi);
+          }
         },
         update: function(event, ui) {
           if (ui.sender === null &amp;&amp; ui.item.parents(&#x27;.ordering-list&#x27;).get(0) === widget.element.parents(&#x27;.ordering-list&#x27;).get(0)) {
@@ -364,11 +388,6 @@
             widget._trigger(&#x27;change&#x27;, event, ui2);
           }
         },
-        receive: function (event, ui) {
-          var newUi = widget._uiHash();
-          newUi.change = &#x27;add&#x27;;
-          widget._trigger(&#x27;change&#x27;, event, newUi);
-        }
       };
       if (this.element.is(&#x27;table&#x27;)) {
         this.strategy = &#x27;table&#x27;;
@@ -681,6 +700,7 @@
         return null;
       }
       this.$pluginRoot.prepend(items);
+      this._checkSort();
       var ui = this._uiHash();
       ui.change = &#x27;add&#x27;;
       this._trigger(&#x27;change&#x27;, {}, ui);
@@ -849,6 +869,16 @@
         keys.push(key);
       });
       return keys;
+    },
+
+    _checkSort: function () {
+      if (this.options.sortFunction &amp;&amp; typeof this.options.sortFunction === &#x27;function&#x27;) {
+        var sortedElements = this.getOrderedElements().sort(this.options.sortFunction);
+        var widget = this;
+        sortedElements.each(function() {
+          widget.element.append(this);
+        });
+      }
     },
 
     /** Initialisation methods **/

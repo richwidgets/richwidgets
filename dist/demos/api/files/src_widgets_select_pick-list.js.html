@@ -267,6 +267,17 @@
        */
       pickButtonsText: null,
 
+      /**
+       * Function used to sort the elements after an item has been added to either the source or target list.
+       * &#x60;sortFunction&#x60; must meet the API requirements of the compareFunction for the
+       * [Array.prototype.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+       * method.
+       *
+       * @property sortFunction
+       * @type Function
+       */
+      sortFunction: null,
+
       // callbacks
 
       /**
@@ -317,6 +328,7 @@
       this.sourceList.orderingList({
         showButtons: false,
         mouseOrderable: this.options.orderable,
+        sortFunction: this.options.sortFunction,
         contained: false,
         columnClasses: this.options.columnClasses,
         disabled: this.options.disabled,
@@ -326,6 +338,7 @@
       this.targetList.orderingList({
         showButtons: this.options.orderable,
         mouseOrderable: this.options.orderable,
+        sortFunction: this.options.sortFunction,
         contained: false,
         columnClasses: this.options.columnClasses,
         buttonsText: this.options.orderButtonsText,
@@ -488,6 +501,10 @@
             widget._removeDoubleClickListeners();
           }
           break;
+        case &#x27;sortFunction&#x27;:
+          widget.sourceList.orderingList(&#x27;option&#x27;, &#x27;sortFunction&#x27;, value);
+          widget.targetList.orderingList(&#x27;option&#x27;, &#x27;sortFunction&#x27;, value);
+          break;
       }
       this._super(key, value);
     },
@@ -630,11 +647,6 @@
     _registerListeners: function () {
       var widget = this;
       // the widget factory converts all events to lower case
-      this.sourceList.on(&#x27;sortreceive&#x27;, function (event, ui) {
-        var newUi = widget._uiHash();
-        newUi.change = &#x27;remove&#x27;;
-        widget._trigger(&#x27;change&#x27;, event, newUi);
-      });
       this.targetList.on(&#x27;targetlist_change&#x27;, function (event, ui) {
         var newUi = widget._uiHash();
         newUi.change = ui.change;
