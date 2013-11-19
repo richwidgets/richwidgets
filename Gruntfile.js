@@ -290,6 +290,12 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.lib.fontawesome %>/fonts',
             src: ['**'],
             dest: '<%= config.dir.dist.font %>'
+          },
+          {
+            expand: true,
+            cwd: 'lib/rcue/dist/fonts',
+            src: '*',
+            dest: '<%= config.dir.dist.assets %>/fonts/'
           }
         ]
       },
@@ -371,6 +377,12 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.dist.font %>',
             src: '*',
             dest: '<%= config.dir.dist.demos %>/assets-demo/font/'
+          },
+          {
+            expand: true,
+            cwd: 'lib/rcue/dist/fonts',
+            src: '*',
+            dest: '<%= config.dir.dist.demos %>/fonts/'
           },
           {
             expand: true,
