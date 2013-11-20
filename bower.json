@@ -1,6 +1,6 @@
 {
-  "name": "richwidgets",
-  "version": "0.0.1-SNAPSHOT",
+  "name": "RichWidgets",
+  "version": "0.1.0-wip",
   "dependencies": {
   },
   "devDependencies": {
