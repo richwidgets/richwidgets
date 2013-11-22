@@ -38,7 +38,8 @@ module.exports = function (grunt) {
           axisLabels: '<%= config.dir.lib.root %>/flotAxisLabels',
           orderBars: '<%= config.dir.lib.root %>/flotOrderBars',
           tooltip :  '<%= config.dir.lib.root %>/flotTooltip'
-        }
+        },
+        rcue: '<%= config.dir.lib.root %>/rcue'
       }
     },
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -120,9 +121,9 @@ module.exports = function (grunt) {
     less: {
       bootstrap: {
         options: {
-          paths: ['<%= config.dir.lib.bootstrap %>/less']
+          paths: ['<%= config.dir.lib.rcue %>/less', '<%= config.dir.lib.root %>']
         },
-        src: '<%= config.dir.lib.bootstrap %>/less/bootstrap.less',
+        src: '<%= config.dir.src.widgets %>/bootstrap-richwidgets.less',
         dest: '<%= config.dir.dist.assets %>/bootstrap/bootstrap.css'
       },
       fontawesome: {
@@ -290,6 +291,12 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.lib.fontawesome %>/fonts',
             src: ['**'],
             dest: '<%= config.dir.dist.font %>'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.rcue %>/dist/fonts',
+            src: '*',
+            dest: '<%= config.dir.dist.assets %>/fonts/'
           }
         ]
       },
@@ -371,6 +378,12 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.dist.font %>',
             src: '*',
             dest: '<%= config.dir.dist.demos %>/assets-demo/font/'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.rcue %>/dist/fonts',
+            src: '*',
+            dest: '<%= config.dir.dist.demos %>/fonts/'
           },
           {
             expand: true,

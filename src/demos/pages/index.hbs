@@ -1,12 +1,49 @@
 ---
-title: Home
+title: RichWidgets
 ---
 
+<style>
+  body {
+    background: no-repeat -webkit-linear-gradient(bottom, #4e4e4e, #747474);
+  }
+
+  .container .jumbotron {
+    background: none;
+
+    padding-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .jumbotron h1, .jumbotron p {
+    color: #dbdada;
+    font-family: 'Open Sans',
+    font-style: normal;
+    font-weight: 300;
+
+    line-height: 170%;
+  }
+
+  .jumbotron h1 {
+    font-size: 30px;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .jumbotron p {
+      font-size: 18px;
+    }
+  }
+</style>
+
+
 <div class="jumbotron">
-  <div class="container">
-    <h1>RichWidgets!</h1>
-    <p>RichWidgets provides a set of responsive widgets built on top of jQuery UI and styled with Bootstrap 3.
+  <div class="container row-fluid">
+    <div class="col-lg-6 col-md-8">
+    <h1>RichWidgets</h1>
+    <p>Provides a set of responsive widgets built on top of jQuery UI and styled with Bootstrap 3.
       Use RichWidgets to bring rich and complex functionality to your web applications!</p>
     <p><a class="btn btn-primary btn-lg" href="about.html">Learn More</a></p>
+    </div>
   </div>
 </div>
