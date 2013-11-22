@@ -2,6 +2,8 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
 
   describe('widget(autocomplete): DOM source', function () {
 
+    var domCompareOptions = { ignoreSequenceIdDifference: true, ignoreStyleDifference: true };
+
     beforeEach(function () {
       var f = jasmine.getFixtures();
       f.load('test/widgets/input/autocomplete-dom-source--table.html');
@@ -30,7 +32,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var menu = element.autocomplete( 'widget' );
 
       // then
-      expect(fixture).toHaveEqualInnerDom(expected);
+      expect(fixture).toHaveEqualInnerDom(expected, domCompareOptions);
 
       runs(function() {
         expect(menu).toBeHidden();
@@ -47,7 +49,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       runs(function() {
         expect(menu).toBeVisible();
 
-        expect(menu).toHaveEqualInnerDom(expectedMenu.children().first(), { ignoreSequenceIdDifference: true });
+        expect(menu).toHaveEqualInnerDom(expectedMenu.children().first(), domCompareOptions);
 
         element.autocomplete('destroy');
         fixture.remove();
