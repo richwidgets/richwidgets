@@ -9,4 +9,4 @@ before_script:
 script:
   - grunt dist
 notifications:
-  irc: "irc.freenode.org#richfaces"
+  irc: "irc.freenode.org#richwidgets"
