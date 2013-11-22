@@ -8,5 +8,8 @@ before_script:
   - bower install
 script:
   - grunt dist
+branches:
+  except:
+    - dist
 notifications:
   irc: "irc.freenode.org#richwidgets"
