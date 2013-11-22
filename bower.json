@@ -14,6 +14,8 @@
     "flotTooltip":"krzysu/flot.tooltip#11c117e11cf50fa5876c23a81a8296feb94dee93",
     "flotOrderBars":"emmerich/flot-orderBars#d44ff4f2fec4c8bb1254e59567ee39fa3684372e",
 
+    "rcue": "rhamilto/rcue#bootstrap-3",
+
     "requirejs": "2.1.8",
     "jasmine-jquery": "1.5.3",
     "dom-compare": "lfryc/dom-compare#39ff578bba29656bfde40f6d525d493749b5d688",
