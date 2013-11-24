@@ -470,7 +470,7 @@ module.exports = function (grunt) {
           'CONTRIBUTING.md',
           'TESTS.md'
         ],
-        tasks: ['copy:demoAssets', 'assemble:dev']
+        tasks: ['less:demo', 'copy:demoAssets', 'assemble:dev']
       },
       dist: {
         options: {
