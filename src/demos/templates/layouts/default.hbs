@@ -25,6 +25,7 @@
 {{else}}
   <link rel="stylesheet" href="{{assets}}/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="{{assets}}/font-awesome/font-awesome.css">
+  <link rel="stylesheet" href="{{assets-demo}}/demo.css">
 
   {{#each page.data.css_assets}}<link rel="stylesheet" href="{{../assets}}/{{this}}">
   {{/each}}
@@ -48,7 +49,7 @@
   <script src="{{assets-demo}}/bootstrap/js/collapse.js"></script>
 </head>
 
-<body>
+<body class="{{ bodyClass }}">
   {{> nav }}
 
 <div class="container">

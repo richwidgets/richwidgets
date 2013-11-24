@@ -64,6 +64,7 @@ module.exports = function (grunt) {
     'less:fontawesome',
     'less:widgets',
     'less:dist',
+    'less:demo',
     'concat:flot',
     'uglify:dist',
     'copy:demoAssets',
@@ -144,6 +145,13 @@ module.exports = function (grunt) {
           }
         })
       },
+      demo: {
+        options: {
+          paths: ['<%= config.dir.lib.root %>']
+        },
+        src: '<%= config.dir.src.demos %>/demo.less',
+        dest: '<%= config.dir.dist.demos %>/assets-demo/demo.css'
+      },
       dist: {
         options: {
           paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>'],
@@ -157,7 +165,7 @@ module.exports = function (grunt) {
     cssmin: {
       demo: {
         files: {
-          '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.css': ['<%= config.dir.dist.richwidgets %>/richwidgets.min.css', '<%= config.dir.dist.assets %>/font-awesome/font-awesome.css']
+          '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.css': ['<%= config.dir.dist.richwidgets %>/richwidgets.min.css', '<%= config.dir.dist.assets %>/font-awesome/font-awesome.css', '<%= config.dir.dist.demos %>/assets-demo/demo.css']
         }
       }
     },
