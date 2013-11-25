@@ -64,6 +64,7 @@ module.exports = function (grunt) {
     'less:fontawesome',
     'less:widgets',
     'less:dist',
+    'less:demo',
     'concat:flot',
     'uglify:dist',
     'copy:demoAssets',
@@ -144,6 +145,13 @@ module.exports = function (grunt) {
           }
         })
       },
+      demo: {
+        options: {
+          paths: ['<%= config.dir.lib.root %>']
+        },
+        src: '<%= config.dir.src.demos %>/demo.less',
+        dest: '<%= config.dir.dist.demos %>/assets-demo/demo.css'
+      },
       dist: {
         options: {
           paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>'],
@@ -157,7 +165,7 @@ module.exports = function (grunt) {
     cssmin: {
       demo: {
         files: {
-          '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.css': ['<%= config.dir.dist.richwidgets %>/richwidgets.min.css', '<%= config.dir.dist.assets %>/font-awesome/font-awesome.css']
+          '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.css': ['<%= config.dir.dist.richwidgets %>/richwidgets.min.css', '<%= config.dir.dist.assets %>/font-awesome/font-awesome.css', '<%= config.dir.dist.demos %>/assets-demo/demo.css']
         }
       }
     },
@@ -291,12 +299,6 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.lib.fontawesome %>/fonts',
             src: ['**'],
             dest: '<%= config.dir.dist.font %>'
-          },
-          {
-            expand: true,
-            cwd: '<%= config.dir.lib.rcue %>/dist/fonts',
-            src: '*',
-            dest: '<%= config.dir.dist.assets %>/fonts/'
           }
         ]
       },
@@ -462,7 +464,7 @@ module.exports = function (grunt) {
           'CONTRIBUTING.md',
           'TESTS.md'
         ],
-        tasks: ['copy:demoAssets', 'assemble:dev']
+        tasks: ['less:demo', 'copy:demoAssets', 'assemble:dev']
       },
       dist: {
         options: {

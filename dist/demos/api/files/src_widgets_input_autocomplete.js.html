@@ -527,7 +527,7 @@
         var widget = this;
 
         this.root.addClass(&#x27;input-group&#x27;);
-        this.button = $(&#x27;&lt;span class=&quot;input-group-btn&quot;&gt;&lt;button class=&quot;btn btn-light&quot; type=&quot;button&quot;&gt;&lt;i class=&quot;fa fa-chevron-down&quot;&gt;&lt;/button&gt;&lt;/i&gt;&lt;/span&gt;&#x27;).appendTo(this.root).find(&#x27;button&#x27;);
+        this.button = $(&#x27;&lt;span class=&quot;input-group-btn&quot;&gt;&lt;button class=&quot;btn btn-default&quot; type=&quot;button&quot;&gt;&lt;i class=&quot;fa fa-angle-down&quot;&gt;&lt;/button&gt;&lt;/i&gt;&lt;/span&gt;&#x27;).appendTo(this.root).find(&#x27;button&#x27;);
 
         this.buttonClickHandler = function () {
           widget.input.autocomplete(&#x27;search&#x27;);
@@ -613,8 +613,8 @@
 
         if (this.button) {
           this.button.off(&#x27;click&#x27;, this.buttonClickHandler);
-          this.button.find(&#x27;i&#x27;).removeClass(&#x27;fa-chevron-down&#x27;);
-          this.button.find(&#x27;i&#x27;).addClass(&#x27;fa-chevron-up&#x27;);
+          this.button.find(&#x27;i&#x27;).removeClass(&#x27;fa-angle-down&#x27;);
+          this.button.find(&#x27;i&#x27;).addClass(&#x27;fa-angle-up&#x27;);
         }
       },
 
@@ -650,8 +650,8 @@
 
       close: function () {
         if (this.button) {
-          this.button.find(&#x27;i&#x27;).removeClass(&#x27;fa-chevron-up&#x27;);
-          this.button.find(&#x27;i&#x27;).addClass(&#x27;fa-chevron-down&#x27;);
+          this.button.find(&#x27;i&#x27;).removeClass(&#x27;fa-angle-up&#x27;);
+          this.button.find(&#x27;i&#x27;).addClass(&#x27;fa-angle-down&#x27;);
 
           // we must delay attaching of event handler because otherwise the click will happen
           // and the handler will be triggered right after closing the menu

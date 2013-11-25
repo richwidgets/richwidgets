@@ -34,7 +34,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       var button = fixture.find('button');
 
       // then
-      expect(button).toContain('i.fa.fa-chevron-down');
+      expect(button).toContain('i.fa.fa-angle-down');
     });
 
 
@@ -63,7 +63,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       runs(function() {
         // then
         expect(input).toBe(document.activeElement);
-        expect(button).toContain('i.fa.fa-chevron-up');
+        expect(button).toContain('i.fa.fa-angle-up');
       });
     });
 
@@ -102,7 +102,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       runs(function() {
         // then
         expect(input).not.toBe(document.activeElement);
-        expect(button).toContain('i.fa.fa-chevron-down');
+        expect(button).toContain('i.fa.fa-angle-down');
       });
     });
 
@@ -155,7 +155,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/input/autocomple
       runs(function() {
         // then
         expect(input).toBe(document.activeElement);
-        expect(button).toContain('i.fa.fa-chevron-up');
+        expect(button).toContain('i.fa.fa-angle-up');
       });
     });
 

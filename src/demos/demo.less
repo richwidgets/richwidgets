@@ -1,0 +1,36 @@
+@import "src/widgets/variables";
+@import "src/widgets/mixins";
+
+@import "lib/rcue/less/fonts";
+
+body.index {
+  #gradient > .vertical(#747474, #4e4e4e);
+
+  .container .jumbotron {
+    background: none;
+
+    padding-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
+
+    h1, p {
+      color: #dbdada;
+      font-family: @headings-font-family;
+      font-style: normal;
+      font-weight: 300;
+
+      line-height: 170%;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}
