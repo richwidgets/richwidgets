@@ -238,6 +238,10 @@
 /* Bootstrap overrides and RCUE-specific mixins */
 /* Bootstrap overrides */
 /* RCUE-specific */
+/* Red Hat Common User Experience (RCUE) */
+/* Bootstrap overrides and RCUE-specific variables */
+/* Bootstrap overrides */
+/* RCUE-specific */
 .ui-autocomplete {
   position: absolute;
   top: 100%;
@@ -573,10 +577,6 @@ ul.ui-autocomplete-layout-table > li.ui-menu-item > a > span:last-child {
 .ordering-list table.list {
   table-layout: fixed;
 }
-/* Red Hat Common User Experience (RCUE) */
-/* Bootstrap overrides and RCUE-specific variables */
-/* Bootstrap overrides */
-/* RCUE-specific */
 .pick-list {
   margin-bottom: 1.81818181;
   display: table;
