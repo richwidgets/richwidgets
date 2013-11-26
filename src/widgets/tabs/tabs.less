@@ -1,0 +1,124 @@
+@import "../mixins";
+@import "../variables";
+@import "bootstrap/less/navs";
+
+.rich-tabs {
+  .nav-tabs {
+    margin-bottom: 12px;
+  }
+  
+  li {
+    a {
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.rich-tabs-left {
+  .nav-tabs {
+    float: left;
+    border: 0px;
+    border-right: 1px solid @nav-tabs-border-color;
+    margin: 0px;
+    margin-right: 8px;
+
+    > li {
+      clear: left;
+      margin: 0px;
+      width: 100%;
+
+      > a {
+        margin-right: -2px;
+      }
+
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          color: @nav-tabs-active-link-hover-color;
+          background-color: @nav-tabs-active-link-hover-bg;
+          border: 1px solid @nav-tabs-active-link-hover-border-color;
+          border-right-color: transparent;
+          cursor: default;
+        }
+    }
+    }
+  }
+
+  .ui-tabs-panel {
+    
+  }
+}
+
+.rich-tabs-right {
+  .nav-tabs {
+    float: right;
+    border: 0px;
+    border-left: 1px solid @nav-tabs-border-color;
+    margin: 0px;
+    margin-left: 8px;
+
+    > li {
+      clear: left;
+      margin: 0px;
+      width: 100%;
+
+      > a {
+        margin-left: -2px;
+      }
+
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          color: @nav-tabs-active-link-hover-color;
+          background-color: @nav-tabs-active-link-hover-bg;
+          border: 1px solid @nav-tabs-active-link-hover-border-color;
+          border-left-color: transparent;
+          cursor: default;
+        }
+    }
+    }
+  }
+
+  .ui-tabs-panel {
+    
+  }
+}
+
+.rich-tabs-bottom {
+  .nav-tabs {
+    border: 0px;
+    border-top: 1px solid @nav-tabs-border-color;
+    margin: 0px;
+    margin-top: 8px;
+
+    > li {
+      //clear: left;
+      //margin: 0px;
+      //width: 100%;
+
+      > a {
+        margin-top: -2px;
+      }
+
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          color: @nav-tabs-active-link-hover-color;
+          background-color: @nav-tabs-active-link-hover-bg;
+          border: 1px solid @nav-tabs-active-link-hover-border-color;
+          border-top-color: transparent;
+          cursor: default;
+        }
+    }
+    }
+  }
+
+  .ui-tabs-panel {
+    
+  }
+}
