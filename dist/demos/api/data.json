@@ -1527,7 +1527,7 @@
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 347,
+            "line": 344,
             "description": "Removes the pick list functionality completely. This will return the element back to its pre-init state.",
             "itemtype": "method",
             "name": "destroy",
@@ -1536,19 +1536,19 @@
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 355,
+            "line": 352,
             "class": "pickList",
             "module": "Select"
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 651,
+            "line": 648,
             "class": "pickList",
             "module": "Select"
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 661,
+            "line": 658,
             "class": "pickList",
             "module": "Select"
         }
@@ -1644,15 +1644,15 @@
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:355"
+            "line": " src/widgets/select/pick-list.js:352"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:651"
+            "line": " src/widgets/select/pick-list.js:648"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:661"
+            "line": " src/widgets/select/pick-list.js:658"
         }
     ]
 }

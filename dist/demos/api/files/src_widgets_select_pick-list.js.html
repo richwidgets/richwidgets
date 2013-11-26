@@ -450,12 +450,9 @@
      * @chainable
      */
     removeAllItems: function (event) {
-      event = event || null;
-      var items = items || $(&#x27;.ui-selected&#x27;, this.targetList);
-      if (this.options.disabled) { return; }
-      this.targetList.orderingList(&#x27;remove&#x27;, items);
-      this.sourceList.orderingList(&#x27;add&#x27;, items);
-      // do not trigger an event here, as the pickList will trigger an event off of the underlying orderingList event
+      var items = $(&#x27;.ui-selectee&#x27;, this.targetList);
+      this.removeItems(items, event);
+      this.sourceList.orderingList(&#x27;selectItem&#x27;, items);
       return this;
     },
 
