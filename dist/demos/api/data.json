@@ -1441,40 +1441,17 @@
         {
             "file": "src/widgets/select/pick-list.js",
             "line": 273,
-            "description": "Move items from the target list of the pickList to the source list.",
-            "params": [
-                {
-                    "name": "items",
-                    "description": "A list of Elements to remove from the target list of the pickList",
-                    "type": "Object"
-                },
-                {
-                    "name": "event",
-                    "description": "The event that triggered the removal of the elements.  This event will be made accessible\nwhen the resulting change event is fired.",
-                    "type": "Object",
-                    "optional": true,
-                    "optdefault": "null"
-                }
-            ],
-            "itemtype": "method",
-            "name": "removeItems",
-            "chainable": 1,
-            "class": "pickList",
-            "module": "Select"
-        },
-        {
-            "file": "src/widgets/select/pick-list.js",
-            "line": 291,
             "description": "Move items from the source list of the pickList to the target list.",
             "params": [
                 {
                     "name": "items",
-                    "description": "A list of Elements to remove from the source list of the pickList",
-                    "type": "Object"
+                    "description": "A list of Elements to remove from the source list of the pickList.  If no items are specified,\nthe selected sourceList items are used.",
+                    "type": "Object",
+                    "optional": true
                 },
                 {
                     "name": "event",
-                    "description": "The event that triggered the removal of the elements.  This event will be made accessible\nwhen the resulting change event is fired.",
+                    "description": "The event that triggered the movement of the elements.  This event will be made accessible\nwhen the resulting change event is fired.",
                     "type": "Object",
                     "optional": true,
                     "optdefault": "null"
@@ -1488,7 +1465,69 @@
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 309,
+            "line": 293,
+            "description": "Move all items from the source list of the pickList to the target list.",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "The event that triggered the movement of the elements.  This event will be made accessible\nwhen the resulting change event is fired.",
+                    "type": "Object",
+                    "optional": true,
+                    "optdefault": "null"
+                }
+            ],
+            "itemtype": "method",
+            "name": "addAllItems",
+            "chainable": 1,
+            "class": "pickList",
+            "module": "Select"
+        },
+        {
+            "file": "src/widgets/select/pick-list.js",
+            "line": 308,
+            "description": "Move items from the target list of the pickList to the source list.",
+            "params": [
+                {
+                    "name": "items",
+                    "description": "A list of Elements to remove from the target list of the pickList  If no items are specified,\nthe selected targetList items are used.",
+                    "type": "Object"
+                },
+                {
+                    "name": "event",
+                    "description": "The event that triggered the movement of the elements.  This event will be made accessible\nwhen the resulting change event is fired.",
+                    "type": "Object",
+                    "optional": true,
+                    "optdefault": "null"
+                }
+            ],
+            "itemtype": "method",
+            "name": "removeItems",
+            "chainable": 1,
+            "class": "pickList",
+            "module": "Select"
+        },
+        {
+            "file": "src/widgets/select/pick-list.js",
+            "line": 329,
+            "description": "Move all items from the target list of the pickList to the source list.",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "The event that triggered the movement of the elements.  This event will be made accessible\nwhen the resulting change event is fired.",
+                    "type": "Object",
+                    "optional": true,
+                    "optdefault": "null"
+                }
+            ],
+            "itemtype": "method",
+            "name": "removeAllItems",
+            "chainable": 1,
+            "class": "pickList",
+            "module": "Select"
+        },
+        {
+            "file": "src/widgets/select/pick-list.js",
+            "line": 347,
             "description": "Removes the pick list functionality completely. This will return the element back to its pre-init state.",
             "itemtype": "method",
             "name": "destroy",
@@ -1497,19 +1536,19 @@
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 317,
+            "line": 355,
             "class": "pickList",
             "module": "Select"
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 613,
+            "line": 651,
             "class": "pickList",
             "module": "Select"
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 623,
+            "line": 661,
             "class": "pickList",
             "module": "Select"
         }
@@ -1605,15 +1644,15 @@
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:317"
+            "line": " src/widgets/select/pick-list.js:355"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:613"
+            "line": " src/widgets/select/pick-list.js:651"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:623"
+            "line": " src/widgets/select/pick-list.js:661"
         }
     ]
 }
