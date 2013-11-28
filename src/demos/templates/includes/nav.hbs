@@ -1,5 +1,6 @@
-<div class="navbar-rcue navbar-default navbar-static-top" role="navigation">
+<nav class="navbar-rcue navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -11,7 +12,7 @@
     </div>
 
     <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-primary navbar-left">
 
         <li {{#is basename "index"}} class="active"{{/is}}><a href="{{href dirname 'dist/demos/index.html'}}">Home</a></li>
         <li class="dropdown {{#unless mainPage}}active{{/unless}}">
@@ -26,7 +27,7 @@
         </li>
         <li><a href="/api">API Docs</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-primary navbar-right">
         <li {{#is basename "about"}} class="active"{{/is}}><a href="{{href dirname 'dist/demos/about.html'}}">About</a></li>
         <li {{#is basename "tests"}} class="active"{{/is}}><a href="{{href dirname 'dist/demos/tests.html'}}">Testing</a></li>
         <li {{#is basename "contributing"}} class="active"{{/is}}><a href="{{href dirname 'dist/demos/contributing.html'}}">Contributing</a></li>
@@ -34,4 +35,4 @@
     </div>
 
   </div>
-</div>
+</nav>
