@@ -27,10 +27,54 @@ body.index {
       color: white;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: @grid-float-breakpoint) {
       p {
         font-size: 18px;
       }
     }
+  }
+}
+
+.navbar-rcue {
+
+  .collapse {
+    #gradient .vertical(#474c50, #383f43);
+  }
+
+  .navbar-primary {
+    background: none;
+    font-size: @font-size-base;
+  }
+}
+
+#fork-me-on-github-ribbon > img {
+  position: fixed; top: 86px; right: 0; border: 0; z-index: 2000;
+}
+
+@media (min-width: @grid-float-breakpoint) {
+  body {
+    padding-top: 100px;
+  }
+
+  .navbar-rcue {
+    .navbar-collapse {
+      padding: 0 15px;
+
+      .navbar-left {
+        float: left;
+      }
+    }
+  }
+
+
+}
+
+@media (max-width: @grid-float-breakpoint) {
+  body {
+    padding-top: 50px;
+  }
+
+  #fork-me-on-github-ribbon > img {
+    top: 53px;
   }
 }
