@@ -6,9 +6,9 @@
  * @uses $.ui.tabs
  */
 (function ($) {
-  
+
   var rhash = /#.*$/;
-  
+
   function isLocal( anchor ) {
   return anchor.hash.length > 1 &&
     anchor.href.replace( rhash, '' ) ===
@@ -18,37 +18,52 @@
         // but it does encode spaces from anchors (#8777)
         .replace( /\s/g, '%20' );
   }
-  
+
   $.widget('rich.tabs', $.ui.tabs, {
 
     options: {
       position: 'top'
     },
-    
+
     _create: function() {
       this.element.addClass('rich-tabs rich-tabs-' + this.options.position);
 
       this._super();
 
-      if (this.options.position == 'bottom') {
-        this.tablist.appendTo(this.element); 
+      if (this.options.position === 'bottom') {
+        this.tablist.appendTo(this.element);
       }
     },
 
     _processTabs: function() {
       var that = this;
-  
+
       this.tablist = this._getList()
         .addClass( 'nav nav-tabs' )
         .attr( 'role', 'tablist' );
-  
+
       this.tabs = this.tablist.find( '> li:has(a[href]):not(li:has(li)), > li li:has(a[href])' )
         .addClass( 'ui-state-default ui-corner-top' )
         .attr({
           role: 'tab',
           tabIndex: -1
         });
-  
+
+      //dropdowns
+      this.dropdowns = this.tablist.find('li:has(li) > a')
+        .addClass('dropdown-toggle')
+        .attr('data-toggle','dropdown');
+
+      this.dropdowns.map(function() {
+          var $this = $(this);
+
+          $this.html($this.html() + ' <b class=\"caret\"></b>')
+        });
+
+      this.dropdowns.find('+ ul, + ol')
+        .addClass('dropdown-menu');
+
+
       this.anchors = this.tabs.map(function() {
           return $( 'a', this )[ 0 ];
         })
@@ -57,15 +72,15 @@
           role: 'presentation',
           tabIndex: -1
         });
-  
+
       this.panels = $();
-  
+
       this.anchors.each(function( i, anchor ) {
         var selector, panel, panelId,
           anchorId = $( anchor ).uniqueId().attr( 'id' ),
           tab = $( anchor ).closest( 'li' ),
           originalAriaControls = tab.attr( 'aria-controls' );
-  
+
         // inline tab
         if ( isLocal( anchor ) ) {
           selector = anchor.hash;
@@ -81,7 +96,7 @@
           }
           panel.attr( 'aria-live', 'polite');
         }
-  
+
         if ( panel.length) {
           that.panels = that.panels.add( panel );
         }
@@ -94,27 +109,27 @@
         });
         panel.attr( 'aria-labelledby', anchorId );
       });
-  
+
       this.panels
         .addClass( 'ui-tabs-panel ui-widget-content ui-corner-bottom' )
         .attr( 'role', 'tabpanel' );
     },
-    
+
     _toggle: function( event, eventData ) {
       var that = this,
         toShow = eventData.newPanel,
         toHide = eventData.oldPanel;
-  
+
       this.running = true;
-  
+
       function complete() {
         that.running = false;
         that._trigger( 'activate', event, eventData );
       }
-  
+
       function show() {
         eventData.newTab.closest( 'li' ).addClass( 'ui-tabs-active active' );
-  
+
         if ( toShow.length && that.options.show ) {
           that._show( toShow, that.options.show, complete );
         } else {
@@ -122,7 +137,7 @@
           complete();
         }
       }
-  
+
       // start out by hiding, then showing, then completing
       if ( toHide.length && this.options.hide ) {
         this._hide( toHide, this.options.hide, function() {
@@ -134,7 +149,7 @@
         toHide.hide();
         show();
       }
-  
+
       toHide.attr({
         'aria-expanded': 'false',
         'aria-hidden': 'true'
@@ -151,7 +166,7 @@
         })
         .attr( 'tabIndex', -1 );
       }
-  
+
       toShow.attr({
         'aria-expanded': 'true',
         'aria-hidden': 'false'
@@ -161,12 +176,12 @@
         tabIndex: 0
       });
     },
-    
+
     _refresh: function() {
       this._setupDisabled( this.options.disabled );
       this._setupEvents( this.options.event );
       this._setupHeightStyle( this.options.heightStyle );
-  
+
       this.tabs.not( this.active ).attr({
         'aria-selected': 'false',
         tabIndex: -1
@@ -177,7 +192,7 @@
           'aria-expanded': 'false',
           'aria-hidden': 'true'
         });
-  
+
       // Make sure one tab is in the tab order
       if ( !this.active.length ) {
         this.tabs.eq( 0 ).attr( 'tabIndex', 0 );
@@ -195,10 +210,10 @@
             'aria-hidden': 'false'
           });
       }
-    }, 
+    },
 
     _destroy: function() {
-      if (this.options.position == 'bottom') {
+      if (this.options.position === 'bottom') {
         this.tablist.prependTo(this.element);
       }
 
@@ -208,7 +223,7 @@
       this.tablist.removeClass('nav nav-tabs');
       this.tabs.removeClass('active');
     }
-  
+
   });
-  
+
 }(jQuery));
