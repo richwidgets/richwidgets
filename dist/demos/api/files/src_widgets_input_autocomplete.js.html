@@ -546,13 +546,15 @@
     },
 
     _enable: function () {
-      this.button.removeAttr(&#x27;disabled&#x27;);
-      this._super();
+      if (this.button) {
+        this.button.removeAttr(&#x27;disabled&#x27;);
+      }
     },
 
     _disable: function () {
-      this.button.attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
-      this._super();
+      if (this.button) {
+        this.button.attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
+      }
     },
 
     /**

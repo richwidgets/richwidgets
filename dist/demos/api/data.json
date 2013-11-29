@@ -464,28 +464,28 @@
         },
         {
             "file": "src/widgets/input/autocomplete.js",
-            "line": 443,
+            "line": 445,
             "override": "$.ui.autocomplete._initSource",
             "class": "autocomplete",
             "module": "Input"
         },
         {
             "file": "src/widgets/input/autocomplete.js",
-            "line": 450,
+            "line": 452,
             "override": "$.ui.autocomplete._renderMenu",
             "class": "autocomplete",
             "module": "Input"
         },
         {
             "file": "src/widgets/input/autocomplete.js",
-            "line": 460,
+            "line": 462,
             "override": "$.ui.autocomplete._renderItem",
             "class": "autocomplete",
             "module": "Input"
         },
         {
             "file": "src/widgets/input/autocomplete.js",
-            "line": 486,
+            "line": 488,
             "description": "callbacks for important jQuery UI Autocomplete events that helps to handle extension functionality",
             "class": "autocomplete",
             "module": "Input"
@@ -1560,15 +1560,15 @@
         },
         {
             "message": "unknown tag: override",
-            "line": " src/widgets/input/autocomplete.js:443"
+            "line": " src/widgets/input/autocomplete.js:445"
         },
         {
             "message": "unknown tag: override",
-            "line": " src/widgets/input/autocomplete.js:450"
+            "line": " src/widgets/input/autocomplete.js:452"
         },
         {
             "message": "unknown tag: override",
-            "line": " src/widgets/input/autocomplete.js:460"
+            "line": " src/widgets/input/autocomplete.js:462"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -1600,19 +1600,19 @@
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/input/autocomplete.js:443"
+            "line": " src/widgets/input/autocomplete.js:445"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/input/autocomplete.js:450"
+            "line": " src/widgets/input/autocomplete.js:452"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/input/autocomplete.js:460"
+            "line": " src/widgets/input/autocomplete.js:462"
         },
         {
             "message": "Missing item type\ncallbacks for important jQuery UI Autocomplete events that helps to handle extension functionality",
-            "line": " src/widgets/input/autocomplete.js:486"
+            "line": " src/widgets/input/autocomplete.js:488"
         },
         {
             "message": "Missing item type\nLabels are mapped to numbers 0,1,2...\nIf a chart consists of multiple series values(from all series) with the same label\nare mapped to the (one number 0,1,2..) space of width 1.\nbarWidth takes care of bars to not overlap",
