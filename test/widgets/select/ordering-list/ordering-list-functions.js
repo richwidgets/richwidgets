@@ -191,10 +191,10 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
     });
 
     describe('move functions:', function () {
-      describe('moveTop:', function () {
+      describe('moveFirst:', function () {
         it('move single item to top:', function () {
-          testItemMovement(element_list, 5, 'moveTop');
-          testItemMovement(element_table, 5, 'moveTop');
+          testItemMovement(element_list, 5, 'moveFirst');
+          testItemMovement(element_table, 5, 'moveFirst');
         });
       });
 
@@ -248,7 +248,7 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/select/ordering-
               return thresholdValue(indexBefore - 1);
             case 'moveDown':
               return thresholdValue(indexBefore + 1);
-            case 'moveTop':
+            case 'moveFirst':
               return 0;
             case 'moveLast':
               return 7;
