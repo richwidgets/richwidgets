@@ -456,6 +456,14 @@
       return this;
     },
 
+    getSourceWidget: function() {
+      return $(this.sourceList).data(&#x27;richOrderingList&#x27;);
+    },
+
+    getTargetWidget: function() {
+      return $(this.targetList).data(&#x27;richOrderingList&#x27;);
+    },
+
     /**
      * Removes the pick list functionality completely. This will return the element back to its pre-init state.
      *

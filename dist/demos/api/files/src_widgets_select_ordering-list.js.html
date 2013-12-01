@@ -510,7 +510,7 @@
     },
 
     /**
-     * Find and return the list of oerderingList elements that are selected
+     * Find and return the list of orderingList elements that are selected
      *
      * @method getSelected
      * @returns {Object} A jQuery list of selected items
@@ -544,30 +544,38 @@
     },
 
     /**
+     * Select all items in the orderingList
+     *
+     * @method selectAll
+     * @chainable
+     */
+    selectAll: function () {
+      this.element.find(&#x27;.ui-selectee&#x27;).addClass(&#x27;ui-selected&#x27;);
+      return this;
+    },
+
+    /**
      * Un-select all items in the orderingList
      *
      * @method unSelectAll
      * @chainable
      */
     unSelectAll: function () {
-      var widget = this;
-      this._removeDomElements();
-      this.element.children().each(function () {
-        widget.unSelectItem(this);
-      });
+      this.element.find(&#x27;.ui-selected&#x27;).removeClass(&#x27;ui-selected&#x27;);
       return this;
     },
 
     /**
      * Move the given items to the top of the orderingList
      *
-     * @method moveTop
+     * @method moveFirst
      * @param items {Object} the items to move to the top
      * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
      */
-    moveTop: function (items, event) {
+    moveFirst: function (items, event) {
       event = event || null;
+      items = items || $(&#x27;.ui-selected&#x27;, this.element);
       if (this.options.disabled) { return; }
       var moved = this.$pluginRoot.find(items);
       var first = moved.prevAll().not(&#x27;.ui-selected&#x27;).last();
@@ -577,7 +585,7 @@
       if (initialState.toString() !== finalState.toString()) {
         var ui = this._uiHash();
         ui.change = &#x27;move&#x27;;
-        ui.movement = &#x27;moveTop&#x27;;
+        ui.movement = &#x27;moveFirst&#x27;;
         this._trigger(&#x27;change&#x27;, event, ui);
       }
       return this;
@@ -587,12 +595,13 @@
      * Move the given items up one step in the orderingList
      *
      * @method moveUp
-     * @param items {Object} the items to move up
+     * @param [items] {Object} the items to move up
      * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
      */
     moveUp: function (items, event) {
       event = event || null;
+      items = items || $(&#x27;.ui-selected&#x27;, this.element);
       if (this.options.disabled) { return; }
       var initialState = this.getOrderedKeys();
       var moved = this.$pluginRoot.find(items);
@@ -617,12 +626,13 @@
      * Move the given items down one step in the orderingList
      *
      * @method moveDown
-     * @param items {Object} the items to move down
+     * @param [items] {Object} the items to move down
      * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
      */
     moveDown: function (items, event) {
       event = event || null;
+      items = items || $(&#x27;.ui-selected&#x27;, this.element);
       if (this.options.disabled) { return; }
       var initialState = this.getOrderedKeys();
       var moved = this.$pluginRoot.find(items);
@@ -649,12 +659,13 @@
      * Move the given items to the end of the orderingList
      *
      * @method moveLast
-     * @param items {Object} the items to move to the end
+     * @param [items] {Object} the items to move to the end
      * @param [event=null] {Object} the event used that triggered this movement
      * @chainable
      */
     moveLast: function (items, event) {
       event = event || null;
+      items = items || $(&#x27;.ui-selected&#x27;, this.element);
       if (this.options.disabled) { return; }
       var initialState = this.getOrderedKeys();
       var moved = this.$pluginRoot.find(items);
@@ -674,10 +685,11 @@
      * Remove the given items from the orderingList
      *
      * @method remove
-     * @param items {Object} the items to remove
+     * @param [items] {Object} the items to remove
      * @returns {Object} the items removed from the orderingList
      */
     remove: function (items) {
+      items = items || $(&#x27;.ui-selected&#x27;, this.element);
       if (!items || items.length === 0) {
         return null;
       }
@@ -1126,7 +1138,7 @@
      * &#x60;&#x60;&#x60;&#x60;javascript
      * {
      *   change: &#x27;move&#x27;| &#x27;add&#x27; | &#x27;remove&#x27;,
-     *   movement: &#x27;drag&#x27; | &#x27;moveUp&#x27; | &#x27;moveTop&#x27; | &#x27;moveDown&#x27; | &#x27;moveLast&#x27;
+     *   movement: &#x27;drag&#x27; | &#x27;moveUp&#x27; | &#x27;moveFirst&#x27; | &#x27;moveDown&#x27; | &#x27;moveLast&#x27;
      * }
      * &#x60;&#x60;&#x60;&#x60;
      */
@@ -1197,7 +1209,7 @@
     /** Event Handlers **/
 
     _firstHandler: function (event) {
-      this.moveTop($(&#x27;.ui-selected&#x27;, this.element), event);
+      this.moveFirst($(&#x27;.ui-selected&#x27;, this.element), event);
     },
 
     _upHandler: function (event) {

@@ -967,7 +967,7 @@
         {
             "file": "src/widgets/select/ordering-list.js",
             "line": 397,
-            "description": "Find and return the list of oerderingList elements that are selected",
+            "description": "Find and return the list of orderingList elements that are selected",
             "itemtype": "method",
             "name": "getSelected",
             "return": {
@@ -1014,6 +1014,16 @@
         {
             "file": "src/widgets/select/ordering-list.js",
             "line": 431,
+            "description": "Select all items in the orderingList",
+            "itemtype": "method",
+            "name": "selectAll",
+            "chainable": 1,
+            "class": "orderingList",
+            "module": "Select"
+        },
+        {
+            "file": "src/widgets/select/ordering-list.js",
+            "line": 442,
             "description": "Un-select all items in the orderingList",
             "itemtype": "method",
             "name": "unSelectAll",
@@ -1023,10 +1033,10 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 446,
+            "line": 453,
             "description": "Move the given items to the top of the orderingList",
             "itemtype": "method",
-            "name": "moveTop",
+            "name": "moveFirst",
             "params": [
                 {
                     "name": "items",
@@ -1047,7 +1057,7 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 471,
+            "line": 479,
             "description": "Move the given items up one step in the orderingList",
             "itemtype": "method",
             "name": "moveUp",
@@ -1055,7 +1065,8 @@
                 {
                     "name": "items",
                     "description": "the items to move up",
-                    "type": "Object"
+                    "type": "Object",
+                    "optional": true
                 },
                 {
                     "name": "event",
@@ -1071,7 +1082,7 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 501,
+            "line": 510,
             "description": "Move the given items down one step in the orderingList",
             "itemtype": "method",
             "name": "moveDown",
@@ -1079,7 +1090,8 @@
                 {
                     "name": "items",
                     "description": "the items to move down",
-                    "type": "Object"
+                    "type": "Object",
+                    "optional": true
                 },
                 {
                     "name": "event",
@@ -1095,7 +1107,7 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 533,
+            "line": 543,
             "description": "Move the given items to the end of the orderingList",
             "itemtype": "method",
             "name": "moveLast",
@@ -1103,7 +1115,8 @@
                 {
                     "name": "items",
                     "description": "the items to move to the end",
-                    "type": "Object"
+                    "type": "Object",
+                    "optional": true
                 },
                 {
                     "name": "event",
@@ -1119,7 +1132,7 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 558,
+            "line": 569,
             "description": "Remove the given items from the orderingList",
             "itemtype": "method",
             "name": "remove",
@@ -1127,7 +1140,8 @@
                 {
                     "name": "items",
                     "description": "the items to remove",
-                    "type": "Object"
+                    "type": "Object",
+                    "optional": true
                 }
             ],
             "return": {
@@ -1139,7 +1153,7 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 576,
+            "line": 588,
             "description": "Add the given items to the orderingList",
             "itemtype": "method",
             "name": "add",
@@ -1159,7 +1173,7 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 595,
+            "line": 607,
             "description": "Retrieve the jQuery list of all items in the orderingList",
             "itemtype": "method",
             "name": "getOrderedElements",
@@ -1172,7 +1186,7 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 605,
+            "line": 617,
             "description": "Retrieve the keys of all items in the orderingList",
             "itemtype": "method",
             "name": "getOrderedKeys",
@@ -1185,7 +1199,7 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 615,
+            "line": 627,
             "description": "Removes the ordering list functionality completely. This will return the element back to its pre-init state.",
             "itemtype": "method",
             "name": "destroy",
@@ -1194,20 +1208,20 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 769,
+            "line": 781,
             "class": "orderingList",
             "module": "Select"
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 1005,
+            "line": 1017,
             "description": "A dump of the current state of the widget",
             "itemtype": "method",
             "name": "_uiHash",
             "access": "private",
             "tagname": "",
             "return": {
-                "description": "A `ui` object holding the current state.  The `ui` object has the properties:\n````javascript\n{\n  change: 'move'| 'add' | 'remove',\n  movement: 'drag' | 'moveUp' | 'moveTop' | 'moveDown' | 'moveLast'\n}\n````",
+                "description": "A `ui` object holding the current state.  The `ui` object has the properties:\n````javascript\n{\n  change: 'move'| 'add' | 'remove',\n  movement: 'drag' | 'moveUp' | 'moveFirst' | 'moveDown' | 'moveLast'\n}\n````",
                 "type": "Object"
             },
             "class": "orderingList",
@@ -1215,13 +1229,13 @@
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 1025,
+            "line": 1037,
             "class": "orderingList",
             "module": "Select"
         },
         {
             "file": "src/widgets/select/ordering-list.js",
-            "line": 1082,
+            "line": 1094,
             "class": "orderingList",
             "module": "Select"
         },
@@ -1527,7 +1541,7 @@
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 344,
+            "line": 352,
             "description": "Removes the pick list functionality completely. This will return the element back to its pre-init state.",
             "itemtype": "method",
             "name": "destroy",
@@ -1536,19 +1550,19 @@
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 352,
+            "line": 360,
             "class": "pickList",
             "module": "Select"
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 648,
+            "line": 656,
             "class": "pickList",
             "module": "Select"
         },
         {
             "file": "src/widgets/select/pick-list.js",
-            "line": 658,
+            "line": 666,
             "class": "pickList",
             "module": "Select"
         }
@@ -1580,23 +1594,23 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/select/ordering-list.js:558"
+            "line": " src/widgets/select/ordering-list.js:569"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/select/ordering-list.js:576"
+            "line": " src/widgets/select/ordering-list.js:588"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/select/ordering-list.js:595"
+            "line": " src/widgets/select/ordering-list.js:607"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/select/ordering-list.js:605"
+            "line": " src/widgets/select/ordering-list.js:617"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/select/ordering-list.js:1005"
+            "line": " src/widgets/select/ordering-list.js:1017"
         },
         {
             "message": "Missing item type",
@@ -1624,15 +1638,15 @@
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/ordering-list.js:769"
+            "line": " src/widgets/select/ordering-list.js:781"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/ordering-list.js:1025"
+            "line": " src/widgets/select/ordering-list.js:1037"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/ordering-list.js:1082"
+            "line": " src/widgets/select/ordering-list.js:1094"
         },
         {
             "message": "Missing item type\n/**\n* When _table_ layout is used,\n* _columnClasses_ specifies a comma-delimited list of CSS style classes to apply to each column.\n* A space separated list of classes may be specified for an individual column.\n*\n* If the number of classes in this list is less than the number of column children, then no class will be\n* applied to the columns greater than the number of classes.  If however the final class in the list is the `*`\n* character, the classes will instead be applied in a repeating manner every n-fold column, where n is the order\n* the class in this list.\n*\n*  If there are more class names than columns, the overflow ones are ignored.\n*\n* @property columnClasses\n* @type String",
@@ -1644,15 +1658,15 @@
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:352"
+            "line": " src/widgets/select/pick-list.js:360"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:648"
+            "line": " src/widgets/select/pick-list.js:656"
         },
         {
             "message": "Missing item type",
-            "line": " src/widgets/select/pick-list.js:658"
+            "line": " src/widgets/select/pick-list.js:666"
         }
     ]
 }
