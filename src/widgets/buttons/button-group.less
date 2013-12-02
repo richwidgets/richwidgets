@@ -18,11 +18,19 @@
   }
 }
 
-.btn-primary { .dropdown-buttons(@btn-primary-color, @btn-primary-bg, @btn-primary-border) }
-.btn-warning { .dropdown-buttons(@btn-warning-color, @btn-warning-bg, @btn-warning-border) }
-.btn-danger { .dropdown-buttons(@btn-danger-color, @btn-danger-bg, @btn-danger-border) }
-.btn-success { .dropdown-buttons(@btn-success-color, @btn-success-bg, @btn-success-border) }
-.btn-info { .dropdown-buttons(@btn-info-color, @btn-info-bg, @btn-info-border) }
+// button variants
+.btn-primary { .dropdown-buttons(@btn-primary-color, @btn-primary-bg, @btn-primary-border); }
+.btn-danger { .dropdown-buttons(@btn-danger-color, @btn-danger-bg, @btn-danger-border); }
+
+.btn-warning {
+  .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-bg-img-start; @btn-warning-bg-img-stop; @btn-warning-border);
+  .dropdown-buttons(@btn-warning-color, @btn-warning-bg, @btn-warning-border);
+}
+
+.btn-success {
+  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-bg-img-start; @btn-success-bg-img-stop; @btn-success-border);
+  .dropdown-buttons(@btn-success-color, @btn-success-bg, @btn-success-border);
+}
 
 //fix for Firefox
 .btn-group-justified .dropdown-menu {

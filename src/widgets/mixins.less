@@ -4,25 +4,25 @@
 
 // buttonGroup
 .dropdown-buttons(@color; @background; @border) {
-  @lighter-background30: lighten(@background, 30%);
-  @lighter-background10: lighten(@background, 10%);
+  @lighter-background55: lighten(@background, 55%);
+  @lighter-background40: lighten(@background, 40%);
   + ul.dropdown-menu {
-    background: @lighter-background30;
-    border-color: @border;
+    background: @lighter-background55;
+    border-color: lighten(@border, 15%);
     .box-shadow(0 6px 12px rgba(red(@border),blue(@border),green(@border),.25));
 
 
     .btn-dd {
-      color: contrast(@lighter-background30, @color, #000000, 32%);
-      background: @lighter-background30;
+      color: contrast(@lighter-background55, @color, #000000, 32%);
+      background: @lighter-background55;
     }
 
     > li {
       > a {
         &:hover {
-          background: @lighter-background10;
-          border-color: @background;
-          color: contrast(@lighter-background10, @color, #000000);
+          background: @lighter-background40;
+          border-color: lighten(@background, 20%);
+          color: contrast(@lighter-background40, @color, #000000);
         };
       }
     }
