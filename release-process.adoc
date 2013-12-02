@@ -1,0 +1,69 @@
+== Prerequisites
+
+=== Environment
+
+|===
+| Node | 0.10.21
+|===
+
+=== Notify Development Team
+
+The person performing a release should post a message to the #richwidgets channel on irc.freenode.net.
+
+=== Review Issue Tracker Status and Continuous Integration
+
+Before starting any release steps, make sure the continuous integration builds pass and that all issues scheduled to particular version are resolved.
+
+Issue Tracker:
+
+* https://github.com/richwidgets/richwidgets/issues?state=open[RichWidgets issue tracker on GitHub]
+** select appropriate milestone
+
+Continous Integration builds:
+
+* https://travis-ci.org/richwidgets/richwidgets[Travis CI - master branch continuous integration]
+** need to pass at 100%
+* https://richfaces.ci.cloudbees.com/job/richwidgets-browser-matrix/[CloudBees/SauceLabs - browser compatibility matrix]
+** these jobs should pass on all supported browsers at 100% during candidate releases
+** they does not have to fully pass during alpha releases
+
+=== Finish Release Notes
+
+`dist/release-notes.adoc` should be updated before starting with a release.
+
+== Release Staging
+
+1. Make sure all respected commits are committed in `master` branch.
+1. Diverge a branch `stage` from the latest commit on `master` branch (this is a branch used for release testing)
+1. Change version of the project in `bower.json` and `package.json` to release version (drop `-wip` suffix)
+1. Build a distribution in `dist/` directory and add it to the repository using `git add -f dist/`
+1. Push the `stage` branch upstream, making it available for release verification
+
+== Release testing
+
+At this point the release is prepared for testing by QE team.
+
+What needs to be verified:
+
+* all tests pass on all supported browsers
+
+== Creating and Pushing Tag
+
+Once the release pass QE criteria:
+
+1. Create a tag from latest commit on a `stage` branch, call the tag by a release version: e.g. `0.2`
+1. Push the tag to upstream repository
+1. Remove `dist/` branch
+1. Change version of the project in `bower.json` and `package.json` to development version (drop `-wip` suffix)
+1. Merge `stage` branch (that includes the tag) to `master` branch (so that it appears in `master` branch history)
+1. Drop a `stage` branch
+
+== Releasing
+
+1. Create a Release in GitHub interface
+1. Attach a built ZIP distribution (snapshot of tag sources that include built `dist/`)
+
+== Release verification
+
+* the ZIP can be downloaded from GitHub Releases view
+* the tag can be downloaded via Bower
