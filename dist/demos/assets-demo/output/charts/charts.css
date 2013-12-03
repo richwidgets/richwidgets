@@ -1,0 +1,12 @@
+.rich-chart-responsive{
+    max-width: 700px;
+    margin: auto;
+    width: 100%;
+    height: 300px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+}
+.rich-chart{
+    width: 600px;
+    height: 400px;
+}

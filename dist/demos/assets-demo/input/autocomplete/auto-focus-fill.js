@@ -1,0 +1,1 @@
+$('#auto-focus-fill').autocomplete({ source: source, autoFocus: true, autoFill: true });

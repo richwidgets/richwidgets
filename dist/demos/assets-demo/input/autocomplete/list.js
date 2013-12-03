@@ -1,0 +1,1 @@
+$('#list-source').autocomplete({ source: '#list-suggestions' });

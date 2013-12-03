@@ -1,0 +1,1 @@
+$('#table-source').autocomplete({ source: '#table-suggestions' });
