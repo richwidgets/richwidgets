@@ -29,7 +29,7 @@ Continous Integration builds:
 
 === Finish Release Notes
 
-`dist/release-notes.adoc` should be updated before starting with a release.
+`release-notes.md` should be updated before starting with a release.
 
 == Release Staging
 
