@@ -3,7 +3,7 @@
         "name": "richfaces-widgets",
         "description": "Standalone javascript widgets",
         "logo": "../logo.png",
-        "version": "0.0.1-wip",
+        "version": "0.1.1-wip",
         "url": "http://richwidgets.io"
     },
     "files": {
