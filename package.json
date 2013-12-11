@@ -1,7 +1,7 @@
 {
   "name": "richfaces-widgets",
   "description": "Standalone javascript widgets",
-  "version": "0.1.0",
+  "version": "0.1.1-wip",
   "homepage": "http://richwidgets.io",
   "author": "JBoss RedHat",
   "contributors": [
