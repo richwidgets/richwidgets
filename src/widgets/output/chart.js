@@ -469,6 +469,24 @@
       return this.plot;
     },
 
+    /**
+     * Highlights the point in chart selected by seriesIndex or point index. Does not work for pie charts.
+     * @param seriesIndex {int}
+     * @param pointIndex {int}
+     * @method highlight
+     */
+    highlight: function(seriesIndex,pointIndex){
+       this.plot.highlight(seriesIndex,pointIndex);
+    },
+    /**
+     * Removes highlighting of point. If method is called without parameters it unhighlights all points.
+     * @param seriesIndex {int}
+     * @param pointIndex {int}
+     * @method unghighlight
+     */
+    unhighlight: function(seriesIndex,pointIndex){
+       this.plot.unhighlight(seriesIndex,pointIndex);
+    },
 
     _unbind: function () {
       this.element.off('plotselected');
