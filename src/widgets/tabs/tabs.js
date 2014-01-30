@@ -57,7 +57,7 @@
       this.dropdowns.map(function() {
           var $this = $(this);
 
-          $this.html($this.html() + ' <b class=\"caret\"></b>')
+          $this.html($this.html() + ' <b class=\"caret\"></b>');
         });
 
       this.dropdowns.find('+ ul, + ol')
