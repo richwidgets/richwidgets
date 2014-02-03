@@ -22,7 +22,29 @@
 
       // library dependencies modules
       'jquery': 'lib/jquery/jquery',
-      'jquery-ui': 'lib/jquery-ui/ui/jquery-ui'
+      'jquery-ui': 'lib/jquery-ui/ui/jquery-ui',
+      'jquery.flot': 'lib/flot/jquery.flot',
+      'jquery.flot.tooltip': 'lib/flotTooltip/js/jquery.flot.tooltip',
+      'jquery.flot.orderBars': 'lib/flotOrderBars/js/jquery.flot.orderBars',
+      'jquery.flot.axisLabels': 'lib/flotAxisLabels/jquery.flot.axislabels',
+
+      'jquery.colorhelpers':'lib/flot/jquery.colorhelpers',
+      'jquery.flot.canvas' : 'lib/flot/jquery.flot.canvas',
+      'jquery.flot.categories' : 'lib/flot/jquery.flot.categories',
+      'jquery.flot.crosshair' : 'lib/flot/jquery.flot.crosshair',
+      'jquery.flot.errorbars' : 'lib/flot/jquery.flot.errorbars',
+      'jquery.flot.fillbetween' : 'lib/flot/jquery.flot.fillbetween',
+      'jquery.flot.image' : 'lib/flot/jquery.flot.image',
+      'jquery.flot.navigate' : 'lib/flot/jquery.flot.navigate',
+      'jquery.flot.pie' : 'lib/flot/jquery.flot.pie',
+      'jquery.flot.resize' : 'lib/flot/jquery.flot.resize',
+      'jquery.flot.selection' : 'lib/flot/jquery.flot.selection',
+      'jquery.flot.stack' : 'lib/flot/jquery.flot.stack',
+      'jquery.flot.symbol' : 'lib/flot/jquery.flot.symbol',
+      'jquery.flot.threshold' : 'lib/flot/jquery.flot.threshold',
+      'jquery.flot.time' : 'lib/flot/jquery.flot.time',
+      'flotlib':'test/utils/flot-lib-module'
+
     },
 
     /**
@@ -32,6 +54,31 @@
       // test modules
       'jquery-simulate': { deps: ['jquery'] },
       'jquery-jasmine': { deps: ['jquery'] },
+
+      'jquery.flot': {
+            deps:['jquery'],
+            exports: '$.plot'
+      },
+      'jquery.flot.tooltip': { deps: ['jquery','jquery.flot']},
+      'jquery.flot.axisLabels': { deps: ['jquery','jquery.flot']},
+      'jquery.flot.orderBars': { deps: ['jquery','jquery.flot']},
+
+      'jquery.colorhelpers' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.canvas' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.categories' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.crosshair' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.errorbars' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.fillbetween' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.image' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.navigate' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.pie' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.resize' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.selection' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.stack' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.symbol' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.threshold' : { deps: ['jquery','jquery.flot'] },
+      'jquery.flot.time' : { deps: ['jquery','jquery.flot'] },
+
 
       // library dependencies modules
       'jquery': {
@@ -45,6 +92,7 @@
 
       // richwidgets modules
       'src/widgets/input/autocomplete': { deps: ['jquery', 'jquery-ui'] },
+      'src/widgets/output/chart': { deps: ['jquery', 'jquery-ui'] },
       'src/widgets/select/ordering-list': { deps: ['jquery', 'jquery-ui'] },
       'src/widgets/select/pick-list': { deps: ['jquery', 'jquery-ui', 'src/widgets/select/ordering-list'] }
     },
