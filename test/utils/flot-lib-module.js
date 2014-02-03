@@ -1,4 +1,4 @@
-define("flotlib",
+define('flotlib',
     [   'jquery.flot',
         'jquery.flot.tooltip',
         'jquery.flot.axisLabels',

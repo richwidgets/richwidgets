@@ -36,8 +36,64 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/output/chart','f
             element.chart(options);
 
             // then
-            var canvas = $('.flot-base');
-            expect(canvas.length).toBeGreaterThan(0);
+            expect($('.flot-base').length).toBeGreaterThan(0);
+            expect($('.flot-overlay').length).toBeGreaterThan(0);
+            expect($('.legend').length).toBeGreaterThan(0);
+            //four records(series) in legend table
+            expect($('.legend table tbody').first().children().length).toEqual(4);
+            expect($('.yaxisLabel').first().text()).toEqual('metric tons of CO2 per capita');
+            expect($('.xaxisLabel').first().text()).toEqual('year');
+
+        });
+
+        it('creates bar chart', function(){
+            //given
+            var options =  {
+                data: [
+                    {
+                        bars: {show: true},
+                        data: {'United States': 797, 'San Marino': 1263, 'Croatia': 380, 'Denmark': 480, 'Vietnam': 13}
+                    }
+                ],
+                yaxis: {axisLabel: 'Motor vehicles per 1000 people'},
+                ytype: 'number',
+                xtype: 'string',
+                charttype: 'bar'
+            };
+            expect(element.length).toBeGreaterThan(0);
+            element.chart(options);
+
+            //then
+            expect($('.flot-base').length).toBeGreaterThan(0);
+            expect($('.flot-overlay').length).toBeGreaterThan(0);
+            expect($('.yaxisLabel').first().text()).toEqual('Motor vehicles per 1000 people');
+
+
+
+        });
+
+        it('creates pie chart', function(){
+            //given
+            var options = {
+                data: [
+                    [
+                        {data: 12500746, label: 'Service sector'},
+                        {data: 188217,   label: 'Agricultural sector'},
+                        {data: 2995787, label:  'Industrial sector'}
+                    ]
+                ],
+                legend:{sorted:'ascending'},
+                charttype:'pie'
+            };
+            expect(element.length).toBeGreaterThan(0);
+            element.chart(options);
+
+            //then
+            expect($('.flot-base').length).toBeGreaterThan(0);
+            expect($('.flot-overlay').length).toBeGreaterThan(0);
+            expect($('.legend').length).toBeGreaterThan(0);
+            //three records(series) in legend table
+            expect($('.legend table tbody').first().children().length).toEqual(3);
 
         });
 
