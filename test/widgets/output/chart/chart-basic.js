@@ -1,4 +1,4 @@
-define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/output/chart','flotlib'], function () {
+define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/output/chart'], function () {
 
     describe('widget(charts): ', function () {
 
@@ -32,17 +32,18 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/output/chart','f
                 xaxis:{axisLabel:'year'},zoom:false,xtype:'number',
                 charttype:'line'
             };
-            expect(element.length).toBeGreaterThan(0);
+            expect(element.length).toEqual(1);
             element.chart(options);
 
             // then
-            expect($('.flot-base').length).toBeGreaterThan(0);
-            expect($('.flot-overlay').length).toBeGreaterThan(0);
-            expect($('.legend').length).toBeGreaterThan(0);
+            //chceck that flot-base, flot-base and legend is generated
+            expect($('.flot-base',element).length).toEqual(1);
+            expect($('.flot-overlay',element).length).toEqual(1);
+            expect($('.legend',element).length).toEqual(1);
             //four records(series) in legend table
-            expect($('.legend table tbody').first().children().length).toEqual(4);
-            expect($('.yaxisLabel').first().text()).toEqual('metric tons of CO2 per capita');
-            expect($('.xaxisLabel').first().text()).toEqual('year');
+            expect($('.legend table tbody',element).first().children().length).toEqual(4);
+            expect($('.yaxisLabel',element).first().text()).toEqual('metric tons of CO2 per capita');
+            expect($('.xaxisLabel',element).first().text()).toEqual('year');
 
         });
 
@@ -60,13 +61,14 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/output/chart','f
                 xtype: 'string',
                 charttype: 'bar'
             };
-            expect(element.length).toBeGreaterThan(0);
+            expect(element.length).toEqual(1);
             element.chart(options);
 
             //then
-            expect($('.flot-base').length).toBeGreaterThan(0);
-            expect($('.flot-overlay').length).toBeGreaterThan(0);
-            expect($('.yaxisLabel').first().text()).toEqual('Motor vehicles per 1000 people');
+            //chceck that flot-base, flot-base is generated
+            expect($('.flot-base',element).length).toEqual(1);
+            expect($('.flot-overlay',element).length).toEqual(1);
+            expect($('.yaxisLabel',element).first().text()).toEqual('Motor vehicles per 1000 people');
 
         });
 
@@ -83,15 +85,16 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/output/chart','f
                 legend:{sorted:'ascending'},
                 charttype:'pie'
             };
-            expect(element.length).toBeGreaterThan(0);
+            expect(element.length).toEqual(1);
             element.chart(options);
 
             //then
-            expect($('.flot-base').length).toBeGreaterThan(0);
-            expect($('.flot-overlay').length).toBeGreaterThan(0);
-            expect($('.legend').length).toBeGreaterThan(0);
+            //chceck that flot-base, flot-base and legend is generated
+            expect($('.flot-base',element).length).toEqual(1);
+            expect($('.flot-overlay',element).length).toEqual(1);
+            expect($('.legend',element).length).toEqual(1);
             //three records(series) in legend table
-            expect($('.legend table tbody').first().children().length).toEqual(3);
+            expect($('.legend table tbody',element).first().children().length).toEqual(3);
 
         });
 

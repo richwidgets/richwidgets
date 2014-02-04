@@ -92,7 +92,7 @@
 
       // richwidgets modules
       'src/widgets/input/autocomplete': { deps: ['jquery', 'jquery-ui'] },
-      'src/widgets/output/chart': { deps: ['jquery', 'jquery-ui'] },
+      'src/widgets/output/chart': { deps: ['jquery', 'jquery-ui','flotlib'] },
       'src/widgets/select/ordering-list': { deps: ['jquery', 'jquery-ui'] },
       'src/widgets/select/pick-list': { deps: ['jquery', 'jquery-ui', 'src/widgets/select/ordering-list'] }
     },
