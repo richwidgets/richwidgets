@@ -68,8 +68,6 @@ define(['widget-test-base', 'jquery', 'jquery-ui', 'src/widgets/output/chart','f
             expect($('.flot-overlay').length).toBeGreaterThan(0);
             expect($('.yaxisLabel').first().text()).toEqual('Motor vehicles per 1000 people');
 
-
-
         });
 
         it('creates pie chart', function(){
