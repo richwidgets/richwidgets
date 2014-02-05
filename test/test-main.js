@@ -92,7 +92,11 @@
 
       // richwidgets modules
       'src/widgets/input/autocomplete': { deps: ['jquery', 'jquery-ui'] },
-      'src/widgets/output/chart': { deps: ['jquery', 'jquery-ui','flotlib'] },
+      'src/widgets/output/chart': { deps: ['jquery', 'jquery-ui','jquery.flot','jquery.flot.tooltip',
+          'jquery.flot.axisLabels','jquery.flot.orderBars','jquery.colorhelpers','jquery.flot.canvas',
+          'jquery.flot.categories','jquery.flot.crosshair','jquery.flot.errorbars','jquery.flot.fillbetween',
+          'jquery.flot.image','jquery.flot.navigate','jquery.flot.pie','jquery.flot.resize','jquery.flot.selection',
+          'jquery.flot.stack','jquery.flot.symbol','jquery.flot.threshold','jquery.flot.time'] },
       'src/widgets/select/ordering-list': { deps: ['jquery', 'jquery-ui'] },
       'src/widgets/select/pick-list': { deps: ['jquery', 'jquery-ui', 'src/widgets/select/ordering-list'] }
     },
