@@ -35,7 +35,7 @@
   "devDependencies": {
     "assemble": "0.4.31",
     "assemble-yaml": "0.1.7",
-    "yfm": "0.1.0",
+    "yfm": "0.2.0",
     "grunt": "0.4.1",
     "grunt-contrib-copy": "0.4.1",
     "grunt-contrib-concat": "0.3.0",
