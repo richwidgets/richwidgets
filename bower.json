@@ -7,14 +7,14 @@
 
     "jquery": "1.9.1",
     "jquery-ui": "1.9.2",
-    "bootstrap": "3.0.2",
+    "bootstrap": "3.0.3",
     "font-awesome": "4.0.3",
     "flot" : "0.8.0",
     "flotAxisLabels":"markrcote/flot-axislabels#fcfde41709057b1087288e20f49f0e8a75025845",
     "flotTooltip":"krzysu/flot.tooltip#11c117e11cf50fa5876c23a81a8296feb94dee93",
     "flotOrderBars":"emmerich/flot-orderBars#d44ff4f2fec4c8bb1254e59567ee39fa3684372e",
 
-    "rcue": "rhamilto/rcue#v0.3.5-alpha",
+    "rcue": "patternfly/patternfly#0.1.1",
 
     "requirejs": "2.1.8",
     "jasmine-jquery": "1.5.3",
