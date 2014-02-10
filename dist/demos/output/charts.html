@@ -36,7 +36,7 @@
 </head>
 
 <body class="">
-  <nav class="navbar-rcue navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar-pf navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
 
     <div class="navbar-header">
@@ -110,6 +110,17 @@
 <span id="clickdata"></span>
 <br/>
 <span id="hoverdata"></span>
+Highlight:
+<ul>
+    <li><a href="#" onclick="$('#placeholder').chart('highlight',0,0); return false;">First point in the first series</a></li>
+    <li><a href="#" onclick="$('#placeholder').chart('highlight',1,2); return false;">Second point in the third series</a></li>
+</ul>
+Unhighlight:
+<ul>
+    <li><a href="#" onclick="$('#placeholder').chart('unhighlight',0,0); return false;">First point in the first series</a></li>
+    <li><a href="#" onclick="$('#placeholder').chart('unhighlight',1,2); return false;">Second point in the third series</a></li>
+    <li><a href="#" onclick="$('#placeholder').chart('unhighlight'); return false;">all</a></li>
+</ul>
                         </div>
                         <div class="panel-footer">
                             <p>Basic line chart</p>
@@ -122,7 +133,18 @@
                 <pre><code class="language-html">&lt;div id=&quot;placeholder&quot; class=&quot;rich-chart-responsive&quot;&gt;&lt;/div&gt;
 &lt;span id=&quot;clickdata&quot;&gt;&lt;/span&gt;
 &lt;br/&gt;
-&lt;span id=&quot;hoverdata&quot;&gt;&lt;/span&gt;</code></pre>
+&lt;span id=&quot;hoverdata&quot;&gt;&lt;/span&gt;
+Highlight:
+&lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;$(&#39;#placeholder&#39;).chart(&#39;highlight&#39;,0,0); return false;&quot;&gt;First point in the first series&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;$(&#39;#placeholder&#39;).chart(&#39;highlight&#39;,1,2); return false;&quot;&gt;Second point in the third series&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+Unhighlight:
+&lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;$(&#39;#placeholder&#39;).chart(&#39;unhighlight&#39;,0,0); return false;&quot;&gt;First point in the first series&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;$(&#39;#placeholder&#39;).chart(&#39;unhighlight&#39;,1,2); return false;&quot;&gt;Second point in the third series&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;$(&#39;#placeholder&#39;).chart(&#39;unhighlight&#39;); return false;&quot;&gt;all&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 
                 <pre><code class="language-js">$(<span class="string">'#placeholder'</span>).chart({
   data: [

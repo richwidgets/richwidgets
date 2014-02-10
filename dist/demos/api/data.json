@@ -649,7 +649,7 @@
             "type": "Object",
             "default": "{min: null, max: null,autoscaleMargin: 0.2,axisLabel: ''}",
             "itemtype": "property",
-            "name": "xaxis",
+            "name": "yaxis",
             "class": "chart",
             "module": "Output",
             "subprops": [
@@ -695,7 +695,7 @@
         },
         {
             "file": "src/widgets/output/chart.js",
-            "line": 436,
+            "line": 453,
             "description": "Redraw chart without axis ranges",
             "itemtype": "method",
             "name": "resetZoom",
@@ -704,7 +704,7 @@
         },
         {
             "file": "src/widgets/output/chart.js",
-            "line": 446,
+            "line": 463,
             "description": "Returns chart object",
             "itemtype": "method",
             "name": "getPlotObject",
@@ -713,7 +713,49 @@
         },
         {
             "file": "src/widgets/output/chart.js",
-            "line": 465,
+            "line": 472,
+            "description": "Highlights the point in chart selected by seriesIndex or point index. Does not work for pie charts.",
+            "params": [
+                {
+                    "name": "seriesIndex",
+                    "description": "",
+                    "type": "Int"
+                },
+                {
+                    "name": "pointIndex",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "itemtype": "method",
+            "name": "highlight",
+            "class": "chart",
+            "module": "Output"
+        },
+        {
+            "file": "src/widgets/output/chart.js",
+            "line": 481,
+            "description": "Removes highlighting of point. If method is called without parameters it unhighlights all points.",
+            "params": [
+                {
+                    "name": "seriesIndex",
+                    "description": "",
+                    "type": "Int"
+                },
+                {
+                    "name": "pointIndex",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "itemtype": "method",
+            "name": "unghighlight",
+            "class": "chart",
+            "module": "Output"
+        },
+        {
+            "file": "src/widgets/output/chart.js",
+            "line": 500,
             "description": "Removes the chart functionality completely. This will return the element back to its pre-init state.",
             "itemtype": "method",
             "name": "destroy",

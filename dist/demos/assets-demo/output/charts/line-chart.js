@@ -19,3 +19,5 @@ $('#placeholder').on('plothover', function (event, pos, item) {
 
 $('#placeholder').on('mouseout',function(){$('#hoverdata').text('');});
 
+
+
