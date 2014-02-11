@@ -5,6 +5,7 @@ $('#placeholder').chart({
     {data:[[1990,9.4],[1991,9.4],[1992,9.5],[1993,9.4],[1994,9.9],[1995,9.9],[1996,10.1],[1997,10.1],[1998,9.7],[1999,9.5],[2000,9.7]],label:'Japan'},
     {data:[[1992,14],[1993,12.8],[1994,10.9],[1995,10.5],[1996,10.4],[1997,10],[1998,9.6],[1999,9.7],[2000,9.8]],label:'Russia'}
   ],
+  tooltipOpts:{content:'%s [%x,%y.1]'},
   yaxis:{axisLabel:'metric tons of CO2 per capita'},ytype:'number',
   xaxis:{axisLabel:'year'},zoom:false,xtype:'number',
   charttype:'line'

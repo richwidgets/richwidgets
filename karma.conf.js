@@ -30,9 +30,16 @@ module.exports = function(config) {
       {pattern: 'lib/jasmine-jquery/lib/jasmine-jquery.js', included: false},
       {pattern: 'lib/dom-compare/**/*.js', included: false},
 
+
+
       // runtime dependencies
       {pattern: 'lib/jquery/jquery.js', included: false},
       {pattern: 'lib/jquery-ui/ui/jquery-ui.js', included: false},
+
+      {pattern: 'lib/flotAxisLabels/jquery.flot.axislabels.js', included:false},
+      {pattern: 'lib/flotOrderBars/js/jquery.flot.orderBars.js', included:false},
+      {pattern: 'lib/flotTooltip/js/jquery.flot.tooltip.js', included:false},
+      {pattern: 'lib/flot/*.js', excluded:'/lib/flot/jquery.js', included:false},
 
       // richwidgets sources
       {pattern: 'src/**/*.js', included: false},
