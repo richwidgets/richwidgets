@@ -67,6 +67,10 @@
               
             
               
+                <li ><a href="input/editor.html">Editor</a></li>
+              
+            
+              
                 <li ><a href="output/charts.html">Charts</a></li>
               
             
@@ -136,6 +140,12 @@ and must also test all widget options and user interactions.  In this way we wil
 <ul>
 <li><code>karma.conf.js</code> - configuration for Karma runner</li>
 <li><code>test/test-main.js</code> - configuration for Module Loading (AMD)</li>
+</ul>
+<h4 id="setting-up-tests-for-new-module">Setting up tests for new module</h4>
+<ul>
+<li>Specify files(library sources, dependencies required by tests) to be loaded by Karma HTTP server in <code>karma.conf.js</code></li>
+<li>If a library doesn&#39;t provide AMD configuration, create a shim in <code>test/test-main.js</code> for the library. If a library
+contains more than one file, create a shim for each file. Then create a module that aggregate all library files.</li>
 </ul>
 <h3 id="running-tests-on-saucelabs-">Running Tests on SauceLabs:</h3>
 <p>In order to run tests on browsers you don&#39;t normally have access to,

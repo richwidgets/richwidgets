@@ -49,6 +49,11 @@ Tests are configured in two files:
 * `karma.conf.js` - configuration for Karma runner
 * `test/test-main.js` - configuration for Module Loading (AMD)
 
+#### Setting up tests for new module
+* Specify files(library sources, dependencies required by tests) to be loaded by Karma HTTP server in `karma.conf.js`
+* If a library doesn't provide AMD configuration, create a shim in `test/test-main.js` for the library. If a library
+contains more than one file, create a shim for each file. Then create a module that aggregate all library files.
+
 ### Running Tests on SauceLabs:
 
 In order to run tests on browsers you don't normally have access to,

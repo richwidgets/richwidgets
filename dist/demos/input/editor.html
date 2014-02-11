@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="fragment" content="!"/>
+
+  <title>Editor</title>
+
+
+
+  <link rel="stylesheet" href="../assets-demo/richwidgets-demo.min.css">
+  <script src="../assets-demo/richwidgets-demo.min.js"></script>
+
+
+  
+
+  <link rel="stylesheet" href="../assets-demo/highlightjs/styles/github.css">
+  <script src="../assets-demo/modernizr/modernizr.js"></script>
+  <script src="../assets-demo/highlightjs/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../assets-demo/bootstrap/js/dropdown.js"></script>
+  <script src="../assets-demo/bootstrap/js/collapse.js"></script>
+</head>
+
+<body class="">
+  <nav class="navbar-pf navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../">RichWidgets</a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-primary navbar-left">
+
+        <li ><a href="../">Home</a></li>
+        <li class="dropdown active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Widgets <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            
+              
+            
+              
+            
+              
+            
+              
+                <li ><a href="autocomplete.html">Autocomplete</a></li>
+              
+            
+              
+                <li  class="active"><a href="editor.html">Editor</a></li>
+              
+            
+              
+                <li ><a href="../output/charts.html">Charts</a></li>
+              
+            
+              
+                <li ><a href="../select/ordering-list.html">OrderingList</a></li>
+              
+            
+              
+                <li ><a href="../select/pick-list.html">PickList</a></li>
+              
+            
+              
+            
+          </ul>
+        </li>
+        <li><a href="/api">API Docs</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-primary navbar-right">
+        <li ><a href="../about.html">About</a></li>
+        <li ><a href="../tests.html">Testing</a></li>
+        <li ><a href="../contributing.html">Contributing</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+
+<div class="container">
+  
+<h2>Editor</h2>
+
+<div class="container-fluid ">
+
+  <fieldset>
+    <legend>Basic Editor</legend>
+
+    <p>Editor has just few buttons in its version with Basic toolbar (which is a default configuration).</p>
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <textarea id="basic-editor"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        <pre><code class="language-html">&lt;textarea id=&quot;basic-editor&quot;&gt;&lt;/textarea&gt;</code></pre>
+
+        <pre><code class="language-js">$(<span class="string">'#basic-editor'</span>).ckeditor({
+  toolbar: <span class="string">'Basic'</span> <span class="comment">// default value</span>
+});</code></pre>
+
+      </div>
+
+    </div>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Full Editor</legend>
+
+    <p>In configuration with Full toolbar, CKEditor offers many tools for full-fledged content editing suitable even for most sophisticated use cases.</p>
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+              <textarea id="full-editor"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+          <pre><code class="language-html">&lt;textarea id=&quot;full-editor&quot;&gt;&lt;/textarea&gt;</code></pre>
+
+          <pre><code class="language-js">$(<span class="string">'#full-editor'</span>).ckeditor({
+  toolbar: <span class="string">'Full'</span>
+});</code></pre>
+
+      </div>
+
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Inline Editor</legend>
+
+    <p>Inline editor offers an user interface for editing conteneditable areas.</p>
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+              <div id="inline-editor" contenteditable="true">
+  <p>Inline Editing in Action!</p>
+  <p>The div element that contains this text is now editable.
+</div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+          <pre><code class="language-html">&lt;div id=&quot;inline-editor&quot; contenteditable=&quot;true&quot;&gt;
+  &lt;p&gt;Inline Editing in Action!&lt;/p&gt;
+  &lt;p&gt;The div element that contains this text is now editable.
+&lt;/div&gt;</code></pre>
+
+          <pre><code class="language-js">$(<span class="string">'#inline-editor'</span>).ckeditor();</code></pre>
+
+      </div>
+
+    </div>
+  </fieldset>
+
+  <script src="../assets-demo/input/editor/basic.js"></script>
+  <script src="../assets-demo/input/editor/full.js"></script>
+</div>
+</div>
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-7306415-8', 'richwidgets.io');
+        ga('send', 'pageview');
+    </script>
+
+
+</body>
+</html>

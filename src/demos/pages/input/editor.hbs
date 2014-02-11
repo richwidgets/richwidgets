@@ -1,0 +1,80 @@
+---
+title: Editor
+section: demo
+js_assets: [ckeditor/config.js, ckeditor/ckeditor.js, ckeditor/adapters/jquery.js]
+css_assets: []
+---
+<h2>Editor</h2>
+
+<div class="container-fluid ">
+
+  <fieldset>
+    <legend>Basic Editor</legend>
+
+    <p>Editor has just few buttons in its version with Basic toolbar (which is a default configuration).</p>
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            {{include "editor/basic.html"}}
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        {{#markdown}}{{embed "src/demos/pages/input/editor/basic.html"}}{{/markdown}}
+        {{#markdown}}{{embed "src/demos/pages/input/editor/basic.js"}}{{/markdown}}
+      </div>
+
+    </div>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Full Editor</legend>
+
+    <p>In configuration with Full toolbar, CKEditor offers many tools for full-fledged content editing suitable even for most sophisticated use cases.</p>
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+              {{include "editor/full.html"}}
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+          {{#markdown}}{{embed "src/demos/pages/input/editor/full.html"}}{{/markdown}}
+          {{#markdown}}{{embed "src/demos/pages/input/editor/full.js"}}{{/markdown}}
+      </div>
+
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Inline Editor</legend>
+
+    <p>Inline editor offers an user interface for editing conteneditable areas.</p>
+
+    <div class="row">
+      <div class="col col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+              {{include "editor/inline.html"}}
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+          {{#markdown}}{{embed "src/demos/pages/input/editor/inline.html"}}{{/markdown}}
+          {{#markdown}}{{embed "src/demos/pages/input/editor/inline.js"}}{{/markdown}}
+      </div>
+
+    </div>
+  </fieldset>
+
+  <script src="{{assets-demo}}/input/editor/basic.js"></script>
+  <script src="{{assets-demo}}/input/editor/full.js"></script>
+</div>
