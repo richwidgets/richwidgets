@@ -39,6 +39,7 @@ module.exports = function (grunt) {
           orderBars: '<%= config.dir.lib.root %>/flotOrderBars',
           tooltip :  '<%= config.dir.lib.root %>/flotTooltip'
         },
+        ckeditor: '<%= config.dir.lib.root %>/ckeditor',
         rcue: '<%= config.dir.lib.root %>/rcue'
       }
     },
@@ -59,6 +60,7 @@ module.exports = function (grunt) {
     'copy:jquery',
     'copy:jqueryui',
     'copy:flot',
+    'copy:ckeditor',
     'copy:js',
     'less:bootstrap',
     'less:fontawesome',
@@ -347,6 +349,22 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.lib.flot.tooltip %>/js',
             src: ['**.js','!jquery.flot.js'],
             dest: '<%= config.dir.dist.assets %>/flot'
+          }
+        ]
+      },
+      ckeditor: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.ckeditor %>',
+            src: ['**.js', '!config.js', '**.css', 'adapters/**', 'lang/**', 'plugins/**', 'skins/**'],
+            dest: '<%= config.dir.dist.assets %>/ckeditor'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.src.widgets %>/input/ckeditor',
+            src: ['**.js'],
+            dest: '<%= config.dir.dist.assets %>/ckeditor'
           }
         ]
       },
