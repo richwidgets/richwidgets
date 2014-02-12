@@ -43,7 +43,11 @@
       'jquery.flot.symbol' : 'lib/flot/jquery.flot.symbol',
       'jquery.flot.threshold' : 'lib/flot/jquery.flot.threshold',
       'jquery.flot.time' : 'lib/flot/jquery.flot.time',
-      'flotlib':'test/utils/flot-lib-module'
+      'flotlib':'test/utils/flot-lib-module',
+
+      'ckeditor': 'lib/ckeditor/ckeditor',
+      'ckeditor-config': 'src/widgets/input/ckeditor/config',
+      'ckeditor-jquery': 'lib/ckeditor/adapters/jquery'
 
     },
 
@@ -89,6 +93,15 @@
         }
       },
       'jquery-ui': { deps: ['jquery'], exports: 'jquery-ui' },
+
+      'ckeditor': {
+        init: function () {
+          window.CKEDITOR = this.CKEDITOR;
+          return this.CKEDITOR;
+        }
+      },
+      'ckeditor-config': { deps: ['ckeditor']},
+      'ckeditor-jquery': { deps: ['ckeditor', 'ckeditor-config'] },
 
       // richwidgets modules
       'src/widgets/input/autocomplete': { deps: ['jquery', 'jquery-ui'] },

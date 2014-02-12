@@ -7,6 +7,13 @@
         "url": "http://richwidgets.io"
     },
     "files": {
+        "src/widgets/input/ckeditor/config.js": {
+            "name": "src/widgets/input/ckeditor/config.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "src/widgets/input/autocomplete.js": {
             "name": "src/widgets/input/autocomplete.js",
             "modules": {
@@ -154,6 +161,18 @@
         }
     },
     "classitems": [
+        {
+            "file": "src/widgets/input/ckeditor/config.js",
+            "line": 3,
+            "description": "Disables automatic enhancement of all contanteditable areas to avoid conflicts.",
+            "class": "autocomplete"
+        },
+        {
+            "file": "src/widgets/input/ckeditor/config.js",
+            "line": 8,
+            "description": "Provides default configuration for all editor instances.",
+            "class": "autocomplete"
+        },
         {
             "file": "src/widgets/input/autocomplete.js",
             "line": 31,
@@ -1653,6 +1672,14 @@
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " src/widgets/select/ordering-list.js:1017"
+        },
+        {
+            "message": "Missing item type\nDisables automatic enhancement of all contanteditable areas to avoid conflicts.",
+            "line": " src/widgets/input/ckeditor/config.js:3"
+        },
+        {
+            "message": "Missing item type\nProvides default configuration for all editor instances.",
+            "line": " src/widgets/input/ckeditor/config.js:8"
         },
         {
             "message": "Missing item type",
