@@ -22,7 +22,6 @@ define(['widget-test-base', 'jquery', 'ckeditor-jquery'], function () {
           on: {
             instanceReady: function(ev) {
               instanceReady = true;
-              debugger;
             }
           }
         }).editor;
