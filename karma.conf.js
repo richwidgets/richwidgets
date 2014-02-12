@@ -41,8 +41,13 @@ module.exports = function(config) {
       {pattern: 'lib/flotTooltip/js/jquery.flot.tooltip.js', included:false},
       {pattern: 'lib/flot/*.js', excluded:'/lib/flot/jquery.js', included:false},
 
+      {pattern: 'lib/ckeditor/**/*.js', included: false},
+      {pattern: 'lib/ckeditor/**/*.css', included: false},
+      {pattern: 'lib/ckeditor/**/*.png', included: false},
+
       // richwidgets sources
       {pattern: 'src/**/*.js', included: false},
+      {pattern: 'src/**/**/*.js', included: false},
       {pattern: 'dist/assets/**/*.css', included: false},
 
       // tests

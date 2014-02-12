@@ -1,11 +1,24 @@
 /* global CKEDITOR */
+
+/**
+ * Disables automatic enhancement of all contanteditable areas to avoid conflicts.
+ */
 CKEDITOR.disableAutoInline = true;
 
+/**
+ * Provides default configuration for all editor instances.
+ */
 CKEDITOR.editorConfig = function( config ) {
+
+  // makes Basic toolbar the default
   config['toolbar'] = 'Basic';
+
+  // overrides default Basic toolbar button set
   config['toolbar_Basic'] = [
     ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink']
   ];
+
+  // overrides default Full toolbar button set
   config['toolbar_Full'] = [
     { name: 'document',   items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
     { name: 'clipboard',  items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
