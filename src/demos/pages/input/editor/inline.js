@@ -1,1 +1,1 @@
-$('#inline-editor').ckeditor();
+$('#inline-editor').editor();
