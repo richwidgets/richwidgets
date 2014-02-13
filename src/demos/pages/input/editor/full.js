@@ -1,3 +1,3 @@
-$('#full-editor').ckeditor({
+$('#full-editor').editor({
   toolbar: 'Full'
 });
