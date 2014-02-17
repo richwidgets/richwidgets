@@ -31,7 +31,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
         // then
         expect(element.editor('editor')).toBeDefined();
         expect(element.editor('isDirty')).toBe(false);
-        expect($(element.editor('getValue')).text()).toBe('Content of textarea');
+        expect($(element.editor('value')).text()).toBe('Content of textarea');
 
         CKEDITOR.on('instanceDestroyed', function() {
           instanceDestroyed = true;
@@ -69,7 +69,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
         // then
         expect(element.editor('editor')).toBeDefined();
         expect(element.editor('isDirty')).toBe(false);
-        expect($(element.editor('getValue')).text()).toBe('Content of contenteditable');
+        expect($(element.editor('value')).text()).toBe('Content of contenteditable');
 
         CKEDITOR.on('instanceDestroyed', function() {
           instanceDestroyed = true;
