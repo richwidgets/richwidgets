@@ -14,6 +14,8 @@
     "flotTooltip":"krzysu/flot.tooltip#8a9ed0e9b582238064ea34ce401b674867d1700f",
     "flotOrderBars":"emmerich/flot-orderBars#d44ff4f2fec4c8bb1254e59567ee39fa3684372e",
     "ckeditor": "#4.3.2/full",
+    "select2": "3.4.5",
+    "select2-bootstrap3-css": "1.2.0",
 
     "rcue": "patternfly/patternfly#0.1.1",
 
