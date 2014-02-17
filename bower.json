@@ -15,7 +15,7 @@
     "flotOrderBars":"emmerich/flot-orderBars#d44ff4f2fec4c8bb1254e59567ee39fa3684372e",
     "ckeditor": "#4.3.2/full",
     "select2": "3.4.5",
-    "select2-bootstrap3-css": "1.2.0",
+    "select2-bootstrap3-css": "#1c74d5934514d49f80c4c7dd484b1a13a8221209",
 
     "rcue": "patternfly/patternfly#0.1.1",
 

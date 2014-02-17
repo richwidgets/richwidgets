@@ -41,6 +41,7 @@ module.exports = function (grunt) {
         },
         ckeditor: '<%= config.dir.lib.root %>/ckeditor',
         select2: '<%= config.dir.lib.root %>/select2',
+        select2css: '<%= config.dir.lib.root %>/select2-bootstrap3-css',
         rcue: '<%= config.dir.lib.root %>/rcue'
       }
     },
@@ -375,7 +376,13 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%= config.dir.lib.select2 %>',
-            src: ['select2.js', 'select2.css', 'select2.png'],
+            src: ['select2.js', 'select2.css', 'select2.png', 'select2-spinner.gif'],
+            dest: '<%= config.dir.dist.assets %>/select2'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.select2css %>',
+            src: ['select2-bootstrap.css'],
             dest: '<%= config.dir.dist.assets %>/select2'
           }
         ]

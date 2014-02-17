@@ -1,0 +1,45 @@
+@import "../mixins";
+@import "../variables";
+
+
+@import "lib/select2-bootstrap3-css/lib/select2-bootstrap";
+
+/**
+ * remove a line between input and button
+ */
+.select2-container .select2-choice .select2-arrow {
+  border-left: 0;
+}
+
+/*
+ * no background for search box
+ */
+.select2-search input {
+  background: none;
+}
+/*
+ * search icon inside search input
+ */
+.select2-search input[type="text"] {
+  position: relative;
+}
+.select2-search:before {
+  font-family: 'FontAwesome';
+  color: @input-border;
+  position: absolute;
+  top: 0.3em;
+  right: 1em;
+  content: @fa-var-search;
+}
+
+
+/*
+ * reset background from select2.css when search box is dropped above
+ * todo: open upstream issue
+ */
+.select2-dropdown-open.select2-drop-above .select2-choice,
+.select2-dropdown-open.select2-drop-above .select2-choices {
+  background: none;
+  .reset-filter;
+  border-top: 1px solid @input-border;
+}
