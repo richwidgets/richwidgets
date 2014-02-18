@@ -51,7 +51,7 @@
     "grunt-karma": "0.7.2",
     "karma": "0.11.14",
     "karma-spec-reporter": "0.0.9",
-    "karma-junit-reporter": "0.1",
+    "karma-junit-reporter": "0.2.1",
     "assemble-less": "0.5.3",
     "matchdep": "0.1.1",
     "bower": "1.2.7",
