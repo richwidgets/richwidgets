@@ -40,6 +40,8 @@ module.exports = function (grunt) {
           tooltip :  '<%= config.dir.lib.root %>/flotTooltip'
         },
         ckeditor: '<%= config.dir.lib.root %>/ckeditor',
+        select2: '<%= config.dir.lib.root %>/select2',
+        select2css: '<%= config.dir.lib.root %>/select2-bootstrap3-css',
         rcue: '<%= config.dir.lib.root %>/rcue'
       }
     },
@@ -61,6 +63,7 @@ module.exports = function (grunt) {
     'copy:jqueryui',
     'copy:flot',
     'copy:ckeditor',
+    'copy:select2',
     'copy:js',
     'less:bootstrap',
     'less:fontawesome',
@@ -365,6 +368,22 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.src.widgets %>/input/ckeditor',
             src: ['**.js'],
             dest: '<%= config.dir.dist.assets %>/ckeditor'
+          }
+        ]
+      },
+      select2: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.select2 %>',
+            src: ['select2.js', 'select2.css', 'select2.png', 'select2-spinner.gif'],
+            dest: '<%= config.dir.dist.assets %>/select2'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.lib.select2css %>',
+            src: ['select2-bootstrap.css'],
+            dest: '<%= config.dir.dist.assets %>/select2'
           }
         ]
       },

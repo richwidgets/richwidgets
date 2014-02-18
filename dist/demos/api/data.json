@@ -25,6 +25,24 @@
             "fors": {},
             "namespaces": {}
         },
+        "src/widgets/input/editor.js": {
+            "name": "src/widgets/input/editor.js",
+            "modules": {},
+            "classes": {
+                "editor": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/widgets/input/select.js": {
+            "name": "src/widgets/input/select.js",
+            "modules": {},
+            "classes": {
+                "select": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src/widgets/output/chart.js": {
             "name": "src/widgets/output/chart.js",
             "modules": {
@@ -62,12 +80,14 @@
             "name": "Input",
             "submodules": {},
             "classes": {
-                "autocomplete": 1
+                "autocomplete": 1,
+                "editor": 1,
+                "select": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src/widgets/input/autocomplete.js",
+            "file": "src/widgets/input/select.js",
             "line": 1,
             "description": "Autocomplete enables users to quickly find and select from a pre-populated list of values as they type, leveraging searching and filtering.\n\nThe widget is based on popular jQuery UI Autocomplete widget, but it brings some advanced built-in features:\n\n* caching\n* tokenizing\n* using DOM as a source of suggestions\n* auto-fill\n* built-in button",
             "uses": [
@@ -116,6 +136,33 @@
             "file": "src/widgets/input/autocomplete.js",
             "line": 1,
             "description": "Autocomplete enables users to quickly find and select from a pre-populated list of values as they type, leveraging searching and filtering.\n\nThe widget is based on popular jQuery UI Autocomplete widget, but it brings some advanced built-in features:\n\n* caching\n* tokenizing\n* using DOM as a source of suggestions\n* auto-fill\n* built-in button"
+        },
+        "editor": {
+            "name": "editor",
+            "shortname": "editor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Input",
+            "namespace": "",
+            "file": "src/widgets/input/editor.js",
+            "line": 1,
+            "description": "Editor widget for powerfull WYSIWYG editor based on CKEditor 4.\n\nFor various options check documentation for CKEditor: http://docs.ckeditor.com/\n\n(You can pass the same options to the widget options as you would pass in CKEditor config / options.)"
+        },
+        "select": {
+            "name": "select",
+            "shortname": "select",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Input",
+            "namespace": "",
+            "file": "src/widgets/input/select.js",
+            "line": 1
         },
         "chart": {
             "name": "chart",
@@ -507,6 +554,158 @@
             "line": 488,
             "description": "callbacks for important jQuery UI Autocomplete events that helps to handle extension functionality",
             "class": "autocomplete",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 19,
+            "description": "The toolbox (alias toolbar) definition. It is a toolbar name or an array of toolbars (strips), each one being also an array, containing a list of UI items.\n\nOtherwise the Editor widget share all options with the CKEditor 4 (http://docs.ckeditor.com/).",
+            "itemtype": "property",
+            "name": "toolbar",
+            "type": "Integer",
+            "default": "'Basic'",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 53,
+            "description": "Returns CKEditor instance.",
+            "itemtype": "method",
+            "name": "editor",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 62,
+            "description": "Read or write editor's value:\n\n* value() - returns a current value\n* value(newValue) - setup a new value",
+            "itemtype": "method",
+            "name": "value",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 78,
+            "description": "Focus the editor",
+            "itemtype": "method",
+            "name": "focus",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 87,
+            "description": "Blur the editor",
+            "itemtype": "method",
+            "name": "blur",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 96,
+            "description": "Checks whether the editor is focused",
+            "itemtype": "method",
+            "name": "isFocused",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 106,
+            "description": "Checks whether the editor value has changed since last focus event.",
+            "itemtype": "method",
+            "name": "isDirty",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 116,
+            "description": "Checks whether the editor value has changed from its initial state.",
+            "itemtype": "method",
+            "name": "isValueChanged",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 126,
+            "description": "Switches the editor to read-only mode or checks whether it is in read-only mode.\n\n* readOnly() - returns a value\n* readOnly(true) - switches the editor to read-only mode",
+            "itemtype": "method",
+            "name": "readOnly",
+            "params": [
+                {
+                    "name": "readOnly",
+                    "description": "optional",
+                    "type": "Boolean",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 147,
+            "description": "Triggered when the Editor instance is fully initialized",
+            "itemtype": "event",
+            "name": "init",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 153,
+            "description": "Triggered when the Editor is blurred",
+            "itemtype": "event",
+            "name": "blur",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 159,
+            "description": "Triggered when the field is focused",
+            "itemtype": "event",
+            "name": "focus",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 165,
+            "description": "Triggered everytime the editors value changes.\n\nNote: beware, this event is fired for each single action user takes that changes the value",
+            "itemtype": "event",
+            "name": "dirty",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 173,
+            "description": "Triggered when the field is blurred, if the value has changed.",
+            "itemtype": "event",
+            "name": "change",
+            "class": "editor",
             "module": "Input"
         },
         {
@@ -1644,6 +1843,22 @@
         {
             "message": "unknown tag: override",
             "line": " src/widgets/input/autocomplete.js:462"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/widgets/input/editor.js:96"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/widgets/input/editor.js:106"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/widgets/input/editor.js:116"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/widgets/input/editor.js:126"
         },
         {
             "message": "replacing incorrect tag: returns with return",

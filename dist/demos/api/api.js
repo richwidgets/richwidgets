@@ -3,8 +3,10 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "autocomplete",
         "chart",
+        "editor",
         "orderingList",
-        "pickList"
+        "pickList",
+        "select"
     ],
     "modules": [
         "Input",

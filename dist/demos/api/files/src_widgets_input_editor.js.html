@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/widgets/input/editor.js - richfaces-widgets</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap-responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="richfaces-widgets" src="../../logo.png" style="max-height: 65%;" title="richfaces-widgets">
+        
+            richfaces-widgets
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.1.1-wip</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/autocomplete", "classes/chart", "classes/editor", "classes/orderingList", "classes/pickList", "classes/select", "modules/Input", "modules/Output", "modules/Select"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Widgets</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/autocomplete.html">autocomplete</a></li>
+                    
+                        <li><a href="../classes/chart.html">chart</a></li>
+                    
+                        <li><a href="../classes/editor.html">editor</a></li>
+                    
+                        <li><a href="../classes/orderingList.html">orderingList</a></li>
+                    
+                        <li><a href="../classes/pickList.html">pickList</a></li>
+                    
+                        <li><a href="../classes/select.html">select</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/Input.html">Input</a></li>
+                    
+                        <li><a href="../modules/Output.html">Output</a></li>
+                    
+                        <li><a href="../modules/Select.html">Select</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/widgets/input/editor.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * Editor widget for powerfull WYSIWYG editor based on CKEditor 4.
+ *
+ * For various options check documentation for CKEditor: http://docs.ckeditor.com/
+ *
+ * (You can pass the same options to the widget options as you would pass in CKEditor config / options.)
+ *
+ * @module Input
+ * @class editor
+ * @uses $.fn.ckeditor
+ */
+(function($) {
+
+  $.widget(&#x27;rich.editor&#x27;, {
+
+    /* OPTIONS */
+
+    options : {
+      /**
+       * The toolbox (alias toolbar) definition. It is a toolbar name or an array of toolbars (strips), each one being also an array, containing a list of UI items.
+       *
+       * Otherwise the Editor widget share all options with the CKEditor 4 (http://docs.ckeditor.com/).
+       *
+       * @property toolbar
+       * @type Integer
+       * @default &#x27;Basic&#x27;
+       */
+      toolbar : &#x27;Basic&#x27;
+    },
+
+    DIRTY_EVENTS: [ &#x27;key&#x27;, &#x27;paste&#x27;, &#x27;undo&#x27;, &#x27;redo&#x27; ],
+
+    /* LIFECYCLE METHODS */
+
+    _create : function() {
+      this.dirtyState = false;
+      this.valueChanged = false;
+      this.options = $.extend(this.options, {
+        on: this._getHandlers()
+      });
+      $(this.element).on(&#x27;editorblur&#x27;, $.proxy(this._triggerChange, this));
+      this.editorInstance = $(this.element).ckeditor(this.options).editor;
+      this.dirtyCheckingInterval = window.setInterval($.proxy(this._dirtyCheck, this), 100);
+    },
+
+    _destroy: function() {
+      window.clearInterval(this.dirtyCheckingInterval);
+      this.editor().destroy();
+    },
+
+    /* PUBLIC METHODS */
+
+    /**
+     * Returns CKEditor instance.
+     *
+     * @method editor
+     */
+    editor: function() {
+      return this.editorInstance;
+    },
+
+    /**
+     * Read or write editor&#x27;s value:
+     *
+     * * value() - returns a current value
+     * * value(newValue) - setup a new value
+     *
+     * @method value
+     */
+    value: function(newValue) {
+      if (newValue === undefined) {
+        return this.editor().getData();
+      } else {
+        this.editor().setData(newValue);
+      }
+    },
+
+    /**
+     * Focus the editor
+     *
+     * @method focus
+     */
+    focus: function() {
+      this.editor().focus();
+    },
+
+    /**
+     * Blur the editor
+     *
+     * @method blur
+     */
+    blur: function() {
+      this.editor().focusManager.blur(true);
+    },
+
+    /**
+     * Checks whether the editor is focused
+     *
+     * @method isFocused
+     * @returns {boolean}
+     */
+    isFocused: function() {
+      return this.editor().focusManager.hasFocus;
+    },
+
+    /**
+     * Checks whether the editor value has changed since last focus event.
+     *
+     * @method isDirty
+     * @returns {boolean}
+     */
+    isDirty: function() {
+      return this.dirtyState || this.editor().checkDirty();
+    },
+
+    /**
+     * Checks whether the editor value has changed from its initial state.
+     *
+     * @method isValueChanged
+     * @returns {boolean}
+     */
+    isValueChanged: function() {
+      return this.valueChanged || this.isDirty();
+    },
+
+    /**
+     * Switches the editor to read-only mode or checks whether it is in read-only mode.
+     *
+     * * readOnly() - returns a value
+     * * readOnly(true) - switches the editor to read-only mode
+     *
+     * @method readOnly
+     * @param {boolean} [readOnly] optional
+     * @returns {boolean}
+     */
+    readOnly: function(readOnly) {
+      if (readOnly === undefined) {
+        return this.editor().readOnly;
+      } else {
+        this.editor().setReadOnly(readOnly);
+        return readOnly;
+      }
+    },
+
+    /* EVENTS */
+
+    /**
+     * Triggered when the Editor instance is fully initialized
+     *
+     * @event init
+     */
+
+    /**
+     * Triggered when the Editor is blurred
+     *
+     * @event blur
+     */
+
+    /**
+     * Triggered when the field is focused
+     *
+     * @event focus
+     */
+
+    /**
+     * Triggered everytime the editors value changes.
+     *
+     * Note: beware, this event is fired for each single action user takes that changes the value
+     *
+     * @event dirty
+     */
+
+    /**
+     * Triggered when the field is blurred, if the value has changed.
+     *
+     * @event change
+     */
+
+    /* PRIVATE METHODS */
+
+    // returns a hash of handlers for CKEditor &#x27;on&#x27; property
+    _getHandlers: function() {
+      var widget = this;
+      var handlers = {
+        instanceReady: function(ev) {
+          widget._trigger(&#x27;init&#x27;, ev);
+        },
+        blur: function(ev) {
+          widget._trigger(&#x27;blur&#x27;, ev);
+        },
+        focus: function(ev) {
+          widget._trigger(&#x27;focus&#x27;, ev);
+        }
+      };
+      $.each(this.DIRTY_EVENTS, function(eventName) {
+        handlers[eventName] = function(ev) {
+          window.setTimeout($.proxy(widget._dirtyCheck, widget), 0, ev);
+        };
+      });
+      return handlers;
+    },
+
+    // setup appropriate flags when the editor reports that its value is &quot;dirty&quot;
+    _dirtyCheck: function(ev) {
+      if (this.editor().checkDirty()) {
+        this.dirtyState = true;
+        this.valueChanged = true;
+        this.editor().resetDirty();
+        this._trigger(&#x27;dirty&#x27;, ev);
+      }
+    },
+
+    // triggers a change event
+    _triggerChange: function(ev) {
+      if (this.isDirty()) {
+        this.valueChanged = true;
+        this._trigger(&#x27;change&#x27;, ev);
+      }
+      this.dirtyState = false;
+    }
+
+  });
+
+}(jQuery));
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

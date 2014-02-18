@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="fragment" content="!"/>
 
-  <title>Editor</title>
+  <title>Select</title>
 
 
 
@@ -67,11 +67,11 @@
               
             
               
-                <li  class="active"><a href="editor.html">Editor</a></li>
+                <li ><a href="editor.html">Editor</a></li>
               
             
               
-                <li ><a href="select.html">Select</a></li>
+                <li  class="active"><a href="select.html">Select</a></li>
               
             
               
@@ -105,96 +105,90 @@
 
 <div class="container">
   
-<h2>Editor</h2>
+<h2>Select</h2>
 
-<div class="container-fluid ">
+<div class="container-fluid">
 
   <fieldset>
-    <legend>Basic Editor</legend>
-
-    <p>Editor has just few buttons in its version with Basic toolbar (which is a default configuration).</p>
+    <legend>Basic Select</legend>
 
     <div class="row">
       <div class="col col-md-6">
 
         <div class="panel panel-default">
           <div class="panel-body">
-            <textarea id="basic-editor"></textarea>
+            <select id="select-basic" style="width:300px">
+  <option value="AK">Alaska</option>
+  <option value="HI">Hawaii</option>
+  <option value="CA">California</option>
+  <option value="NV">Nevada</option>
+  <option value="OR">Oregon</option>
+  <option value="WA">Washington</option>
+  <option value="AZ">Arizona</option>
+  <option value="CO">Colorado</option>
+  <option value="ID">Idaho</option>
+  <option value="MT">Montana</option>
+  <option value="NE">Nebraska</option>
+  <option value="NM">New Mexico</option>
+  <option value="ND">North Dakota</option>
+  <option value="UT">Utah</option>
+  <option value="WY">Wyoming</option>
+  <option value="AL">Alabama</option>
+  <option value="AR">Arkansas</option>
+  <option value="IL">Illinois</option>
+  <option value="IA">Iowa</option>
+  <option value="KS">Kansas</option>
+  <option value="KY">Kentucky</option>
+  <option value="LA">Louisiana</option>
+  <option value="MN">Minnesota</option>
+  <option value="MS">Mississippi</option>
+  <option value="MO">Missouri</option>
+  <option value="OK">Oklahoma</option>
+  <option value="SD">South Dakota</option>
+  <option value="TX">Texas</option>
+  <option value="TN">Tennessee</option>
+  <option value="WI">Wisconsin</option>
+  <option value="CT">Connecticut</option>
+  <option value="DE">Delaware</option>
+  <option value="FL">Florida</option>
+  <option value="GA">Georgia</option>
+  <option value="IN">Indiana</option>
+  <option value="ME">Maine</option>
+  <option value="MD">Maryland</option>
+  <option value="MA">Massachusetts</option>
+  <option value="MI">Michigan</option>
+  <option value="NH">New Hampshire</option>
+  <option value="NJ">New Jersey</option>
+  <option value="NY">New York</option>
+  <option value="NC">North Carolina</option>
+  <option value="OH">Ohio</option>
+  <option value="PA">Pennsylvania</option>
+  <option value="RI">Rhode Island</option>
+  <option value="SC">South Carolina</option>
+  <option value="VT">Vermont</option>
+  <option value="VA">Virginia</option>
+  <option value="WV">West Virginia</option>
+</select>
           </div>
         </div>
       </div>
       <div class="col col-md-6">
-        <pre><code class="language-html">&lt;textarea id=&quot;basic-editor&quot;&gt;&lt;/textarea&gt;</code></pre>
+        <pre><code class="language-html">&lt;select id=&quot;select-basic&quot; style=&quot;width:300px&quot;&gt;
+  &lt;option value=&quot;AK&quot;&gt;Alaska&lt;/option&gt;
+  &lt;option value=&quot;HI&quot;&gt;Hawaii&lt;/option&gt;
+  ...
+  &lt;option value=&quot;VA&quot;&gt;Virginia&lt;/option&gt;
+  &lt;option value=&quot;WV&quot;&gt;West Virginia&lt;/option&gt;
+&lt;/select&gt;</code></pre>
 
-        <pre><code class="language-js">$(<span class="string">'#basic-editor'</span>).editor({
-  toolbar: <span class="string">'Basic'</span> <span class="comment">// default value</span>
-});</code></pre>
+        <pre><code class="language-js">$(<span class="string">'#select-basic'</span>).select();</code></pre>
 
       </div>
 
     </div>
   </fieldset>
 
-
-  <fieldset>
-    <legend>Full Editor</legend>
-
-    <p>In configuration with Full toolbar, CKEditor offers many tools for full-fledged content editing suitable even for most sophisticated use cases.</p>
-
-    <div class="row">
-      <div class="col col-md-6">
-
-        <div class="panel panel-default">
-          <div class="panel-body">
-              <textarea id="full-editor"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="col col-md-6">
-          <pre><code class="language-html">&lt;textarea id=&quot;full-editor&quot;&gt;&lt;/textarea&gt;</code></pre>
-
-          <pre><code class="language-js">$(<span class="string">'#full-editor'</span>).editor({
-  toolbar: <span class="string">'Full'</span>
-});</code></pre>
-
-      </div>
-
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Inline Editor</legend>
-
-    <p>Inline editor offers an user interface for editing conteneditable areas.</p>
-
-    <div class="row">
-      <div class="col col-md-6">
-
-        <div class="panel panel-default">
-          <div class="panel-body">
-              <div id="inline-editor" contenteditable="true">
-  <p>Inline Editing in Action!</p>
-  <p>The div element that contains this text is now editable.
-</div>
-          </div>
-        </div>
-      </div>
-      <div class="col col-md-6">
-          <pre><code class="language-html">&lt;div id=&quot;inline-editor&quot; contenteditable=&quot;true&quot;&gt;
-  &lt;p&gt;Inline Editing in Action!&lt;/p&gt;
-  &lt;p&gt;The div element that contains this text is now editable.
-&lt;/div&gt;</code></pre>
-
-          <pre><code class="language-js">$(<span class="string">'#inline-editor'</span>).editor();</code></pre>
-
-      </div>
-
-    </div>
-  </fieldset>
-
-  <script src="../assets-demo/input/editor/basic.js"></script>
-  <script src="../assets-demo/input/editor/full.js"></script>
-  <script src="../assets-demo/input/editor/inline.js"></script>
+  <script src="../assets-demo/input/select/select-basic.js"></script>
 </div>
 </div>
 
