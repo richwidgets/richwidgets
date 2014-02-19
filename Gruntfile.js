@@ -158,7 +158,7 @@ module.exports = function (grunt) {
           paths: ['<%= config.dir.lib.root %>']
         },
         src: '<%= config.dir.src.demos %>/demo.less',
-        dest: '<%= config.dir.dist.demos %>/assets-demo/demo.css'
+        dest: '<%= config.dir.dist.demos %>/assets/demo/demo.css'
       },
       dist: {
         options: {
@@ -173,7 +173,7 @@ module.exports = function (grunt) {
     cssmin: {
       demo: {
         files: {
-          '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.css': ['<%= config.dir.dist.richwidgets %>/richwidgets.min.css', '<%= config.dir.dist.assets %>/font-awesome/font-awesome.css', '<%= config.dir.dist.demos %>/assets-demo/demo.css']
+          '<%= config.dir.dist.demos %>/assets/demo/richwidgets-demo.min.css': ['<%= config.dir.dist.richwidgets %>/richwidgets.min.css', '<%= config.dir.dist.assets %>/font-awesome/font-awesome.css', '<%= config.dir.dist.demos %>/assets/demo/demo.css']
         }
       }
     },
@@ -199,7 +199,7 @@ module.exports = function (grunt) {
         },
         files: [
           {
-            '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.js': [
+            '<%= config.dir.dist.demos %>/assets/demo/richwidgets-demo.min.js': [
               '<%= config.dir.dist.assets %>/jquery/jquery.min.js',
               '<%= config.dir.dist.assets %>/jquery-ui/minified/jquery-ui.min.js',
               '<%= config.dir.dist.flot %>/richwidgets.flot.js',
@@ -413,25 +413,25 @@ module.exports = function (grunt) {
               'bootstrap/js/dropdown.js',
               'bootstrap/js/collapse.js'
             ],
-            dest: '<%= config.dir.dist.demos %>/assets-demo/'
+            dest: '<%= config.dir.dist.demos %>/assets/demo/'
           },
           {
             expand: true,
             cwd: '<%= config.dir.dist.font %>',
             src: '*',
-            dest: '<%= config.dir.dist.demos %>/assets-demo/font/'
+            dest: '<%= config.dir.dist.demos %>/assets/demo/font/'
           },
           {
             expand: true,
             cwd: '<%= config.dir.lib.rcue %>/dist/fonts',
             src: '*',
-            dest: '<%= config.dir.dist.demos %>/fonts/'
+            dest: '<%= config.dir.dist.demos %>/assets/demo/fonts/'
           },
           {
             expand: true,
             cwd: '<%= config.dir.src.demos %>/pages',
             src: ['**/*.{css,js}'],
-            dest: '<%= config.dir.dist.demos %>/assets-demo/'
+            dest: '<%= config.dir.dist.demos %>/assets/demo/'
           }
         ]
       },
