@@ -7,13 +7,6 @@
         "url": "http://richwidgets.io"
     },
     "files": {
-        "src/widgets/input/ckeditor/config.js": {
-            "name": "src/widgets/input/ckeditor/config.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
         "src/widgets/input/autocomplete.js": {
             "name": "src/widgets/input/autocomplete.js",
             "modules": {
@@ -148,7 +141,7 @@
             "module": "Input",
             "namespace": "",
             "file": "src/widgets/input/editor.js",
-            "line": 1,
+            "line": 2,
             "description": "Editor widget for powerfull WYSIWYG editor based on CKEditor 4.\n\nFor various options check documentation for CKEditor: http://docs.ckeditor.com/\n\n(You can pass the same options to the widget options as you would pass in CKEditor config / options.)"
         },
         "select": {
@@ -208,18 +201,6 @@
         }
     },
     "classitems": [
-        {
-            "file": "src/widgets/input/ckeditor/config.js",
-            "line": 3,
-            "description": "Disables automatic enhancement of all contanteditable areas to avoid conflicts.",
-            "class": "autocomplete"
-        },
-        {
-            "file": "src/widgets/input/ckeditor/config.js",
-            "line": 8,
-            "description": "Provides default configuration for all editor instances.",
-            "class": "autocomplete"
-        },
         {
             "file": "src/widgets/input/autocomplete.js",
             "line": 31,
@@ -558,7 +539,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 19,
+            "line": 20,
             "description": "The toolbox (alias toolbar) definition. It is a toolbar name or an array of toolbars (strips), each one being also an array, containing a list of UI items.\n\nOtherwise the Editor widget share all options with the CKEditor 4 (http://docs.ckeditor.com/).",
             "itemtype": "property",
             "name": "toolbar",
@@ -569,7 +550,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 53,
+            "line": 58,
             "description": "Returns CKEditor instance.",
             "itemtype": "method",
             "name": "editor",
@@ -578,7 +559,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 62,
+            "line": 67,
             "description": "Read or write editor's value:\n\n* value() - returns a current value\n* value(newValue) - setup a new value",
             "itemtype": "method",
             "name": "value",
@@ -587,7 +568,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 78,
+            "line": 83,
             "description": "Focus the editor",
             "itemtype": "method",
             "name": "focus",
@@ -596,7 +577,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 87,
+            "line": 92,
             "description": "Blur the editor",
             "itemtype": "method",
             "name": "blur",
@@ -605,7 +586,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 96,
+            "line": 101,
             "description": "Checks whether the editor is focused",
             "itemtype": "method",
             "name": "isFocused",
@@ -618,7 +599,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 106,
+            "line": 111,
             "description": "Checks whether the editor value has changed since last focus event.",
             "itemtype": "method",
             "name": "isDirty",
@@ -631,7 +612,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 116,
+            "line": 121,
             "description": "Checks whether the editor value has changed from its initial state.",
             "itemtype": "method",
             "name": "isValueChanged",
@@ -644,7 +625,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 126,
+            "line": 131,
             "description": "Switches the editor to read-only mode or checks whether it is in read-only mode.\n\n* readOnly() - returns a value\n* readOnly(true) - switches the editor to read-only mode",
             "itemtype": "method",
             "name": "readOnly",
@@ -665,7 +646,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 147,
+            "line": 152,
             "description": "Triggered when the Editor instance is fully initialized",
             "itemtype": "event",
             "name": "init",
@@ -674,7 +655,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 153,
+            "line": 158,
             "description": "Triggered when the Editor is blurred",
             "itemtype": "event",
             "name": "blur",
@@ -683,7 +664,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 159,
+            "line": 164,
             "description": "Triggered when the field is focused",
             "itemtype": "event",
             "name": "focus",
@@ -692,7 +673,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 165,
+            "line": 170,
             "description": "Triggered everytime the editors value changes.\n\nNote: beware, this event is fired for each single action user takes that changes the value",
             "itemtype": "event",
             "name": "dirty",
@@ -701,7 +682,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 173,
+            "line": 178,
             "description": "Triggered when the field is blurred, if the value has changed.",
             "itemtype": "event",
             "name": "change",
@@ -1846,19 +1827,19 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/input/editor.js:96"
+            "line": " src/widgets/input/editor.js:101"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/input/editor.js:106"
+            "line": " src/widgets/input/editor.js:111"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/input/editor.js:116"
+            "line": " src/widgets/input/editor.js:121"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/input/editor.js:126"
+            "line": " src/widgets/input/editor.js:131"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -1887,14 +1868,6 @@
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " src/widgets/select/ordering-list.js:1017"
-        },
-        {
-            "message": "Missing item type\nDisables automatic enhancement of all contanteditable areas to avoid conflicts.",
-            "line": " src/widgets/input/ckeditor/config.js:3"
-        },
-        {
-            "message": "Missing item type\nProvides default configuration for all editor instances.",
-            "line": " src/widgets/input/ckeditor/config.js:8"
         },
         {
             "message": "Missing item type",

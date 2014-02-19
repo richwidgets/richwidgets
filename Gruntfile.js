@@ -14,7 +14,8 @@ module.exports = function (grunt) {
       src: {
         root: 'src',
         demos: '<%= config.dir.src.root %>/demos',
-        widgets: '<%= config.dir.src.root %>/widgets'
+        widgets: '<%= config.dir.src.root %>/widgets',
+        config: '<%= config.dir.src.root %>/config'
       },
       dist: {
         root: 'dist',
@@ -87,6 +88,7 @@ module.exports = function (grunt) {
     'uglify:demo',
     'cssmin:demo',
     'assemble:production',
+    'copy:demoAssetsProduction',
     'test'
   ]);
 
@@ -119,7 +121,7 @@ module.exports = function (grunt) {
 
     clean: {
       dist: [ '<%= config.dir.dist.root %>' ],
-      demo: ['<%= demo.destination %>/**/*.{html,md}'],
+      demo: ['<%= demo.destination %>/**/*.{html,md}', '<%= demo.destination %>/assets'],
       pages: ['.grunt/grunt-gh-pages/gh-pages'],
       bower: ['lib']
     },
@@ -360,13 +362,13 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%= config.dir.lib.ckeditor %>',
-            src: ['**.js', '!config.js', '**.css', 'adapters/**', 'lang/**', 'plugins/**', 'skins/**'],
+            src: ['**.js', '!config.js', '**.css', 'lang/**', 'plugins/**', 'skins/**'],
             dest: '<%= config.dir.dist.assets %>/ckeditor'
           },
           {
             expand: true,
-            cwd: '<%= config.dir.src.widgets %>/input/ckeditor',
-            src: ['**.js'],
+            cwd: '<%= config.dir.src.config %>/ckeditor',
+            src: ['config.js'],
             dest: '<%= config.dir.dist.assets %>/ckeditor'
           }
         ]
@@ -439,6 +441,16 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.src.demos %>',
             src: ['CNAME', '**/*.png'],
             dest: '<%= config.dir.dist.demos %>/'
+          }
+        ]
+      },
+      demoAssetsProduction: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dir.dist.assets %>',
+            src: ['**'],
+            dest: '<%= config.dir.dist.demos %>/assets/'
           }
         ]
       }

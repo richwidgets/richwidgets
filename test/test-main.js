@@ -45,9 +45,7 @@
       'jquery.flot.time' : 'lib/flot/jquery.flot.time',
       'flotlib':'test/utils/flot-lib-module',
 
-      'ckeditor': 'lib/ckeditor/ckeditor',
-      'ckeditor-config': 'src/widgets/input/ckeditor/config',
-      'ckeditor-jquery': 'lib/ckeditor/adapters/jquery'
+      'ckeditor': 'lib/ckeditor/ckeditor'
 
     },
 
@@ -112,7 +110,7 @@
           'jquery.flot.stack','jquery.flot.symbol','jquery.flot.threshold','jquery.flot.time'] },
       'src/widgets/select/ordering-list': { deps: ['jquery', 'jquery-ui'] },
       'src/widgets/select/pick-list': { deps: ['jquery', 'jquery-ui', 'src/widgets/select/ordering-list'] },
-      'src/widgets/input/editor': { deps: ['jquery', 'jquery-ui', 'ckeditor-jquery'] }
+      'src/widgets/input/editor': { deps: ['jquery', 'jquery-ui', 'ckeditor'] }
     },
 
     // ask Require.js to load these files (all our tests)

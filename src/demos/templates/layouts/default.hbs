@@ -22,6 +22,8 @@
 {{#if production}}
   <link rel="stylesheet" href="{{assets-demo}}/richwidgets-demo.min.css">
   <script src="{{assets-demo}}/richwidgets-demo.min.js"></script>
+  {{#each page.data.js_assets_nonrw}}<script src="{{../assets}}/{{this}}"></script>
+  {{/each}}
 {{else}}
   <link rel="stylesheet" href="{{assets}}/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="{{assets}}/font-awesome/font-awesome.css">
@@ -33,6 +35,8 @@
   <script src="{{assets}}/jquery/jquery.js"></script>
 
   {{#each page.data.js_assets}}<script src="{{../assets}}/{{this}}"></script>
+  {{/each}}
+  {{#each page.data.js_assets_nonrw}}<script src="{{../assets}}/{{this}}"></script>
   {{/each}}
 
   <script src="http://localhost:35729/livereload.js"></script>

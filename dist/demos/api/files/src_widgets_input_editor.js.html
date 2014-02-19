@@ -117,6 +117,7 @@
 
 <div class="file">
     <pre class="prettyprint linenums">
+/* global CKEDITOR */
 /**
  * Editor widget for powerfull WYSIWYG editor based on CKEditor 4.
  *
@@ -126,7 +127,7 @@
  *
  * @module Input
  * @class editor
- * @uses $.fn.ckeditor
+ * @uses CKEDITOR
  */
 (function($) {
 
@@ -144,7 +145,7 @@
        * @type Integer
        * @default &#x27;Basic&#x27;
        */
-      toolbar : &#x27;Basic&#x27;
+      toolbar: &#x27;Basic&#x27;
     },
 
     DIRTY_EVENTS: [ &#x27;key&#x27;, &#x27;paste&#x27;, &#x27;undo&#x27;, &#x27;redo&#x27; ],
@@ -157,8 +158,12 @@
       this.options = $.extend(this.options, {
         on: this._getHandlers()
       });
-      $(this.element).on(&#x27;editorblur&#x27;, $.proxy(this._triggerChange, this));
-      this.editorInstance = $(this.element).ckeditor(this.options).editor;
+      this.element.on(&#x27;editorblur&#x27;, $.proxy(this._triggerChange, this));
+      if (this.element.is(&#x27;textarea&#x27;)) {
+        this.editorInstance = CKEDITOR.replace(this.element.get(0), this.options);
+      } else {
+        this.editorInstance = CKEDITOR.inline(this.element.get(0), this.options);
+      }
       this.dirtyCheckingInterval = window.setInterval($.proxy(this._dirtyCheck, this), 100);
     },
 
