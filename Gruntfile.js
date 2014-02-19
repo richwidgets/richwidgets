@@ -88,7 +88,6 @@ module.exports = function (grunt) {
     'uglify:demo',
     'cssmin:demo',
     'assemble:production',
-    'copy:demoAssetsProduction',
     'test'
   ]);
 
@@ -144,7 +143,11 @@ module.exports = function (grunt) {
       },
       widgets: {
         options: {
-          paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>']
+          // the 'config.dir.lib.bootstrap' path is here because in order to get relativeUrls right, we need to descend one level under lib/ folder
+          // then it's up to rootpath and relativeUrls options to fix relative URLs in there
+          paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>', '<%= config.dir.lib.bootstrap %>'],
+          rootpath: '../',
+          relativeUrls: true
         },
         files: grunt.file.expandMapping('*/**/*.less', '<%= config.dir.dist.richwidgets %>/', { // */**/*.less: exclude files in the widgets folder itself
           cwd: 'src/widgets',
@@ -162,8 +165,12 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>'],
-          yuicompress: true
+          // the 'config.dir.lib.bootstrap' path is here because in order to get relativeUrls right, we need to descend one level under lib/ folder
+          // then it's up to rootpath and relativeUrls options to fix relative URLs in there
+          paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>', '<%= config.dir.lib.bootstrap %>'],
+          yuicompress: true,
+          rootpath: '../',
+          relativeUrls: true
         },
         src: '<%= config.dir.src.widgets %>/main.less',
         dest: '<%= config.dir.dist.richwidgets %>/richwidgets.min.css'
@@ -379,13 +386,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%= config.dir.lib.select2 %>',
-            src: ['select2.js', 'select2.css', 'select2.png', 'select2-spinner.gif'],
-            dest: '<%= config.dir.dist.assets %>/select2'
-          },
-          {
-            expand: true,
-            cwd: '<%= config.dir.lib.select2css %>',
-            src: ['select2-bootstrap.css'],
+            src: ['select2.js', 'select2.png', 'select2-spinner.gif'],
             dest: '<%= config.dir.dist.assets %>/select2'
           }
         ]
@@ -432,6 +433,12 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.src.demos %>/pages',
             src: ['**/*.{css,js}'],
             dest: '<%= config.dir.dist.demos %>/assets/demo/'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.dist.assets %>',
+            src: ['**'],
+            dest: '<%= config.dir.dist.demos %>/assets/'
           }
         ]
       },
@@ -442,16 +449,6 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.src.demos %>',
             src: ['CNAME', '**/*.png'],
             dest: '<%= config.dir.dist.demos %>/'
-          }
-        ]
-      },
-      demoAssetsProduction: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= config.dir.dist.assets %>',
-            src: ['**'],
-            dest: '<%= config.dir.dist.demos %>/assets/'
           }
         ]
       }
