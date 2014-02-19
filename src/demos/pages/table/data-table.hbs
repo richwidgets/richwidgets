@@ -1,0 +1,36 @@
+---
+title: DataTable
+section: demo
+js_assets: [jquery-ui/jquery.ui.core.js,jquery-ui/jquery.ui.widget.js,richwidgets/table/data-table.js, ]
+css_assets: [ richwidgets/table/data-table.css ]
+---
+<h2>DataTable Demos</h2>
+
+<p>The DataTable is a bootstrap-styled table with some javascript hooks in place for sorting and filtering functions.</p>
+
+<h3>Basic DataTable:</h3>
+
+<p>A basic DataTable.</p>
+
+{{include "data-table/basic.html"}}
+
+<!--<h4>Source:</h4>-->
+<!--<div class="row">-->
+  <!--<div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/table/data-table/basic.html"}}{{/markdown}}</div>-->
+  <!--<div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/table/data-table/basic.js"}}{{/markdown}}</div>-->
+<!--</div>-->
+
+{{include "data-table/sort.html"}}
+
+<!--<h4>Source:</h4>-->
+<!--<div class="row">-->
+  <!--<div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/table/data-table/sort.html"}}{{/markdown}}</div>-->
+  <!--<div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/table/data-table/sort.js"}}{{/markdown}}</div>-->
+<!--</div>-->
+
+{{include "data-table/filter.html"}}
+
+<script src="{{assets-demo}}/table/data-table/basic.js"></script>
+<script src="{{assets-demo}}/table/data-table/sort.js"></script>
+<script src="{{assets-demo}}/table/data-table/filter.js"></script>
+

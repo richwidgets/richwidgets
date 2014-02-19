@@ -1,0 +1,21 @@
+@import "../mixins";
+@import "../variables";
+@import "bootstrap/less/tables";
+
+.data-table {
+  .table;
+  .table-bordered;
+  width: auto;
+
+  > thead > tr > th {
+    vertical-align: middle;
+  }
+
+  > tbody> tr.sub-footer > td {
+    background-color: @gray-lighter;
+  }
+
+  > tfoot > tr > td {
+    background-color: @gray-light;
+  }
+}

@@ -430,7 +430,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%= config.dir.src.demos %>/pages',
-            src: ['**/*.{css,js}'],
+            src: ['**/*.{css,js,png,gif}'],
             dest: '<%= config.dir.dist.demos %>/assets-demo/'
           }
         ]
