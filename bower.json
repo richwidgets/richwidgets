@@ -27,6 +27,6 @@
     "modernizr": "2.6.2",
     "highlightjs": "7.3.0",
 
-    "yuidoc-bootstrap-theme": "richwidgets/yuidoc-bootstrap-theme#8a1432d7b363309667483ea2927976ae0b500393"
+    "yuidoc-bootstrap-theme": "lfryc/yuidoc-bootstrap-theme#d72bfa644a32dae4afc0955a6a29e8d8eb5ff57e"
   }
 }
