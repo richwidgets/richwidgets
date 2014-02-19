@@ -61,7 +61,7 @@ $(function() {
                 return regex.test(item.split('/')[1]);
             },
             updater : function(item) {
-                window.location.assign(location.protocol + "//" + location.host + '/api/' + item + '.html');
+                window.location.assign(location.protocol + "//" + location.host + '/' + item + '.html');
             }
         });
     }

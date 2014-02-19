@@ -116,6 +116,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     config: configuration,
     demo: grunt.file.readYAML('src/demos/data/site.yml'),
 
