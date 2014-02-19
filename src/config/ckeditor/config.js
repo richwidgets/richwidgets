@@ -1,11 +1,11 @@
 /* global CKEDITOR */
 
-/**
+/*
  * Disables automatic enhancement of all contanteditable areas to avoid conflicts.
  */
 CKEDITOR.disableAutoInline = true;
 
-/**
+/*
  * Provides default configuration for all editor instances.
  */
 CKEDITOR.editorConfig = function( config ) {

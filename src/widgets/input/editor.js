@@ -1,3 +1,4 @@
+/* global CKEDITOR */
 /**
  * Editor widget for powerfull WYSIWYG editor based on CKEditor 4.
  *
@@ -7,7 +8,7 @@
  *
  * @module Input
  * @class editor
- * @uses $.fn.ckeditor
+ * @uses CKEDITOR
  */
 (function($) {
 
@@ -25,7 +26,7 @@
        * @type Integer
        * @default 'Basic'
        */
-      toolbar : 'Basic'
+      toolbar: 'Basic'
     },
 
     DIRTY_EVENTS: [ 'key', 'paste', 'undo', 'redo' ],
@@ -38,8 +39,12 @@
       this.options = $.extend(this.options, {
         on: this._getHandlers()
       });
-      $(this.element).on('editorblur', $.proxy(this._triggerChange, this));
-      this.editorInstance = $(this.element).ckeditor(this.options).editor;
+      this.element.on('editorblur', $.proxy(this._triggerChange, this));
+      if (this.element.is('textarea')) {
+        this.editorInstance = CKEDITOR.replace(this.element.get(0), this.options);
+      } else {
+        this.editorInstance = CKEDITOR.inline(this.element.get(0), this.options);
+      }
       this.dirtyCheckingInterval = window.setInterval($.proxy(this._dirtyCheck, this), 100);
     },
 
