@@ -1,8 +1,8 @@
 ---
 title: DataTable
 section: demo
-js_assets: [jquery-ui/jquery.ui.core.js,jquery-ui/jquery.ui.widget.js,richwidgets/table/data-table.js, ]
-css_assets: [ richwidgets/table/data-table.css ]
+js_assets: [jquery-ui/jquery.ui.core.js,jquery-ui/jquery.ui.widget.js,richwidgets/table/data-table.js, richwidgets/table/data-scroller.js]
+css_assets: [ richwidgets/table/data-table.css, richwidgets/table/data-scroller.css ]
 ---
 <h2>DataTable Demos</h2>
 
@@ -14,23 +14,48 @@ css_assets: [ richwidgets/table/data-table.css ]
 
 {{include "data-table/basic.html"}}
 
-<!--<h4>Source:</h4>-->
-<!--<div class="row">-->
-  <!--<div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/table/data-table/basic.html"}}{{/markdown}}</div>-->
-  <!--<div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/table/data-table/basic.js"}}{{/markdown}}</div>-->
-<!--</div>-->
+<h4>Source:</h4>
+<div class="row">
+  <div class="col col-md-6">{{#markdown}}{{embed 'src/demos/pages/table/data-table/basic.js' 'javascript'}}{{/markdown}}</div>
+</div>
+
+<h3>DataTable Sort:</h3>
+
+<p>A sortable DataTable, click on one of the column headers to sort the table by that column.  Sorting is performed
+by an even handler, allowing you to hook-in whatever backend mechanism you prefer.</p>
 
 {{include "data-table/sort.html"}}
 
-<!--<h4>Source:</h4>-->
-<!--<div class="row">-->
-  <!--<div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/table/data-table/sort.html"}}{{/markdown}}</div>-->
-  <!--<div class="col col-md-6">{{#markdown}}{{embed "src/demos/pages/table/data-table/sort.js"}}{{/markdown}}</div>-->
-<!--</div>-->
+<h4>Source:</h4>
+<div class="row">
+  <div class="col col-md-6">{{#markdown}}{{embed 'src/demos/pages/table/data-table/sort.js' 'javascript'}}{{/markdown}}</div>
+</div>
+
+<h3>DataTable Filter:</h3>
+
+<p>A filterable DataTable, interact with the inputs in the header to filter the table.  Filtering is performed
+by an even handler, allowing you to hook-in whatever backend mechanism you prefer.</p>
 
 {{include "data-table/filter.html"}}
+
+<h4>Source:</h4>
+<div class="row">
+    <div class="col col-md-6">{{#markdown}}{{embed 'src/demos/pages/table/data-table/filter.js' 'javascript'}}{{/markdown}}</div>
+</div>
+
+<h3>DataTable Scroll:</h3>
+
+<p>Scroll through the table using the paginator.</p>
+
+{{include "data-table/scroll.html"}}
+
+<h4>Source:</h4>
+<div class="row">
+    <div class="col col-md-6">{{#markdown}}{{embed 'src/demos/pages/table/data-table/scroll.js' 'javascript'}}{{/markdown}}</div>
+</div>
 
 <script src="{{assets-demo}}/table/data-table/basic.js"></script>
 <script src="{{assets-demo}}/table/data-table/sort.js"></script>
 <script src="{{assets-demo}}/table/data-table/filter.js"></script>
+<script src="{{assets-demo}}/table/data-table/scroll.js"></script>
 

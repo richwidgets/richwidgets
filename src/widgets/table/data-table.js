@@ -40,6 +40,7 @@
           widget._trigger('sort', e, {table: widget.element, column: column, direction: direction});
           column.removeClass('increasing', 'decreasing');
           column.addClass(direction);
+          e.preventDefault();
         });
       }
     },

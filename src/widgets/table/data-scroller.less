@@ -1,0 +1,36 @@
+@import "../mixins";
+@import "../variables";
+@import "bootstrap/less/pagination";
+@import "bootstrap/less/type";
+
+.data-scroller {
+  .pagination;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+
+  .richicon-first:before {
+    content: @fa-var-angle-double-left;
+  }
+
+  .richicon-previous:before {
+    content: @fa-var-angle-left;
+  }
+
+  .richicon-next:before {
+    content: @fa-var-angle-right;
+  }
+
+  .richicon-last:before {
+    content: @fa-var-angle-double-right;
+  }
+
+  > li > a{
+    height: @size-clickable;
+    width: @size-clickable;
+  }
+}
+
+.scroller {
+  .text-center
+}
