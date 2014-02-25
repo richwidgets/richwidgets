@@ -1,25 +1,16 @@
+/* global tableUtils */
 $('#sort').dataTable({
   sort: function(event, ui) {
-    var index = ui.table.find('thead th').index(ui.column);
-    sortTable(ui.table.find('tbody'), index, ui.direction === 'decreasing');
+    var index = ui.sort.sequenceByIndex[0];
+    tableUtils.sortTable(ui.table.find('tbody').not('.scroller'), index, ui.sort[index] === 'descending');
+    $('#sortScroller').dataScroller('refresh');
   }
 });
 
-function sortTable(tbody, column, decreasing) {
-  var rows =  tbody.find('tr');
-  var array = [];
-  for (var i = 0; i < rows.length; i++) {
-    array.push(rows[i]);
+$('#sortScroller').dataScroller({
+  target: $('#sort'),
+  size: 50,
+  scroll: function(event, ui) {
+    tableUtils.showRange(ui.target, ui.first, ui.last);
   }
-  array.sort(function(a,b) {
-    var aText = a.children[column].textContent;
-    var bText = b.children[column].textContent;
-    return aText.localeCompare(bText);
-  });
-  if (decreasing) {
-    array.reverse();
-  }
-
-  rows.detach();
-  tbody.append(array);
-}
+});

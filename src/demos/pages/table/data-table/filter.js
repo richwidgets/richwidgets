@@ -1,18 +1,22 @@
+/* global tableUtils */
 $('#filter').dataTable({
   filter: function(event, ui) {
-    var index = ui.table.find('thead th').index(ui.column);
-    filterTable(ui.table.find('tbody'), index, ui.value);
+    tableUtils.filterTable(ui.table.find('tbody').not('.scroller'), ui.filter);
+    var visibleSize = ui.table.find('tbody').not('.scroller').find('tr:visible').length;
+    $('#filterScroller').dataScroller('option', 'size', visibleSize);
+  },
+  sort: function(event, ui) {
+    var index = ui.sort.sequenceByIndex[0];
+    tableUtils.sortTable(ui.table.find('tbody').not('.scroller'), index, ui.sort[index] === 'descending');
+    $('#filterScroller').dataScroller('refresh');
   }
 });
 
-function filterTable(tbody, column, filter) {
-  tbody.find('tr').each(function() {
-    var row = this;
-    var value = row.children[column].textContent;
-    if (value.indexOf(filter) === 0) {
-      row.style.display = 'table-row';
-    } else {
-      row.style.display = 'none';
-    }
-  });
-}
+$('#filterScroller').dataScroller({
+  target: $('#filter'),
+  size: 121,
+  pageSize: 10,
+  scroll: function(event, ui) {
+    tableUtils.showRange(ui.target, ui.first, ui.last);
+  }
+});

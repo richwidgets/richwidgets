@@ -19,19 +19,25 @@
     },
 
     _create: function() {
-      this.pageMax = this.options.size ? (Math.floor((this.options.size -1) / this.options.pageSize)) : 0;
+      this._updatePageButtons();
       this.page = this.options.size ? (Math.floor(this.options.start / this.options.pageSize)) : 0;
       if (this.options.target) {
         this.connectWith(this.options.target);
       }
-      this.updateStyle();
+      this._updateStyle();
       this._attachEvents();
+      var widget = this;
+      $(document).ready($.proxy(this.refresh, this));
     },
 
     _attachEvents: function() {
       var widget = this;
-      this.element.find('li').on('click', function(e) {
+      this.element.on('click', 'li', function(e) {
         var button = $(this);
+        if (button.hasClass('disabled')) {
+          e.preventDefault();
+          return;
+        }
         if (button.hasClass('first')) {
           widget.showPage(0);
         } else if (button.hasClass('next')) {
@@ -77,10 +83,16 @@
       var first = page * this.options.pageSize;
       var last = first + this.options.pageSize - 1;
       this._trigger('scroll', null, {target: this.target, first: first, last: last});
-      this.updateStyle();
+      this._updateStyle();
     },
 
-    updateStyle: function() {
+    refresh: function() {
+      this._updatePageButtons();
+      this.showPage(this.page);
+      this._updateStyle();
+    },
+
+    _updateStyle: function() {
       var elements = this.element.find('li');
       var widget = this;
       elements.each(function(index) {
@@ -107,6 +119,42 @@
           button.removeClass('active');
         }
       });
+    },
+
+    _updatePageButtons: function() {
+      var pageButtons = this.element.find('li').not('.first').not('.previous').not('.next').not('.last');
+      this.pageMax = this.options.size ? (Math.floor((this.options.size -1) / this.options.pageSize)) : 0;
+      if (pageButtons.length < this.pageMax + 1) {
+        var initial = pageButtons.length + 1;
+        var previousButton = pageButtons.last();
+        for (var i = initial; i <= this.pageMax +1; i++) {
+          var button = $('<li><a href="#">'+i+'</a></li>');
+          previousButton.after(button);
+          previousButton = button;
+        }
+      } else if (pageButtons.length > this.pageMax + 1) {
+        var final = pageButtons.length;
+        for (var j = this.pageMax + 1; j < final; j++) {
+          pageButtons[j].remove();
+        }
+        if (this.page > this.pageMax) {
+          this.page = this.pageMax;
+        }
+      }
+    },
+
+    _setOption: function (key, value) {
+      var widget = this;
+      if (this.options.key === value) {
+        return;
+      }
+      switch (key) {
+        case 'size':
+          widget.options.size = value;
+          widget.refresh();
+        break;
+      }
+      this._super(key, value);
     }
 
   });

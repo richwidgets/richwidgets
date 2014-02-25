@@ -26,6 +26,12 @@
     },
 
     _create: function () {
+      this.sortState = {
+        sequenceByIndex: [],
+        sequenceById: []
+      };
+
+      this.filterState = {};
       this._addSortEvents();
       this._addFilterEvents();
     },
@@ -35,11 +41,12 @@
       if (sortableHeaders) {
         var widget = this;
         sortableHeaders.on('click', function(e) {
-          var column = $(e.delegateTarget);
-          var direction = column.hasClass('increasing') ? 'decreasing' : 'increasing';
-          widget._trigger('sort', e, {table: widget.element, column: column, direction: direction});
-          column.removeClass('increasing', 'decreasing');
-          column.addClass(direction);
+          if (e.delegateTarget) {
+            var column = e.delegateTarget.tagName.toUpperCase() === 'TH' ? $(e.delegateTarget) : $(e.delegateTarget).parents('th').first();
+            var sortOrder = widget._currentSortOrder(column) === 'ascending' ? 'descending' : 'ascending';
+            widget._storeSort(column,  sortOrder);
+          }
+          widget._trigger('sort', e, widget._dumpState());
           e.preventDefault();
         });
       }
@@ -50,8 +57,11 @@
       var inputFilters = this.element.find('thead input.filter');
       var callback = function(e) {
         var input = $(e.currentTarget);
-        var column = input.parent('th');
-        widget._trigger('filter', e, {table: widget.element, column: column, value: input.val()});
+        if (input) {
+          var column = input.parents('th').first();
+          widget._storeFilter(column, input.val());
+        }
+        widget._trigger('filter', e, widget._dumpState());
       };
 
       if (inputFilters) {
@@ -61,8 +71,61 @@
       if (selectFilters) {
         selectFilters.on('change', callback);
       }
-    }
+    },
 
+    _storeSort: function(column, sortOrder) {
+      var columnIndex = this._columnIndex(column);
+      this.sortState[columnIndex] = sortOrder;
+      this._pushSequence(columnIndex, this.sortState.sequenceByIndex);
+      if (column.attr('id')) {
+        var id = column.attr('id');
+        this.sortState[id] = sortOrder;
+        this._pushSequence(id, this.sortState.sequenceById);
+      }
+    },
+
+    _storeFilter: function(column, filterValue) {
+      var columnIndex = this._columnIndex(column);
+      this.filterState[columnIndex] = filterValue;
+      if (column.attr('id')) {
+        var id = column.attr('id');
+        this.filterState[id] = filterValue;
+      }
+    },
+
+    // ascending, descending, unsorted
+    _currentSortOrder: function(column) {
+      var sortOrder;
+      if (column.attr('id')) {
+        sortOrder = this.sortState[column.attr('id')];
+      } else {
+        var columnIndex = this._columnIndex(column);
+        sortOrder = this.sortState[columnIndex];
+      }
+      return sortOrder || 'unsorted';
+    },
+
+    _pushSequence: function(key, sequence) {
+      var oldIndex = sequence.indexOf(key);
+      if (oldIndex >= 0) {
+        sequence.splice(oldIndex, 1);
+      }
+      sequence.splice(0,0,key);
+    },
+
+    _dumpState: function() {
+      var ui = {
+        table: this.element,
+        sort: this.sortState,
+        filter: this.filterState
+      };
+      return ui;
+    },
+
+    _columnIndex: function(column) {
+      var row = column.parents('tr').first();
+      return row.find('th').index(column);
+    }
   });
 
 }(jQuery));
