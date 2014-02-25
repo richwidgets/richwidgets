@@ -1,12 +1,8 @@
 /* global tableUtils: true */
 tableUtils = (function () {
-
   return {
     showRange: function (table, first, last) {
-      var tbody = table.find('tbody').not('.scroller');
-      var widget = table.data('richDataTable');
-      var rows;
-      rows = tbody.find('tr').not('.filtered');
+      var rows = table.find('tbody').not('.scroller').find('tr').not('.filtered');
       rows.each(function (index) {
         var row = this;
         if (index >= first && index < last) {
@@ -17,8 +13,8 @@ tableUtils = (function () {
       });
     },
 
-    filterTable: function (tbody, filterMap) {
-      var rows = tbody.find('tr');
+    filterTable: function (table, filterMap) {
+      var rows = table.find('tbody').not('.scroller').find('tr');
       if (!rows) {
         return;
       }
@@ -41,9 +37,12 @@ tableUtils = (function () {
           }
         }
       });
+      var visibleSize = table.find('tbody').not('.scroller').find('tr:visible').length;
+      table.dataTable('option', 'length', visibleSize);
     },
 
-    sortTable: function (tbody, column, descending) {
+    sortTable: function (table, column, descending) {
+      var tbody = table.find('tbody').not('.scroller');
       var rows = tbody.find('tr');
       var array = [];
       for (var i = 0; i < rows.length; i++) {
@@ -57,7 +56,6 @@ tableUtils = (function () {
       if (descending) {
         array.reverse();
       }
-
       rows.detach();
       tbody.append(array);
     }

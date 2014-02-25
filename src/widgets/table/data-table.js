@@ -9,23 +9,29 @@
   $.widget('rich.dataTable', {
 
     options: {
+      length: null,
       /**
        * Fired when a sortable header is clicked.  A sortable header is a <th> element with the class 'sort' in <thead>.
        *
        * @event sort
        */
       sort: null,
+      sorted: null,
 
       /**
        * Fired when a filterable element header is changed.  A filterable element is one marked with the class 'filter' in <thead>.
        *
        * @event filter
        */
-      filter: null
+      filter: null,
+      filtered: null
 
     },
 
     _create: function () {
+      if (!this.length) {
+        this.length = this.element.find('tbody').not('.scroller').find('tr').length;
+      }
       this.sortState = {
         sequenceByIndex: [],
         sequenceById: []
@@ -47,6 +53,7 @@
             widget._storeSort(column,  sortOrder);
           }
           widget._trigger('sort', e, widget._dumpState());
+          widget._trigger('sorted', e, widget._dumpState());
           e.preventDefault();
         });
       }
@@ -62,6 +69,7 @@
           widget._storeFilter(column, input.val());
         }
         widget._trigger('filter', e, widget._dumpState());
+        widget._trigger('filtered', e, widget._dumpState());
       };
 
       if (inputFilters) {
@@ -117,7 +125,8 @@
       var ui = {
         table: this.element,
         sort: this.sortState,
-        filter: this.filterState
+        filter: this.filterState,
+        length: this.options.length
       };
       return ui;
     },

@@ -26,8 +26,6 @@
       }
       this._updateStyle();
       this._attachEvents();
-      var widget = this;
-      $(document).ready($.proxy(this.refresh, this));
     },
 
     _attachEvents: function() {
@@ -53,8 +51,19 @@
       });
     },
 
-    connectWith: function(element) {
-      this.target = element;
+    connectWith: function(tableElement) {
+      this.table = tableElement;
+      var widget = this;
+      $(document).ready( function($) {
+          widget.refresh();
+          widget.table.dataTable('option', 'sorted', function(event, ui) {
+            widget.refresh();
+          });
+          widget.table.dataTable('option', 'filtered', function(event, ui) {
+            widget._setOption('size', ui.length);
+          });
+        }
+      );
     },
 
     previous: function() {
@@ -82,7 +91,7 @@
       this.page = page;
       var first = page * this.options.pageSize;
       var last = first + this.options.pageSize - 1;
-      this._trigger('scroll', null, {target: this.target, first: first, last: last});
+      this._trigger('scroll', null, {table: this.table, first: first, last: last});
       this._updateStyle();
     },
 
