@@ -26,7 +26,12 @@
        * @type Integer
        * @default 'Basic'
        */
-      toolbar: 'Basic'
+      toolbar: 'Basic',
+
+      /**
+       * Do not load config as it is loaded manually
+       */
+      customConfig: ''
     },
 
     DIRTY_EVENTS: [ 'key', 'paste', 'undo', 'redo' ],
