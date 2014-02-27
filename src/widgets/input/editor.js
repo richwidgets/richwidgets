@@ -70,13 +70,17 @@
      * * value() - returns a current value
      * * value(newValue) - setup a new value
      *
+     * Note: this method is asynchronous. The callback parameter must be used if interaction with the editor is needed after setting the data.
+     *
      * @method value
+     * @param newValue HTML code to replace the curent content in the editor.
+     * @param callback Function to be called after the value is set.
      */
-    value: function(newValue) {
+    value: function(newValue, callback) {
       if (newValue === undefined) {
         return this.editor().getData();
       } else {
-        this.editor().setData(newValue);
+        this.editor().setData(newValue, callback);
       }
     },
 

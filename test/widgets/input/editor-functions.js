@@ -16,6 +16,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
                 var fixtureBasic = $('#fixture-basic-editor');
                 var elementBasic = $('textarea', fixtureBasic);
                 var instanceReady = false;
+                var editorValueSet = false;
                 var instanceDestroyed = false;
 
                 runs(function() {
@@ -32,10 +33,18 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
                 }, 'instance to be ready', 1000);
 
                 runs(function() {
-                    elementBasic.editor('value', 'new content');
-                    debugger;
-                    //expect($(elementBasic.editor('value')).text()).toBe('new content');
-                    expect(elementBasic.editor('value')).toEqual('new content');
+                    elementBasic.editor('value', 'new content', function() {
+                      editorValueSet = true;
+                    });
+                });
+
+                waitsFor(function() {
+                    return editorValueSet;
+                }, 'editor value to be set', 2000);
+
+                runs(function() {
+                    expect($(elementBasic.editor('value')).text()).toBe('new content');
+
                     CKEDITOR.on('instanceDestroyed', function() {
                         instanceDestroyed = true;
                     });
