@@ -14,7 +14,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
         });
 
         describe('Property affects the toolbar generated:', function () {
-            it('creating basic (eg. default) toolbar in editor', function () {
+            xit('creating basic (eg. default) toolbar in editor', function () {
                 var instanceReady = false;
                 var editorValueSet = false;
                 var instanceDestroyed = false;
@@ -59,7 +59,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
                 }, 'instance to be destroyed', 1000);
             });
 
-            it('creating full toolbar in editor', function () {
+            xit('creating full toolbar in editor', function () {
                 var instanceReady = false;
                 var editorValueSet = false;
                 var instanceDestroyed = false;
