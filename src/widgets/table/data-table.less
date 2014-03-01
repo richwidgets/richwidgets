@@ -11,6 +11,30 @@
     vertical-align: middle;
   }
 
+  > thead > tr .sort {
+    color: @link-color;
+    cursor: pointer;
+  }
+
+  > thead > tr .richicon-sort:before {
+    content: @fa-var-sort;
+    padding-right: 4px;
+  }
+
+  > thead > tr .ascending .richicon-sort:before {
+    content: @fa-var-sort-desc;
+  }
+
+  > thead > tr .descending .richicon-sort:before {
+    content: @fa-var-sort-asc;
+  }
+
+    > thead > tr .sort:hover {
+    color: @link-hover-color;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
   > tbody> tr.sub-footer > td {
     background-color: @gray-lighter;
   }

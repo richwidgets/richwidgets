@@ -1,8 +1,7 @@
 /* global tableUtils */
 $('#sort').dataTable({
   sort: function(event, ui) {
-    var index = ui.sort.sequenceByIndex[0];
-    tableUtils.sortTable(ui.table, index, ui.sort[index] === 'descending');
+    tableUtils.sortTable(ui.table, ui.sort);
   }
 });
 

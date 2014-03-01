@@ -18,16 +18,17 @@ tableUtils = (function () {
       if (!rows) {
         return;
       }
-      var columnCount = rows[0].children.length;
       rows.each(function () {
         var row = this;
-        for (var column = 0; column < columnCount; column++) {
-          var filter = filterMap[column];
-          var value = row.children[column].textContent;
-          var test = !filter || (
-            $.isNumeric(value) && $.isNumeric(filter) ? Number(value) <= Number(filter) : value.indexOf(filter) === 0
-            );
-          if (test) {
+        for (var filterIndex = 0; filterIndex < filterMap.length; filterIndex++) {
+          var filter = filterMap[filterIndex];
+          var columnIndex = filter.index;
+          var filterValue = filter.filterValue;
+          var cellValue = row.children[columnIndex].textContent;
+          var isNumeric = $.isNumeric(cellValue) && $.isNumeric(filterValue);
+          var showRow = !filterValue ||
+            (isNumeric ? Number(cellValue) <= Number(filterValue) : cellValue.indexOf(filterValue) === 0);
+          if (showRow) {
             row.style.display = 'table-row';
             row.className = '';
           } else {
@@ -41,7 +42,7 @@ tableUtils = (function () {
       table.dataTable('option', 'length', visibleSize);
     },
 
-    sortTable: function (table, column, descending) {
+    sortTable: function (table, sortMap) {
       var tbody = table.find('tbody').not('.scroller');
       var rows = tbody.find('tr');
       var array = [];
@@ -49,13 +50,21 @@ tableUtils = (function () {
         array.push(rows[i]);
       }
       array.sort(function (a, b) {
-        var aText = a.children[column].textContent;
-        var bText = b.children[column].textContent;
-        return $.isNumeric(aText) && $.isNumeric(bText) ? Number(aText) - Number(bText) : aText.localeCompare(bText);
+        var result;
+        for (var count = 0; count < sortMap.length; count++) {
+          var columnIndex = sortMap[count].index;
+          var aText = a.children[columnIndex].textContent;
+          var bText = b.children[columnIndex].textContent;
+          result = $.isNumeric(aText) && $.isNumeric(bText) ? Number(aText) - Number(bText) : aText.localeCompare(bText);
+          if (sortMap[count].sortOrder === 'descending') {
+            result = result * -1;
+          }
+          if (result !== 0) {
+            break;
+          }
+        }
+        return result;
       });
-      if (descending) {
-        array.reverse();
-      }
       rows.detach();
       tbody.append(array);
     }

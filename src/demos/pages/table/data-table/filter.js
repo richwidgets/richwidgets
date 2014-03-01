@@ -1,4 +1,15 @@
 /* global tableUtils */
+$('#filter').dataTable({
+  sortMode: 'multi',
+  filter: function(event, ui) {
+    // Accumulate the filters in a map to be re-applied later
+    tableUtils.filterTable(ui.table, ui.filter);
+  },
+  sort: function(event, ui) {
+    tableUtils.sortTable(ui.table, ui.sort);
+  }
+});
+
 $('#filterScroller').dataScroller({
   target: $('#filter'),
   size: 121,
@@ -7,14 +18,3 @@ $('#filterScroller').dataScroller({
     tableUtils.showRange(ui.table, ui.first, ui.last);
   }
 });
-
-$('#filter').dataTable({
-  filter: function(event, ui) {
-    tableUtils.filterTable(ui.table, ui.filter);
-  },
-  sort: function(event, ui) {
-    var index = ui.sort.sequenceByIndex[0];
-    tableUtils.sortTable(ui.table, index, ui.sort[index] === 'descending');
-  }
-});
-
