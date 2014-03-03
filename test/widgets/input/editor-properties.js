@@ -14,6 +14,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
         });
 
         describe('Property affects the toolbar generated:', function () {
+            // the default config is not applied properly https://github.com/richwidgets/richwidgets/issues/187
             xit('creating basic (eg. default) toolbar in editor', function () {
                 var instanceReady = false;
                 var editorValueSet = false;
@@ -59,6 +60,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
                 }, 'instance to be destroyed', 1000);
             });
 
+            // the default config is not applied properly https://github.com/richwidgets/richwidgets/issues/187
             xit('creating full toolbar in editor', function () {
                 var instanceReady = false;
                 var editorValueSet = false;

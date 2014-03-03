@@ -284,6 +284,7 @@ module.exports = function (grunt) {
             jQuery: true,
             '$': true,
             it: true,
+            xit: true,
             expect: true,
             runs: true,
             waitsFor: true,
