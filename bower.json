@@ -28,5 +28,8 @@
     "highlightjs": "7.3.0",
 
     "yuidoc-bootstrap-theme": "richwidgets/yuidoc-bootstrap-theme#cc216ede6ad02aa4e0abf748dcde512eb06224bd"
+  },
+  "resolutions": {
+    "jquery": "1.9.1"
   }
 }
