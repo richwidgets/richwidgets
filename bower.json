@@ -13,7 +13,7 @@
     "flotAxisLabels":"markrcote/flot-axislabels#fcfde41709057b1087288e20f49f0e8a75025845",
     "flotTooltip":"krzysu/flot.tooltip#8a9ed0e9b582238064ea34ce401b674867d1700f",
     "flotOrderBars":"emmerich/flot-orderBars#d44ff4f2fec4c8bb1254e59567ee39fa3684372e",
-    "ckeditor": "#4.3.2/full",
+    "ckeditor": "#full/4.3.3",
     "select2": "3.4.5",
     "select2-bootstrap3-css": "#1c74d5934514d49f80c4c7dd484b1a13a8221209",
 
