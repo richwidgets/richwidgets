@@ -17,7 +17,7 @@
     "select2": "3.4.5",
     "select2-bootstrap3-css": "#1c74d5934514d49f80c4c7dd484b1a13a8221209",
 
-    "patternfly": "patternfly/patternfly#0.1.1",
+    "patternfly": "patternfly/patternfly#0.1.4",
 
     "requirejs": "2.1.8",
     "jasmine-jquery": "1.5.3",
