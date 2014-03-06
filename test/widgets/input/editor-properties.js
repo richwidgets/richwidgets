@@ -14,8 +14,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
         });
 
         describe('Property affects the toolbar generated:', function () {
-            // the default config is not applied properly https://github.com/richwidgets/richwidgets/issues/187
-            xit('creating basic (eg. default) toolbar in editor', function () {
+            it('creating basic (eg. default) toolbar in editor', function () {
                 var instanceReady = false;
                 var editorValueSet = false;
                 var instanceDestroyed = false;
@@ -60,8 +59,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
                 }, 'instance to be destroyed', 1000);
             });
 
-            // the default config is not applied properly https://github.com/richwidgets/richwidgets/issues/187
-            xit('creating full toolbar in editor', function () {
+            it('creating full toolbar in editor', function () {
                 var instanceReady = false;
                 var editorValueSet = false;
                 var instanceDestroyed = false;
@@ -93,7 +91,7 @@ define(['widget-test-base', 'ckeditor', 'src/widgets/input/editor'], function (b
 
                 runs(function() {
                     //full should have 60 buttons
-                    expect($('#fixture-basic-editor .cke_toolbox .cke_button').length).toBe(62);
+                    expect($('#fixture-basic-editor .cke_toolbox .cke_button').length).toBe(60);
                     CKEDITOR.on('instanceDestroyed', function() {
                         instanceDestroyed = true;
                     });
