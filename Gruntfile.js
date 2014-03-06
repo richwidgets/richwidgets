@@ -371,13 +371,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%= config.dir.lib.ckeditor %>',
-            src: ['**.js', '!config.js', '**.css', 'lang/**', 'plugins/**', 'skins/**'],
-            dest: '<%= config.dir.dist.assets %>/ckeditor'
-          },
-          {
-            expand: true,
-            cwd: '<%= config.dir.src.config %>/ckeditor',
-            src: ['config.js'],
+            src: ['**.js', '**.css', 'lang/**', 'plugins/**', 'skins/**'],
             dest: '<%= config.dir.dist.assets %>/ckeditor'
           }
         ]
@@ -547,8 +541,8 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
-              mountFolder(connect, 'dist/demos'),
-              mountFolder(connect, 'dist')
+              mountFolder(connect, 'dist'),
+              mountFolder(connect, 'dist/demos')
             ];
           }
         }
