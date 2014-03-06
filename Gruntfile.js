@@ -43,7 +43,7 @@ module.exports = function (grunt) {
         ckeditor: '<%= config.dir.lib.root %>/ckeditor',
         select2: '<%= config.dir.lib.root %>/select2',
         select2css: '<%= config.dir.lib.root %>/select2-bootstrap3-css',
-        rcue: '<%= config.dir.lib.root %>/rcue'
+        patternfly: '<%= config.dir.lib.root %>/patternfly'
       }
     },
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -129,7 +129,7 @@ module.exports = function (grunt) {
     less: {
       bootstrap: {
         options: {
-          paths: ['<%= config.dir.lib.rcue %>/less', '<%= config.dir.lib.root %>']
+          paths: ['<%= config.dir.lib.patternfly %>/less', '<%= config.dir.lib.root %>']
         },
         src: '<%= config.dir.src.widgets %>/bootstrap-richwidgets.less',
         dest: '<%= config.dir.dist.assets %>/bootstrap/bootstrap.css'
@@ -419,7 +419,7 @@ module.exports = function (grunt) {
           },
           {
             expand: true,
-            cwd: '<%= config.dir.lib.rcue %>/dist/fonts',
+            cwd: '<%= config.dir.lib.patternfly %>/dist/fonts',
             src: '*',
             dest: '<%= config.dir.dist.demos %>/assets/demo/fonts/'
           },
