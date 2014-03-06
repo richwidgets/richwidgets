@@ -550,7 +550,28 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 58,
+            "line": 31,
+            "description": "Do not load config as it is loaded manually",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 36,
+            "description": "Overrides default Basic toolbar button set",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 43,
+            "description": "Overrides default Full toolbar button set",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 89,
             "description": "Returns CKEditor instance.",
             "itemtype": "method",
             "name": "editor",
@@ -559,16 +580,26 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 67,
-            "description": "Read or write editor's value:\n\n* value() - returns a current value\n* value(newValue) - setup a new value",
+            "line": 98,
+            "description": "Read or write editor's value:\n\n* value() - returns a current value\n* value(newValue) - setup a new value\n\nNote: this method is asynchronous. The callback parameter must be used if interaction with the editor is needed after setting the data.",
             "itemtype": "method",
             "name": "value",
+            "params": [
+                {
+                    "name": "newValue",
+                    "description": "HTML code to replace the curent content in the editor."
+                },
+                {
+                    "name": "callback",
+                    "description": "Function to be called after the value is set."
+                }
+            ],
             "class": "editor",
             "module": "Input"
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 83,
+            "line": 118,
             "description": "Focus the editor",
             "itemtype": "method",
             "name": "focus",
@@ -577,7 +608,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 92,
+            "line": 127,
             "description": "Blur the editor",
             "itemtype": "method",
             "name": "blur",
@@ -586,7 +617,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 101,
+            "line": 136,
             "description": "Checks whether the editor is focused",
             "itemtype": "method",
             "name": "isFocused",
@@ -599,7 +630,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 111,
+            "line": 146,
             "description": "Checks whether the editor value has changed since last focus event.",
             "itemtype": "method",
             "name": "isDirty",
@@ -612,7 +643,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 121,
+            "line": 156,
             "description": "Checks whether the editor value has changed from its initial state.",
             "itemtype": "method",
             "name": "isValueChanged",
@@ -625,7 +656,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 131,
+            "line": 166,
             "description": "Switches the editor to read-only mode or checks whether it is in read-only mode.\n\n* readOnly() - returns a value\n* readOnly(true) - switches the editor to read-only mode",
             "itemtype": "method",
             "name": "readOnly",
@@ -646,7 +677,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 152,
+            "line": 187,
             "description": "Triggered when the Editor instance is fully initialized",
             "itemtype": "event",
             "name": "init",
@@ -655,7 +686,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 158,
+            "line": 193,
             "description": "Triggered when the Editor is blurred",
             "itemtype": "event",
             "name": "blur",
@@ -664,7 +695,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 164,
+            "line": 199,
             "description": "Triggered when the field is focused",
             "itemtype": "event",
             "name": "focus",
@@ -673,7 +704,7 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 170,
+            "line": 205,
             "description": "Triggered everytime the editors value changes.\n\nNote: beware, this event is fired for each single action user takes that changes the value",
             "itemtype": "event",
             "name": "dirty",
@@ -682,10 +713,17 @@
         },
         {
             "file": "src/widgets/input/editor.js",
-            "line": 178,
+            "line": 213,
             "description": "Triggered when the field is blurred, if the value has changed.",
             "itemtype": "event",
             "name": "change",
+            "class": "editor",
+            "module": "Input"
+        },
+        {
+            "file": "src/widgets/input/editor.js",
+            "line": 264,
+            "description": "Disables automatic enhancement of all contanteditable areas to avoid conflicts.",
             "class": "editor",
             "module": "Input"
         },
@@ -1827,19 +1865,19 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/input/editor.js:101"
+            "line": " src/widgets/input/editor.js:136"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/input/editor.js:111"
+            "line": " src/widgets/input/editor.js:146"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/input/editor.js:121"
+            "line": " src/widgets/input/editor.js:156"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/widgets/input/editor.js:131"
+            "line": " src/widgets/input/editor.js:166"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -1884,6 +1922,22 @@
         {
             "message": "Missing item type\ncallbacks for important jQuery UI Autocomplete events that helps to handle extension functionality",
             "line": " src/widgets/input/autocomplete.js:488"
+        },
+        {
+            "message": "Missing item type\nDo not load config as it is loaded manually",
+            "line": " src/widgets/input/editor.js:31"
+        },
+        {
+            "message": "Missing item type\nOverrides default Basic toolbar button set",
+            "line": " src/widgets/input/editor.js:36"
+        },
+        {
+            "message": "Missing item type\nOverrides default Full toolbar button set",
+            "line": " src/widgets/input/editor.js:43"
+        },
+        {
+            "message": "Missing item type\nDisables automatic enhancement of all contanteditable areas to avoid conflicts.",
+            "line": " src/widgets/input/editor.js:264"
         },
         {
             "message": "Missing item type\nLabels are mapped to numbers 0,1,2...\nIf a chart consists of multiple series values(from all series) with the same label\nare mapped to the (one number 0,1,2..) space of width 1.\nbarWidth takes care of bars to not overlap",

@@ -43,7 +43,7 @@ module.exports = function (grunt) {
         ckeditor: '<%= config.dir.lib.root %>/ckeditor',
         select2: '<%= config.dir.lib.root %>/select2',
         select2css: '<%= config.dir.lib.root %>/select2-bootstrap3-css',
-        rcue: '<%= config.dir.lib.root %>/rcue'
+        patternfly: '<%= config.dir.lib.root %>/patternfly'
       }
     },
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -88,7 +88,6 @@ module.exports = function (grunt) {
     'uglify:demo',
     'cssmin:demo',
     'assemble:production',
-    'copy:demoAssetsProduction',
     'test'
   ]);
 
@@ -130,7 +129,7 @@ module.exports = function (grunt) {
     less: {
       bootstrap: {
         options: {
-          paths: ['<%= config.dir.lib.rcue %>/less', '<%= config.dir.lib.root %>']
+          paths: ['<%= config.dir.lib.patternfly %>/less', '<%= config.dir.lib.root %>']
         },
         src: '<%= config.dir.src.widgets %>/bootstrap-richwidgets.less',
         dest: '<%= config.dir.dist.assets %>/bootstrap/bootstrap.css'
@@ -144,7 +143,11 @@ module.exports = function (grunt) {
       },
       widgets: {
         options: {
-          paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>']
+          // the 'config.dir.lib.bootstrap' path is here because in order to get relativeUrls right, we need to descend one level under lib/ folder
+          // then it's up to rootpath and relativeUrls options to fix relative URLs in there
+          paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>', '<%= config.dir.lib.bootstrap %>'],
+          rootpath: '../',
+          relativeUrls: true
         },
         files: grunt.file.expandMapping('*/**/*.less', '<%= config.dir.dist.richwidgets %>/', { // */**/*.less: exclude files in the widgets folder itself
           cwd: 'src/widgets',
@@ -158,12 +161,16 @@ module.exports = function (grunt) {
           paths: ['<%= config.dir.lib.root %>']
         },
         src: '<%= config.dir.src.demos %>/demo.less',
-        dest: '<%= config.dir.dist.demos %>/assets-demo/demo.css'
+        dest: '<%= config.dir.dist.demos %>/assets/demo/demo.css'
       },
       dist: {
         options: {
-          paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>'],
-          yuicompress: true
+          // the 'config.dir.lib.bootstrap' path is here because in order to get relativeUrls right, we need to descend one level under lib/ folder
+          // then it's up to rootpath and relativeUrls options to fix relative URLs in there
+          paths: ['<%= config.dir.src.widgets %>', '<%= config.dir.lib.root %>', '<%= config.dir.lib.bootstrap %>'],
+          yuicompress: true,
+          rootpath: '../',
+          relativeUrls: true
         },
         src: '<%= config.dir.src.widgets %>/main.less',
         dest: '<%= config.dir.dist.richwidgets %>/richwidgets.min.css'
@@ -173,7 +180,7 @@ module.exports = function (grunt) {
     cssmin: {
       demo: {
         files: {
-          '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.css': ['<%= config.dir.dist.richwidgets %>/richwidgets.min.css', '<%= config.dir.dist.assets %>/font-awesome/font-awesome.css', '<%= config.dir.dist.demos %>/assets-demo/demo.css']
+          '<%= config.dir.dist.demos %>/assets/demo/richwidgets-demo.min.css': ['<%= config.dir.dist.richwidgets %>/richwidgets.min.css', '<%= config.dir.dist.assets %>/font-awesome/font-awesome.css', '<%= config.dir.dist.demos %>/assets/demo/demo.css']
         }
       }
     },
@@ -199,7 +206,7 @@ module.exports = function (grunt) {
         },
         files: [
           {
-            '<%= config.dir.dist.demos %>/assets-demo/richwidgets-demo.min.js': [
+            '<%= config.dir.dist.demos %>/assets/demo/richwidgets-demo.min.js': [
               '<%= config.dir.dist.assets %>/jquery/jquery.min.js',
               '<%= config.dir.dist.assets %>/jquery-ui/minified/jquery-ui.min.js',
               '<%= config.dir.dist.flot %>/richwidgets.flot.js',
@@ -284,6 +291,7 @@ module.exports = function (grunt) {
             jQuery: true,
             '$': true,
             it: true,
+            xit: true,
             expect: true,
             runs: true,
             waitsFor: true,
@@ -363,13 +371,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%= config.dir.lib.ckeditor %>',
-            src: ['**.js', '!config.js', '**.css', 'lang/**', 'plugins/**', 'skins/**'],
-            dest: '<%= config.dir.dist.assets %>/ckeditor'
-          },
-          {
-            expand: true,
-            cwd: '<%= config.dir.src.config %>/ckeditor',
-            src: ['config.js'],
+            src: ['**.js', '**.css', 'lang/**', 'plugins/**', 'skins/**'],
             dest: '<%= config.dir.dist.assets %>/ckeditor'
           }
         ]
@@ -379,13 +381,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: '<%= config.dir.lib.select2 %>',
-            src: ['select2.js', 'select2.css', 'select2.png', 'select2-spinner.gif'],
-            dest: '<%= config.dir.dist.assets %>/select2'
-          },
-          {
-            expand: true,
-            cwd: '<%= config.dir.lib.select2css %>',
-            src: ['select2-bootstrap.css'],
+            src: ['select2.js', 'select2.png', 'select2-spinner.gif'],
             dest: '<%= config.dir.dist.assets %>/select2'
           }
         ]
@@ -413,25 +409,31 @@ module.exports = function (grunt) {
               'bootstrap/js/dropdown.js',
               'bootstrap/js/collapse.js'
             ],
-            dest: '<%= config.dir.dist.demos %>/assets-demo/'
+            dest: '<%= config.dir.dist.demos %>/assets/demo/'
           },
           {
             expand: true,
             cwd: '<%= config.dir.dist.font %>',
             src: '*',
-            dest: '<%= config.dir.dist.demos %>/assets-demo/font/'
+            dest: '<%= config.dir.dist.demos %>/assets/demo/font/'
           },
           {
             expand: true,
-            cwd: '<%= config.dir.lib.rcue %>/dist/fonts',
+            cwd: '<%= config.dir.lib.patternfly %>/dist/fonts',
             src: '*',
-            dest: '<%= config.dir.dist.demos %>/fonts/'
+            dest: '<%= config.dir.dist.demos %>/assets/demo/fonts/'
           },
           {
             expand: true,
             cwd: '<%= config.dir.src.demos %>/pages',
             src: ['**/*.{css,js}'],
-            dest: '<%= config.dir.dist.demos %>/assets-demo/'
+            dest: '<%= config.dir.dist.demos %>/assets/demo/'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.dir.dist.assets %>',
+            src: ['**'],
+            dest: '<%= config.dir.dist.demos %>/assets/'
           }
         ]
       },
@@ -442,16 +444,6 @@ module.exports = function (grunt) {
             cwd: '<%= config.dir.src.demos %>',
             src: ['CNAME', '**/*.png'],
             dest: '<%= config.dir.dist.demos %>/'
-          }
-        ]
-      },
-      demoAssetsProduction: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= config.dir.dist.assets %>',
-            src: ['**'],
-            dest: '<%= config.dir.dist.demos %>/assets/'
           }
         ]
       }
@@ -549,8 +541,8 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
-              mountFolder(connect, 'dist/demos'),
-              mountFolder(connect, 'dist')
+              mountFolder(connect, 'dist'),
+              mountFolder(connect, 'dist/demos')
             ];
           }
         }

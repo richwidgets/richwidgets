@@ -1,7 +1,8 @@
 @import "src/widgets/variables";
 @import "src/widgets/mixins";
 
-@import "lib/rcue/less/fonts";
+@font-path: "fonts";
+@import "lib/patternfly/less/fonts";
 
 body.index {
   #gradient > .vertical(#747474, #4e4e4e);
@@ -36,7 +37,7 @@ body.index {
 }
 
 #fork-me-on-github-ribbon > img {
-  position: fixed; top: 86px; right: 0; border: 0; z-index: 2000;
+  position: fixed; top: 90px; right: 0; border: 0; z-index: 2000;
 }
 
 @media (min-width: @grid-float-breakpoint) {
@@ -44,17 +45,16 @@ body.index {
     padding-top: 100px;
   }
 
-  .navbar-rcue {
+  .navbar-pf {
     .navbar-collapse {
-      padding: 0 15px;
+      // because we are using navbar-left and navbar-right, we need to fill-in whole area between them
+      #gradient .vertical(@navbar-pf-navbar-primary-bg-color-start, @navbar-pf-navbar-primary-bg-color-stop);
+    }
 
-      .navbar-left {
-        float: left;
-      }
+    .navbar-rw-left {
+      float: right;
     }
   }
-
-
 }
 
 @media (max-width: @grid-float-breakpoint) {

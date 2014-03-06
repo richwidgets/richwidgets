@@ -1,0 +1,97 @@
+/* Bootstrap overrides */
+/* PatternFly-specific */
+/* Bootstrap overrides */
+/* PatternFly-specific */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('fonts/OpenSans-Light-webfont.eot');
+  src: url('fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Light-webfont.woff') format('woff'), url('fonts/OpenSans-Light-webfont.ttf') format('truetype'), url('fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/OpenSans-Regular-webfont.eot');
+  src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Regular-webfont.woff') format('woff'), url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'), url('fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('fonts/OpenSans-Semibold-webfont.eot');
+  src: url('fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Semibold-webfont.woff') format('woff'), url('fonts/OpenSans-Semibold-webfont.ttf') format('truetype'), url('fonts/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/OpenSans-Bold-webfont.eot');
+  src: url('fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Bold-webfont.woff') format('woff'), url('fonts/OpenSans-Bold-webfont.ttf') format('truetype'), url('fonts/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('fonts/OpenSans-ExtraBold-webfont.eot');
+  src: url('fonts/OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-ExtraBold-webfont.woff') format('woff'), url('fonts/OpenSans-ExtraBold-webfont.ttf') format('truetype'), url('fonts/OpenSans-ExtraBold-webfont.svg#OpenSansExtrabold') format('svg');
+}
+body.index {
+  background-image: -webkit-linear-gradient(top, #747474 0%, #4e4e4e 100%);
+  background-image: linear-gradient(to bottom, #747474 0%, #4e4e4e 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff747474', endColorstr='#ff4e4e4e', GradientType=0);
+}
+body.index .container .jumbotron {
+  background: none;
+  padding-top: 20px;
+  padding-left: 0;
+  padding-right: 0;
+}
+body.index .container .jumbotron h1,
+body.index .container .jumbotron p {
+  color: #dbdada;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 170%;
+}
+body.index .container .jumbotron h1 {
+  font-size: 30px;
+  color: white;
+}
+@media (max-width: 768px) {
+  body.index .container .jumbotron p {
+    font-size: 18px;
+  }
+}
+#fork-me-on-github-ribbon > img {
+  position: fixed;
+  top: 90px;
+  right: 0;
+  border: 0;
+  z-index: 2000;
+}
+@media (min-width: 768px) {
+  body {
+    padding-top: 100px;
+  }
+  .navbar-pf .navbar-collapse {
+    background-image: -webkit-linear-gradient(top, #1d1d1d 0%, #030303 100%);
+    background-image: linear-gradient(to bottom, #1d1d1d 0%, #030303 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1d1d1d', endColorstr='#ff030303', GradientType=0);
+  }
+  .navbar-pf .navbar-rw-left {
+    float: right;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    padding-top: 50px;
+  }
+  #fork-me-on-github-ribbon > img {
+    top: 53px;
+  }
+}
