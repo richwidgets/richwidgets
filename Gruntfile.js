@@ -492,11 +492,11 @@ module.exports = function (grunt) {
       },
       less: {
         files: ['<%= config.dir.src.widgets %>/**/*.less'],
-        tasks: ['less:widgets']
+        tasks: ['less:widgets', 'copy:demoAssets']
       },
       js: {
         files: ['<%= config.dir.src.widgets %>/**/*.js'],
-        tasks: ['copy:js', 'yuidoc']
+        tasks: ['copy:js', 'copy:demoAssets', 'yuidoc']
       },
       // Activate once the following issue is resolved:
       // https://github.com/gruntjs/grunt-contrib-watch/issues/186

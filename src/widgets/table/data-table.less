@@ -45,4 +45,28 @@
   > tfoot > tr > td {
     background-color: @gray-light;
   }
+
+  .richicon-togglesubtable {
+    padding-right: 4px;
+  }
+
+  .expanded {
+    .collapsed-control {
+      display: none;
+    }
+
+   i.richicon-togglesubtable:before {
+      content: @fa-var-chevron-circle-down;
+   }
+  }
+
+  .collapsed {
+    .expanded-control {
+      display: none;
+    }
+
+    .richicon-togglesubtable:before {
+      content: @fa-var-chevron-circle-up;
+    }
+  }
 }
