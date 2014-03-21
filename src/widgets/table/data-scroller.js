@@ -12,19 +12,17 @@
       pageSize: 10,
       start: 0,
       size: null,
-      target: null,
+      targetSelector: null,
+      fastStep: 1,
       // events
-      next: null,
-      previous: null
+      scroll: null
     },
 
     _create: function() {
-      this._updatePageButtons();
-      this.page = this.options.size ? (Math.floor(this.options.start / this.options.pageSize)) : 0;
-      if (this.options.target) {
-        this.connectWith(this.options.target);
-      }
-      this._updateStyle();
+      this._updatePageButtonDom();
+      this.page = this.options.page ? this.options.page :
+        this.options.size ? (Math.floor(this.options.start / this.options.pageSize)) : 0;
+      this._updatePageButtonStyle();
       this._attachEvents();
     },
 
@@ -38,10 +36,14 @@
         }
         if (button.hasClass('first')) {
           widget.showPage(0);
-        } else if (button.hasClass('next')) {
-          widget.next();
+        } else if (button.hasClass('fast-previous')) {
+          widget.showPage(widget.page - widget.options.fastStep);
         } else if (button.hasClass('previous')) {
           widget.previous();
+        } else if (button.hasClass('next')) {
+          widget.next();
+        } else if (button.hasClass('fast-next')) {
+          widget.showPage(widget.page + widget.options.fastStep);
         } else if (button.hasClass('last')) {
           widget.showPage(widget.pageMax);
         } else {
@@ -49,21 +51,6 @@
         }
         e.preventDefault();
       });
-    },
-
-    connectWith: function(tableElement) {
-      this.table = tableElement;
-      var widget = this;
-      $(document).ready( function($) {
-          widget.refresh();
-          widget.table.dataTable('option', 'sorted', function(event, ui) {
-            widget.refresh();
-          });
-          widget.table.dataTable('option', 'filtered', function(event, ui) {
-            widget._setOption('size', ui.length);
-          });
-        }
-      );
     },
 
     previous: function() {
@@ -85,28 +72,35 @@
     },
 
     showPage: function(page) {
-      if (page < 0 || this.pageMax && page > this.pageMax) {
-        return;
+      if (page < 0) {
+        page = 0;
+      } else if (this.pageMax && page > this.pageMax) {
+        page = this.pageMax;
       }
       this.page = page;
       var first = page * this.options.pageSize;
       var last = first + this.options.pageSize - 1;
-      this._trigger('scroll', null, {table: this.table, first: first, last: last});
-      this._updateStyle();
+      var ui = {
+        table: this._$target(),
+        first: first,
+        last: last,
+        page: page
+      };
+      this._trigger('scroll', null, ui);
+      this._updatePageButtonStyle();
     },
 
     refresh: function() {
-      this._updatePageButtons();
-      this.showPage(this.page);
-      this._updateStyle();
+      this._updatePageButtonDom();
+      this._updatePageButtonStyle();
     },
 
-    _updateStyle: function() {
+    _updatePageButtonStyle: function() {
       var elements = this.element.find('li');
       var widget = this;
       elements.each(function(index) {
         var button = $(this);
-        if (button.hasClass('previous') || button.hasClass('first')) {
+        if (button.hasClass('previous') || button.hasClass('fast-previous') || button.hasClass('first')) {
           if (widget.page === 0) {
             button.addClass('disabled');
           } else {
@@ -114,7 +108,7 @@
           }
           return;
         }
-        if (button.hasClass('next') || button.hasClass('last')) {
+        if (button.hasClass('next') || button.hasClass('fast-next') || button.hasClass('last')) {
           if (widget.page === widget.pageMax) {
             button.addClass('disabled');
           } else {
@@ -130,8 +124,22 @@
       });
     },
 
-    _updatePageButtons: function() {
-      var pageButtons = this.element.find('li').not('.first').not('.previous').not('.next').not('.last');
+    _updatePageButtonDom: function() {
+      if (!this.options.fastStep || this.options.fastStep.toString() === '1') {
+        this.element.find('.fast-previous').hide();
+        this.element.find('.fast-next').hide();
+      }
+      var pageButtons = this.element.find('li').filter(function() {
+        var button = $(this);
+        return ! (
+          button.hasClass('first') ||
+          button.hasClass('fast-previous') ||
+          button.hasClass('previous') ||
+          button.hasClass('next') ||
+          button.hasClass('fast-next') ||
+          button.hasClass('last')
+          );
+      });
       this.pageMax = this.options.size ? (Math.floor((this.options.size -1) / this.options.pageSize)) : 0;
       if (pageButtons.length < this.pageMax + 1) {
         var initial = pageButtons.length + 1;
@@ -152,7 +160,7 @@
       }
     },
 
-    _setOption: function (key, value) {
+    _setOption: function(key, value) {
       var widget = this;
       if (this.options.key === value) {
         return;
@@ -164,8 +172,11 @@
         break;
       }
       this._super(key, value);
-    }
+    },
 
+    _$target: function() {
+      return this.options.targetSelector ? $(this.options.targetSelector) : null;
+    },
   });
 
 }(jQuery));

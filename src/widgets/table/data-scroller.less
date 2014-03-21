@@ -9,20 +9,28 @@
   margin-bottom: 0;
   text-align: center;
 
-  .richicon-first:before {
-    content: @fa-var-angle-double-left;
+  .first .richicon-scroll:before {
+    content: @fa-var-angle-left@fa-var-angle-left@fa-var-angle-left;
   }
 
-  .richicon-previous:before {
+  .fast-previous .richicon-scroll:before {
+    content: @fa-var-angle-left@fa-var-angle-left;
+  }
+
+  .previous .richicon-scroll:before {
     content: @fa-var-angle-left;
   }
 
-  .richicon-next:before {
+  .next .richicon-scroll:before {
     content: @fa-var-angle-right;
   }
 
-  .richicon-last:before {
-    content: @fa-var-angle-double-right;
+  .fast-next .richicon-scroll:before {
+    content: @fa-var-angle-right@fa-var-angle-right;
+  }
+
+  .last .richicon-scroll:before {
+    content: @fa-var-angle-right@fa-var-angle-right@fa-var-angle-right;
   }
 
   > li > a{

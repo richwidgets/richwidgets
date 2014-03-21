@@ -36,12 +36,7 @@
     },
 
     _$target: function() {
-      if (typeof this.options.targetSelector === 'string') {
-        var selector = this.options.targetSelector.replace(/(:)/g, '\\$1');
-        return $(selector);
-      } else if (this.options.targetSelector.nodeType) { // a DOM element
-        return $(this.options.targetSelector.nodeType);
-      }
+        return $(this.options.targetSelector);
     },
 
     _destroy: function () {
