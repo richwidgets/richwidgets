@@ -1,0 +1,39 @@
+@import "../mixins";
+@import "../variables";
+@import "bootstrap/less/progress-bars";
+
+.stopwatch {
+  font-size: @stopwatch-font-size;
+  background-color: @stopwatch-bg;
+  line-height: (@line-height-base * 1.5);
+  padding: @stopwatch-padding;
+  margin-top: @stopwatch-margin;
+  margin-bottom: @stopwatch-margin;
+  border-radius: @border-radius-base;
+
+  .digits {
+    line-height: 1;
+    font-size: (@stopwatch-font-size * 1.5);
+    text-align: center;
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+    padding-top:    (@stopwatch-padding * 2);
+    padding-bottom: (@stopwatch-padding * 2);
+
+    .digits {
+      font-size: (@stopwatch-font-size * 3);
+    }
+  }
+
+  .progress {
+    .progress;
+    margin-top: @stopwatch-padding;;
+    margin-bottom: 0px;
+  }
+
+  .progress-bar {
+    .progress-bar;
+    .transition(width .1s ease);
+  }
+}
