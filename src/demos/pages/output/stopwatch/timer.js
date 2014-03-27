@@ -18,14 +18,11 @@
     start: function(event, ui) {
       ui.element.css('background-color', active);
     },
-    resume: function(event, ui) {
-      ui.element.css('background-color', active);
-    },
     pause: function(event, ui) {
-      ui.element.css('background-color', waiting);
     },
     stop: function(event, ui) {
-      ui.element.css('background-color', stopped);
+      var color = ui.digits <= 0 ? stopped : waiting;
+      ui.element.css('background-color', color);
     },
     destroy: function(event, ui) {
       ui.element.css('background-color', originalBg);
